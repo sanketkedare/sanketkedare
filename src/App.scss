@@ -1,0 +1,14 @@
+ html{
+    scroll-snap-type: mandatory;
+    scroll-behavior: smooth;
+}
+
+section{
+    height: 100vh;
+    scroll-snap-align: center;
+} 
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
