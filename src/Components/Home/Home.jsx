@@ -50,6 +50,7 @@ const Home = () => {
 
       <div className="wrapper">
         <motion.div className="textcontainer" variants= {textVarients} initial= "initial" animate= "animate">
+          
           <motion.h2 variants= {textVarients}>Sanket Kedare</motion.h2>
           <motion.h1 variants= {textVarients}>Full Stack Web Developer</motion.h1>
           <motion.div variants= {textVarients} className="buttons">
@@ -63,6 +64,8 @@ const Home = () => {
       {/* <div className="imageContainer">
         <img src="" alt="hero" />
       </div> */}
+
+      
 
       <motion.div variants={sliderVarients} className="slidingTextContainer" initial="initial" animate= "animate">
         MERN Full Stack Web Devloper

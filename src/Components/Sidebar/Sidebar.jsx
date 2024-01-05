@@ -50,15 +50,6 @@ const Sidebar = () =>
               </li>
               <li>
                 <a
-                  href={`#projects`}
-                  className="block text-xl border-y-2 my-4  text-center font-bold text-black bg-white py-2 hover:bg-sky-100"
-                  onClick={toggleSidebar}
-                >
-                  Projects
-                </a>
-              </li>
-              <li>
-                <a
                   href={`#about`}
                   className="block text-xl border-y-2 my-4  text-center font-bold text-black bg-white py-2 hover:bg-sky-100"
                   onClick={toggleSidebar}
@@ -66,24 +57,17 @@ const Sidebar = () =>
                   About
                 </a>
               </li>
+              
               <li>
                 <a
-                  href={`#resume`}
+                  href={`#projects`}
                   className="block text-xl border-y-2 my-4  text-center font-bold text-black bg-white py-2 hover:bg-sky-100"
                   onClick={toggleSidebar}
                 >
-                  Resume
+                  Projects
                 </a>
               </li>
-              <li>
-                <a
-                  href={`#education`}
-                  className="block text-xl border-y-2 my-4 text-center font-bold text-black bg-white py-2 hover:bg-sky-100"
-                  onClick={toggleSidebar}
-                >
-                  Education
-                </a>
-              </li>
+
               <li>
                 <a
                   href={`#skills`}
@@ -93,6 +77,28 @@ const Sidebar = () =>
                   Skills
                 </a>
               </li>
+              
+              <li>
+                <a
+                  href={`#resume`}
+                  className="block text-xl border-y-2 my-4  text-center font-bold text-black bg-white py-2 hover:bg-sky-100"
+                  onClick={toggleSidebar}
+                >
+                  Resume
+                </a>
+              </li>
+
+              <li>
+                <a
+                  href={`#contact`}
+                  className="block text-xl border-y-2 my-4  text-center font-bold text-black bg-white py-2 hover:bg-sky-100"
+                  onClick={toggleSidebar}
+                >
+                  Contact Me
+                </a>
+              </li>
+              
+              
             </ul>
             <h1 className="bg-white text-gray-600 text-center my-7 ">
               Copyrite@2023

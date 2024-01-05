@@ -4,6 +4,7 @@ import "./App.scss";
 import Home from "./Components/Home/Home";
 import Navbar from "./Components/Navbar/Navbar";
 import Parallax from "./Components/Parallax/Parallax";
+import Skills from "./Components/Skills/Skills";
 
 function App() {
   return (
@@ -14,17 +15,21 @@ function App() {
         <Home/>
       </section>
 
+      {/* <section id="about"><Parallax type="about"/></section> */}
+    
+      <section  id="about">About</section>
+
       <section id="projects" ><Parallax type="projects"/></section>
 
       <section>Projects</section>
 
-      <section id="about"><Parallax type="about"/></section>
-    
-      <section>About</section>
+      <section id="skills"><Skills/></section>
 
-      <section id="resume">Navbar 6</section>
+      
 
-      <section id="home">Navbar 7</section>
+      <section id="resume">Resume</section>
+
+      <section id="contact">Contact Me</section>
 
       
     </div>

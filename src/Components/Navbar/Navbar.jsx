@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-import githubImage from "../../images/github.png"
+import githubImage from "../../images/github.png";
 import LinkedInImage from "../../images/linkedin.png";
 
 import "./Navbar.scss";
@@ -11,15 +11,14 @@ const Navbar = () => {
   return (
     <div className="navbar">
       {/* Sidebar */}
-      <Sidebar/>
+      <Sidebar />
       <div className="wrapper">
         <motion.span
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
-         
         >
-         
+          <h1 className="ml-20">--------: Welcome to my Portfollio Created by Hart :--------</h1>
         </motion.span>
         <motion.div
           initial={{ opacity: 0, scale: 0.5 }}

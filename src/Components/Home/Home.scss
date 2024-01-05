@@ -28,6 +28,7 @@
                 font-size: 60px;
                 color: rebeccapurple;
                 letter-spacing: 10px;
+                overflow: hidden;
             }
             h1{
                 font-size: 88px;
@@ -71,7 +72,7 @@
         opacity: 0.3;
         position: relative;
         font-size: 50vh;
-        bottom: -120px;
+        bottom: -140px;
         white-space:nowrap;
         color: #ffffff09;
         width: 100%;
