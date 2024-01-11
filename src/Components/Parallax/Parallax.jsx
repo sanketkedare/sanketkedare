@@ -27,25 +27,27 @@ const Parallax = ({ type }) => {
             : "linear-gradient(180deg, #111132, #505064)",
       }}
     >
-      <motion.h1 style={{ y: yText }}>
+      <motion.h1 style={{ y: yText }} className="lg:text-[100px] text-[40px] z-[19] bg-transparent">
         {type === "projects" ? "What I did ?" : "How am I ?"}
       </motion.h1>
 
-      <motion.div className="mountains absolute w-[100%] h-[100%] bg-transparent z-20">
+      <motion.div className="flex items-end mountains absolute w-[100%] h-[100%] bg-transparent z-20 overflow-hidden">
         <img src={Mountain} alt="mountain"
-             className="w-[100%] h-[100%] bg-inherit"/>
+             className="lg:w-[100%] lg:h-[100%] h-[40%] w-[1000px]  bg-inherit"/>
       </motion.div>
 
-      <motion.div  className="planets absolute w-full h-full bg-transparent z-20">
+      <motion.div className="flex items-start mountains absolute w-[100%] h-[100%] bg-transparent z-20 overflow-hidden">
       <img src={sun} alt="planets"
-             className="w-full h-full bg-cover bg-inherit"/>
+             className="lg:w-[90%] lg:h-[100%] h-[40%] w-auto bg-inherit"/>
       </motion.div>
 
 
-      <motion.div style={{ x: yBg }} className="stars absolute w-[100%] h-full bg-transparent z-15 bg-repeat-x">
+      <motion.div style={{ x: yBg }} className="flex stars overflow-hidden absolute lg:w-[100%]  h-full bg-transparent z-15">
       <img src={Starts} alt="starts"
-             className="w-[100%] h-[100%] bg-inherit bg-cover "/>
+             className="lg:w-[90%] lg:h-[100%] h-[50%] w-auto bg-inherit"/>
+            
       </motion.div>
+      
     </motion.div>
   );
 };
