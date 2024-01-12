@@ -12,7 +12,7 @@ function App() {
   return (
     <div>
      
-      <section id="home" className="bg-gradient-to-t from-[#3e3e7e] to-[#111132]">
+      <section id="home" className="bg-gradient-to-l from-[#3e3e7e] to-[#111132]">
         <Navbar />
         <Home />
       </section>

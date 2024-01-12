@@ -4,7 +4,7 @@ import "./About.scss";
 
 const About = () => {
   return (
-    <div className="about lg:flex grid justify-between items-center w-[100%] m-auto h-[100%] gap-[80px] p-4 border-y-2 bg-inherit border-y-white rounded-b-[50px]">
+    <div className="about lg:flex grid justify-between items-center w-[100%] m-auto h-[100%] gap-[80px] p-4 border-y-2 bg-inherit border-y-white">
 
       <div className="flex items-center bg-transparent lg:my-10 lg:mt-0 mt-10  lg:w-[30vw]">
         <div className="image flex items-center justify-center overflow-hidden rounded-full  p-2 border-2 border-white">
