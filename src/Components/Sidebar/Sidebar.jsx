@@ -1,7 +1,7 @@
 import { IoMenu } from "react-icons/io5";
 import { IoClose } from "react-icons/io5";
 import { useState } from "react";
-import reactImage from "../../images/reactjs.png";
+import {reactImage} from "../images" 
 
 const Sidebar = () => 
 {
@@ -16,7 +16,7 @@ const Sidebar = () =>
     <div>
       {!sidebarOpen && (
         <button
-          className="closed-sidebar fixed z-30 mt-10 ml-4 left-3 bg-white rounded-full text-black p-4"
+          className="closed-sidebar fixed z-30 mt-20 mr-4 right-3 bg-white rounded-full text-black p-4 opacity-[0.8]"
           onClick={toggleSidebar}
         >
           <IoMenu />
@@ -25,7 +25,7 @@ const Sidebar = () =>
 
       {sidebarOpen && (
         <div className="z-30 relative opened-sidebarfixed inset-0 bg-gray-800 bg-opacity-50">
-          <div className="bg-white w-64 h-full fixed left-0 top-0 shadow-lg rounded-xl">
+          <div className="bg-white  w-64 h-full fixed right-0 top-0 shadow-lg rounded-xl">
             <button
               className="flex justify-end items-start p-4"
               onClick={toggleSidebar}
@@ -33,10 +33,10 @@ const Sidebar = () =>
               <IoClose className="text-black w-6 h-6 rounded-full" />
             </button>
 
-            <ul className=" py-4 px-2 bg-white" >
+            <ul className=" py-4 px-2 bg-white bg-opacity-40" >
               <img
                 src={reactImage}
-                className="w-full bg-transparent shadow-inner shadow-sky-500 p-4 rounded-full"
+                className="w-full bg-white bg-opacity-40 shadow-inner shadow-sky-500 p-4 rounded-full"
                 alt="react"
               />
               <li>

@@ -1,6 +1,6 @@
 import React from "react";
 import "./Home.scss";
-import scroll from "../../images/scroll.png";
+import { js, mongoDb, nextjs, nodejs, reactImage, scroll, tailwind } from "../images";
 import { motion } from "framer-motion";
 
 const textVarients = {
@@ -28,10 +28,10 @@ const textVarients = {
 
 const sliderVarients = {
   initial: {
-    x: 5,
+    y: 1000,
   },
   animate: {
-    x: "-200%",
+    y: "-100%",
     transition: {
       repeat: Infinity,
       repeateType: "mirror",
@@ -42,23 +42,34 @@ const sliderVarients = {
 
 const Home = () => {
   return (
-    <div className="home">
-      <div className="wrapper lg:w-[1366px] w-[90vw] h-[100%] lg:m-auto absolute top-0 right-0">
+    <div className="home bg-transparent">
+      <div className="wrapper lg:w-[1366px] w-[90vw] h-[100%] lg:m-auto absolute top-0 right-0 bg-transparent z-10">
         <motion.div
-          className="textcontainer h-[100%] flex flex-col justify-center gap-[30px] absolute lg:w-[50%] w-[100%]"
+          className="textcontainer h-[100%] flex flex-col justify-center gap-[30px] absolute lg:w-[50%] w-[100%] bg-transparent"
           variants={textVarients}
           initial="initial"
           animate="animate"
-          
         >
-          <motion.h2 variants={textVarients}
-                     className="lg:text-[60px] text-[30px] text-[rgb(102,51,153)] overflow-hidden"
-                     >Sanket Kedare</motion.h2>
-          <motion.h1 variants={textVarients} className="lg:text-[88px] text-[40px] lg:w-[100%] w-[80vw]">
+          <motion.h2
+            variants={textVarients}
+            className="lg:text-[60px] text-[30px] text-[rgb(122,75,171)] overflow-hidden bg-transparent"
+          >
+            Sanket Kedare
+          </motion.h2>
+          <motion.h1
+            variants={textVarients}
+            className="lg:text-[88px] text-[40px] lg:w-[100%] w-[80vw] bg-transparent text-white"
+          >
             Full Stack Web Developer
           </motion.h1>
-          <motion.div variants={textVarients} className="buttons">
-            <motion.button variants={textVarients} className="p-[20px] lg:my-2 my-4">
+          <motion.div
+            variants={textVarients}
+            className="buttons bg-transparent"
+          >
+            <motion.button
+              variants={textVarients}
+              className="p-[20px] lg:my-2 my-4"
+            >
               See the Letest Works
             </motion.button>
             <motion.button variants={textVarients}>Contact Me</motion.button>
@@ -68,6 +79,7 @@ const Home = () => {
             variants={textVarients}
             src={scroll}
             alt="scroll"
+            className="p-1 rounded-full"
           />
         </motion.div>
       </div>
@@ -78,11 +90,17 @@ const Home = () => {
 
       <motion.div
         variants={sliderVarients}
-        className="slidingTextContainer text-[50vh] bottom-[-140px]"
+        className="slidingTextContainer text-[5vh] bottom-[-140px] w-[100%] gap-5 bg-transparent grid justify-end lg:opacity-100 opacity-15 px-6"
         initial="initial"
         animate="animate"
       >
-        MERN Full Stack Web Devloper
+        <img className= "bg-transparent" src={js} alt="js"/>
+        <img className= "bg-transparent" src={mongoDb} alt="mongo" /> 
+        <img className= "bg-transparent" src={reactImage} alt="react" />
+        <img className= "bg-transparent" src={nodejs} alt="nodejs"/>
+        <img className= "bg-transparent" src={nextjs} alt="nextjs"/>
+        <img className= "bg-transparent" src= {tailwind} alt="tailwind"/>
+
       </motion.div>
     </div>
   );

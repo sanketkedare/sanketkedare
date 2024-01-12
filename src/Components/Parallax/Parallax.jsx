@@ -1,9 +1,7 @@
 import { useRef } from "react";
 import "./Parallax.scss";
 import { motion, useScroll, useTransform } from "framer-motion";
-import sun from "../../images/sun.png";
-import Mountain from "../../images/mountains.png";
-import Starts from "../../images/stars.png";
+import {mountain, stars, sun} from "../images";
 
 const Parallax = ({ type }) => {
   const ref = useRef();
@@ -18,7 +16,7 @@ const Parallax = ({ type }) => {
 
   return (
     <motion.div
-      className="parallax"
+      className="parallax w-[100vw]"
       ref={ref}
       style={{
         background:
@@ -32,7 +30,7 @@ const Parallax = ({ type }) => {
       </motion.h1>
 
       <motion.div className="flex items-end mountains absolute w-[100%] h-[100%] bg-transparent z-20 overflow-hidden">
-        <img src={Mountain} alt="mountain"
+        <img src={mountain} alt="mountain"
              className="lg:w-[100%] lg:h-[100%] h-[40%] w-[1000px]  bg-inherit"/>
       </motion.div>
 
@@ -43,7 +41,7 @@ const Parallax = ({ type }) => {
 
 
       <motion.div style={{ x: yBg }} className="flex stars overflow-hidden absolute lg:w-[100%]  h-full bg-transparent z-15">
-      <img src={Starts} alt="starts"
+      <img src={stars} alt="starts"
              className="lg:w-[90%] lg:h-[100%] h-[50%] w-auto bg-inherit"/>
             
       </motion.div>
