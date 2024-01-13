@@ -66,7 +66,7 @@ const Contacts = () => {
         >
           Let's <span className="text-red-700">Work </span>together
         </h1>
-        <hr className="border-b-4 border-spacing-2 border-yellow-400 w-[50%]"/>
+        <hr className="border-b-4 border-spacing-2 border-yellow-400 lg:w-[50%] lg:m-0 m-auto w-[90%]" />
 
         <motion.div className="item lg:ml-0 ml-7">
           <h2 className="font-bold text-orange-600">Mail</h2>

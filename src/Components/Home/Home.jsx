@@ -31,11 +31,11 @@ const sliderVarients = {
     y: 1000,
   },
   animate: {
-    y: "-100%",
+    y: "-110%",
     transition: {
       repeat: Infinity,
       repeateType: "mirror",
-      duration: 10,
+      duration: 5,
     },
   },
 };
@@ -87,7 +87,7 @@ const Home = () => {
       {/* <div className="imageContainer">
         <img src="" alt="hero" />
       </div> */}
-
+      
       <motion.div
         variants={sliderVarients}
         className="slidingTextContainer text-[5vh] bottom-[-140px] w-[100%] gap-5 bg-transparent grid justify-end lg:opacity-100 opacity-15 px-6"
