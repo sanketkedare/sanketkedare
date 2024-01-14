@@ -27,13 +27,13 @@ const FrontendSkills = () => {
       </span>
 
       <motion.div
-        className="lg:flex lg:justify-center lg:gap-6 p-2 bg-transparent
+        className="lg:flex lg:justify-center lg:gap-6 p-2 bg-transparent 
                           grid grid-cols-4 gap-7"
         variants={textVarients}
         initial="initial"
         whileInView="animate"
       >
-        <div className="lg:w-[80px] w-[50px] lg:h-[80px] h-[50px] mx-2  m-auto ">
+        <div className="lg:w-[80px] w-[50px] lg:h-[80px] h-[50px] mx-2  m-auto bg-transparent">
           <img
             src={html}
             className="h-[100%]m-auto bg-transparent p-2"
@@ -42,7 +42,7 @@ const FrontendSkills = () => {
           <h1 className="text-center text-sm bg-transparent font-bold">HTML</h1>
         </div>
 
-        <div className="lg:w-[80px] w-[50px] lg:h-[80px] h-[50px] mx-2  m-auto">
+        <div className="lg:w-[80px] w-[50px] lg:h-[80px] h-[50px] mx-2  m-auto bg-transparent">
           <img
             src={css}
             className="h-[100%]m-auto bg-transparent p-2"
@@ -51,7 +51,7 @@ const FrontendSkills = () => {
           <h1 className="text-center text-sm bg-transparent font-bold">CSS</h1>
         </div>
 
-        <div className="lg:w-[80px] w-[50px] lg:h-[80px] h-[50px] mx-2  m-auto">
+        <div className="lg:w-[80px] w-[50px] lg:h-[80px] h-[50px] mx-2  m-auto bg-transparent">
           <img
             src={reactImage}
             className="h-[100%]m-auto bg-transparent p-2"
@@ -62,7 +62,7 @@ const FrontendSkills = () => {
           </h1>
         </div>
 
-        <div className="lg:w-[80px] w-[50px] lg:h-[80px] h-[50px] mx-2  m-auto">
+        <div className="lg:w-[80px] w-[50px] lg:h-[80px] h-[50px] mx-2  m-auto bg-transparent">
           <img
             src={nextjs}
             className="h-[100%] m-auto bg-transparent p-2"
@@ -73,7 +73,7 @@ const FrontendSkills = () => {
           </h1>
         </div>
 
-        <div className="lg:w-[80px] w-[50px] lg:h-[80px] h-[50px] mx-2  m-auto">
+        <div className="lg:w-[80px] w-[50px] lg:h-[80px] h-[50px] mx-2  m-auto bg-transparent">
           <img
             src={tailwind}
             className="h-[100%] m-auto bg-transparent p-2"
@@ -83,7 +83,7 @@ const FrontendSkills = () => {
             Tailwind
           </h1>
         </div>
-        <div className="lg:w-[80px] w-[50px] lg:h-[80px] h-[50px] mx-2  m-auto">
+        <div className="lg:w-[80px] w-[50px] lg:h-[80px] h-[50px] mx-2  m-auto bg-transparent">
           <img
             src={bootstrap}
             className="h-[100%] m-auto bg-transparent p-2"

@@ -21,7 +21,8 @@ const ProgramingSkills = () => {
   const ref = useRef();
   return (
     <motion.div ref={ref} className="programming lg:mb-8 mb-10 m-auto p-4 py-7 rounded-3xl">
-      <motion.span className=" lg:w-[80%] lg:m-auto lg:text-center border-2 border-red-200 bg-green-300 text-black px-4 p-1 font-bold lg:rounded-3xl rounded-r-3xl"
+      <motion.span className=" lg:w-[80%] lg:m-auto lg:text-center border-2 border-red-200 bg-green-300 
+                             text-black px-4 p-1 font-bold lg:rounded-3xl rounded-r-3xl"
               variants={textVarients}
               initial="initial1"
               whileInView="animate1"
@@ -36,7 +37,7 @@ const ProgramingSkills = () => {
         initial="initial1"
         whileInView="animate1"
       >
-        <motion.div className="lg:w-[80px] w-[50px] lg:h-[80px] h-[50px] mx-2  m-auto">
+        <motion.div className="lg:w-[80px] w-[50px] lg:h-[80px] h-[50px] mx-2  m-auto bg-transparent">
           <img
             src={js}
             className="h-[100%] m-auto bg-transparent p-2"
@@ -47,7 +48,7 @@ const ProgramingSkills = () => {
           </h1>
         </motion.div>
 
-        <motion.div className="lg:w-[80px] w-[50px] lg:h-[80px] h-[50px] mx-2  m-auto">
+        <motion.div className="lg:w-[80px] w-[50px] lg:h-[80px] h-[50px] mx-2  m-auto bg-transparent">
           <img
             src={java}
             className="h-[100%] m-auto bg-transparent p-2"
@@ -56,7 +57,7 @@ const ProgramingSkills = () => {
           <h1 className="text-center text-sm bg-transparent font-bold">Java</h1>
         </motion.div>
 
-        <motion.div className="lg:w-[80px] w-[50px] lg:h-[80px] h-[50px] mx-2  m-auto">
+        <motion.div className="lg:w-[80px] w-[50px] lg:h-[80px] h-[50px] mx-2  m-auto bg-transparent">
           <img
             src={dsa}
             className="h-[100%] m-auto bg-transparent p-2"
@@ -64,7 +65,7 @@ const ProgramingSkills = () => {
           />
           <h1 className="text-center text-sm bg-transparent font-bold">DSA</h1>
         </motion.div>
-        <motion.div className="lg:w-[80px] w-[50px] lg:h-[80px] h-[50px] mx-2  m-auto">
+        <motion.div className="lg:w-[80px] w-[50px] lg:h-[80px] h-[50px] mx-2  m-auto bg-transparent">
           <img
             src={githubImage}
             className="h-[100%] m-auto bg-transparent p-2"

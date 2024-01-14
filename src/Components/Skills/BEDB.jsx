@@ -29,6 +29,7 @@ const BEDB = () => {
   const ref = useRef();
   return (
     <div ref={ref} className="programming lg:mb-5 mb-10 m-auto p-4 py-7 rounded-3xl">
+
       <span className=" lg:w-[80%] lg:m-auto lg:text-center border-2 border-red-200 bg-green-300 text-black px-4 p-1 font-bold lg:rounded-3xl rounded-r-3xl">
         Backend & Database
       </span>
@@ -39,7 +40,7 @@ const BEDB = () => {
         initial="initial"
         whileInView="animate"
       >
-        <div className="lg:w-[80px] w-[50px] lg:h-[80px] h-[50px] mx-2  m-auto">
+        <div className="lg:w-[80px] w-[50px] lg:h-[80px] h-[50px] mx-2  m-auto bg-transparent">
           <img
             src={nodejs}
             className="h-[100%] m-auto bg-transparent  rounded-xl p-2"
@@ -49,7 +50,7 @@ const BEDB = () => {
             NodeJS
           </h1>
         </div>
-        <div className="lg:w-[80px] w-[50px] lg:h-[80px] h-[50px] mx-2  m-auto">
+        <div className="lg:w-[80px] w-[50px] lg:h-[80px] h-[50px] mx-2  m-auto bg-transparent">
           <img
             src={expressjs}
             className="h-[100%] m-auto bg-transparent p-3"
@@ -59,7 +60,7 @@ const BEDB = () => {
             ExpressJS
           </h1>
         </div>
-        <div className="lg:w-[80px] w-[50px] lg:h-[80px] h-[50px] mx-2  m-auto">
+        <div className="lg:w-[80px] w-[50px] lg:h-[80px] h-[50px] mx-2  m-auto bg-transparent">
           <img
             src={postman}
             className="h-[100%] m-auto bg-transparent p-3"
@@ -69,7 +70,7 @@ const BEDB = () => {
             Postman
           </h1>
         </div>
-        <div className="lg:w-[80px] w-[50px] lg:h-[80px] h-[50px] mx-2  m-auto">
+        <div className="lg:w-[80px] w-[50px] lg:h-[80px] h-[50px] mx-2  m-auto bg-transparent">
           <img
             src={mongoDb}
             className="h-[100%] m-auto bg-transparent p-2"
@@ -79,7 +80,7 @@ const BEDB = () => {
             MongoDB
           </h1>
         </div>
-        <div className="lg:w-[80px] w-[50px] lg:h-[80px] h-[50px] mx-2  m-auto">
+        <div className="lg:w-[80px] w-[50px] lg:h-[80px] h-[50px] mx-2  m-auto bg-transparent">
           <img
             src={mysql}
             className="h-[100%] m-auto bg-transparent p-2"
@@ -89,7 +90,7 @@ const BEDB = () => {
             MySQL
           </h1>
         </div>
-        <div className="lg:w-[80px] w-[50px] lg:h-[80px] h-[50px] mx-2  m-auto">
+        <div className="lg:w-[80px] w-[50px] lg:h-[80px] h-[50px] mx-2  m-auto bg-transparent">
           <img
             src={mariadb}
             className="h-[100%] m-auto bg-transparent p-2"
@@ -99,7 +100,7 @@ const BEDB = () => {
             MariaDB
           </h1>
         </div>
-        <div className="lg:w-[80px] w-[50px] lg:h-[80px] h-[50px] mx-2  m-auto">
+        <div className="lg:w-[80px] w-[50px] lg:h-[80px] h-[50px] mx-2  m-auto bg-transparent">
           <img
             src={springboot}
             className="h-[100%] m-auto bg-transparent p-2"
