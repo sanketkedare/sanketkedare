@@ -1,26 +1,88 @@
-import React from "react";
+import React, { useRef } from "react";
 import {sanket} from "../images"
 import "./About.scss";
 
-const About = () => {
-  return (
-    <div className="about lg:flex grid justify-between items-center w-[100%] m-auto h-[100%] gap-[80px] p-4 border-y-2 bg-inherit border-y-white">
+import { motion, useInView } from "framer-motion";
 
-      <div className="flex items-center bg-transparent lg:my-10 lg:mt-0 mt-10  lg:w-[30vw]">
-        <div className="image flex items-center justify-center overflow-hidden rounded-full  p-2 border-2 border-white">
-          <img src={sanket} alt="sanket" className="rounded-full lg:w-52 w-36 bg-slate-800" />
+const textVarients = {
+  initial: {
+    x: -300,
+    opacity: 0,
+  },
+  animate: {
+    x: 0,
+    opacity: 10,
+    transition: {
+      duration: 1,
+      staggerChildren: 0.5,
+    },
+  },
+
+  initial1: {
+    x: -600,
+    opacity: 0,
+  },
+  animate1: {
+    x: 0,
+    opacity: 1,
+    transition: {
+      duration: 2,
+      staggerChildren: 0.5,
+    },
+  },
+
+  initial2: {
+    x: 600,
+    opacity: 0,
+  },
+  animate2: {
+    x: 0,
+    opacity: 10,
+    transition: {
+      duration: 1,
+      staggerChildren: 0.5,
+    },
+  },
+};
+
+const About = () => {
+
+  const ref = useRef();
+  const isInView = useInView(ref, { margin: "-100px" });
+
+  return (
+    <div ref={ref} className="about lg:flex grid justify-between items-center w-[100%] m-auto h-[100%] gap-[80px] p-4 border-y-2 bg-inherit border-y-white overflow-x-hidden">
+
+      <motion.div className="flex items-center bg-transparent lg:my-10 lg:mt-0 mt-10  lg:w-[30vw]"
+       variants={textVarients}
+       initial="initial"
+       whileInView="animate"
+       >
+        <div className="image flex items-center justify-center overflow-hidden rounded-full  p-2 border-2 border-white z-10">
+          <img src={sanket} alt="sanket" className="rounded-full lg:w-52 w-36 bg-slate-800 " />
         </div>
-        <div className="w-[100%] bg-inherit h-[100%] flex-col">
+        <motion.div className="w-[100%] bg-inherit h-[100%] flex-col"
+                variants={textVarients}
+                initial="initial1"
+                animate={isInView && 'animate1'}
+                strokeWith={0.2}
+                transition={{ duration: 2 }}
+
+                >
           <h1 className="bg-red-950 font-bold lg:text-3xl text-lg p-3 px-5 border-y-2 border-white rounded-r-full ">
             Sanket Kedare
           </h1>
           <span className="bg-green-950  font-light lg:text-xl text-sm p-2 px-5 border-y-2 border-white my-3 rounded-r-full ">
             MERN Full Stack Web Dev
           </span>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
-      <div className="paragraph lg:w-[65vw] w-[90vw] lg:h-[90%] h-[60vh]  p-4 border-2 bg-slate-300 border-white rounded-b-[50px] mx-auto shadow-red-600 shadow-inner">
+      <motion.div className="paragraph lg:w-[65vw] w-[90vw] lg:h-[90%] h-[60vh]  p-4 border-2 bg-slate-300 border-white rounded-b-[50px] mx-auto shadow-red-600 shadow-inner"
+      variants={textVarients}
+      initial="initial2"
+      whileInView="animate2"
+      >
         <h1 className="font-bold lg:text-2xl lg:my-4 my-2 text-yellow-800 ml-9 bg-inherit">
           About Me
         </h1>
@@ -62,7 +124,7 @@ const About = () => {
             new heights.
           </p>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };

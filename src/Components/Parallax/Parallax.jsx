@@ -16,7 +16,7 @@ const Parallax = ({ type }) => {
 
   return (
     <motion.div
-      className="parallax w-[100vw]"
+      className="parallax"
       ref={ref}
       style={{
         background:

@@ -1,6 +1,6 @@
 import React from "react";
 import "./Home.scss";
-import { js, mongoDb, nextjs, nodejs, reactImage, scroll, tailwind } from "../images";
+import { bootstrap, expressjs, java, js, mariadb, mongoDb, nextjs, nodejs, reactImage, scroll, springboot, tailwind } from "../images";
 import { motion } from "framer-motion";
 
 const textVarients = {
@@ -28,14 +28,14 @@ const textVarients = {
 
 const sliderVarients = {
   initial: {
-    y: 1000,
+    y: 100,
   },
   animate: {
     y: "-110%",
     transition: {
       repeat: Infinity,
       repeateType: "mirror",
-      duration: 5,
+      duration: 15,
     },
   },
 };
@@ -83,10 +83,6 @@ const Home = () => {
           />
         </motion.div>
       </div>
-
-      {/* <div className="imageContainer">
-        <img src="" alt="hero" />
-      </div> */}
       
       <motion.div
         variants={sliderVarients}
@@ -96,10 +92,22 @@ const Home = () => {
       >
         <img className= "bg-transparent" src={js} alt="js"/>
         <img className= "bg-transparent" src={mongoDb} alt="mongo" /> 
-        <img className= "bg-transparent" src={reactImage} alt="react" />
+        <img className= "bg-transparent" src= {mariadb} alt="tailwind"/>
+        <img className= "bg-transparent mx-auto" src={reactImage} alt="react" />
         <img className= "bg-transparent" src={nodejs} alt="nodejs"/>
+        <img className= "bg-transparent" src= {expressjs} alt="tailwind"/>
+
         <img className= "bg-transparent" src={nextjs} alt="nextjs"/>
         <img className= "bg-transparent" src= {tailwind} alt="tailwind"/>
+        <img className= "bg-transparent" src= {bootstrap} alt="bootstrap"/>
+        
+
+
+        <img className= "bg-transparent" src= {java} alt="java"/>
+
+        <img className= "bg-transparent" src= {springboot} alt="springboot"/>
+
+        
 
       </motion.div>
     </div>

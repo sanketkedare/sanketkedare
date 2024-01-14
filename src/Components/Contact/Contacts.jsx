@@ -116,7 +116,7 @@ const Contacts = () => {
           <motion.img
             src={mySvg}
             className="lg:h-[400px] m-auto p-5 bg-transparent"
-            strokeWith={0.2}
+            strokewith={0.2}
             fill="none"
             initial={{ pathLength: 0 }}
             animate={isInView && { pathLength: 1 }}
