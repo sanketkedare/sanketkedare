@@ -7,12 +7,12 @@ import Sidebar from "../Sidebar/Sidebar";
 
 const Navbar = () => {
   return (
-    <div className="navbar lg:h-[100px] h-[10vh] w-[100%] bg-transparent">
+    <div className="navbar lg:h-[100px] h-[10vh] bg-transparent">
 
       {/* Sidebar */}
       <Sidebar />
 
-      <div className="wrapper lg:w-[1366px] w-[80vw] m-auto flex items-center justify-between h-[100%] bg-transparent">
+      <div className="wrapper lg:w-[90%] w-[80vw] m-auto flex items-center justify-between h-[100%] bg-transparent">
         <motion.span
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}

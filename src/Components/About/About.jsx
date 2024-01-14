@@ -6,7 +6,7 @@ import { motion, useInView } from "framer-motion";
 
 const textVarients = {
   initial: {
-    x: -300,
+    x: -100,
     opacity: 0,
   },
   animate: {
@@ -19,7 +19,7 @@ const textVarients = {
   },
 
   initial1: {
-    x: -600,
+    x: -100,
     opacity: 0,
   },
   animate1: {
@@ -32,7 +32,7 @@ const textVarients = {
   },
 
   initial2: {
-    x: 600,
+    x: 100,
     opacity: 0,
   },
   animate2: {
@@ -51,7 +51,7 @@ const About = () => {
   const isInView = useInView(ref, { margin: "-100px" });
 
   return (
-    <div ref={ref} className="about lg:flex grid justify-between items-center w-[100%] m-auto h-[100%] gap-[80px] p-4 border-y-2 bg-inherit border-y-white overflow-x-hidden">
+    <div ref={ref} className="about lg:flex grid justify-between items-center m-auto h-[100%] gap-[80px] p-4 border-y-2 bg-inherit border-y-white overflow-x-hidden">
 
       <motion.div className="flex items-center bg-transparent lg:my-10 lg:mt-0 mt-10  lg:w-[30vw]"
        variants={textVarients}

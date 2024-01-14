@@ -4,7 +4,7 @@ import Contacts from "./Components/Contact/Contacts";
 import Footer from "./Components/Footer/Footer";
 import Home from "./Components/Home/Home";
 import Navbar from "./Components/Navbar/Navbar";
-import Parallax from "./Components/Parallax/Parallax";
+import ProjectsComponent from "./Components/Projects/ProjectsComponent";
 import Skills from "./Components/Skills/Skills";
 
 function App() {
@@ -23,12 +23,11 @@ function App() {
       </section>
 
       <section id="projects" >
-        <Parallax type="projects" />
+        <ProjectsComponent/>
       </section>
 
-      <section>Projects</section>
 
-      <section id="skills" className="w-[100%] h-[100vh] border-t-2 border-white bg-gradient-to-t from-blue-400 via-red-300 to-yellow-300 overflow-x-hidden">
+      <section id="skills" className=" h-[100vh] border-t-2 border-white bg-gradient-to-t from-blue-400 via-red-300 to-yellow-300 overflow-hidden">
         <Skills />
       </section>
 

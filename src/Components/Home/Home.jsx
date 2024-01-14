@@ -43,7 +43,7 @@ const sliderVarients = {
 const Home = () => {
   return (
     <div className="home bg-transparent">
-      <div className="wrapper lg:w-[1366px] w-[90vw] h-[100%] lg:m-auto absolute top-0 right-0 bg-transparent z-10">
+      <div className="wrapper lg:w-[90%] w-[90vw] h-[100%] lg:m-auto absolute top-0 right-0 bg-transparent z-10">
         <motion.div
           className="textcontainer h-[100%] flex flex-col justify-center gap-[30px] absolute lg:w-[50%] w-[100%] bg-transparent"
           variants={textVarients}

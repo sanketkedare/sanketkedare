@@ -6,11 +6,11 @@ import { motion} from "framer-motion";
 
 const textVarients = {
   initial: {
-    x: -500,
+    x: -150,
     opacity: 0,
   },
   initial1: {
-    x: -800,
+    x: -100,
     opacity: 1,
   },
   animate: {
