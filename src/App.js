@@ -5,6 +5,7 @@ import Footer from "./Components/Footer/Footer";
 import Home from "./Components/Home/Home";
 import Navbar from "./Components/Navbar/Navbar";
 import ProjectsComponent from "./Components/Projects/ProjectsComponent";
+import Resume from "./Components/Resume/Resume";
 import Skills from "./Components/Skills/Skills";
 
 function App() {
@@ -33,11 +34,12 @@ function App() {
         <ProjectsComponent />
       </div>
 
-      <section id="resume">Resume</section>
+      <section id="resume"><Resume/></section>
 
       <section id="contact">
         <Contacts />
       </section>
+      
       <Footer />
     </div>
   );

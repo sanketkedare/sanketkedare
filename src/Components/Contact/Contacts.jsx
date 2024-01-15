@@ -62,7 +62,7 @@ const Contacts = () => {
       >
         <h1
           variants={variants}
-          className="lg:text-[70px] text-[30px] lg:mt-0 mt-20 lg:text-start lg:ml-0 ml-7 hover:text-sky-400"
+          className="lg:text-[70px] text-[30px] lg:mt-0  lg:text-start lg:ml-0 ml-7 hover:text-sky-400"
         >
           Let's <span className="text-red-700 hover:text-white">Work </span><br/>together
         </h1>
