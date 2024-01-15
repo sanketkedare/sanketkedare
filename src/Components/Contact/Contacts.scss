@@ -12,13 +12,7 @@
     }
     .formContainer{
 
-        // flex: 1;
-        // position: relative;
-        
-        // .phoneSvg{
-        //    margin: auto;
-          
-        // }
+    
 
         form{
             display: flex;
@@ -28,9 +22,9 @@
             z-index: 10;
             flex-direction: column;
             gap: 20px;
+            background-color: transparent;
 
             input,textarea{
-                width: 100%;
                 padding: 20px;
                 background-color: transparent;
                 border: 1px solid white;

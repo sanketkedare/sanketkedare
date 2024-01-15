@@ -4,7 +4,8 @@ import { LinkedInImage, githubImage } from "../images";
 
 const Footer = () => {
   return (
-    <div className="footer my-10">
+    <div className="footer h-[20vh] m-auto bg-inherit flex justify-center items-center">
+      <div className="bg-inherit">
       <p> All rights reserved &copy; 2024 Sanket Kedare</p>
       <p className="flex item-center justify-center lg:gap-5 gap-2">
         Connect with me:
@@ -28,6 +29,7 @@ const Footer = () => {
           GitHub
         </a>
       </p>
+      </div>
     </div>
   );
 };

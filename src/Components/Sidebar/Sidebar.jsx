@@ -59,7 +59,7 @@ const Sidebar = () => {
     <div>
       {!sidebarOpen && (
         <motion.button
-          className="closed-sidebar fixed z-30 mt-20 mr-4 right-3 bg-white rounded-full text-black p-4"
+          className="closed-sidebar fixed z-30 mt-20 mr-4 right-3 bg-white rounded-full text-black p-4 hover:bg-slate-300 "
           onClick={toggleSidebar}
           variants={textVarients}
           initial="initial"
@@ -119,11 +119,11 @@ const Sidebar = () => {
                          initial="initial2"
                          animate="animate2">
                 <a
-                  href={`#projects`}
+                  href={`#skills`}
                   className="block text-xl border-2 my-4 text-center font-bold hover:text-black text-white py-2 hover:bg-sky-100 bg-inherit rounded-2xl"
                   onClick={toggleSidebar}
                 >
-                  Projects
+                  Skills
                 </a>
               </motion.li>
 
@@ -133,13 +133,15 @@ const Sidebar = () => {
                          initial="initial2"
                          animate="animate2">
                 <a
-                  href={`#skills`}
+                  href={`#projects`}
                   className="block text-xl border-2 my-4 text-center font-bold hover:text-black text-white py-2 hover:bg-sky-100 bg-inherit rounded-2xl"
                   onClick={toggleSidebar}
                 >
-                  Skills
+                  Projects
                 </a>
               </motion.li>
+
+              
 
               <motion.li  
                          className="bg-transparent"

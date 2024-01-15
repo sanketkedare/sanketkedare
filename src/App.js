@@ -9,7 +9,7 @@ import Skills from "./Components/Skills/Skills";
 
 function App() {
   return (
-    <div >
+    <div>
       <section
         id="home"
         className="bg-gradient-to-l from-[#3e3e7e] to-[#111132]"
@@ -22,21 +22,23 @@ function App() {
         <About />
       </section>
 
-      <section id="projects" >
-        <ProjectsComponent/>
-      </section>
-
-
-      <section id="skills" className=" h-[100vh] border-t-2 border-white bg-gradient-to-t from-blue-400 via-red-300 to-yellow-300 overflow-hidden">
+      <section
+        id="skills"
+        className=" border-t-2 border-white bg-gradient-to-t from-blue-400 via-red-300 to-yellow-300"
+      >
         <Skills />
       </section>
+
+      <div id="projects">
+        <ProjectsComponent />
+      </div>
 
       <section id="resume">Resume</section>
 
       <section id="contact">
         <Contacts />
-        <Footer />
       </section>
+      <Footer />
     </div>
   );
 }

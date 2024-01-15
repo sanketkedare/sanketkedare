@@ -77,7 +77,7 @@ const BEDB = () => {
             alt="mongo db"
           />
           <h1 className="text-center text-sm bg-transparent font-bold">
-            MongoDB
+            Mongo
           </h1>
         </div>
         <div className="lg:w-[80px] w-[50px] lg:h-[80px] h-[50px] mx-2  m-auto bg-transparent">

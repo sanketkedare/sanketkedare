@@ -52,13 +52,13 @@ const Home = () => {
         >
           <motion.h2
             variants={textVarients}
-            className="lg:text-[60px] text-[30px] text-[rgb(122,75,171)] overflow-hidden bg-transparent"
+            className="lg:text-[60px] text-[30px] text-[rgb(122,75,171)]  overflow-hidden bg-transparent"
           >
             Sanket Kedare
           </motion.h2>
           <motion.h1
             variants={textVarients}
-            className="lg:text-[88px] text-[40px] lg:w-[100%] w-[80vw] bg-transparent text-white"
+            className="lg:text-[88px] text-[40px] lg:w-[100%] w-[80vw] bg-transparent text-white "
           >
             Full Stack Web Developer
           </motion.h1>
