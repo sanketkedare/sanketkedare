@@ -51,7 +51,7 @@ const Contacts = () => {
   return (
     <motion.div
       ref={ref}
-      className="contact lg:w-[1366px] w-[100%] h-[100%] m-auto lg:flex lg:items-center lg:gap-[50px]"
+      className="contact lg:w-[80%] w-[100%] h-[100%] m-auto lg:flex lg:items-center lg:gap-[50px]"
       variants={variants}
       initial="initial"
       whileInView="animate"
@@ -62,9 +62,9 @@ const Contacts = () => {
       >
         <h1
           variants={variants}
-          className="lg:text-[80px] text-[30px] lg:mt-0 mt-20 lg:text-start lg:ml-0 ml-7 "
+          className="lg:text-[70px] text-[30px] lg:mt-0 mt-20 lg:text-start lg:ml-0 ml-7 "
         >
-          Let's <span className="text-red-700">Work </span>together
+          Let's <span className="text-red-700">Work </span><br/>together
         </h1>
         <hr className="border-b-4 border-spacing-2 border-yellow-400 lg:w-[50%] lg:m-0 m-auto w-[90%]" />
 

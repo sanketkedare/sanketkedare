@@ -4,12 +4,12 @@ import { LinkedInImage, githubImage } from "../images";
 
 const Footer = () => {
   return (
-    <div className="footer my-4">
+    <div className="footer my-10">
       <p> All rights reserved &copy; 2024 Sanket Kedare</p>
       <p className="flex item-center justify-center lg:gap-5 gap-2">
         Connect with me:
         <a
-          href="https://www.linkedin.com/in/yourname"
+          href="https://www.linkedin.com/in/sanket-kedare-5820401bb/"
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center"
@@ -19,7 +19,7 @@ const Footer = () => {
         </a>
         |
         <a
-          href="https://github.com/yourusername"
+          href="https://github.com/sanketkedare"
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center"

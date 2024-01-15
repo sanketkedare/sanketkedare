@@ -78,7 +78,7 @@ const About = () => {
         </motion.div>
       </motion.div>
 
-      <motion.div className="paragraph lg:w-[65vw] w-[90vw] lg:h-[90%] h-[60vh]  p-4 border-2 bg-slate-300 border-white rounded-b-[50px] mx-auto shadow-red-600 shadow-inner"
+      <motion.div className="paragraph lg:w-[65vw] w-[90vw] lg:h-[90%] h-[60vh]  p-4 border-2 bg-slate-300 border-white overflow-hidden rounded-b-[50px] mx-auto shadow-red-600 shadow-inner"
       variants={textVarients}
       initial="initial2"
       whileInView="animate2"
@@ -87,8 +87,8 @@ const About = () => {
           About Me
         </h1>
         <hr />
-        <div className="h-[90%] overflow-y-auto p-3 py-6  w-[100%] bg-slate-300 text-black  ">
-          <p className="text-justify w-[90%] mb-8  text-sm m-auto bg-slate-300 text-black">
+        <div className="h-[90%] overflow-y-auto p-3 py-6  w-[100%] bg-transparent text-black">
+          <p className="text-justify w-[90%] mb-8  text-sm m-auto bg-slate-300 text-black p-3">
             With a Bachelor of Engineering as my foundational qualification, I
             honed my expertise in full-stack web development through an
             intensive program at Almabeter Institute, specializing in the MERN
@@ -105,7 +105,7 @@ const About = () => {
             maintainability.{" "}
           </p>
 
-          <p className="text-justify w-[90%] my-8 text-sm m-auto bg-slate-300 text-black">
+          <p className="text-justify w-[90%] my-8 text-sm m-auto bg-slate-300 text-black p-3">
             Crafting robust Rest APIs with Express.js and implementing
             middleware has been a pivotal part of my project work, ensuring
             seamless functionality and heightened security measures.
@@ -117,7 +117,7 @@ const About = () => {
             top-notch solutions. Well-versed in unit testing methodologies, I
             ensure the reliability and performance of my work.
           </p>
-          <p className="text-justify w-[90%] my-8 text-sm m-auto bg-slate-300 text-black">
+          <p className="text-justify w-[90%] my-8 text-sm m-auto bg-slate-300 text-black p-3">
             Eager and open to new opportunities, I am seeking to channel my
             expertise and passion as a MERN full-stack web developer,
             contributing innovative solutions and driving digital experiences to
