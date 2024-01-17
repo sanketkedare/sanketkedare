@@ -1,7 +1,21 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-const Resume = () => {
+const Resume = () => 
+{
+  const RESUME_PDF = "/Resume.pdf";
+    const downloadResumeUrl =(url)=>
+    {
+        const aTag = document.createElement('a');
+        aTag.href = url;
+        aTag.setAttribute('download','Resume');
+
+        document.body.appendChild(aTag);
+        aTag.click();
+        aTag.remove();
+
+
+    }
   return (
     <motion.div className="resume h-[100%] flex justify-center items-center">
       <div
@@ -17,7 +31,8 @@ const Resume = () => {
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ea possimus sint distinctio excepturi pariatur, amet consequuntur omnis repudiandae dolor labore sunt, cupiditate ratione nostrum laudantium enim qui nam fugiat officia obcaecati non voluptate! Labore magni modi, enim itaque veniam fugiat nostrum alias, accusamus, voluptatibus molestias a placeat. Ducimus, minus neque.
             </p>
 
-            <button className="bg-yellow-500 hover:bg-sky-500 border-2 hover:border-black p-4 my-7 text-black px-7 font-bold rounded-3xl">
+            <button className="bg-yellow-500 hover:bg-sky-500 border-2 hover:border-black p-4 my-7 text-black px-7 font-bold rounded-3xl"
+                    onClick={()=>{downloadResumeUrl(RESUME_PDF)}}>
                 Download Resume 
             </button>
           </div>
