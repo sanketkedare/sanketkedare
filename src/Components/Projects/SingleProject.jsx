@@ -19,7 +19,7 @@ const SingleProject = ({ item }) => {
           <img
                 src={item.img}
                 alt={item.title}
-                className="flex-1 h-[100%] object-cover"
+                className="flex-1 h-[100%] object-cover m-auto"
               />
           </div>
           <motion.div
@@ -27,7 +27,7 @@ const SingleProject = ({ item }) => {
             style={{ y }}
           >
             <h2 className="lg:text-[50px] text-[30px] py-2 hover:text-sky-400">{item.title}</h2>
-            <p className="text-gray-500 lg:text-[20px]">{item.des}</p>
+            <p className="text-gray-500 lg:text-[20px] text-sm">{item.des}</p>
             <h1 className="grid lg:grid-cols-4 grid-cols-2">
             {item.skills.map((i)=><span className="w-[120px] my-2 text-center p-1 px-3 border-2 rounded-3xl shadow-inner bg-sky-300 text-black font-bold">{i}</span>)}</h1>
             <div className="flex items-center gap-2">

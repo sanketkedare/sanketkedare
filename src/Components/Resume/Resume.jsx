@@ -28,8 +28,7 @@ const Resume = () =>
               Hey wait..!! Here is a <span className="bg-transparent text-yellow-400 rounded-3xl hover:shadow-2xl">Resume</span><br/> Check it out...
             </h1>
             <p className="bg-transparent text-justify w-[80%] m-auto my-10 text-gray-500">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ea possimus sint distinctio excepturi pariatur, amet consequuntur omnis repudiandae dolor labore sunt, cupiditate ratione nostrum laudantium enim qui nam fugiat officia obcaecati non voluptate! Labore magni modi, enim itaque veniam fugiat nostrum alias, accusamus, voluptatibus molestias a placeat. Ducimus, minus neque.
-            </p>
+            Results-driven professional with a proven track record in project management and strategic planning. Skilled in team leadership, communication, and problem-solving. Recognized for achieving operational efficiency and exceeding targets. Adaptable and detail-oriented, with a commitment to delivering high-quality results. Seeking to contribute expertise in a dynamic and growth-oriented environment.            </p>
 
             <button className="bg-yellow-500 hover:bg-sky-500 border-2 hover:border-black p-4 my-7 text-black px-7 font-bold rounded-3xl"
                     onClick={()=>{downloadResumeUrl(RESUME_PDF)}}>
