@@ -1,8 +1,8 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./Contacts.scss";
 import { motion, useInView } from "framer-motion";
 import emailjs from "@emailjs/browser";
-import {mySvg} from "../images"
+import { mySvg } from "../images";
 
 const variants = {
   initial: {
@@ -26,13 +26,19 @@ const Contacts = () => {
 
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
+  const [massage, setMassage] = useState("Submit");
+
+  // const SERVICE_VISA = process.env.SERVICE_VISA ;
+  // const TEMPLATE = process.env.TEMPLATE;
+  // const PI = process.env.PI;
 
   const sendEmail = (e) => {
     e.preventDefault();
+    
 
     emailjs
       .sendForm(
-        "service_7v9issa",
+        "service_7v9issa" ,
         "template_h33shkh",
         formRef.current,
         "PIa8s3CHrbdRoplwU"
@@ -40,13 +46,26 @@ const Contacts = () => {
       .then(
         (result) => {
           setSuccess(true);
+          setMassage("Email sent successfully........");
         },
         (error) => {
           setError(true);
           setSuccess(false);
+          setMassage("Something Went Wrong.........");
         }
       );
   };
+
+  useEffect(() => 
+  {
+    if (success || error)  {
+      setTimeout(() => {
+        setMassage("Send one more Massage");
+      }, 5000);
+    }
+  }, [success, error]);
+
+
 
   return (
     <motion.div
@@ -64,7 +83,9 @@ const Contacts = () => {
           variants={variants}
           className="lg:text-[70px] text-[30px] lg:mt-0  lg:text-start lg:ml-0 ml-7 hover:text-sky-400"
         >
-          Let's <span className="text-red-700 hover:text-white">Work </span><br/>together
+          Let's <span className="text-red-700 hover:text-white">Work </span>
+          <br />
+          together
         </h1>
         <hr className="border-b-4 border-spacing-2 border-yellow-400 lg:w-[50%] lg:m-0 m-auto w-[90%] hover:border-sky-400 " />
 
@@ -75,7 +96,9 @@ const Contacts = () => {
 
         <motion.div className="item lg:ml-0 ml-7">
           <h2 className="font-bold text-orange-600">Address</h2>
-          <sapn className="hover:text-sky-400">Hyderabad, Telangana, India</sapn>
+          <sapn className="hover:text-sky-400">
+            Hyderabad, Telangana, India
+          </sapn>
         </motion.div>
 
         <motion.div className="item lg:ml-0 ml-7">
@@ -94,8 +117,20 @@ const Contacts = () => {
           transition={{ delay: 1, duration: 0.5 }}
           className="my-4 w-[80%] mx-auto"
         >
-          <input type="text" name="name" required placeholder="Name" className="w-[90%] m-auto"/>
-          <input type="text" name="email" required placeholder="Email" className="w-[90%] m-auto"/>
+          <input
+            type="text"
+            name="name"
+            required
+            placeholder="Name"
+            className="w-[90%] m-auto"
+          />
+          <input
+            type="text"
+            name="email"
+            required
+            placeholder="Email"
+            className="w-[90%] m-auto"
+          />
           <input
             type="textarea"
             name="message"
@@ -103,14 +138,13 @@ const Contacts = () => {
             placeholder="Massage"
             className="w-[90%] m-auto"
           />
-          <motion.button type="submit" className="w-[90%] rounded-b-2xl font-bold">
-            Submit
+          <motion.button
+            type="submit"
+            className=" w-[90%] rounded-b-2xl p-[20px] border-0 bg-[#ffa500]"
+          >
+           <h1 className="bg-transparent text-black font-bold">{massage}</h1>  
           </motion.button>
-          {success && <h1 className="text-white">Email Sent Succesfully...</h1>}
-        {error && <h1 className="text-white">Something Wrong!! Please try Again...</h1>}
         </motion.form>
-        
-
 
         <motion.div
           className="phoneSvg flex justify-center items-center m-auto"
