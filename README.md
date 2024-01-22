@@ -6,17 +6,17 @@ Welcome to the GitHub repository for Sanket Kedare's portfolio website. This por
 
 To get started, you can clone the repository using the following command:
 
-```bash
+```
 git clone
 ```
 
 After cloning the repository, navigate to the project directory and install the dependencies using either of the following commands:
 
-```bash
+```
 npm install
 ```
 or
-```bash
+```
 npm i
 ```
 
