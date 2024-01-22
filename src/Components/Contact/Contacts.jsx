@@ -28,20 +28,16 @@ const Contacts = () => {
   const [success, setSuccess] = useState(null);
   const [massage, setMassage] = useState("Submit");
 
-  // const SERVICE_VISA = process.env.SERVICE_VISA ;
-  // const TEMPLATE = process.env.TEMPLATE;
-  // const PI = process.env.PI;
 
   const sendEmail = (e) => {
     e.preventDefault();
     
-
     emailjs
       .sendForm(
-        "service_7v9issa" ,
-        "template_h33shkh",
+        process.env.REACT_APP_SERVICE_VISA,
+        process.env.REACT_APP_TEMPLATE,
         formRef.current,
-        "PIa8s3CHrbdRoplwU"
+        process.env.REACT_APP_PI
       )
       .then(
         (result) => {
