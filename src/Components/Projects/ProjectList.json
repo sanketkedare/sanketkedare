@@ -3,17 +3,20 @@
     "id": 1,
     "title": "Make My Resume (Working..)",
     "git": "https://github.com/sanketkedare/makemyresume",
+    "live":"",
     "skills": [
       "React js",
       "Tailwind"
     ],
-    "img": "https://doographics.com/assets/dg/images/resume/Resum-Maker-UI-13.png",
+    "img": "/makemyresume.png",
     "des": "'Make My Resume' is a React project that empowers users to effortlessly craft professional resumes. Leveraging React's component-based structure, the application allows users to dynamically input and format their personal and professional details. The project's intuitive interface and real-time preview feature facilitate a seamless resume-building experience, enhancing employability."
   },
+
   {
     "id": 2,
     "title": "Crypto Currancy Dashboard (Working..)",
-    "git": "https://github.com/sanketkedare/cryptodashboard",
+    "git": "https://github.com/sanketkedare/crypto-dashboard",
+    "live":"https://crypto-dashboard-5buj.onrender.com/",
     "skills": [
       "React js",
       "Tailwind"
@@ -21,22 +24,29 @@
     "img": "https://bs-uploads.toptal.io/blackfish-uploads/components/blog_post_page/content/cover_image_file/cover_image/1303387/regular_1708x683_Untitled-e7fde53f1e5631a8728cc9aefc1538e8.png",
     "des": "A Cryptocurrency Dashboard built with React provides users with real-time insights into the dynamic world of digital currencies. Leveraging React's component architecture, the dashboard seamlessly integrates data visualization libraries to display live price updates, market trends, and portfolio performance. Responsive design and interactive charts enhance the user experience, offering a comprehensive overview of the cryptocurrency landscape."
   },
+
   {
     "id": 3,
-    "title": "Book My Show (UpComming..)",
+    "title": "Youtube Subscribers [Backend]",
+    "git":"https://github.com/sanketkedare/Subscribers-Mongo-Node-BoilerPlate-main",
+    "live":"",
+
     "skills": [
-      "React js",
-      "Tailwind",
       "Mongo DB",
       "Node js",
       "Express js"
     ],
-    "img": "https://brandlogos.net/wp-content/uploads/2022/10/bookmyshow-logo_brandlogos.net_rzqea.png",
-    "des": "In a Book My Show Node.js application, the backend powers the ticket booking system. Node.js facilitates asynchronous handling, scalability, and real-time features. It manages user authentication, ticket inventory, and interactions with databases. Leveraging Express.js, it establishes robust API endpoints, ensuring seamless communication between the frontend (built with React, for example) and the backend, creating a cohesive and efficient booking platform."
+    "img": "https://media.istockphoto.com/id/1285939198/vector/subscribe-button-and-hand-cursor-with-play-icons-on-background-red-button-subscribe-to.jpg?s=612x612&w=0&k=20&c=gJNGXdhOTtkg_Pkh-JDZR-Rh_w_wVuPCsLgF0PtHuvM=",
+    "des": "Simple backend service - REST APIs created for getting information about youtube subscribers"
+  
   },
+
   {
     "id": 4,
-    "title": "Youtube Clone (UpComming..)",
+    "title": "Employee Management Application",
+    "git":"https://github.com/sanketkedare/Employee-Management-APP",
+    "live":"",
+
     "skills": [
       "React js",
       "Tailwind",
@@ -44,13 +54,33 @@
       "Node js",
       "Express js"
     ],
-    "img": "https://feeds.abplive.com/onecms/images/uploaded-images/2022/01/31/0dfe05d1f843d2705c096b93ccb80e54_original.jpg?impolicy=abp_cdn&imwidth=720",
-    "des": "Creating a YouTube clone with the MERN stack (MongoDB, Express.js, React, Node.js) combines powerful technologies to build a scalable video-sharing platform. The backend, using Node.js and Express, manages user authentication, video uploads, and interactions with the MongoDB database. The React frontend provides a responsive and dynamic user interface, rendering video content, comments, and likes. MERN's real-time capabilities enhance the user experience, making the YouTube clone a feature-rich and engaging platform."
+    "img": "https://blog.vantagecircle.com/content/images/2021/01/Employee-Management-Meaning-Importance-Tips-Tools---More.png",
+    "des": "Full Stack Application to manage employee. Crafted using MERN Technologies. Frontend Designed using React Js and Tailwind CSS with Node JS & Mongo DB at Server. Application is efficient to manage and manupilate Employees"
   },
+
   {
     "id": 5,
+    "title": "NetFlix Clone (UpComming..)",
+    "git":"",
+    "live":"",
+
+    "skills": [
+      "React js",
+      "Tailwind",
+      "Mongo DB",
+      "Node js",
+      "Express js"
+    ],
+    "img": "https://i.pcmag.com/imagery/reviews/05cItXL96l4LE9n02WfDR0h-5.fit_scale.size_760x427.v1582751026.png",
+    "des": "Creating a NetFlix clone with the MERN stack (MongoDB, Express.js, React, Node.js) combines powerful technologies to build a scalable video-sharing platform. The backend, using Node.js and Express, manages user authentication, video uploads, and interactions with the MongoDB database. The React frontend provides a responsive and dynamic user interface, rendering video content, comments, and likes. MERN's real-time capabilities enhance the user experience, making the Netflix clone a feature-rich and engaging platform."
+  },
+
+  {
+    "id": 6,
     "title": "Smart Contacts",
     "git": "https://github.com/sanketkedare/Smart_Contact-Manager",
+    "live":"",
+
     "skills": [
       "Java",
       "SpringBoot",
@@ -58,7 +88,8 @@
       "BootSrap",
       "Thymleaf"
     ],
-    "img": "data:image/png;base64,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",
+    "img":"https://clipart-library.com/2023/7-75154_telephone-clipart-png-new-contact-number-announcement.png",
     "des": "Smart Contacts is a web application built using Java, Spring Boot, Spring Boot security, HTML5, CSS, JS, and MySQL database. It is designed to provide users with a secure and efficient way to store and manage their contacts, as well as facilitate communication between contacts. The application is divided into two modules: Admin and User. The Admin module allows users to store and manage their contacts, while the User module provides users with the ability to communicate with their contacts."
   }
+
 ]

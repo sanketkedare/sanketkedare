@@ -1,7 +1,21 @@
 import React from "react";
 import "./Home.scss";
-import { bootstrap, expressjs, java, js, mariadb, mongoDb, nextjs, nodejs, reactImage, scroll, springboot, tailwind } from "../images";
+import {
+  bootstrap,
+  expressjs,
+  java,
+  js,
+  mariadb,
+  mongoDb,
+  nextjs,
+  nodejs,
+  reactImage,
+  scroll,
+  springboot,
+  tailwind,
+} from "../images";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const textVarients = {
   initial: {
@@ -66,49 +80,59 @@ const Home = () => {
             variants={textVarients}
             className="buttons bg-transparent"
           >
-            <motion.button
-              variants={textVarients}
-              className="p-[20px] lg:my-2 my-4"
+            <a
+              href={`#projects`}
+              className="bg-transparent"
             >
-              See the Letest Works
-            </motion.button>
-            <motion.button variants={textVarients}>Contact Me</motion.button>
+              <motion.button
+                variants={textVarients}
+                className="p-[20px] lg:my-2 my-4"
+              >
+                See the Letest Works
+              </motion.button>
+            </a>
+
+            <a
+              href={`#contact`}
+              className="bg-transparent"
+            >
+            <motion.button variants={textVarients}>Contact Me</motion.button></a>
           </motion.div>
+
+          <a
+              href={`#about`}
+              className="bg-transparent"
+            >
           <motion.img
             animate="scrollButton"
             variants={textVarients}
             src={scroll}
             alt="scroll"
             className="p-1 rounded-full"
-          />
+          /></a>
         </motion.div>
       </div>
-      
+
       <motion.div
         variants={sliderVarients}
         className="slidingTextContainer text-[5vh] bottom-[-140px] w-[100%] gap-5 bg-transparent grid justify-end lg:opacity-100 opacity-15 px-6"
         initial="initial"
         animate="animate"
       >
-        <img className= "bg-transparent" src={js} alt="js"/>
-        <img className= "bg-transparent" src={mongoDb} alt="mongo" /> 
-        <img className= "bg-transparent" src= {mariadb} alt="tailwind"/>
-        <img className= "bg-transparent mx-auto" src={reactImage} alt="react" />
-        <img className= "bg-transparent" src={nodejs} alt="nodejs"/>
-        <img className= "bg-transparent" src= {expressjs} alt="tailwind"/>
+        <img className="bg-transparent" src={js} alt="js" />
+        <img className="bg-transparent" src={mongoDb} alt="mongo" />
+        <img className="bg-transparent" src={mariadb} alt="tailwind" />
+        <img className="bg-transparent mx-auto" src={reactImage} alt="react" />
+        <img className="bg-transparent" src={nodejs} alt="nodejs" />
+        <img className="bg-transparent" src={expressjs} alt="tailwind" />
 
-        <img className= "bg-transparent" src={nextjs} alt="nextjs"/>
-        <img className= "bg-transparent" src= {tailwind} alt="tailwind"/>
-        <img className= "bg-transparent" src= {bootstrap} alt="bootstrap"/>
-        
+        <img className="bg-transparent" src={nextjs} alt="nextjs" />
+        <img className="bg-transparent" src={tailwind} alt="tailwind" />
+        <img className="bg-transparent" src={bootstrap} alt="bootstrap" />
 
+        <img className="bg-transparent" src={java} alt="java" />
 
-        <img className= "bg-transparent" src= {java} alt="java"/>
-
-        <img className= "bg-transparent" src= {springboot} alt="springboot"/>
-
-        
-
+        <img className="bg-transparent" src={springboot} alt="springboot" />
       </motion.div>
     </div>
   );
