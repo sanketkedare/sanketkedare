@@ -3,7 +3,7 @@
     "id": 1,
     "title": "Make My Resume (Working..)",
     "git": "https://github.com/sanketkedare/makemyresume",
-    "live":"",
+    "live":"https://make-my-resume.onrender.com/",
     "skills": [
       "React js",
       "Tailwind"
