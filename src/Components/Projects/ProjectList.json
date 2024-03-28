@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "title": "Make My Resume (Working..)",
+    "title": "Make My Resume",
     "git": "https://github.com/sanketkedare/makemyresume",
     "live":"https://make-my-resume.onrender.com/",
     "skills": [
@@ -14,7 +14,7 @@
 
   {
     "id": 2,
-    "title": "Crypto Currancy Dashboard (Working..)",
+    "title": "Crypto Currancy Dashboard",
     "git": "https://github.com/sanketkedare/crypto-dashboard",
     "live":"https://crypto-dashboard-5buj.onrender.com/",
     "skills": [
@@ -60,9 +60,9 @@
 
   {
     "id": 5,
-    "title": "NetFlix Clone (UpComming..)",
+    "title": "Entertainment Application",
     "git":"",
-    "live":"",
+    "live":"https://entertainment-app-t7b6.onrender.com",
 
     "skills": [
       "React js",
@@ -71,7 +71,7 @@
       "Node js",
       "Express js"
     ],
-    "img": "https://i.pcmag.com/imagery/reviews/05cItXL96l4LE9n02WfDR0h-5.fit_scale.size_760x427.v1582751026.png",
+    "img": "https://almablog-media.s3.ap-south-1.amazonaws.com/download_8d102bbc3b.png",
     "des": "Creating a NetFlix clone with the MERN stack (MongoDB, Express.js, React, Node.js) combines powerful technologies to build a scalable video-sharing platform. The backend, using Node.js and Express, manages user authentication, video uploads, and interactions with the MongoDB database. The React frontend provides a responsive and dynamic user interface, rendering video content, comments, and likes. MERN's real-time capabilities enhance the user experience, making the Netflix clone a feature-rich and engaging platform."
   },
 
