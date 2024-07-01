@@ -26,13 +26,15 @@ const SingleProject = ({ item }) => {
             style={{ y }}
           >
             <a href={item.git} className="flex items-center">
-            <h2 className="lg:text-[30px] text-[20px] py-2 hover:text-sky-400 flex  gap-2">
-              <img
-                src={githubImage}
-                className="bg-transparent mr-2 lg:w-[60px] w-[20px] h-full  my-auto"
-              />
-              {item.title}
-            </h2></a>
+              <h2 className="lg:text-[30px] text-[20px] py-2 hover:text-sky-400 flex  gap-2">
+                <img
+                  src={githubImage}
+                  className="bg-transparent mr-2 lg:w-[60px] w-[20px] h-full  my-auto"
+                />
+                {item.title}
+              </h2>
+            </a>
+
             <p className="text-gray-500 lg:text-[15px] text-sm">{item.des}</p>
             <div className="flex flex-wrap items-center justify-evenly">
               {item.skills.map((i) => (
@@ -41,6 +43,15 @@ const SingleProject = ({ item }) => {
                 </span>
               ))}
             </div>
+            {item.live.length > 0 && (
+              <a
+                href={item.live}
+                className="my-2 text-center p-3 border rounded-2xl font-bold bg-gray-200 text-black hover:bg-red-600 hover:text-white"
+              >
+                Go Live
+              </a>
+            )}
+
             <hr />
           </motion.div>
         </div>
