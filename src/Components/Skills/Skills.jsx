@@ -1,51 +1,17 @@
 import { useRef } from "react";
-import BEDB from "./BEDB";
-import FrontendSkills from "./FrontendSkills";
-import ProgramingSkills from "./ProgramingSkills";
-import { motion} from "framer-motion";
-
-const textVarients = {
-  initial: {
-    x: -150,
-    opacity: 0,
-  },
-  initial1: {
-    x: -100,
-    opacity: 1,
-  },
-  animate: {
-    x: 0,
-    opacity: 1,
-    transition: {
-      duration: 1,
-      staggerChildren: 0.1,
-    },
-    
-  },
-  animate1: {
-    x: 1,
-    opacity: 1,
-    transition: {
-      duration: 1.5,
-      staggerChildren: 0.1,
-    },
-  },
-
-  animate2: {
-    x: 0,
-    opacity: 1,
-    transition: {
-      duration: 1.5,
-      staggerChildren: 0.1,
-    },
-    
-  },
- 
- 
-};
+import { motion } from "framer-motion";
+import { textVarients } from "./animations";
+import { skills } from "./skillsArray";
+import SkillTypeComponent from "./SkillTypeComponent";
 
 const Skills = () => {
   const ref = useRef();
+
+  const skillTypes = [
+    { type: "Programming Skills and more", arr: skills.filter((skill) => skill.type === "Programming Skills") },
+    { type: "Frontend Skills", arr: skills.filter((skill) => skill.type === "Frontend Skills") },
+    { type: "Backend & Database", arr: skills.filter((skill) => skill.type === "Backend & Database") },
+  ];
 
   return (
     <motion.div
@@ -76,11 +42,8 @@ const Skills = () => {
         initial="initial1"
         whileInView="animate1"
       >
-        <ProgramingSkills />
-        <FrontendSkills />
-        <BEDB />
+        {skillTypes.map((type) =><SkillTypeComponent key={type.type} type={type.type} skillArr={type.arr} />)}
       </motion.div>
-
     </motion.div>
   );
 };

@@ -29,6 +29,7 @@ const SingleProject = ({ item }) => {
               <h2 className="lg:text-[30px] text-[20px] py-2 hover:text-sky-400 flex  gap-2">
                 <img
                   src={githubImage}
+                  alt="gitcode"
                   className="bg-transparent mr-2 lg:w-[60px] w-[20px] h-full  my-auto"
                 />
                 {item.title}

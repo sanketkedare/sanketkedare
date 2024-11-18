@@ -1,16 +1,17 @@
 import React from "react";
 import "./Footer.scss";
 import { LinkedInImage, githubImage } from "../images";
+import Personal_Info from "../../Personal_Info";
 
 const Footer = () => {
   return (
     <div className="footer h-[20vh] m-auto bg-inherit flex justify-center items-center">
       <div className="bg-inherit">
-      <p> All rights reserved &copy; 2024 Sanket Kedare</p>
+      <p> All rights reserved &copy; 2024 {Personal_Info.name}</p>
       <p className="flex item-center justify-center lg:gap-5 gap-2">
         Connect with me:
         <a
-          href="https://www.linkedin.com/in/sanket-kedare-5820401bb/"
+          href={Personal_Info.linkedIn}
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center"
@@ -20,7 +21,7 @@ const Footer = () => {
         </a>
         |
         <a
-          href="https://github.com/sanketkedare"
+          href={Personal_Info.github}
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center"

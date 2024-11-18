@@ -12,8 +12,6 @@ const ProjectsComponent = () => {
   });
   const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
 
-  // {ProjectList.map(i=>console.log(i))}
-
   return (
     <div className="projects relative">
       <div className="progress lg:pt-7 pt-4 sticky top-0 left-0 text-center text-[#ffa500] z-10 font-bold

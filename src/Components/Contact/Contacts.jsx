@@ -1,23 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./Contacts.scss";
 import { motion, useInView } from "framer-motion";
-import emailjs from "@emailjs/browser";
 import { mySvg } from "../images";
-
-const variants = {
-  initial: {
-    y: 500,
-    opacity: 0,
-  },
-  animate: {
-    y: 0,
-    opacity: 1,
-    transition: {
-      duration: 0.5,
-      staggerChildren: 0.1,
-    },
-  },
-};
+import { variants, sendEmail } from "./utils";
+import Personal_Info from "../../Personal_Info";
 
 const Contacts = () => {
   const ref = useRef();
@@ -26,42 +12,18 @@ const Contacts = () => {
 
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
-  const [massage, setMassage] = useState("Submit");
+  const [message, setMessage] = useState("Submit");
 
-
-  const sendEmail = (e) => {
-    e.preventDefault();
-    
-    emailjs
-      .sendForm(
-        process.env.REACT_APP_SERVICE_VISA,
-        process.env.REACT_APP_TEMPLATE,
-        formRef.current,
-        process.env.REACT_APP_PI
-      )
-      .then(
-        (result) => {
-          setSuccess(true);
-          setMassage("Email sent successfully........");
-        },
-        (error) => {
-          setError(true);
-          setSuccess(false);
-          setMassage("Something Went Wrong.........");
-        }
-      );
-  };
-
-  useEffect(() => 
-  {
-    if (success || error)  {
-      setTimeout(() => {
-        setMassage("Send one more Massage");
+  // Timeout for resetting the message
+  useEffect(() => {
+    if (success || error) {
+      const timer = setTimeout(() => {
+        setMessage("Send one more message");
       }, 5000);
+
+      return () => clearTimeout(timer);
     }
   }, [success, error]);
-
-
 
   return (
     <motion.div
@@ -75,10 +37,7 @@ const Contacts = () => {
         className="textContainer flex-1 flex flex-col lg:gap-[40px] gap-6 my-6"
         variants={variants}
       >
-        <h1
-          variants={variants}
-          className="lg:text-[70px] text-[30px] lg:mt-0  lg:text-start lg:ml-0 ml-7 hover:text-sky-400"
-        >
+        <h1 className="lg:text-[70px] text-[30px] lg:mt-0 lg:text-start lg:ml-0 ml-7 hover:text-sky-400">
           Let's <span className="text-red-700 hover:text-white">Work </span>
           <br />
           together
@@ -87,26 +46,25 @@ const Contacts = () => {
 
         <motion.div className="item lg:ml-0 ml-7">
           <h2 className="font-bold text-orange-600">Mail</h2>
-          <sapn className="hover:text-sky-400">sanketkedare200@gmail.com</sapn>
+          <span className="hover:text-sky-400">{Personal_Info.email}</span>
         </motion.div>
 
         <motion.div className="item lg:ml-0 ml-7">
           <h2 className="font-bold text-orange-600">Address</h2>
-          <sapn className="hover:text-sky-400">
-            Hyderabad, Telangana, India
-          </sapn>
+          <span className="hover:text-sky-400">{Personal_Info.email}</span>
         </motion.div>
 
         <motion.div className="item lg:ml-0 ml-7">
           <h2 className="font-bold text-orange-600">Phone</h2>
-          <sapn className="hover:text-sky-400">8624851910</sapn>
+          <span className="hover:text-sky-400">{Personal_Info.mobile}</span>
         </motion.div>
       </motion.div>
 
       <motion.div className="formContainer flex justify-center items-center lg:w-[90%] w-[90%] m-auto flex-1 relative hover:shadow-lg hover:shadow-yellow-500 p-4 rounded-2xl">
         <motion.form
-          action=""
-          onSubmit={sendEmail}
+          onSubmit={(e) =>
+            sendEmail(e, formRef, setSuccess, setError, setMessage)
+          }
           ref={formRef}
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -131,14 +89,14 @@ const Contacts = () => {
             type="textarea"
             name="message"
             required
-            placeholder="Massage"
+            placeholder="Message"
             className="w-[90%] m-auto"
           />
           <motion.button
             type="submit"
-            className=" w-[90%] rounded-b-2xl p-[20px] border-0 bg-[#ffa500]"
+            className="w-[90%] rounded-b-2xl p-[20px] border-0 bg-[#ffa500]"
           >
-           <h1 className="bg-transparent text-black font-bold">{massage}</h1>  
+            <h1 className="bg-transparent text-black font-bold">{message}</h1>
           </motion.button>
         </motion.form>
 
@@ -151,7 +109,7 @@ const Contacts = () => {
           <motion.img
             src={mySvg}
             className="lg:h-[400px] m-auto p-5 bg-transparent"
-            strokewith={0.2}
+            strokeWidth={0.2}
             fill="none"
             initial={{ pathLength: 0 }}
             animate={isInView && { pathLength: 1 }}

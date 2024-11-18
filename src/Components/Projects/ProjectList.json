@@ -12,15 +12,16 @@
   },
   {
     "id": 2,
-    "title": "Make My Resume",
-    "git": "https://github.com/sanketkedare/makemyresume",
-    "live":"https://make-my-resume.onrender.com/",
+    "title": "React Tasks",
+    "git": "https://github.com/sanketkedare/React-Tasks",
+    "live":"https://react-tasks-keh6.onrender.com/",
     "skills": [
+      "Javascript",
       "React js",
       "Tailwind"
     ],
-    "img": "/makemyresume.png",
-    "des": "'Make My Resume' is a React project that empowers users to effortlessly craft professional resumes. Leveraging React's component-based structure, the application allows users to dynamically input and format their personal and professional details. The project's intuitive interface and real-time preview feature facilitate a seamless resume-building experience, enhancing employability."
+    "img": "/react-tasks.png",
+    "des": "beginner-friendly React projects that help make learning React an enjoyable and practical experience. Each project focuses on common tasks and components often seen in real-world applications and company interviews. These projects can serve as useful references, especially for those preparing for interviews or looking to strengthen their React skills."
   },
 
   {
@@ -73,7 +74,7 @@
     "id": 6,
     "title": "Entertainment Application",
     "git":"https://github.com/sanketkedare/Entertainment-App-Client",
-    "live":"https://entertainment-app-t7b6.onrender.com",
+    "live":"",
 
     "skills": [
       "React js",
