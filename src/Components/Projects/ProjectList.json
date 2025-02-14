@@ -1,5 +1,16 @@
 [
   {
+    "id": 0,
+    "title": "GrowSphere",
+    "git": "https://github.com/sanketkedare/GrowSphere",
+    "live":"https://growsphere.onrender.com",
+    "skills": [
+      "MERN Stack", "Firebase", "JWT", "API", "Tailwind"
+    ],
+    "img": "/Grow_Sphere.png",
+    "des": "Growsphere is an investment platform built with the MERN stack, Firebase, and MongoDB, connecting investors and businesses. It offers community interactions, meeting scheduling, a responsive UI, and real-time updates for seamless user engagement."
+  },
+  {
     "id": 1,
     "title": "Snapdeal Clone",
     "git": "https://github.com/sanketkedare/snapdeal-webapp",

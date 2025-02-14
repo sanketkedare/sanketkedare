@@ -1,33 +1,5 @@
-export const passage_1 = `With a Bachelor of Engineering as my foundational qualification, I
-            honed my expertise in full-stack web development through an
-            intensive program at Almabeter Institute, specializing in the MERN
-            stack. My comprehensive skill set extends to encompassing Next.js
-            for server and client-side rendering, leveraging this knowledge to
-            optimize user experiences. Proficient in Data Structures and
-            Algorithms (DSA), I bring a meticulous approach to problem-solving
-            within the web development sphere. My proficiency spans a wide
-            spectrum, including web hosting utilizing MongoDB and AWS, alongside
-            a deep understanding of MySQL, MariaDB, and the intricacies of
-            normalization and transition management. Tailwind CSS stands as a
-            cornerstone in my frontend development toolkit, enabling rapid and
-            efficient styling solutions while maintaining scalability and code
-            maintainability.`
+export const passage_1 = `I am a Full Stack Web Developer with a Bachelor of Engineering in Electronics and Telecommunication. With over 1.5 years of hands-on experience, I specialize in the MERN stack and have additional expertise in Next.js for optimized server and client-side rendering. Completing an intensive Full Stack Web Development program at AlmaBetter has refined my ability to build scalable, secure, and high-performance web applications. My strong foundation in Data Structures and Algorithms (DSA) allows me to tackle problem-solving with precision and efficiency.`;
 
+export const passage_2 = `During my role as a Full Stack Developer Intern at Unified Mentor, I developed GrowSphere, an industry-level investment platform emphasizing system design, Agile methodologies, Firebase authentication, and REST APIs. As a Teaching Assistant at AlmaBetter, I mentored aspiring developers, strengthening my expertise in JavaScript, React, Node.js, MongoDB, and business communication. My technical skills also include MySQL, MariaDB, database normalization, transaction management, and cloud services like AWS and Firebase.`;
 
-export const passage_2 = `Crafting robust Rest APIs with Express.js and implementing
-            middleware has been a pivotal part of my project work, ensuring
-            seamless functionality and heightened security measures.
-            Additionally, I possess adeptness in Java and Spring Boot, enabling
-            me to fortify applications through robust security protocols,
-            including JWT implementation. My journey in web development has seen
-            hands-on involvement in projects utilizing React.js, where I've
-            cultivated a keen eye for detail and a commitment to delivering
-            top-notch solutions. Well-versed in unit testing methodologies, I
-            ensure the reliability and performance of my work.`
-
-export const passage_3 = `Eager and open to new opportunities, I am seeking to channel my
-            expertise and passion as a MERN full-stack web developer,
-            contributing innovative solutions and driving digital experiences to
-            new heights.`
-
-
+export const passage_3 = `On the frontend, I utilize Tailwind CSS to craft responsive and maintainable UI designs, while my backend expertise spans REST API development, middleware integration, and JWT authentication for secure applications. With hands-on experience in real-time dashboards, investment platforms, and modular React projects, I am passionate about creating innovative solutions that enhance user engagement and drive business growth. I am eager to apply my skills to impactful projects and further advance my expertise as a MERN Stack Developer.`;

@@ -1,9 +1,9 @@
-const RESUME_PDF = "/Sanket_Kedare_Web_Developer.pdf";
+const RESUME_PDF = "/Sanket_Kedare_WD_AlmaBetter.pdf";
 
 export const downloadResumeUrl = () => {
   const aTag = document.createElement("a");
   aTag.href = RESUME_PDF;
-  aTag.setAttribute("download", "Sanket_Kedare_Web_Developer");
+  aTag.setAttribute("download", "Sanket_Kedare_WD_AlmaBetter");
   document.body.appendChild(aTag);
   aTag.click();
   aTag.remove();
