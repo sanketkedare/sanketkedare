@@ -1,38 +1,55 @@
-export const background = require("../images/background.jpg");
+import background from "../images/background.jpg";
+import download from "../images/download.png";
+import sanket from "../images/hero.Jpg";
+import mySvg from "../images/call.png";
+import scroll from "../images/scroll.png";
+import sun from "../images/sun.png";
+import mountain from "../images/mountains.png";
+import stars from "../images/stars.png";
+import js from "../images/js.png";
+import java from "../images/java.png";
+import mongoDb from "../images/mongodb.png";
+import nodejs from "../images/nodejs.png";
+import nextjs from "../images/nextjs.png";
+import tailwind from "../images/tailwind.png";
+import reactImage from "../images/reactjs.png";
+import dsa from "../images/dsa.png";
+import bootstrap from "../images/bootstrap.png";
+import expressjs from "../images/expressjs.png";
+import mysql from "../images/mysql.png";
+import mariadb from "../images/mariadb.png";
+import springboot from "../images/springboot.png";
+import html from "../images/html.png";
+import css from "../images/css.png";
+import postman from "../images/postman.png";
+import githubImage from "../images/github.png";
+import LinkedInImage from "../images/linkedin.png";
 
-//Almabetter
-export const download = require("../images/download.png");
-export const sanket = require("../images/hero.Jpg");
-
-//extra
-// export const mySvg = require("../images/contact-phone-talking-svgrepo-com.svg");
-export const mySvg = require("../images/call.png");
-export const scroll = require("../images/scroll.png");
-
-
-//Parallax
-export const sun = require("../images/sun.png");
-export const mountain = require("../images/mountains.png");
-export const stars = require("../images/stars.png");
-
-//Skills
-export const js = require("../images/js.png")
-export const java = require("../images/java.png");
-export const mongoDb = require("../images/mongodb.png");
-export const nodejs = require("../images/nodejs.png");
-export const nextjs = require("../images/nextjs.png");
-export const tailwind = require("../images/tailwind.png");
-export const reactImage = require("../images/reactjs.png");
-export const dsa = require("../images/dsa.png");
-export const bootstrap = require("../images/bootstrap.png");
-export const expressjs = require("../images/expressjs.png");
-export const mysql = require("../images/mysql.png");
-export const mariadb = require("../images/mariadb.png");
-export const springboot = require("../images/springboot.png");
-export const html = require("../images/html.png");
-export const css = require("../images/css.png");
-export const postman = require("../images/postman.png");
-
-//Scocial
-export const githubImage = require("../images/github.png");
-export const LinkedInImage = require("../images/linkedin.png");
+export {
+  background,
+  download,
+  sanket,
+  mySvg,
+  scroll,
+  sun,
+  mountain,
+  stars,
+  js,
+  java,
+  mongoDb,
+  nodejs,
+  nextjs,
+  tailwind,
+  reactImage,
+  dsa,
+  bootstrap,
+  expressjs,
+  mysql,
+  mariadb,
+  springboot,
+  html,
+  css,
+  postman,
+  githubImage,
+  LinkedInImage
+};
