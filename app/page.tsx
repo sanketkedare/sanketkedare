@@ -7,7 +7,7 @@ import Contacts from '@/components/Contact/Contacts';
 
 export default function Page() {
   return (
-    <main className="w-full min-h-screen bg-[#050511] overflow-hidden">
+    <main className="w-full bg-[#050511]">
       <Home />
       <About />
       <Skills />

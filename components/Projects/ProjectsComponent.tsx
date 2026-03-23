@@ -32,7 +32,7 @@ function ProjectCard({ item }: { item: Project }) {
       <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
       {/* Image Header */}
-      <div className="relative h-64 w-full overflow-hidden bg-slate-100 dark:bg-black/50 border-b border-slate-200 dark:border-white/10">
+      <div className="relative h-40 md:h-48 w-full overflow-hidden bg-slate-100 dark:bg-black/50 border-b border-slate-200 dark:border-white/10">
         <img
           src={item.img}
           alt={item.title}
@@ -44,22 +44,22 @@ function ProjectCard({ item }: { item: Project }) {
       </div>
 
       {/* Content Body */}
-      <div className="flex-1 flex flex-col p-8 relative z-10">
-        <div className="flex justify-between items-start mb-4 gap-4">
-          <h3 className="text-2xl font-bold text-slate-800 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors font-[family-name:var(--font-outfit)]">
+      <div className="flex-1 flex flex-col p-5 relative z-10">
+        <div className="flex justify-between items-start mb-2 gap-4">
+          <h3 className="text-xl font-bold text-slate-800 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors font-[family-name:var(--font-outfit)]">
             {item.title}
           </h3>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
             {item.git && (
               <a 
                 href={item.git} 
                 target="_blank" 
                 rel="noreferrer" 
-                className="w-10 h-10 rounded-full bg-slate-100 dark:bg-white/5 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-cyan-600 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-white/10 transition-colors tooltip"
+                className="w-8 h-8 rounded-full bg-slate-100 dark:bg-white/5 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-cyan-600 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-white/10 transition-colors tooltip"
                 aria-label="GitHub Repository"
                 title="View Source"
               >
-                <FiGithub size={20} />
+                <FiGithub size={16} />
               </a>
             )}
             {item.live && (
@@ -67,26 +67,26 @@ function ProjectCard({ item }: { item: Project }) {
                 href={item.live} 
                 target="_blank" 
                 rel="noreferrer" 
-                className="w-10 h-10 rounded-full bg-cyan-100 dark:bg-cyan-500/20 flex items-center justify-center text-cyan-600 dark:text-cyan-400 hover:text-white hover:bg-cyan-500 transition-colors tooltip"
+                className="w-8 h-8 rounded-full bg-cyan-100 dark:bg-cyan-500/20 flex items-center justify-center text-cyan-600 dark:text-cyan-400 hover:text-white hover:bg-cyan-500 transition-colors tooltip"
                 aria-label="Live Demo"
                 title="Live Demo"
               >
-                <FiExternalLink size={20} />
+                <FiExternalLink size={16} />
               </a>
             )}
           </div>
         </div>
 
-        <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-6 line-clamp-4 flex-1">
+        <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-4 line-clamp-3 flex-1">
           {item.des}
         </p>
 
         {/* Tech Stack Pills */}
-        <div className="flex flex-wrap items-center gap-2 mt-auto pt-4 border-t border-slate-200 dark:border-white/5">
+        <div className="flex flex-wrap items-center gap-1.5 mt-auto pt-3 border-t border-slate-200 dark:border-white/5">
           {item.skills.map((skill) => (
             <span
               key={skill}
-              className="px-3 py-1 text-xs font-medium bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-300 rounded-full border border-slate-200 dark:border-white/10 shadow-sm"
+              className="px-2.5 py-0.5 text-[10px] font-medium bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-300 rounded-full border border-slate-200 dark:border-white/10 shadow-sm"
             >
               {skill}
             </span>
@@ -99,8 +99,8 @@ function ProjectCard({ item }: { item: Project }) {
 
 export default function ProjectsComponent() {
   return (
-    <section id="projects" className="relative w-full py-32 px-6 border-t border-slate-200 dark:border-white/5 bg-slate-50 dark:bg-[#050511]">
-      <div className="max-w-7xl mx-auto">
+    <section id="projects" className="relative w-[80%] m-auto min-h-screen flex flex-col justify-center border-t border-slate-200 dark:border-white/5 bg-slate-50 dark:bg-[#050511] py-24">
+      <div className="max-w-7xl mx-auto w-full">
         
         {/* Header */}
         <motion.div 
@@ -108,15 +108,15 @@ export default function ProjectsComponent() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="mb-16 text-center md:text-left flex flex-col md:flex-row md:items-end justify-between gap-6"
+          className="mb-8 text-center md:text-left flex flex-col md:flex-row md:items-end justify-between gap-4"
         >
           <div>
-            <h2 className="text-4xl md:text-6xl font-[family-name:var(--font-outfit)] font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-cyan-600 dark:from-purple-400 dark:to-cyan-400">
+            <h2 className="text-3xl md:text-5xl font-[family-name:var(--font-outfit)] font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-cyan-600 dark:from-purple-400 dark:to-cyan-400">
               Selected Works
             </h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-purple-600 to-cyan-600 dark:from-purple-500 dark:to-cyan-500 mt-6 mx-auto md:mx-0 rounded-full" />
+            <div className="w-16 h-1 bg-gradient-to-r from-purple-600 to-cyan-600 dark:from-purple-500 dark:to-cyan-500 mt-4 mx-auto md:mx-0 rounded-full" />
           </div>
-          <p className="text-slate-600 dark:text-slate-400 max-w-md text-base md:text-right">
+          <p className="text-slate-600 dark:text-slate-400 max-w-sm text-sm md:text-right">
             A showcase of my recent builds, ranging from responsive UIs to complex full-stack web applications.
           </p>
         </motion.div>

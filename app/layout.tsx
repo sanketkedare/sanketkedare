@@ -68,12 +68,12 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="scroll-smooth" style={{ scrollPaddingTop: '100px' }} suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} ${outfit.variable} font-[family-name:var(--font-inter)] bg-slate-50 dark:bg-[#050511] text-slate-800 dark:text-slate-300 antialiased min-h-screen flex flex-col selection:bg-cyan-500/30 selection:text-white transition-colors duration-500`} suppressHydrationWarning>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem storageKey="sanket-portfolio-theme">
           <AntdRegistry>
-            <Navbar />
             <Sidebar />
+            <Navbar />
             {children}
             <Footer />
           </AntdRegistry>

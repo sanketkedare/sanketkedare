@@ -3,15 +3,16 @@
 import { useRef } from 'react';
 import Image from 'next/image';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import { FiGithub, FiLinkedin } from 'react-icons/fi';
 import PersonalInfo from '@/lib/personal-info';
 
 const HERO_SRC = '/hero.jpg';
 
-const passage_1 = `I am a Full Stack Web Developer with a Bachelor of Engineering in Electronics and Telecommunication. With over 1.5 years of hands-on experience, I specialize in the MERN stack and have additional expertise in Next.js for optimized server and client-side rendering. Completing an intensive Full Stack Web Development program at AlmaBetter has refined my ability to build scalable, secure, and high-performance web applications. My strong foundation in Data Structures and Algorithms (DSA) allows me to tackle problem-solving with precision and efficiency.`;
+const passage_1 = `I don't just build websites; I engineer technical dominance. My journey is defined by high-stakes development at Visiontech, where I took command of the Visiontech Academy flagship site, the LMS platform, and the complex EMS application. I don't follow trends—I architect system designs from the ground up that set the standard for performance and scalability.`;
 
-const passage_2 = `During my role as a Full Stack Developer Intern at Unified Mentor, I developed GrowSphere, an industry-level investment platform emphasizing system design, Agile methodologies, Firebase authentication, and REST APIs. As a Teaching Assistant at AlmaBetter, I mentored aspiring developers, strengthening my expertise in JavaScript, React, Node.js, MongoDB, and business communication. My technical skills also include MySQL, MariaDB, database normalization, transaction management, and cloud services like AWS and Firebase.`;
+const passage_2 = `My expertise isn't just theoretical. From optimizing Next.js to mastering the AWS cloud ecosystem, I've tackled real-world technical crises across diverse domains. Whether it's architecting clean systems or leading critical office-level technical initiatives, I operate with a precision that comes from solving high-impact engineering bottlenecks across various domains.`;
 
-const passage_3 = `On the frontend, I utilize Tailwind CSS to craft responsive and maintainable UI designs, while my backend expertise spans REST API development, middleware integration, and JWT authentication for secure applications. With hands-on experience in real-time dashboards, investment platforms, and modular React projects, I am passionate about creating innovative solutions that enhance user engagement and drive business growth.`;
+const passage_3 = `I am a Full Stack Architect who bridges the gap between visionary design and ruthless implementation. I master the MERN stack with the strategic foresight of an engineer who has built, scaled, and secured professional-grade platforms. I am here to build the future of the web, and I'm doing it with an uncompromising standard for excellence.`;
 
 const textVariants = {
   hidden: { opacity: 0, y: 30 },
@@ -27,46 +28,50 @@ export default function About() {
   const textY = useTransform(scrollYProgress, [0, 1], ["5%", "-5%"]);
 
   return (
-    <section id="about" ref={containerRef} className="relative w-full min-h-screen py-32 px-6 border-t border-slate-200 dark:border-white/5 bg-slate-50 dark:bg-transparent">
-      <div className="max-w-7xl mx-auto">
+    <section id="about" ref={containerRef} className="relative w-[80%] m-auto min-h-screen py-24 flex items-center justify-center border-t border-slate-200 dark:border-white/5 bg-slate-50 dark:bg-[#050511]">
+      <div className="w-full">
         <motion.div 
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={textVariants}
-          className="mb-20 text-center md:text-left"
+          className="mb-8 text-center md:text-left"
         >
-          <h2 className="text-4xl md:text-6xl font-[family-name:var(--font-outfit)] font-black text-transparent bg-clip-text bg-gradient-to-r from-slate-900 to-slate-500 dark:from-white dark:to-slate-500">
+          <h2 className="text-3xl md:text-5xl font-[family-name:var(--font-outfit)] font-black text-transparent bg-clip-text bg-gradient-to-r from-slate-900 to-slate-500 dark:from-white dark:to-slate-500">
             About Me
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-cyan-500 to-purple-500 mt-6 mx-auto md:mx-0 rounded-full" />
+          <div className="w-16 h-1 bg-gradient-to-r from-cyan-500 to-purple-500 mt-4 mx-auto md:mx-0 rounded-full" />
         </motion.div>
 
-        <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
           
-          {/* Left: Image with dramatic styling */}
+          {/* Left: Image with dramatic styling (col-span-1) */}
           <motion.div 
             style={{ y: imgY }}
-            initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
-            whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 1, ease: "easeOut" }}
-            className="relative lg:w-1/3 w-full max-w-sm flex-shrink-0"
+            className="relative lg:col-span-1 w-full max-w-sm flex-shrink-0 mx-auto lg:mx-0 h-[450px] lg:h-full min-h-[400px]"
           >
             {/* Pulsing Backlight */}
             <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500 to-purple-500 rounded-3xl blur-2xl opacity-40 animate-pulse" />
             
-            {/* Image Container */}
-            <div className="relative aspect-[4/5] rounded-3xl overflow-hidden border border-slate-200 dark:border-white/10 shadow-2xl bg-white dark:bg-[#0a0a1a]">
+            {/* Image Container - Now h-full to match the right side */}
+            <div className="relative h-full rounded-3xl overflow-hidden border border-slate-200 dark:border-white/10 shadow-2xl bg-white dark:bg-[#0a0a1a]">
               <Image
                 src={HERO_SRC}
                 alt={PersonalInfo.name}
                 fill
                 className="object-cover object-center grayscale hover:grayscale-0 transition-all duration-700"
               />
-              <div className="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-black/80 to-transparent">
-                <h3 className="text-xl font-bold text-white">{PersonalInfo.name}</h3>
-                <p className="text-cyan-400 text-sm">{PersonalInfo.role2}</p>
+              <div className="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-black/90 to-transparent">
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="w-2 h-2 rounded-full bg-cyan-500 animate-pulse" />
+                  <span className="text-[10px] font-black uppercase tracking-widest text-cyan-400">System Architect</span>
+                </div>
+                <h3 className="text-xl font-bold text-white leading-none">{PersonalInfo.name}</h3>
+                <p className="text-slate-400 text-xs mt-1">{PersonalInfo.role2}</p>
               </div>
             </div>
             
@@ -74,7 +79,7 @@ export default function About() {
             <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-purple-500/20 rounded-full blur-xl -z-10" />
           </motion.div>
 
-          {/* Right: Storytelling Content */}
+          {/* Right: Storytelling Content (col-span-3) */}
           <motion.div 
             style={{ y: textY }}
             initial="hidden"
@@ -84,21 +89,118 @@ export default function About() {
               visible: { transition: { staggerChildren: 0.2 } },
               hidden: {}
             }}
-            className="lg:w-2/3 flex flex-col gap-8 text-base md:text-lg text-slate-700 dark:text-slate-300 leading-relaxed font-[family-name:var(--font-inter)]"
+            className="lg:col-span-3 flex flex-col gap-6 text-xs md:text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-[family-name:var(--font-inter)]"
           >
-            <motion.p variants={textVariants} className="bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 p-6 rounded-2xl backdrop-blur-md shadow-sm dark:shadow-xl hover:bg-slate-50 dark:hover:bg-white/10 transition-colors duration-300">
-              {passage_1}
-            </motion.p>
-            <motion.p variants={textVariants} className="bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 p-6 rounded-2xl backdrop-blur-md shadow-sm dark:shadow-xl hover:bg-slate-50 dark:hover:bg-white/10 transition-colors duration-300">
-              {passage_2}
-            </motion.p>
-            <motion.p variants={textVariants} className="bg-gradient-to-br from-cyan-50 to-purple-50 dark:from-cyan-500/10 dark:to-purple-500/10 border border-cyan-200 dark:border-cyan-500/20 p-6 rounded-2xl backdrop-blur-md shadow-sm dark:shadow-xl hover:border-cyan-400 dark:hover:border-cyan-500/40 transition-colors duration-300 text-slate-800 dark:text-white">
-              {passage_3}
-            </motion.p>
+            {/* Top Box: Main Narrative - Full Width of Content Column */}
+            <motion.div 
+              variants={textVariants} 
+              whileHover={{ y: -5, scale: 1.01 }}
+              className="group relative cursor-pointer overflow-hidden bg-white/40 dark:bg-white/10 border-2 border-slate-200 dark:border-white/10 p-6 rounded-[1.5rem] backdrop-blur-2xl shadow-xl hover:shadow-cyan-500/10 hover:bg-slate-50 dark:hover:bg-white/15 transition-all duration-500"
+            >
+              <div className="flex items-center gap-3 mb-4">
+                <span className="px-2.5 py-0.5 bg-cyan-500/10 dark:bg-cyan-500/20 text-cyan-600 dark:text-cyan-400 text-[9px] font-black uppercase tracking-[0.2em] rounded-full border border-cyan-500/20">
+                  01 // Technical Command
+                </span>
+                <div className="h-px flex-1 bg-gradient-to-r from-cyan-500/30 to-transparent" />
+              </div>
+              <p className="text-slate-800 dark:text-slate-200 text-sm md:text-base font-medium leading-relaxed">
+                {passage_1}
+              </p>
+            </motion.div>
+
+            {/* Bottom Grid: Expertise & Architecture - Two Columns */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <motion.div 
+                variants={textVariants} 
+                whileHover={{ y: -5, scale: 1.01 }}
+                className="group relative cursor-pointer overflow-hidden bg-white/40 dark:bg-white/10 border-2 border-slate-200 dark:border-white/10 p-6 rounded-[1.5rem] backdrop-blur-2xl shadow-lg hover:shadow-purple-500/10 hover:bg-slate-50 dark:hover:bg-white/15 transition-all duration-500"
+              >
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="px-2.5 py-0.5 bg-purple-500/10 dark:bg-purple-500/20 text-purple-600 dark:text-purple-400 text-[9px] font-black uppercase tracking-[0.2em] rounded-full border border-purple-500/20">
+                    02 // Domain Expertise
+                  </span>
+                  <div className="h-px flex-1 bg-gradient-to-r from-purple-500/30 to-transparent" />
+                </div>
+                <p className="text-slate-700 dark:text-slate-400 text-[13px] md:text-sm">
+                  {passage_2}
+                </p>
+              </motion.div>
+
+              <motion.div 
+                variants={textVariants} 
+                whileHover={{ y: -5, scale: 1.01 }}
+                className="group relative cursor-pointer overflow-hidden bg-gradient-to-br from-cyan-500/5 to-purple-500/5 dark:from-cyan-500/10 dark:to-purple-500/10 border-2 border-cyan-500/30 dark:border-cyan-500/20 p-6 rounded-[1.5rem] backdrop-blur-2xl shadow-lg hover:shadow-cyan-500/20 hover:from-cyan-500/10 hover:to-purple-500/10 transition-all duration-500"
+              >
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="px-2.5 py-0.5 bg-white dark:bg-white/20 text-slate-900 dark:text-white text-[9px] font-black uppercase tracking-[0.2em] rounded-full border border-white/40 shadow-sm">
+                    03 // Strategic Architecture
+                  </span>
+                  <div className="h-px flex-1 bg-gradient-to-r from-white to-transparent opacity-20" />
+                </div>
+                <p className="text-slate-900 dark:text-white font-medium text-[13px] md:text-sm">
+                  {passage_3}
+                </p>
+              </motion.div>
+            </div>
           </motion.div>
+        </div>
+
+        {/* Links Outside the Grid Layout */}
+        <motion.div 
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={textVariants}
+          className="mt-16 flex flex-col gap-6"
+        >
+          <div className="flex items-center gap-4">
+            <div className="h-px flex-1 bg-gradient-to-r from-transparent via-slate-300 dark:via-white/10 to-transparent" />
+            <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-slate-500 dark:text-slate-400 whitespace-nowrap">
+              Witness the technical footprint:
+            </p>
+            <div className="h-px flex-1 bg-gradient-to-r from-transparent via-slate-300 dark:via-white/10 to-transparent" />
+          </div>
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-8 md:gap-16">
+            <a 
+              href={PersonalInfo.github} 
+              target="_blank" 
+              rel="noreferrer"
+              className="flex items-center gap-4 group transition-all"
+              aria-label="GitHub Profile"
+            >
+              <div className="w-14 h-14 rounded-full bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 flex items-center justify-center text-slate-800 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-400 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(6,182,212,0.3)] transition-all duration-500">
+                <FiGithub size={28} className="group-hover:rotate-12 transition-transform" />
+              </div>
+              <div className="flex flex-col">
+                <span className="text-[10px] font-black uppercase tracking-widest text-slate-400 group-hover:text-cyan-500 transition-colors">Github Domain</span>
+                <span className="text-xs font-bold text-slate-600 dark:text-slate-400 group-hover:text-slate-900 dark:group-hover:text-white transition-colors">
+                  The Codebase Domain
+                </span>
+              </div>
+            </a>
+
+            <a 
+              href={PersonalInfo.linkedIn} 
+              target="_blank" 
+              rel="noreferrer"
+              className="flex items-center gap-4 group transition-all"
+              aria-label="LinkedIn Profile"
+            >
+              <div className="w-14 h-14 rounded-full bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 flex items-center justify-center text-slate-800 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-400 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(6,182,212,0.3)] transition-all duration-500">
+                <FiLinkedin size={28} className="group-hover:scale-110 transition-transform" />
+              </div>
+              <div className="flex flex-col">
+                <span className="text-[10px] font-black uppercase tracking-widest text-slate-400 group-hover:text-cyan-500 transition-colors">Professional Network</span>
+                <span className="text-xs font-bold text-slate-600 dark:text-slate-400 group-hover:text-slate-900 dark:group-hover:text-white transition-colors">
+                  The Strategic Network
+                </span>
+              </div>
+            </a>
+          </div>
+        </motion.div>
 
         </div>
-      </div>
     </section>
   );
 }
