@@ -1,0 +1,118 @@
+[
+  {
+    "id": 0,
+    "title": "GrowSphere",
+    "git": "https://github.com/sanketkedare/GrowSphere",
+    "live":"https://growsphere.onrender.com",
+    "skills": [
+      "MERN Stack", "Firebase", "JWT", "API", "Tailwind"
+    ],
+    "img": "/Grow_Sphere.png",
+    "des": "Growsphere is an investment platform built with the MERN stack, Firebase, and MongoDB, connecting investors and businesses. It offers community interactions, meeting scheduling, a responsive UI, and real-time updates for seamless user engagement."
+  },
+  {
+    "id": 1,
+    "title": "Snapdeal Clone",
+    "git": "https://github.com/sanketkedare/snapdeal-webapp",
+    "live":"https://snapdeal-clone-qes9.onrender.com/",
+    "skills": [
+      "MERN Stack", "Firebase", "JWT", "API"
+    ],
+    "img": "https://images.indianexpress.com/2016/09/snapdeal-759.png",
+    "des": "Snapdeal - WebApp is a modern and responsive e-commerce web application designed to provide a seamless online shopping experience. Built with React. Tailwind CSS, Redux, and Redux Toolkit, this project showcases a robust and scalable architecture for managing state and UI components effectively."
+  },
+  {
+    "id": 2,
+    "title": "React Tasks",
+    "git": "https://github.com/sanketkedare/React-Tasks",
+    "live":"https://react-tasks-keh6.onrender.com/",
+    "skills": [
+      "Javascript",
+      "React js",
+      "Tailwind"
+    ],
+    "img": "/react-tasks.png",
+    "des": "beginner-friendly React projects that help make learning React an enjoyable and practical experience. Each project focuses on common tasks and components often seen in real-world applications and company interviews. These projects can serve as useful references, especially for those preparing for interviews or looking to strengthen their React skills."
+  },
+
+  {
+    "id": 3,
+    "title": "Crypto Currancy Dashboard",
+    "git": "https://github.com/sanketkedare/crypto-dashboard",
+    "live":"https://crypto-dashboard-5buj.onrender.com/",
+    "skills": [
+      "React js",
+      "Tailwind"
+    ],
+    "img": "https://bs-uploads.toptal.io/blackfish-uploads/components/blog_post_page/content/cover_image_file/cover_image/1303387/regular_1708x683_Untitled-e7fde53f1e5631a8728cc9aefc1538e8.png",
+    "des": "A Cryptocurrency Dashboard built with React provides users with real-time insights into the dynamic world of digital currencies. Leveraging React's component architecture, the dashboard seamlessly integrates data visualization libraries to display live price updates, market trends, and portfolio performance. Responsive design and interactive charts enhance the user experience, offering a comprehensive overview of the cryptocurrency landscape."
+  },
+
+  {
+    "id": 4,
+    "title": "Youtube Subscribers [Backend]",
+    "git":"https://github.com/sanketkedare/Subscribers-Mongo-Node-BoilerPlate-main",
+    "live":"",
+
+    "skills": [
+      "Mongo DB",
+      "Node js",
+      "Express js"
+    ],
+    "img": "https://media.istockphoto.com/id/1285939198/vector/subscribe-button-and-hand-cursor-with-play-icons-on-background-red-button-subscribe-to.jpg?s=612x612&w=0&k=20&c=gJNGXdhOTtkg_Pkh-JDZR-Rh_w_wVuPCsLgF0PtHuvM=",
+    "des": "Simple backend service - REST APIs created for getting information about youtube subscribers"
+  
+  },
+
+  {
+    "id": 5,
+    "title": "Employee Management Application",
+    "git":"https://github.com/sanketkedare/Employee-Management-APP",
+    "live":"",
+
+    "skills": [
+      "React js",
+      "Tailwind",
+      "Mongo DB",
+      "Node js",
+      "Express js"
+    ],
+    "img": "https://blog.vantagecircle.com/content/images/2021/01/Employee-Management-Meaning-Importance-Tips-Tools---More.png",
+    "des": "Full Stack Application to manage employee. Crafted using MERN Technologies. Frontend Designed using React Js and Tailwind CSS with Node JS & Mongo DB at Server. Application is efficient to manage and manupilate Employees"
+  },
+
+  {
+    "id": 6,
+    "title": "Entertainment Application",
+    "git":"https://github.com/sanketkedare/Entertainment-App-Client",
+    "live":"",
+
+    "skills": [
+      "React js",
+      "Tailwind",
+      "Mongo DB",
+      "Node js",
+      "Express js"
+    ],
+    "img": "https://almablog-media.s3.ap-south-1.amazonaws.com/download_8d102bbc3b.png",
+    "des": "Creating a NetFlix clone with the MERN stack (MongoDB, Express.js, React, Node.js) combines powerful technologies to build a scalable video-sharing platform. The backend, using Node.js and Express, manages user authentication, video uploads, and interactions with the MongoDB database. The React frontend provides a responsive and dynamic user interface, rendering video content, comments, and likes. MERN's real-time capabilities enhance the user experience, making the Netflix clone a feature-rich and engaging platform."
+  },
+
+  {
+    "id": 7,
+    "title": "Smart Contacts",
+    "git": "https://github.com/sanketkedare/Smart_Contact-Manager",
+    "live":"",
+
+    "skills": [
+      "Java",
+      "SpringBoot",
+      "HTML",
+      "BootSrap",
+      "Thymleaf"
+    ],
+    "img":"https://clipart-library.com/2023/7-75154_telephone-clipart-png-new-contact-number-announcement.png",
+    "des": "Smart Contacts is a web application built using Java, Spring Boot, Spring Boot security, HTML5, CSS, JS, and MySQL database. It is designed to provide users with a secure and efficient way to store and manage their contacts, as well as facilitate communication between contacts. The application is divided into two modules: Admin and User. The Admin module allows users to store and manage their contacts, while the User module provides users with the ability to communicate with their contacts."
+  }
+
+]
