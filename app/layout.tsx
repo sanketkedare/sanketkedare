@@ -12,11 +12,58 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const outfit = Outfit({ subsets: ['latin'], variable: '--font-outfit' });
 
 export const metadata: Metadata = {
-  title: 'Sanket Kedare | Full Stack Web Dev',
-  description:
-    'MERN Full Stack Developer portfolio — React, Next.js, Node.js, MongoDB. Based in Pune, Maharashtra, India.',
-  keywords: ['Full Stack Developer', 'MERN', 'React', 'Next.js', 'Sanket Kedare'],
-  authors: [{ name: 'Sanket Kedare', url: 'https://github.com/sanketkedare' }],
+  metadataBase: new URL('https://www.sanketkedare.com'),
+  title: {
+    default: 'Sanket Kedare | Full Stack Web Developer',
+    template: '%s | Sanket Kedare'
+  },
+  description: 'Portfolio of Sanket Kedare, a Full Stack Developer specializing in the MERN stack and Next.js. Architecting scalable, high-performance web applications.',
+  keywords: [
+    'Sanket Kedare', 
+    'Full Stack Developer', 
+    'MERN Stack Developer', 
+    'Next.js Developer', 
+    'React Developer', 
+    'Web Developer Pune',
+    'Software Engineer'
+  ],
+  authors: [{ name: 'Sanket Kedare', url: 'https://www.sanketkedare.com' }],
+  creator: 'Sanket Kedare',
+  publisher: 'Sanket Kedare',
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://www.sanketkedare.com',
+    title: 'Sanket Kedare | Full Stack Web Developer',
+    description: 'Specializing as a Full Stack Developer based in India, I architect and engineer robust, high-performance applications leveraging the MERN stack and Next.js.',
+    siteName: 'Sanket Kedare',
+    images: [{
+      url: '/hero.jpg',
+      width: 1200,
+      height: 630,
+      alt: 'Sanket Kedare - Full Stack Developer'
+    }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Sanket Kedare | Full Stack Web Developer',
+    description: 'Architecting scalable, high-performance applications using the MERN stack and Next.js.',
+    images: ['/hero.jpg'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
