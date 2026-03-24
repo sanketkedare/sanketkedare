@@ -59,6 +59,7 @@ const Home = () => {
         </motion.div>
         <ImageScroll/>
       </div>
+     
     </div>
   );
 };

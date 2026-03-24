@@ -59,23 +59,23 @@ export default function Skills() {
   const programming = skills.filter((s) => s.type === 'Programming Skills');
 
   return (
-    <section id="skills" className="relative w-[80%] m-auto min-h-screen flex flex-col justify-center border-t border-slate-200 dark:border-white/5 overflow-hidden bg-slate-50 dark:bg-[#050511] py-24">
-      <div className="max-w-7xl mx-auto w-full">
+    <section id="skills" className="relative w-full lg:w-[80%] mx-auto px-6 lg:px-0 min-h-screen flex flex-col justify-center border-t border-slate-200 dark:border-white/5 overflow-hidden bg-slate-50 dark:bg-[#050511] py-24">
+      <div className="mx-auto w-full">
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="mb-8 text-center md:text-left"
+          className="mb-8 md:mb-12 text-center md:text-left"
         >
-          <h2 className="text-3xl md:text-5xl font-[family-name:var(--font-outfit)] font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-600 to-slate-900 dark:from-cyan-400 dark:to-white">
+          <h2 className="text-[1.75rem] md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-600 to-slate-900 dark:from-cyan-400 dark:to-white tracking-tight md:tracking-normal">
             Tech Arsenal
           </h2>
           <div className="w-16 h-1 bg-gradient-to-r from-cyan-500 to-purple-500 mt-4 mx-auto md:mx-0 rounded-full" />
         </motion.div>
 
         {/* BENTO GRID */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           
           {/* Box 1: Frontend (Span 2 cols on tablet, 1 on desktop) */}
           <motion.div 
@@ -83,19 +83,19 @@ export default function Skills() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1, duration: 0.5 }}
-            className="col-span-1 md:col-span-2 lg:col-span-2 bg-white dark:bg-[#0a0a1a] border border-slate-200 dark:border-white/10 rounded-2xl p-6 shadow-sm dark:shadow-2xl hover:border-cyan-400 dark:hover:border-cyan-500/50 transition-colors duration-500 group"
+            className="col-span-2 md:col-span-2 lg:col-span-2 bg-white dark:bg-[#0a0a1a] border border-slate-200 dark:border-white/10 rounded-2xl p-5 md:p-6 shadow-sm dark:shadow-2xl hover:border-cyan-400 dark:hover:border-cyan-500/50 transition-colors duration-500 group"
           >
-            <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-4 flex items-center gap-3">
-              <span className="w-6 h-6 rounded border bg-cyan-100 dark:bg-cyan-500/20 flex items-center justify-center text-cyan-600 dark:text-cyan-400 text-xs">🎨</span>
+            <h3 className="text-lg md:text-xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
+              <span className="w-6 h-6 rounded border bg-cyan-100 dark:bg-cyan-500/20 flex items-center justify-center text-cyan-600 dark:text-cyan-400 text-[10px]">🎨</span>
               Frontend Mastery
             </h3>
-            <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-5 gap-4">
+            <div className="grid grid-cols-4 sm:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-4">
               {frontend.map((skill) => (
-                <div key={skill.skill} className="flex flex-col items-center gap-2 group/item">
-                  <div className="w-12 h-12 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 flex items-center justify-center p-2 group-hover/item:scale-110 group-hover/item:border-cyan-400 dark:group-hover/item:border-cyan-500/50 group-hover/item:shadow-[0_0_20px_rgba(6,182,212,0.1)] dark:group-hover/item:shadow-[0_0_20px_rgba(6,182,212,0.3)] transition-all duration-300">
+                <div key={skill.skill} className="flex flex-col items-center gap-1 group/item">
+                  <div className="w-10 md:w-12 h-10 md:h-12 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 flex items-center justify-center p-2 group-hover/item:scale-110 group-hover/item:border-cyan-400 dark:group-hover/item:border-cyan-500/50 group-hover/item:shadow-[0_0_20px_rgba(6,182,212,0.1)] dark:group-hover/item:shadow-[0_0_20px_rgba(6,182,212,0.3)] transition-all duration-300">
                     <Image src={skill.src} alt={skill.skill} className="w-full h-full object-contain filter group-hover/item:brightness-125 transition-all" />
                   </div>
-                  <span className="text-[10px] text-slate-600 dark:text-slate-400 font-medium group-hover/item:text-cyan-600 dark:group-hover/item:text-cyan-400 transition-colors">{skill.skill}</span>
+                  <span className="text-[8px] md:text-[10px] text-slate-600 dark:text-slate-400 font-black uppercase tracking-widest group-hover/item:text-cyan-600 dark:group-hover/item:text-cyan-400 transition-colors">{skill.skill}</span>
                 </div>
               ))}
             </div>

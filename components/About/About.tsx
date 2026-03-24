@@ -28,22 +28,22 @@ export default function About() {
   const textY = useTransform(scrollYProgress, [0, 1], ["5%", "-5%"]);
 
   return (
-    <section id="about" ref={containerRef} className="relative w-[80%] m-auto min-h-screen py-24 flex items-center justify-center border-t border-slate-200 dark:border-white/5 bg-slate-50 dark:bg-[#050511]">
+    <section id="about" ref={containerRef} className="relative w-full lg:w-[80%] mx-auto px-6 lg:px-0 min-h-screen py-24 flex items-center justify-center border-t border-slate-200 dark:border-white/5 bg-slate-50 dark:bg-[#050511]">
       <div className="w-full">
         <motion.div 
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={textVariants}
-          className="mb-8 text-center md:text-left"
+          className="mb-8 md:mb-12 text-center md:text-left"
         >
-          <h2 className="text-3xl md:text-5xl font-[family-name:var(--font-outfit)] font-black text-transparent bg-clip-text bg-gradient-to-r from-slate-900 to-slate-500 dark:from-white dark:to-slate-500">
+          <h2 className="text-[1.75rem] md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-slate-900 to-slate-500 dark:from-white dark:to-slate-500 tracking-tight md:tracking-normal">
             About Me
           </h2>
           <div className="w-16 h-1 bg-gradient-to-r from-cyan-500 to-purple-500 mt-4 mx-auto md:mx-0 rounded-full" />
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 md:gap-12">
           
           {/* Left: Image with dramatic styling (col-span-1) */}
           <motion.div 
@@ -52,30 +52,29 @@ export default function About() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 1, ease: "easeOut" }}
-            className="relative lg:col-span-1 w-full max-w-sm flex-shrink-0 mx-auto lg:mx-0 h-[450px] lg:h-full min-h-[400px]"
+            className="relative lg:col-span-1 w-full max-w-sm flex-shrink-0 mx-auto lg:mx-0 h-[350px] md:h-[450px] lg:h-full min-h-[300px] z-20 -mb-8 lg:mb-0"
           >
             {/* Pulsing Backlight */}
             <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500 to-purple-500 rounded-3xl blur-2xl opacity-40 animate-pulse" />
             
-            {/* Image Container - Now h-full to match the right side */}
+            {/* Image Container */}
             <div className="relative h-full rounded-3xl overflow-hidden border border-slate-200 dark:border-white/10 shadow-2xl bg-white dark:bg-[#0a0a1a]">
               <Image
                 src={HERO_SRC}
                 alt={PersonalInfo.name}
                 fill
-                className="object-cover object-center grayscale hover:grayscale-0 transition-all duration-700"
+                className="object-cover object-center saturate-100 hover:saturate-110 transition-all duration-700"
               />
-              <div className="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-black/90 to-transparent">
+              <div className="absolute inset-x-0 bottom-0 p-4 md:p-6 bg-gradient-to-t from-black/90 to-transparent">
                 <div className="flex items-center gap-2 mb-1">
                   <span className="w-2 h-2 rounded-full bg-cyan-500 animate-pulse" />
-                  <span className="text-[10px] font-black uppercase tracking-widest text-cyan-400">System Architect</span>
+                  <span className="text-[8px] md:text-[10px] font-black uppercase tracking-[0.2em] text-cyan-400">System Architect</span>
                 </div>
-                <h3 className="text-xl font-bold text-white leading-none">{PersonalInfo.name}</h3>
-                <p className="text-slate-400 text-xs mt-1">{PersonalInfo.role2}</p>
+                <h3 className="text-lg md:text-xl font-bold text-white leading-none">{PersonalInfo.name}</h3>
+                <p className="text-slate-400 text-[10px] md:text-xs mt-1">{PersonalInfo.role2}</p>
               </div>
             </div>
             
-            {/* Decorative element */}
             <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-purple-500/20 rounded-full blur-xl -z-10" />
           </motion.div>
 
@@ -89,13 +88,13 @@ export default function About() {
               visible: { transition: { staggerChildren: 0.2 } },
               hidden: {}
             }}
-            className="lg:col-span-3 flex flex-col gap-6 text-xs md:text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-[family-name:var(--font-inter)]"
+            className="lg:col-span-3 flex flex-col gap-4 md:gap-6 text-xs md:text-sm text-slate-700 dark:text-slate-300 leading-relaxed z-10"
           >
-            {/* Top Box: Main Narrative - Full Width of Content Column */}
+            {/* Top Box: Main Narrative */}
             <motion.div 
               variants={textVariants} 
               whileHover={{ y: -5, scale: 1.01 }}
-              className="group relative cursor-pointer overflow-hidden bg-white/40 dark:bg-white/10 border-2 border-slate-200 dark:border-white/10 p-6 rounded-[1.5rem] backdrop-blur-2xl shadow-xl hover:shadow-cyan-500/10 hover:bg-slate-50 dark:hover:bg-white/15 transition-all duration-500"
+              className="group relative cursor-pointer overflow-hidden bg-white/40 dark:bg-white/10 border-2 border-slate-200 dark:border-white/10 p-5 md:p-6 pt-12 md:pt-6 rounded-[1.5rem] md:rounded-[1.5rem] backdrop-blur-2xl shadow-xl hover:shadow-cyan-500/10 hover:bg-slate-50 dark:hover:bg-white/15 transition-all duration-500"
             >
               <div className="flex items-center gap-3 mb-4">
                 <span className="px-2.5 py-0.5 bg-cyan-500/10 dark:bg-cyan-500/20 text-cyan-600 dark:text-cyan-400 text-[9px] font-black uppercase tracking-[0.2em] rounded-full border border-cyan-500/20">

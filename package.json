@@ -3,15 +3,16 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev --turbopack -p 3010",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p 3010",
     "lint": "next lint",
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
     "@ant-design/cssinjs": "^1.21.1",
     "@emailjs/browser": "^4.4.1",
+    "@vercel/analytics": "^2.0.1",
     "antd": "^5.24.0",
     "framer-motion": "^12.5.0",
     "next": "16.2.1",

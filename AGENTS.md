@@ -91,7 +91,7 @@ lib/
 ## Commands
 
 ```bash
-npm run dev         # Turbopack dev server → http://localhost:3000
+npm run dev         # Turbopack dev server → http://localhost:3010
 npm run build       # Turbopack production build
 npm run start       # Start production server
 npm run lint        # ESLint with next/core-web-vitals ruleset

@@ -73,7 +73,7 @@ export default function Sidebar() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ delay: i * 0.1, duration: 0.4, type: "spring", stiffness: 100 }}
-                  className="text-3xl font-[family-name:var(--font-outfit)] font-bold text-slate-600 dark:text-slate-300 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors"
+                  className="text-3xl font-bold text-slate-600 dark:text-slate-300 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors"
                 >
                   {item.name}
                 </motion.a>

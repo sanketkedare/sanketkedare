@@ -9,7 +9,7 @@ export default function Logo() {
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
     >
-      <span className="text-3xl font-[family-name:var(--font-outfit)] font-black tracking-tighter flex items-center">
+      <span className="text-3xl font-black tracking-tighter flex items-center">
         <span className="text-cyan-600 dark:text-cyan-400 opacity-80 group-hover:opacity-100 group-hover:-translate-x-1 transition-all duration-300">
           &lt;
         </span>

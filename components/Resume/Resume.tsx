@@ -22,7 +22,7 @@ function downloadResume() {
 
 export default function Resume() {
   return (
-    <section id="resume" className="relative w-[80%] m-auto min-h-screen flex items-center justify-center overflow-hidden py-24 bg-slate-50 dark:bg-[#050511]">
+    <section id="resume" className="relative w-full lg:w-[80%] mx-auto px-6 lg:px-0 min-h-screen flex items-center justify-center overflow-hidden py-24 bg-slate-50 dark:bg-[#050511]">
       
       {/* Background Orbs (Contained) */}
       <div className="absolute top-1/2 left-0 -translate-y-1/2 w-64 h-64 bg-cyan-600/5 rounded-full blur-[100px] pointer-events-none -z-10" />
@@ -33,16 +33,16 @@ export default function Resume() {
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="relative max-w-5xl w-full bg-white dark:bg-[#0a0a1a] border border-slate-200 dark:border-white/10 rounded-3xl p-8 shadow-lg dark:shadow-2xl flex flex-col items-center gap-6 text-center overflow-hidden"
+        className="relative w-full mx-auto bg-white dark:bg-[#0a0a1a] border border-slate-200 dark:border-white/10 rounded-3xl p-6 md:p-8 shadow-lg dark:shadow-2xl flex flex-col items-center gap-6 text-center overflow-hidden"
       >
         {/* Decorative inner glow */}
         <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
 
         <div className="relative z-10">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-[family-name:var(--font-outfit)] font-black text-transparent bg-clip-text bg-gradient-to-r from-slate-900 to-slate-500 dark:from-white dark:to-slate-400 mb-4 leading-tight">
+          <h2 className="text-[1.75rem] md:text-4xl lg:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-slate-900 to-slate-500 dark:from-white dark:to-slate-400 mb-4 leading-tight tracking-tight md:tracking-normal">
             Ready to build <br/> something <span className="text-cyan-600 dark:text-cyan-400">great?</span>
           </h2>
-          <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed max-w-xl mx-auto">
+          <p className="text-xs md:text-sm text-slate-600 dark:text-slate-400 leading-relaxed max-w-xl mx-auto opacity-80">
             {resumeInfo}
           </p>
         </div>
@@ -55,13 +55,13 @@ export default function Resume() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={downloadResume}
-            className="group relative flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full font-bold text-white shadow-[0_0_30px_rgba(6,182,212,0.4)] hover:shadow-[0_0_50px_rgba(6,182,212,0.6)] transition-all overflow-hidden"
+            className="group relative flex items-center gap-3 px-6 md:px-8 py-3.5 md:py-4 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full font-black text-white shadow-[0_0_30px_rgba(6,182,212,0.4)] hover:shadow-[0_0_50px_rgba(6,182,212,0.6)] transition-all overflow-hidden"
           >
             {/* Shimmer effect */}
             <div className="absolute inset-0 -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-white/20 to-transparent" />
             
-            <FiDownload size={20} className="group-hover:-translate-y-1 transition-transform" />
-            <span className="text-sm tracking-wide uppercase">Download Resume</span>
+            <FiDownload size={16} className="md:size-[20px] group-hover:-translate-y-1 transition-transform" />
+            <span className="text-[9px] md:text-sm tracking-widest uppercase">Download Resume</span>
           </motion.button>
         </div>
 
