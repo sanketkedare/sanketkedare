@@ -86,7 +86,7 @@
 - 
 - 💼 LinkedIn: [linkedin.com/in/sanket-kedare-dev](https://www.linkedin.com/in/sanket-kedare-dev)
 - 
-- 📧 Email: [sanketkedare98@gmail.com](mailto:sanketkedare98@gmail.com)
+- 📧 Email: [sanketkedare200@gmail.com](mailto:sanketkedare200@gmail.com)
 - 
 
 
