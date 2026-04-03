@@ -1,51 +1,24 @@
-# Sanket Kedare's Portfolio
+# Hi there 👋, I'm Sanket Kedare
 
-Welcome to the GitHub repository for Sanket Kedare's portfolio website. This portfolio is built using React Js for the front end, Tailwind CSS for styling, and Framer Motion for smooth animations.
+## 🚀 About Me
+I’m a MERN Full Stack Developer passionate about building scalable web applications.
+I enjoy creating clean, user-friendly products.
 
-## Developers
+## 🛠️ Tech Stack
+- Frontend: React, Next.js, JavaScript, TypeScript, Tailwind CSS
+- Backend: Node.js, Express.js
+- Database: MongoDB, MySQL
+- Tools: Git, GitHub, Postman, VS Code
 
-To get started, you can clone the repository using the following command:
+## 📌 Current Focus
+- Full stack product development
+- Clean architecture and code quality
+- Better performance and UI/UX
 
-```
-git clone
-```
+## 🤝 Connect With Me
+- Portfolio: sanket-kedare.onrender.com
+- LinkedIn: in/sanket-kedare-dev
+- Email: sanketkedare98@gmail.com
 
-After cloning the repository, navigate to the project directory and install the dependencies using either of the following commands:
-
-```
-npm install
-```
-or
-```
-npm i
-```
-
-## About Sanket Kedare
-
-Sanket Kedare is a MERN Full Stack Developer with a passion for building innovative and scalable web applications. This portfolio serves as a showcase of his skills, projects, and experience.
-
-## Website Content
-
-### Home Section
-- Redirection links to Sanket Kedare's LinkedIn and GitHub profiles.
-
-### About Section
-- Introduction providing insights into Sanket's background and skills.
-
-### Projects
-- Showcase of projects developed on MERN stack and Java with Spring Boot.
-
-### Downloadable Resume
-- A downloadable version of Sanket's resume.
-
-### Contact
-- Facility to contact Sanket via email.
-
-## Website Hosting
-
-The portfolio website is hosted on the Render platform. You can access the live website using the following link:
-
-[https://sanket-kedare.onrender.com/](https://sanket-kedare.onrender.com/)
-
-Feel free to explore the codebase and use it as a reference for your own portfolio or project. If you have any questions or suggestions, don't hesitate to reach out. Happy coding!
-
+---
+⭐ Thanks for visiting my profile!
