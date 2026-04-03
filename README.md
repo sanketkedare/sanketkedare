@@ -1,9 +1,9 @@
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0f2027,50:203a43,100:2c5364&height=220&section=header&text=Sanket%20Kedare&fontSize=50&fontColor=ffffff&animation=twinkling&fontAlignY=40&desc=Full%20Stack%20Developer%20%7C%20MERN%20%2B%20Next.js&descAlignY=62&descAlign=50" />
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0f2027,50:203a43,100:2c5364&height=220&section=header&text=Sanket%20Kedare&fontSize=50&fontColor=ffffff&animation=twinkling&fontAlignY=40&desc=Full%20Stack%20Web%20Developer%20with%20Gen%20AI%20and%20System%20Design&descAlignY=62&descAlign=50" />
 </p>
 
 <div align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=Poppins&weight=600&size=24&duration=2500&pause=900&color=58A6FF&center=true&vCenter=true&width=900&lines=Crafting+Fast%2C+Scalable+%26+Beautiful+Web+Experiences;MERN+%7C+Next.js+%7C+TypeScript+%7C+System+Design;Clean+Code+%2B+Delightful+UI+%2B+Great+DX" alt="Typing animation" />
+  <img src="https://readme-typing-svg.demolab.com?font=Poppins&weight=600&size=24&duration=2500&pause=900&color=58A6FF&center=true&vCenter=true&width=900&lines=Crafting+Fast%2C+Scalable+%26+Beautiful+Web+Experiences;Full+Stack+Web+Developer+with+Gen+AI+and+System+Design;Clean+Code+%2B+Delightful+UI+%2B+Great+DX" alt="Typing animation" />
 </div>
 
 <p align="center">
@@ -18,7 +18,7 @@
 
 I build products that feel **modern, intuitive, and fast** — combining strong backend logic with polished frontend experiences.
 
-- 💼 Full Stack Developer focused on **MERN + Next.js**
+- 💼 Full Stack Web Developer with **Gen AI + System Design**
 - 🧠 Passionate about **clean architecture**, **UI excellence**, and **performance**
 - 🚀 Building scalable apps with smooth user journeys and maintainable code
 - 🤝 Open to collaboration on impactful full-stack projects
