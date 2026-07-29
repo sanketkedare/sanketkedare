@@ -2,10 +2,9 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
-import emailjs from '@emailjs/browser';
 import PersonalInfo from '@/lib/personal-info';
 import type { IconType } from 'react-icons';
-import { FiMail, FiMapPin, FiSend, FiGithub, FiLinkedin } from 'react-icons/fi';
+import { FiMail, FiMapPin, FiSend, FiGithub, FiLinkedin, FiCopy, FiCheck } from 'react-icons/fi';
 import { FaWhatsapp } from 'react-icons/fa';
 
 type AccentColor = 'cyan' | 'emerald' | 'blue' | 'purple' | 'slate';
@@ -22,6 +21,7 @@ export default function Contacts() {
   const formRef = useRef<HTMLFormElement>(null);
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [activeAccent, setActiveAccent] = useState<AccentColor>('cyan');
+  const [copiedLabel, setCopiedLabel] = useState<string | null>(null);
 
   useEffect(() => {
     if (status === 'success' || status === 'error') {
@@ -30,25 +30,93 @@ export default function Contacts() {
     }
   }, [status]);
 
-  function sendEmail(e: React.FormEvent<HTMLFormElement>) {
+  async function sendEmail(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!formRef.current) return;
+
+    const formData = new FormData(formRef.current);
+    const name = formData.get('name') as string;
+    const email = formData.get('email') as string;
+    const message = formData.get('message') as string;
+
     setStatus('loading');
-    emailjs
-      .sendForm(
-        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID ?? '',
-        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID ?? '',
-        formRef.current,
-        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY ?? '',
-      )
-      .then(() => setStatus('success'), () => setStatus('error'));
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name, email, message }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        setStatus('success');
+        formRef.current.reset();
+      } else {
+        console.error('Failed to send inquiry message:', data.error);
+        setStatus('error');
+      }
+    } catch (err) {
+      console.error('Error sending inquiry message:', err);
+      setStatus('error');
+    }
   }
 
-  const socialLinks: { label: string; icon: IconType; href: string | null; accent: AccentColor; value: string }[] = [
-    { label: 'LinkedIn', icon: FiLinkedin, href: PersonalInfo.linkedIn, accent: 'blue', value: 'sanket-kedare-dev' },
-    { label: 'GitHub', icon: FiGithub, href: PersonalInfo.github, accent: 'slate', value: 'sanketkedare' },
-    { label: 'WhatsApp', icon: FaWhatsapp, href: `https://wa.me/91${PersonalInfo.mobile}`, accent: 'emerald', value: 'Quick Chat' },
-    { label: 'Email', icon: FiMail, href: `mailto:${PersonalInfo.email}`, accent: 'cyan', value: PersonalInfo.email },
+  const handleCopyLink = async (e: React.MouseEvent, label: string, textToCopy: string) => {
+    e.preventDefault();
+    e.stopPropagation();
+    try {
+      await navigator.clipboard.writeText(textToCopy);
+      setCopiedLabel(label);
+      setTimeout(() => setCopiedLabel(null), 3000);
+    } catch (err) {
+      console.error('Failed to copy:', err);
+    }
+  };
+
+  const socialLinks: { 
+    label: string; 
+    icon: IconType; 
+    href: string | null; 
+    accent: AccentColor; 
+    value: string;
+    copyValue: string;
+  }[] = [
+    { 
+      label: 'LinkedIn', 
+      icon: FiLinkedin, 
+      href: PersonalInfo.linkedIn, 
+      accent: 'blue', 
+      value: 'sanket-kedare-dev',
+      copyValue: PersonalInfo.linkedIn,
+    },
+    { 
+      label: 'GitHub', 
+      icon: FiGithub, 
+      href: PersonalInfo.github, 
+      accent: 'slate', 
+      value: 'sanketkedare',
+      copyValue: PersonalInfo.github,
+    },
+    { 
+      label: 'WhatsApp', 
+      icon: FaWhatsapp, 
+      href: `https://wa.me/91${PersonalInfo.mobile}`, 
+      accent: 'emerald', 
+      value: 'Quick Chat',
+      copyValue: `+91${PersonalInfo.mobile}`,
+    },
+    { 
+      label: 'Email', 
+      icon: FiMail, 
+      href: `mailto:${PersonalInfo.email}`, 
+      accent: 'cyan', 
+      value: PersonalInfo.email,
+      copyValue: PersonalInfo.email,
+    },
   ];
 
   const currentTheme = accentMap[activeAccent];
@@ -84,25 +152,39 @@ export default function Contacts() {
 
             <div className="space-y-6 md:space-y-8">
               {socialLinks.map((link) => (
-                <motion.a
-                  key={link.label}
-                  href={link.href ?? '#'}
-                  target="_blank"
-                  rel="noreferrer"
-                  onMouseEnter={() => setActiveAccent(link.accent)}
-                  onMouseLeave={() => setActiveAccent('cyan')}
-                  className="flex flex-col group w-fit"
-                >
-                  <p className="text-[8px] md:text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1 transition-colors duration-300 group-hover:text-cyan-500 shadow-sm">
-                    {link.label}
-                  </p>
-                  <div className="flex items-center gap-2">
-                    <link.icon size={14} className={`transition-colors duration-300 ${activeAccent === link.accent ? currentTheme.text : 'text-slate-900 dark:text-white'}`} />
-                    <span className="text-[11px] md:text-sm font-bold text-slate-900 dark:text-white border-b-2 border-transparent group-hover:border-slate-900 dark:group-hover:border-white transition-all">
-                      {link.value}
-                    </span>
-                  </div>
-                </motion.a>
+                <div key={link.label} className="flex items-center gap-3">
+                  <motion.a
+                    href={link.href ?? '#'}
+                    target="_blank"
+                    rel="noreferrer"
+                    onMouseEnter={() => setActiveAccent(link.accent)}
+                    onMouseLeave={() => setActiveAccent('cyan')}
+                    className="flex flex-col group w-fit"
+                  >
+                    <p className="text-[8px] md:text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1 transition-colors duration-300 group-hover:text-cyan-500 shadow-sm">
+                      {link.label}
+                    </p>
+                    <div className="flex items-center gap-2">
+                      <link.icon size={14} className={`transition-colors duration-300 ${activeAccent === link.accent ? currentTheme.text : 'text-slate-900 dark:text-white'}`} />
+                      <span className="text-[11px] md:text-sm font-bold text-slate-900 dark:text-white border-b-2 border-transparent group-hover:border-slate-900 dark:group-hover:border-white transition-all">
+                        {link.value}
+                      </span>
+                    </div>
+                  </motion.a>
+
+                  <button
+                    type="button"
+                    onClick={(e) => handleCopyLink(e, link.label, link.copyValue)}
+                    title={`Copy ${link.label} link`}
+                    className="self-end mb-0.5 p-1 rounded-md text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors cursor-pointer"
+                  >
+                    {copiedLabel === link.label ? (
+                      <FiCheck size={14} className="text-emerald-500" />
+                    ) : (
+                      <FiCopy size={13} />
+                    )}
+                  </button>
+                </div>
               ))}
 
               <div className="pt-8 flex items-center gap-2 text-slate-400">

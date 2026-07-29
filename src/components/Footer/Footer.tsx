@@ -2,6 +2,7 @@ import PersonalInfo from '@/lib/personal-info';
 import { FiGithub, FiLinkedin, FiMail } from 'react-icons/fi';
 import Logo from '../Navbar/Logo';
 import ScrollToTopButton from './ScrollToTopButton';
+import FooterShareSection from './FooterShareSection';
 
 const navLinks = [
   { name: 'Home', href: '#home' },
@@ -81,6 +82,8 @@ export default function Footer() {
             </div>
           </div>
         </div>
+
+        <FooterShareSection />
 
         <div className="pt-8 md:pt-10 border-t border-slate-100 dark:border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="flex flex-col items-center md:items-start gap-2">

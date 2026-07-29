@@ -1,10 +1,6 @@
-import DownloadResumeButton from './DownloadResumeButton';
+import ResumeViewer from './ResumeViewer';
 
-const resumeInfo = `Results-driven professional with a proven track record in project management and strategic planning. 
-Skilled in team leadership, communication, and problem-solving. 
-Recognized for achieving operational efficiency and exceeding targets. 
-Adaptable and detail-oriented, with a commitment to delivering high-quality results. 
-Seeking to contribute expertise in a dynamic and growth-oriented environment.`;
+const resumeInfo = `Results-driven Full Stack Web Developer with expertise in React, Next.js, TypeScript, and modern web application architecture. Dedicated to crafting clean code, high-performance interfaces, and scalable backend solutions.`;
 
 export default function Resume() {
   return (
@@ -17,14 +13,14 @@ export default function Resume() {
 
         <div className="relative z-10">
           <h2 className="text-[1.75rem] md:text-4xl lg:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-slate-900 to-slate-500 dark:from-white dark:to-slate-400 mb-4 leading-tight tracking-tight md:tracking-normal">
-            Ready to build <br/> something <span className="text-cyan-600 dark:text-cyan-400">great?</span>
+            Resume &amp; <span className="text-cyan-600 dark:text-cyan-400">Qualifications</span>
           </h2>
           <p className="text-xs md:text-sm text-slate-600 dark:text-slate-400 leading-relaxed max-w-xl mx-auto opacity-80">
             {resumeInfo}
           </p>
         </div>
 
-        <DownloadResumeButton />
+        <ResumeViewer />
 
       </div>
     </section>
