@@ -54,6 +54,7 @@ async function fetchData() {
 
 ### 4. Styling
 - **Tailwind v4** — use `@import "tailwindcss"` in `globals.css`. No `tailwind.config.js` needed for basic usage.
+- **Font Family (Strict Rule):** Do NOT change or remove the font family defined in `src/app/globals.css` (`Cambria, Cochin, Georgia, Times, 'Times New Roman', serif`). This font selection is intentional and bulletproof.
 - SASS files (`.scss`) have been migrated to **CSS Modules** (`.module.css`).
 - Antd components require `AntdRegistry` wrapper in `app/layout.tsx` to avoid SSR flash.
 
@@ -64,26 +65,31 @@ async function fetchData() {
 
 ---
 
-## File Map
+## File Map (Enterprise `src/` Directory Layout)
 
 ```
-app/
-  layout.tsx          Root HTML shell (Server) — Navbar, Footer, AntdRegistry
-  page.tsx            Page composition (Server) — all section imports
-  globals.css         Tailwind v4 + global resets
-components/
-  Navbar/             Client (scroll state)
-  Sidebar/            Client (Framer Motion)
-  Home/               Client (Framer Motion)
-  About/              Client (Framer Motion)
-  Skills/             Server (static data)
-  Projects/           Server (async SC when API added)
-  Resume/             Server (static content)
-  Contact/            Client (EmailJS form)
-  Footer/             Server (static links)
-  Parallax/           Client (scroll effects)
-lib/
-  personal-info.ts    Static personal data (Server-safe)
+src/
+  app/
+    layout.tsx          Root HTML shell (Server) — Navbar, Footer, AntdRegistry
+    page.tsx            Page composition (Server) — all section imports
+    globals.css         Tailwind v4 + imports src/styles/index.css
+  components/
+    Navbar/             Client (scroll state & logo)
+    Sidebar/            Client (Framer Motion)
+    Home/               Client (Framer Motion)
+    About/              Client (Framer Motion)
+    Experience/         Client (Framer Motion timeline & highlights)
+    Skills/             Server (static data) & SkillsMarquee (Client)
+    Projects/           Server & ProjectsComponent (Client)
+    Resume/             Server & DownloadResumeButton (Client)
+    Contact/            Client (EmailJS form)
+    Footer/             Server & ScrollToTopButton (Client)
+    Parallax/           Client (scroll effects)
+  lib/
+    personal-info.ts    Static personal data (Server-safe)
+  styles/
+    index.css           Global font definitions (Cambria serif)
+  proxy.ts              Next.js 16 Routing & Subdomain Proxy
 ```
 
 ---

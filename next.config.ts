@@ -1,8 +1,16 @@
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
-  // To re-enable React Compiler: npm install babel-plugin-react-compiler, then add: reactCompiler: true
-  // To enable cacheLife/cacheTag APIs: add experimental: { dynamicIO: true }
+  images: {
+    remotePatterns: [
+      { protocol: 'https', hostname: 'images.indianexpress.com' },
+      { protocol: 'https', hostname: 'bs-uploads.toptal.io' },
+      { protocol: 'https', hostname: 'media.istockphoto.com' },
+      { protocol: 'https', hostname: 'blog.vantagecircle.com' },
+      { protocol: 'https', hostname: 'almablog-media.s3.ap-south-1.amazonaws.com' },
+      { protocol: 'https', hostname: 'clipart-library.com' },
+    ],
+  },
 };
 
 export default nextConfig;

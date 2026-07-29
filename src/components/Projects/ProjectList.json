@@ -1,0 +1,90 @@
+[
+  {
+    "id": 0,
+    "title": "GrowSphere Financial Platform",
+    "git": "https://github.com/sanketkedare/GrowSphere",
+    "live": "https://growsphere.onrender.com",
+    "skills": [
+      "MERN Stack", "Firebase", "JWT", "REST API", "Tailwind"
+    ],
+    "img": "/Grow_Sphere.png",
+    "des": "Architected a full-stack financial investment & business aggregation portal using Next.js, MERN stack, and Firebase. Features real-time portfolio tracking, multi-tier RBAC security, and dynamic meeting scheduling microservices built for high-concurrency investor workflows."
+  },
+  {
+    "id": 1,
+    "title": "Enterprise E-Commerce Portal",
+    "git": "https://github.com/sanketkedare/snapdeal-webapp",
+    "live": "https://snapdeal-clone-qes9.onrender.com/",
+    "skills": [
+      "React", "Redux Toolkit", "Node.js", "Express.js", "MongoDB"
+    ],
+    "img": "https://images.indianexpress.com/2016/09/snapdeal-759.png",
+    "des": "Architected an enterprise-grade e-commerce web platform engineered with React, Redux Toolkit, and Node.js backend services. Implemented centralized state management, real-time inventory tracking, secure checkout pipelines, and client-side bundle rendering optimizations."
+  },
+  {
+    "id": 2,
+    "title": "React Enterprise Component Suite",
+    "git": "https://github.com/sanketkedare/React-Tasks",
+    "live": "https://react-tasks-keh6.onrender.com/",
+    "skills": [
+      "JavaScript ES6+", "React.js", "Tailwind CSS", "Design Systems"
+    ],
+    "img": "/react-tasks.png",
+    "des": "Modular software engineering library demonstrating production-grade React architecture patterns, custom state hooks, atomic component isolation, and high-performance DOM reconciliation algorithms across complex web application workflows."
+  },
+  {
+    "id": 3,
+    "title": "Cryptocurrency Analytics Portal",
+    "git": "https://github.com/sanketkedare/crypto-dashboard",
+    "live": "https://crypto-dashboard-5buj.onrender.com/",
+    "skills": [
+      "React.js", "Tailwind CSS", "REST APIs", "Data Visualization"
+    ],
+    "img": "https://bs-uploads.toptal.io/blackfish-uploads/components/blog_post_page/content/cover_image_file/cover_image/1303387/regular_1708x683_Untitled-e7fde53f1e5631a8728cc9aefc1538e8.png",
+    "des": "Engineered a real-time financial tracking dashboard powered by React and dynamic data visualization engines. Features live price stream feeds, interactive historical market trend analysis, and responsive Web Vitals performance tuning."
+  },
+  {
+    "id": 4,
+    "title": "High-Throughput Subscriber Engine",
+    "git": "https://github.com/sanketkedare/Subscribers-Mongo-Node-BoilerPlate-main",
+    "live": "",
+    "skills": [
+      "MongoDB", "Node.js", "Express.js", "REST Microservices"
+    ],
+    "img": "https://media.istockphoto.com/id/1285939198/vector/subscribe-button-and-hand-cursor-with-play-icons-on-background-red-button-subscribe-to.jpg?s=612x612&w=0&k=20&c=gJNGXdhOTtkg_Pkh-JDZR-Rh_w_wVuPCsLgF0PtHuvM=",
+    "des": "Engineered a modular Node.js/Express RESTful backend microservice integrated with MongoDB for real-time subscriber metric aggregation, database query indexing, and automated data processing pipelines."
+  },
+  {
+    "id": 5,
+    "title": "Enterprise Workforce HRMS System",
+    "git": "https://github.com/sanketkedare/Employee-Management-APP",
+    "live": "",
+    "skills": [
+      "React.js", "Tailwind CSS", "MongoDB", "Node.js", "Express.js"
+    ],
+    "img": "https://blog.vantagecircle.com/content/images/2021/01/Employee-Management-Meaning-Importance-Tips-Tools---More.png",
+    "des": "Architected a multi-tenant full-stack workforce management platform leveraging the MERN stack. Features granular Role-Based Access Control (RBAC), secure authentication pipelines, and optimized MongoDB query indexing for enterprise HR analytics."
+  },
+  {
+    "id": 6,
+    "title": "Streaming Media Platform & Microservices",
+    "git": "https://github.com/sanketkedare/Entertainment-App-Client",
+    "live": "",
+    "skills": [
+      "React.js", "Tailwind CSS", "MongoDB", "Node.js", "Express.js"
+    ],
+    "img": "https://almablog-media.s3.ap-south-1.amazonaws.com/download_8d102bbc3b.png",
+    "des": "Engineered a high-concurrency video streaming web application leveraging Node.js microservices, MongoDB schema indexing, and a responsive React frontend with custom video playback hooks and real-time user interaction streams."
+  },
+  {
+    "id": 7,
+    "title": "Spring Boot Contact Synchronization Engine",
+    "git": "https://github.com/sanketkedare/Smart_Contact-Manager",
+    "live": "",
+    "skills": [
+      "Java", "Spring Boot", "Spring Security", "MySQL", "Thymeleaf"
+    ],
+    "img": "https://clipart-library.com/2023/7-75154_telephone-clipart-png-new-contact-number-announcement.png",
+    "des": "Engineered an enterprise Java Spring Boot backend application powered by Spring Security, MySQL relational architecture, and OAuth/Session authentication modules for secure enterprise contact synchronization and access control."
+  }
+]
