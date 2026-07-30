@@ -1,25 +1,47 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "name": "Sanket Kedare | Full Stack Developer",
+  "short_name": "Sanket Kedare",
+  "description": "Portfolio of Sanket Kedare, Senior Full Stack Developer specializing in Next.js 16, MERN Stack, and Cloud Infrastructure.",
+  "start_url": "/",
+  "id": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#050511",
+  "theme_color": "#050511",
+  "categories": ["portfolio", "developer", "technology"],
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "src": "/image.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
     },
     {
-      "src": "logo192.png",
+      "src": "/image.png",
+      "sizes": "512x512",
       "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "logo512.png",
-      "type": "image/png",
-      "sizes": "512x512"
+      "purpose": "any"
     }
   ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "shortcuts": [
+    {
+      "name": "View Projects",
+      "short_name": "Projects",
+      "description": "Explore Sanket's latest web applications and enterprise projects",
+      "url": "/#projects"
+    },
+    {
+      "name": "Technical Skills",
+      "short_name": "Skills",
+      "description": "View tech stack & technical proficiencies",
+      "url": "/#skills"
+    },
+    {
+      "name": "Contact Me",
+      "short_name": "Contact",
+      "description": "Get in touch with Sanket Kedare",
+      "url": "/#contact"
+    }
+  ]
 }

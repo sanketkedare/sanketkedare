@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b0f19"/>
+      <stop offset="50%" stop-color="#050511"/>
+      <stop offset="100%" stop-color="#090d16"/>
+    </linearGradient>
+
+    <!-- Brand Cyan-Purple Gradient -->
+    <linearGradient id="brandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="50%" stop-color="#818cf8"/>
+      <stop offset="100%" stop-color="#c084fc"/>
+    </linearGradient>
+
+    <!-- Accent Glow Filter -->
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="12" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Base Container / Squircle Background -->
+  <rect width="512" height="512" rx="112" fill="url(#bgGrad)"/>
+  
+  <!-- Subtle Border / Frame -->
+  <rect x="8" y="8" width="496" height="496" rx="104" fill="none" stroke="url(#brandGrad)" stroke-width="4" stroke-opacity="0.4"/>
+
+  <!-- Geometric Decorative Cyber Grid / Hexagon Background Accent -->
+  <circle cx="256" cy="256" r="180" fill="none" stroke="#38bdf8" stroke-opacity="0.08" stroke-width="2"/>
+  <circle cx="256" cy="256" r="130" fill="none" stroke="#818cf8" stroke-opacity="0.08" stroke-width="2"/>
+
+  <!-- Logo Icon Central Stylized "SK" Monogram -->
+  <g transform="translate(256, 256) scale(1.15)" filter="url(#glow)">
+    <!-- 'S' Arc Shape -->
+    <path d="M -45 -60 C -15 -95, 60 -95, 55 -55 C 50 -15, -60 -10, -55 35 C -50 80, 20 95, 50 65" 
+          fill="none" 
+          stroke="url(#brandGrad)" 
+          stroke-width="28" 
+          stroke-linecap="round" 
+          stroke-linejoin="round"/>
+    
+    <!-- Code Bracket Accents < > -->
+    <path d="M -90 -30 L -120 0 L -90 30" 
+          fill="none" 
+          stroke="#38bdf8" 
+          stroke-width="16" 
+          stroke-linecap="round" 
+          stroke-linejoin="round" 
+          opacity="0.9"/>
+    
+    <path d="M 90 -30 L 120 0 L 90 30" 
+          fill="none" 
+          stroke="#c084fc" 
+          stroke-width="16" 
+          stroke-linecap="round" 
+          stroke-linejoin="round" 
+          opacity="0.9"/>
+  </g>
+</svg>

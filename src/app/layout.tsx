@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Inter, Outfit } from 'next/font/google';
 import '@/styles/globals.css';
 import AntdRegistry from '@/components/providers/AntdRegistry';
@@ -8,12 +8,29 @@ import { Analytics } from '@vercel/analytics/react';
 import Navbar from '@/components/Navbar/Navbar';
 import Sidebar from '@/components/Sidebar/Sidebar';
 import Footer from '@/components/Footer/Footer';
+import PwaInstallPrompt from '@/components/Pwa/PwaInstallPrompt';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const outfit = Outfit({ subsets: ['latin'], variable: '--font-outfit' });
 
+export const viewport: Viewport = {
+  themeColor: [
+    { media: '(prefers-color-scheme: dark)', color: '#050511' },
+    { media: '(prefers-color-scheme: light)', color: '#050511' }
+  ],
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.sanketkedare.com'),
+  manifest: '/manifest.json',
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'black-translucent',
+    title: 'Sanket Kedare',
+  },
   title: {
     default: 'Sanket Kedare | Full Stack Web Developer',
     template: '%s | Sanket Kedare'
@@ -82,6 +99,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Navbar />
             {children}
             <Footer />
+            <PwaInstallPrompt />
             <Analytics />
           </AntdRegistry>
         </ThemeProvider>

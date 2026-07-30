@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b0f19"/>
+      <stop offset="50%" stop-color="#050511"/>
+      <stop offset="100%" stop-color="#090d16"/>
+    </linearGradient>
+
+    <!-- Brand Cyan-Purple Gradient -->
+    <linearGradient id="brandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="50%" stop-color="#818cf8"/>
+      <stop offset="100%" stop-color="#c084fc"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Full Bleed Square Background for Maskable Icon Safe Zone -->
+  <rect width="512" height="512" fill="url(#bgGrad)"/>
+
+  <!-- Scaled Content for Safe Zone (center 80%) -->
+  <g transform="translate(256, 256) scale(0.85)">
+    <!-- Inner Ring -->
+    <circle cx="0" cy="0" r="180" fill="none" stroke="#38bdf8" stroke-opacity="0.12" stroke-width="3"/>
+    <circle cx="0" cy="0" r="130" fill="none" stroke="#818cf8" stroke-opacity="0.12" stroke-width="3"/>
+
+    <!-- 'S' Arc Shape -->
+    <path d="M -45 -60 C -15 -95, 60 -95, 55 -55 C 50 -15, -60 -10, -55 35 C -50 80, 20 95, 50 65" 
+          fill="none" 
+          stroke="url(#brandGrad)" 
+          stroke-width="28" 
+          stroke-linecap="round" 
+          stroke-linejoin="round"/>
+    
+    <!-- Code Bracket Accents < > -->
+    <path d="M -90 -30 L -120 0 L -90 30" 
+          fill="none" 
+          stroke="#38bdf8" 
+          stroke-width="16" 
+          stroke-linecap="round" 
+          stroke-linejoin="round"/>
+    
+    <path d="M 90 -30 L 120 0 L 90 30" 
+          fill="none" 
+          stroke="#c084fc" 
+          stroke-width="16" 
+          stroke-linecap="round" 
+          stroke-linejoin="round"/>
+  </g>
+</svg>
