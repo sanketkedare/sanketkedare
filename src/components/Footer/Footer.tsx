@@ -3,7 +3,6 @@ import { FiGithub, FiLinkedin, FiMail } from 'react-icons/fi';
 import Logo from '../Navbar/Logo';
 import ScrollToTopButton from './ScrollToTopButton';
 import FooterShareSection from './FooterShareSection';
-import InstallPwaButton from '../Pwa/InstallPwaButton';
 
 const navLinks = [
   { name: 'Home', href: '#home' },
@@ -96,10 +95,7 @@ export default function Footer() {
             </p>
           </div>
 
-          <div className="flex items-center gap-4">
-            <InstallPwaButton />
-            <ScrollToTopButton />
-          </div>
+          <ScrollToTopButton />
         </div>
 
       </div>

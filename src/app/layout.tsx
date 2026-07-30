@@ -8,7 +8,7 @@ import { Analytics } from '@vercel/analytics/react';
 import Navbar from '@/components/Navbar/Navbar';
 import Sidebar from '@/components/Sidebar/Sidebar';
 import Footer from '@/components/Footer/Footer';
-import PwaInstallPrompt from '@/components/Pwa/PwaInstallPrompt';
+import ServiceWorkerRegister from '@/components/Pwa/ServiceWorkerRegister';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const outfit = Outfit({ subsets: ['latin'], variable: '--font-outfit' });
@@ -99,7 +99,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Navbar />
             {children}
             <Footer />
-            <PwaInstallPrompt />
+            <ServiceWorkerRegister />
             <Analytics />
           </AntdRegistry>
         </ThemeProvider>
