@@ -18,6 +18,7 @@ import expressjsImg from '@/images/expressjs.png';
 import postmanImg from '@/images/postman.png';
 
 const roles = [
+  "Senior Full Stack Developer",
   "Full Stack Developer",
   "Frontend Developer",
   "Backend Developer",
@@ -62,7 +63,7 @@ const OrbitRing = ({ radius, duration, reverse, items }: { radius: number, durat
               className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center pointer-events-none"
             >
               <div className="w-full h-full rounded-xl bg-white dark:bg-[#0a0a1a] shadow-xl dark:shadow-[0_0_20px_rgba(255,255,255,0.1)] border border-slate-200 dark:border-white/10 flex items-center justify-center p-2 backdrop-blur-md scale-x-[1.66] lg:scale-x-100">
-                <Image src={src} alt="skill" className="w-full h-full object-contain" />
+                <Image src={src} alt="skill" loading="lazy" className="w-full h-full object-contain" />
               </div>
             </motion.div>
           </div>
@@ -132,7 +133,7 @@ export default function Home() {
             transition={{ duration: 1, delay: 0.6 }}
             className="text-slate-600 dark:text-slate-400 text-xs md:text-base leading-relaxed font-medium mt-4 md:mt-3 mb-6 max-w-md lg:max-w-none opacity-80"
           >
-            I build high-performance web applications that demand attention. Armed with full-stack mastery over MERN and Next.js, I write ruthless, optimized code to turn complex architectures into flawless digital experiences.
+            I build modern, high-performance web applications with Next.js, React, and Node.js. Passionate about clean architecture, scalable cloud systems, and creating intuitive user experiences that solve real-world problems.
           </motion.p>
 
           <motion.div
@@ -161,7 +162,7 @@ export default function Home() {
         <div className="absolute lg:relative inset-0 lg:inset-auto flex-1 w-full lg:w-auto flex items-center justify-center pointer-events-none lg:pointer-events-auto z-0 lg:z-10 overflow-visible">
           <div className="relative w-full h-full flex items-center justify-center scale-[1.2] sm:scale-75 md:scale-90 lg:scale-100 transition-all duration-700">
             <div className="relative w-full h-full flex items-center justify-center scale-x-[0.6] lg:scale-x-100 opacity-10 lg:opacity-100 transition-all duration-700">
-              
+
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 md:w-20 md:h-20 rounded-full bg-gradient-to-br from-cyan-500 to-purple-600 flex items-center justify-center shadow-[0_0_30px_rgba(6,182,212,0.5)] z-20 scale-x-[1.66] lg:scale-x-100">
                 <span className="text-white font-black text-sm md:text-xl tracking-tighter uppercase">&lt;SK /&gt;</span>
               </div>

@@ -1,6 +1,6 @@
 import ResumeViewer from './ResumeViewer';
 
-const resumeInfo = `Results-driven Full Stack Web Developer with expertise in React, Next.js, TypeScript, and modern web application architecture. Dedicated to crafting clean code, high-performance interfaces, and scalable backend solutions.`;
+const resumeInfo = `Results-driven Senior Full Stack Developer with expertise in React, Next.js, TypeScript, and modern web application architecture. Dedicated to crafting clean code, high-performance interfaces, and scalable backend solutions.`;
 
 export default function Resume() {
   return (

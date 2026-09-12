@@ -77,56 +77,56 @@ export default function Contacts() {
     }
   };
 
-  const socialLinks: { 
-    label: string; 
-    icon: IconType; 
-    href: string | null; 
-    accent: AccentColor; 
+  const socialLinks: {
+    label: string;
+    icon: IconType;
+    href: string | null;
+    accent: AccentColor;
     value: string;
     copyValue: string;
   }[] = [
-    { 
-      label: 'LinkedIn', 
-      icon: FiLinkedin, 
-      href: PersonalInfo.linkedIn, 
-      accent: 'blue', 
-      value: 'sanket-kedare-dev',
-      copyValue: PersonalInfo.linkedIn,
-    },
-    { 
-      label: 'GitHub', 
-      icon: FiGithub, 
-      href: PersonalInfo.github, 
-      accent: 'slate', 
-      value: 'sanketkedare',
-      copyValue: PersonalInfo.github,
-    },
-    { 
-      label: 'WhatsApp', 
-      icon: FaWhatsapp, 
-      href: `https://wa.me/91${PersonalInfo.mobile}`, 
-      accent: 'emerald', 
-      value: 'Quick Chat',
-      copyValue: `+91${PersonalInfo.mobile}`,
-    },
-    { 
-      label: 'Email', 
-      icon: FiMail, 
-      href: `mailto:${PersonalInfo.email}`, 
-      accent: 'cyan', 
-      value: PersonalInfo.email,
-      copyValue: PersonalInfo.email,
-    },
-  ];
+      {
+        label: 'LinkedIn',
+        icon: FiLinkedin,
+        href: PersonalInfo.linkedIn,
+        accent: 'blue',
+        value: 'sanket-kedare-dev',
+        copyValue: PersonalInfo.linkedIn,
+      },
+      {
+        label: 'GitHub',
+        icon: FiGithub,
+        href: PersonalInfo.github,
+        accent: 'slate',
+        value: 'sanketkedare',
+        copyValue: PersonalInfo.github,
+      },
+      {
+        label: 'WhatsApp',
+        icon: FaWhatsapp,
+        href: `https://wa.me/91${PersonalInfo.mobile}`,
+        accent: 'emerald',
+        value: 'Quick Chat',
+        copyValue: `+91${PersonalInfo.mobile}`,
+      },
+      {
+        label: 'Email',
+        icon: FiMail,
+        href: `mailto:${PersonalInfo.email}`,
+        accent: 'cyan',
+        value: PersonalInfo.email,
+        copyValue: PersonalInfo.email,
+      },
+    ];
 
   const currentTheme = accentMap[activeAccent];
 
   return (
     <section id="contact" className="relative w-full py-24 md:py-32 bg-white dark:bg-[#050511] overflow-hidden transition-colors duration-1000">
       <div className="absolute inset-0 pointer-events-none">
-        <motion.div 
-          animate={{ 
-            background: `radial-gradient(circle at 50% 50%, ${currentTheme.glow} 0%, transparent 60%)` 
+        <motion.div
+          animate={{
+            background: `radial-gradient(circle at 50% 50%, ${currentTheme.glow} 0%, transparent 60%)`
           }}
           transition={{ duration: 1.5 }}
           className="absolute inset-0 opacity-40"
@@ -135,8 +135,8 @@ export default function Contacts() {
 
       <div className="w-full lg:w-[80%] px-6 lg:px-0 mx-auto relative z-10">
         <div className="flex flex-col lg:flex-row items-start gap-16 lg:gap-24">
-          
-          <motion.div 
+
+          <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -196,15 +196,15 @@ export default function Contacts() {
             </div>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             className="flex-1 w-full"
           >
-            <form 
-              ref={formRef} 
-              onSubmit={sendEmail} 
+            <form
+              ref={formRef}
+              onSubmit={sendEmail}
               className="relative bg-white/40 dark:bg-white/5 backdrop-blur-3xl border border-slate-100 dark:border-white/10 p-6 md:p-10 rounded-3xl shadow-xl flex flex-col gap-5 md:gap-6"
             >
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
@@ -226,9 +226,8 @@ export default function Contacts() {
               <button
                 type="submit"
                 disabled={status === 'loading'}
-                className={`mt-4 w-full py-3.5 md:py-4 rounded-xl font-black text-[9px] md:text-xs tracking-[0.2em] uppercase transition-all duration-300 flex items-center justify-center gap-3 ${
-                  status === 'loading' ? 'bg-slate-100 dark:bg-white/10 text-slate-400' : 'bg-slate-900 dark:bg-white text-white dark:text-black hover:opacity-90 active:scale-[0.99]'
-                }`}
+                className={`mt-4 w-full py-3.5 md:py-4 rounded-xl font-black text-[9px] md:text-xs tracking-[0.2em] uppercase transition-all duration-300 flex items-center justify-center gap-3 ${status === 'loading' ? 'bg-slate-100 dark:bg-white/10 text-slate-400' : 'bg-slate-900 dark:bg-white text-white dark:text-black hover:opacity-90 active:scale-[0.99]'
+                  }`}
               >
                 {status === 'idle' && (
                   <>
@@ -242,7 +241,7 @@ export default function Contacts() {
               </button>
 
               <div className="mt-4 pt-6 border-t border-slate-50 dark:border-white/5 text-center">
-                 <p className="text-[8px] md:text-[9px] font-black text-slate-400 uppercase tracking-[0.3em] opacity-60">Sanket Kedare | Architecting Experience</p>
+                <p className="text-[8px] md:text-[9px] font-black text-slate-400 uppercase tracking-[0.3em] opacity-60">Sanket Kedare | Architecting Experience</p>
               </div>
             </form>
           </motion.div>

@@ -32,17 +32,19 @@ export const metadata: Metadata = {
     title: 'Sanket Kedare',
   },
   title: {
-    default: 'Sanket Kedare | Full Stack Web Developer',
+    default: 'Sanket Kedare | Senior Full Stack Developer',
     template: '%s | Sanket Kedare'
   },
   description: 'Portfolio of Sanket Kedare, Senior Full Stack Developer specializing in Next.js 16, MERN Stack, and AWS Cloud Infrastructure. Architecting scalable, high-performance web systems and enterprise platforms.',
   keywords: [
     'Sanket Kedare', 
+    'Senior Full Stack Developer', 
     'Full Stack Developer', 
     'MERN Stack Developer', 
     'Next.js Developer', 
     'React Developer', 
-    'Web Developer Pune',
+    'Full Stack Developer Hyderabad',
+    'Web Developer India',
     'Software Engineer'
   ],
   authors: [{ name: 'Sanket Kedare', url: 'https://www.sanketkedare.com' }],
@@ -91,9 +93,9 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className="dark" suppressHydrationWarning>
       <body className={`${inter.variable} ${outfit.variable} bg-slate-50 dark:bg-[#050511] text-slate-800 dark:text-slate-300 antialiased min-h-screen flex flex-col selection:bg-cyan-500/30 selection:text-white transition-colors duration-500`} suppressHydrationWarning>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem storageKey="sanket-portfolio-theme">
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} storageKey="sanket-portfolio-theme">
           <AntdRegistry>
             <Sidebar />
             <Navbar />

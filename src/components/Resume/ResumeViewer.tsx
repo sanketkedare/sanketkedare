@@ -9,7 +9,7 @@ import {
 } from 'react-icons/fi';
 import PersonalInfo from '@/lib/personal-info';
 
-const RESUME_PDF = '/Sanket_Kedare_Full_Stack_Developer_Nextjs_Nodejs_Generative_AI_System_Design.pdf';
+const RESUME_PDF = '/Sanket_Kedare_Full_Stack_Developer_NextJS_NodeJS_TypeScript_GenAI_System_Design.pdf';
 
 declare global {
   interface Window {
@@ -189,7 +189,7 @@ export default function ResumeViewer() {
   const handleDownload = () => {
     const a = document.createElement('a');
     a.href = RESUME_PDF;
-    a.setAttribute('download', 'Sanket_Kedare_Full_Stack_Developer_Nextjs_Nodejs_Generative_AI_System_Design.pdf');
+    a.setAttribute('download', 'Sanket_Kedare_Full_Stack_Developer_NextJS_NodeJS_TypeScript_GenAI_System_Design.pdf');
     document.body.appendChild(a);
     a.click();
     a.remove();
@@ -206,7 +206,7 @@ export default function ResumeViewer() {
       // Fetch PDF file to share actual File object
       const res = await fetch(RESUME_PDF);
       const blob = await res.blob();
-      const pdfFile = new File([blob], 'Sanket_Kedare_Resume.pdf', { type: 'application/pdf' });
+      const pdfFile = new File([blob], 'Sanket_Kedare_Full_Stack_Developer_NextJS_NodeJS_TypeScript_GenAI_System_Design.pdf', { type: 'application/pdf' });
 
       if (navigator.canShare && navigator.canShare({ files: [pdfFile] })) {
         await navigator.share({

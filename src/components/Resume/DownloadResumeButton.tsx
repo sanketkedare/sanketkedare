@@ -3,13 +3,13 @@
 import { motion } from 'framer-motion';
 import { FiDownload } from 'react-icons/fi';
 
-const RESUME_PDF = '/Sanket_Kedare_WD_AlmaBetter.pdf';
+const RESUME_PDF = '/Sanket_Kedare_Full_Stack_Developer_NextJS_NodeJS_TypeScript_GenAI_System_Design.pdf';
 
 export default function DownloadResumeButton() {
   function downloadResume() {
     const a = document.createElement('a');
     a.href = RESUME_PDF;
-    a.setAttribute('download', 'Sanket_Kedare_WD_AlmaBetter.pdf');
+    a.setAttribute('download', 'Sanket_Kedare_Full_Stack_Developer_NextJS_NodeJS_TypeScript_GenAI_System_Design.pdf');
     document.body.appendChild(a);
     a.click();
     a.remove();

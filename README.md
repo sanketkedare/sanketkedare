@@ -38,14 +38,14 @@ I build products that feel **modern, intuitive, and fast** — combining strong 
 <table>
   <tr>
     <td width="50%">
-      <h3>🎵 Spotify_Clone</h3>
-      <p>Music app clone with modern UI and core playback features.</p>
-      <a href="https://github.com/sanketkedare/Spotify_Clone">🔗 View Project</a>
+      <h3>📈 CryptoDash Pro</h3>
+      <p>Institutional crypto intelligence terminal with Gemini AI & LTTB downsampling (60 FPS).</p>
+      <a href="https://www.cyptodashpro.sanketkedare.com/">🌐 Live Terminal</a> &bull; <a href="https://github.com/sanketkedare/CryptoDash-Pro">🔗 GitHub</a>
     </td>
     <td width="50%">
-      <h3>🧩 React-Tasks</h3>
-      <p>Task management app built with React for productivity workflows.</p>
-      <a href="https://github.com/sanketkedare/React-Tasks">🔗 View Project</a>
+      <h3>⚒️ ReactForge</h3>
+      <p>Senior frontend engineering lab with 100 React challenges, telemetry HUD & incident simulator.</p>
+      <a href="https://www.reactforge.sanketkedare.com/">🌐 Live Studio</a> &bull; <a href="https://github.com/sanketkedare/ReactForge">🔗 GitHub</a>
     </td>
   </tr>
   <tr>
@@ -55,9 +55,9 @@ I build products that feel **modern, intuitive, and fast** — combining strong 
       <a href="https://github.com/sanketkedare/snapdeal-webapp">🔗 View Project</a>
     </td>
     <td width="50%">
-      <h3>⚙️ snapdeal-services</h3>
-      <p>Backend services powering Snapdeal-style application flows.</p>
-      <a href="https://github.com/sanketkedare/snapdeal-services">🔗 View Project</a>
+      <h3>🌋 Volcanic</h3>
+      <p>Enterprise AI & scalable cloud software engineering platform.</p>
+      <a href="https://www.volcanic.world/">🌐 Live Platform</a>
     </td>
   </tr>
 </table>

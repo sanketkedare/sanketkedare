@@ -178,10 +178,10 @@ const nodes: ExperienceNode[] = [
     highlights: [
       'Completed an intensive 1-year fellowship covering MERN Stack Web Development, Data Structures & Algorithms, and System Design fundamentals.',
       'Successfully launched commercial freelancing in Jan 2024 during training before completing the fellowship, applying real-world code skills.',
-      'Engineered 3 major enterprise-grade capstone projects: GrowSphere (MERN investment platform with Firebase & JWT), Snapdeal Clone (React/Redux e-commerce web app), and React Tasks suite.'
+      'Engineered 3 major enterprise-grade capstone projects: GrowSphere (MERN investment platform with Firebase & JWT), Snapdeal Clone (React/Redux e-commerce web app), and ReactForge platform.'
     ],
     skills: ['MERN Stack', 'JavaScript ES6+', 'Data Structures & Algorithms', 'React', 'Node.js', 'MongoDB', 'System Design', 'Firebase'],
-    keyProjects: ['GrowSphere MERN Platform', 'Snapdeal E-Commerce Clone', 'React Task Management Suite']
+    keyProjects: ['GrowSphere MERN Platform', 'Snapdeal E-Commerce Clone', 'ReactForge Laboratory']
   }
 ];
 
@@ -259,6 +259,7 @@ export default function Experience() {
                   <Image 
                     src={visiontechLogo} 
                     alt="VisionTech Group" 
+                    loading="lazy"
                     className="w-full h-full object-contain" 
                   />
                 </div>
@@ -360,7 +361,7 @@ export default function Experience() {
 
                   <div className="flex items-center gap-3.5">
                     <div className="w-12 h-12 bg-amber-500/10 dark:bg-amber-400/20 p-1 rounded-xl flex items-center justify-center shrink-0 border border-amber-500/30 shadow-sm">
-                      <Image src={jsLogo} alt="JavaScript Freelance" className="w-full h-full object-contain" />
+                      <Image src={jsLogo} alt="JavaScript Freelance" loading="lazy" className="w-full h-full object-contain" />
                     </div>
                     <div>
                       <h4 className="text-sm font-black text-slate-900 dark:text-white">JavaScript Developer Freelancer</h4>
@@ -393,7 +394,7 @@ export default function Experience() {
                   <div className="flex items-center justify-between gap-3">
                     <div className="flex items-center gap-3.5 min-w-0">
                       <div className="w-28 md:w-32 h-8 md:h-9 bg-white p-0.5 rounded-lg flex items-center justify-center shrink-0 border border-slate-200/80 shadow-sm overflow-hidden">
-                        <Image src={unifiedMentorLogo} alt="Unified Mentor" className="w-full h-full object-contain scale-[1.45]" />
+                        <Image src={unifiedMentorLogo} alt="Unified Mentor" loading="lazy" className="w-full h-full object-contain scale-[1.45]" />
                       </div>
                       <div className="min-w-0">
                         <span className="text-[9px] font-black text-emerald-400 uppercase tracking-wider block">INTERNSHIP</span>
@@ -418,7 +419,7 @@ export default function Experience() {
                   <div className="flex items-center justify-between gap-3">
                     <div className="flex items-center gap-3.5 min-w-0">
                       <div className="w-28 md:w-32 h-8 md:h-9 bg-transparent p-0 flex items-center justify-center shrink-0">
-                        <Image src={almabetterLogo} alt="AlmaBetter" className="w-full h-full object-contain filter drop-shadow" />
+                        <Image src={almabetterLogo} alt="AlmaBetter" loading="lazy" className="w-full h-full object-contain filter drop-shadow" />
                       </div>
                       <div className="min-w-0">
                         <span className="text-[9px] font-black text-emerald-400 uppercase tracking-wider block">INTERNSHIP</span>
@@ -458,7 +459,7 @@ export default function Experience() {
             >
               <div className="flex items-center gap-4">
                 <div className="w-32 md:w-36 h-10 md:h-12 bg-transparent p-0 flex items-center justify-center shrink-0">
-                  <Image src={almabetterLogo} alt="AlmaBetter" className="w-full h-full object-contain filter drop-shadow" />
+                  <Image src={almabetterLogo} alt="AlmaBetter" loading="lazy" className="w-full h-full object-contain filter drop-shadow" />
                 </div>
                 <div>
                   <div className="flex items-center gap-2">
@@ -466,7 +467,7 @@ export default function Experience() {
                     <span className="text-[9px] font-black text-amber-300 bg-amber-500/20 px-2 py-0.5 rounded-md border border-amber-500/30">LEARNING</span>
                   </div>
                   <h4 className="text-sm md:text-base font-black text-slate-900 dark:text-white">Full Stack Web Developer Trainee</h4>
-                  <p className="text-xs text-slate-400 font-medium mt-0.5">Capstone Systems: GrowSphere • Snapdeal Clone • React Tasks</p>
+                  <p className="text-xs text-slate-400 font-medium mt-0.5">Capstone Systems: GrowSphere • Snapdeal Clone • ReactForge</p>
                 </div>
               </div>
               <span className="text-[10px] text-slate-400 font-semibold shrink-0">Apr 2023 - Mar 2024</span>
@@ -494,7 +495,7 @@ export default function Experience() {
                     <div className={`w-32 md:w-40 h-10 md:h-12 p-1 rounded-xl flex items-center justify-center shrink-0 border border-slate-200 shadow-md overflow-hidden ${
                       activeNode.id === 'visiontech' || activeNode.id === 'unified' ? 'bg-white' : 'bg-transparent border-none shadow-none'
                     }`}>
-                      <Image src={activeNode.logo} alt={activeNode.company} className={`w-full h-full object-contain filter drop-shadow ${activeNode.id === 'unified' ? 'scale-[1.45]' : ''}`} />
+                      <Image src={activeNode.logo} alt={activeNode.company} loading="lazy" className={`w-full h-full object-contain filter drop-shadow ${activeNode.id === 'unified' ? 'scale-[1.45]' : ''}`} />
                     </div>
                   ) : (
                     <div className="w-12 h-12 rounded-2xl bg-slate-100 dark:bg-white/10 border border-slate-200 dark:border-white/10 flex items-center justify-center shrink-0 text-slate-800 dark:text-white font-black">

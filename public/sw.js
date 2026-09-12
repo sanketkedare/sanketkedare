@@ -44,6 +44,9 @@ self.addEventListener('fetch', (event) => {
   // Ignore cross-origin non-http(s) requests (e.g. chrome-extension://)
   if (!url.protocol.startsWith('http')) return;
 
+  // Never intercept or cache requests on localhost / development
+  if (url.hostname === 'localhost' || url.hostname === '127.0.0.1' || url.hostname.endsWith('.local')) return;
+
   // Handle navigation (HTML page load requests) -> Network First with Offline Fallback
   if (event.request.mode === 'navigate') {
     event.respondWith(
