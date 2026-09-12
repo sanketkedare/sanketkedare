@@ -16,7 +16,7 @@ export default function StructuredData() {
         jobTitle: 'Senior Full Stack Developer & Software Architect',
         description: 'Senior Full Stack Developer and Software Architect specializing in Next.js 16, React 19, TypeScript, Node.js, and Generative AI orchestration. Experienced in distributed systems, high-concurrency architectures, and enterprise engineering.',
         url: 'https://www.sanketkedare.com',
-        image: 'https://www.sanketkedare.com/image.png',
+        image: 'https://www.sanketkedare.com/og-image.png',
         sameAs: [
           'https://github.com/sanketkedare',
           'https://www.linkedin.com/in/sanket-kedare-dev/',
