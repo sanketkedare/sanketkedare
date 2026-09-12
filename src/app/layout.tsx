@@ -9,6 +9,8 @@ import Navbar from '@/components/Navbar/Navbar';
 import Sidebar from '@/components/Sidebar/Sidebar';
 import Footer from '@/components/Footer/Footer';
 import ServiceWorkerRegister from '@/components/Pwa/ServiceWorkerRegister';
+import StructuredData from '@/components/SEO/StructuredData';
+import ChatWidget from '@/components/Chat/ChatWidget';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const outfit = Outfit({ subsets: ['latin'], variable: '--font-outfit' });
@@ -32,51 +34,69 @@ export const metadata: Metadata = {
     title: 'Sanket Kedare',
   },
   title: {
-    default: 'Sanket Kedare | Senior Full Stack Developer',
+    default: 'Sanket Kedare | Senior Full Stack Developer & Software Architect',
     template: '%s | Sanket Kedare'
   },
-  description: 'Portfolio of Sanket Kedare, Senior Full Stack Developer specializing in Next.js 16, MERN Stack, and AWS Cloud Infrastructure. Architecting scalable, high-performance web systems and enterprise platforms.',
+  description: 'Portfolio of Sanket Kedare — Senior Full Stack Developer & Software Architect specializing in Next.js 16, React 19, TypeScript, Node.js, and GenAI systems. Explore production platforms, architecture case studies, and enterprise deliverables.',
   keywords: [
     'Sanket Kedare', 
     'Senior Full Stack Developer', 
-    'Full Stack Developer', 
-    'MERN Stack Developer', 
-    'Next.js Developer', 
-    'React Developer', 
+    'Software Architect',
+    'Frontend Architect',
+    'Full Stack Engineer', 
+    'Next.js 16 Developer', 
+    'React 19 Engineer', 
+    'TypeScript Developer',
+    'Node.js Architect',
+    'GenAI Engineer',
+    'Generative AI LLM Systems',
+    'ReactForge Case Study',
+    'CryptoDash Pro Case Study',
+    'Volcanic World',
     'Full Stack Developer Hyderabad',
-    'Web Developer India',
-    'Software Engineer'
+    'Full Stack Developer India',
+    'MERN Stack Developer',
+    'Microservices Architecture',
+    'Docker AWS DevOps'
   ],
   authors: [{ name: 'Sanket Kedare', url: 'https://www.sanketkedare.com' }],
   creator: 'Sanket Kedare',
   publisher: 'Sanket Kedare',
+  category: 'technology',
+  classification: 'Software Engineering & Architecture Portfolio',
   icons: {
     icon: '/image.png',
     shortcut: '/image.png',
     apple: '/image.png',
   },
   alternates: {
-    canonical: '/',
+    canonical: 'https://www.sanketkedare.com',
   },
   openGraph: {
-    type: 'website',
+    type: 'profile',
+    firstName: 'Sanket',
+    lastName: 'Kedare',
+    username: 'sanketkedare',
+    gender: 'male',
     locale: 'en_US',
     url: 'https://www.sanketkedare.com',
-    title: 'Sanket Kedare | Full Stack Web Developer',
-    description: 'Specializing as a Full Stack Developer based in India, I architect and engineer robust, high-performance applications leveraging the MERN stack and Next.js.',
-    siteName: 'Sanket Kedare',
+    title: 'Sanket Kedare | Senior Full Stack Developer & Software Architect',
+    description: 'Portfolio of Sanket Kedare — Senior Full Stack Developer & Software Architect specializing in Next.js 16, React 19, TypeScript, Node.js, and GenAI systems.',
+    siteName: 'Sanket Kedare Portfolio',
     images: [{
       url: '/image.png',
       width: 1200,
       height: 630,
-      alt: 'Sanket Kedare - Full Stack Developer'
+      alt: 'Sanket Kedare — Senior Full Stack Developer & Software Architect',
+      type: 'image/png',
     }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Sanket Kedare | Full Stack Web Developer',
-    description: 'Architecting scalable, high-performance applications using the MERN stack and Next.js.',
+    title: 'Sanket Kedare | Senior Full Stack Developer & Software Architect',
+    description: 'Senior Full Stack Developer & Software Architect specializing in Next.js 16, React 19, TypeScript, Node.js, and GenAI systems.',
     images: ['/image.png'],
+    creator: '@sanketkedare',
   },
   robots: {
     index: true,
@@ -89,18 +109,42 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
+  other: {
+    'geo.region': 'IN-TG',
+    'geo.placename': 'Hyderabad',
+    'geo.position': '17.3850;78.4867',
+    'ICBM': '17.3850, 78.4867',
+    'ai-content-declaration': 'author-verified',
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="dark" suppressHydrationWarning>
-      <body className={`${inter.variable} ${outfit.variable} bg-slate-50 dark:bg-[#050511] text-slate-800 dark:text-slate-300 antialiased min-h-screen flex flex-col selection:bg-cyan-500/30 selection:text-white transition-colors duration-500`} suppressHydrationWarning>
-        <ThemeProvider attribute="class" defaultTheme="dark" forcedTheme="dark" enableSystem={false}>
+    <html lang="en" className="dark" style={{ colorScheme: 'dark' }} suppressHydrationWarning>
+      <head>
+        <StructuredData />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                document.documentElement.classList.add('dark');
+                document.documentElement.classList.remove('light');
+                document.documentElement.style.colorScheme = 'dark';
+                localStorage.setItem('theme', 'dark');
+                localStorage.setItem('sanket-portfolio-theme', 'dark');
+              } catch (_) {}
+            `,
+          }}
+        />
+      </head>
+      <body className={`${inter.variable} ${outfit.variable} bg-[#050511] text-slate-300 antialiased min-h-screen flex flex-col selection:bg-cyan-500/30 selection:text-white`} suppressHydrationWarning>
+        <ThemeProvider>
           <AntdRegistry>
             <Sidebar />
             <Navbar />
             {children}
             <Footer />
+            <ChatWidget />
             <ServiceWorkerRegister />
             <Analytics />
           </AntdRegistry>

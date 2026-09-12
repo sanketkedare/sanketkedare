@@ -1,9 +1,19 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+    color-scheme: dark;
+}
+
+html {
+    color-scheme: dark;
+}
+
 html, body {
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    background-color: #0c0c1d;
-    color: lightgray;
+    background-color: #050511;
+    color: #cbd5e1;
     margin: 0;
     padding: 0;
     scroll-behavior: smooth;

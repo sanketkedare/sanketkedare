@@ -40,10 +40,10 @@
     "live": "https://www.cyptodashpro.sanketkedare.com/",
     "caseStudy": "https://cyptodashpro.sanketkedare.com/casestudy",
     "skills": [
-      "Next.js 16", "React 19", "Gemini AI", "WebSockets", "LTTB Algorithm", "Chart.js"
+      "Next.js 16", "React 19", "Generative AI", "WebSockets", "LTTB Algorithm", "Chart.js"
     ],
     "img": "/projects/cryptodash.jpg",
-    "des": "Institutional cryptocurrency trading intelligence terminal engineered with Next.js 16 and React 19. Features an AI Market Research Workspace with dynamic Gemini 3.8 Flash model cascading, 1.5s throttled WebSocket ticker batching, LTTB geometric downsampling rendering 50,000+ data points at 60 FPS, multi-asset correlation matrices, and resilient multi-currency caching."
+    "des": "Institutional cryptocurrency trading intelligence terminal engineered with Next.js 16 and React 19. Features an AI Market Research Workspace with dynamic multi-model AI cascading, 1.5s throttled WebSocket ticker batching, LTTB geometric downsampling rendering 50,000+ data points at 60 FPS, multi-asset correlation matrices, and resilient multi-currency caching."
   },
   {
     "id": 3,

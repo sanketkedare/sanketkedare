@@ -117,6 +117,7 @@ npm run type-check  # tsc --noEmit
 | `any` TypeScript type | Explicit typed interfaces |
 | `react-router-dom` `<Link>` | `next/link` `<Link>` |
 | `next/image` without `alt` | Always provide meaningful `alt` |
+| Unsolicited `npm run build`, `type-check`, or `git push` | **STRICT RULE**: Never build, check errors, or push code unless explicitly requested by the user |
 
 ---
 
