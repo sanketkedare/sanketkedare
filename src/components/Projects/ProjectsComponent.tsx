@@ -3,7 +3,7 @@
 import { useMemo } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { FiGithub, FiArrowUpRight, FiLock } from 'react-icons/fi';
+import { FiGithub, FiArrowUpRight, FiLock, FiBookOpen } from 'react-icons/fi';
 import ProjectList from './ProjectList.json';
 import EnterpriseShowcase from './EnterpriseShowcase';
 
@@ -16,8 +16,9 @@ interface Project {
   domain?:   string;
   client?:   string;
   role?:     string;
-  git:       string;
-  live:      string;
+  git?:      string;
+  live?:     string;
+  caseStudy?: string;
   skills:    string[];
   img:       string;
   des:       string;
@@ -84,6 +85,17 @@ function ProjectCard({ project, isLarge = false }: { project: Project; isLarge?:
             </span>
           </div>
 
+          {/* Floating Case Study Available Label */}
+          {project.caseStudy && (
+            <div className="absolute top-3.5 right-3.5 z-20">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[9px] md:text-[10px] font-black uppercase tracking-wider bg-emerald-950/90 text-emerald-300 border border-emerald-500/50 backdrop-blur-md shadow-lg shadow-emerald-950/50">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                <FiBookOpen size={11} className="text-emerald-400" />
+                <span>Case Study</span>
+              </span>
+            </div>
+          )}
+
           <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-slate-950/80 via-transparent to-transparent pointer-events-none" />
         </div>
 
@@ -95,6 +107,19 @@ function ProjectCard({ project, isLarge = false }: { project: Project; isLarge?:
                 Featured Production System • Architected by Sanket
               </span>
               <div className="flex items-center gap-2 shrink-0">
+                {project.caseStudy && (
+                  <a
+                    href={project.caseStudy}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 hover:bg-emerald-500 text-emerald-600 dark:text-emerald-400 hover:text-white dark:hover:text-black border border-emerald-500/30 hover:border-transparent text-[10px] font-black uppercase tracking-wider transition-all duration-300 shadow-sm"
+                    title="Read Architecture Case Study"
+                  >
+                    <FiBookOpen size={12} />
+                    <span>Case Study</span>
+                    <FiArrowUpRight size={11} />
+                  </a>
+                )}
                 {project.git && (
                   <a
                     href={project.git}
@@ -155,17 +180,33 @@ function ProjectCard({ project, isLarge = false }: { project: Project; isLarge?:
             </div>
 
             {/* Direct CTA Action */}
-            {project.live && (
-              <a
-                href={project.live}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center justify-center gap-2 w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-cyan-500/20 to-purple-500/20 hover:from-cyan-500 hover:to-cyan-400 text-cyan-600 dark:text-cyan-300 hover:text-black font-black text-xs uppercase tracking-wider border border-cyan-500/30 hover:border-transparent transition-all shadow-md"
-              >
-                <span>Live Platform Demo</span>
-                <FiArrowUpRight size={16} />
-              </a>
-            )}
+            <div className="flex items-center gap-2.5">
+              {project.caseStudy && (
+                <a
+                  href={project.caseStudy}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center justify-center gap-2 flex-1 py-2.5 px-3 rounded-xl bg-cyan-500/10 hover:bg-cyan-500 text-cyan-600 dark:text-cyan-300 hover:text-black font-black text-xs uppercase tracking-wider border border-cyan-500/30 hover:border-transparent transition-all shadow-md"
+                >
+                  <FiBookOpen size={14} />
+                  <span>Case Study</span>
+                  <FiArrowUpRight size={14} />
+                </a>
+              )}
+              {project.live && (
+                <a
+                  href={project.live}
+                  target="_blank"
+                  rel="noreferrer"
+                  className={`inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-gradient-to-r from-cyan-500/20 to-purple-500/20 hover:from-cyan-500 hover:to-cyan-400 text-cyan-600 dark:text-cyan-300 hover:text-black font-black text-xs uppercase tracking-wider border border-cyan-500/30 hover:border-transparent transition-all shadow-md ${
+                    project.caseStudy ? 'flex-1' : 'w-full'
+                  }`}
+                >
+                  <span>Live Platform Demo</span>
+                  <FiArrowUpRight size={16} />
+                </a>
+              )}
+            </div>
           </div>
         </div>
       </motion.div>
@@ -219,6 +260,17 @@ function ProjectCard({ project, isLarge = false }: { project: Project; isLarge?:
           </div>
         )}
 
+        {/* Floating Case Study Available Label */}
+        {project.caseStudy && !isDevelopment && (
+          <div className="absolute top-3 right-3 z-20">
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[9px] md:text-[10px] font-black uppercase tracking-wider bg-emerald-950/90 text-emerald-300 border border-emerald-500/50 backdrop-blur-md shadow-lg shadow-emerald-950/50">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              <FiBookOpen size={11} className="text-emerald-400" />
+              <span>Case Study</span>
+            </span>
+          </div>
+        )}
+
         <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-slate-950/90 to-transparent pointer-events-none" />
       </div>
 
@@ -245,6 +297,19 @@ function ProjectCard({ project, isLarge = false }: { project: Project; isLarge?:
             </h3>
 
             <div className="flex items-center gap-2 shrink-0 pt-0.5">
+              {project.caseStudy && (
+                <a
+                  href={project.caseStudy}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 hover:bg-emerald-500 text-emerald-600 dark:text-emerald-400 hover:text-white dark:hover:text-black border border-emerald-500/30 hover:border-transparent text-[10px] font-black uppercase tracking-wider transition-all duration-300 shadow-sm"
+                  title="Architecture Case Study"
+                >
+                  <FiBookOpen size={12} />
+                  <span>Case Study</span>
+                  <FiArrowUpRight size={11} />
+                </a>
+              )}
               {isEnterprise ? (
                 <span
                   className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[9px] font-semibold text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 shadow-sm"
@@ -303,6 +368,40 @@ function ProjectCard({ project, isLarge = false }: { project: Project; isLarge?:
               </span>
             )}
           </div>
+
+          {/* Dedicated Case Study CTA Link with Label */}
+          {project.caseStudy && (
+            <div className="mt-3.5 pt-3 border-t border-slate-100 dark:border-white/5">
+              <a
+                href={project.caseStudy}
+                target="_blank"
+                rel="noreferrer"
+                className="group/cs flex items-center justify-between p-2.5 rounded-xl bg-gradient-to-r from-emerald-500/10 via-emerald-500/5 to-transparent border border-emerald-500/30 hover:border-emerald-400 hover:bg-emerald-500/20 transition-all duration-300 shadow-sm"
+              >
+                <div className="flex items-center gap-2.5">
+                  <div className="w-7 h-7 rounded-lg bg-emerald-500/20 flex items-center justify-center text-emerald-500 dark:text-emerald-400 border border-emerald-500/30 group-hover/cs:scale-110 transition-transform">
+                    <FiBookOpen size={13} />
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-1.5">
+                      <span className="text-[10.5px] font-black uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
+                        Case Study Available
+                      </span>
+                      <span className="px-1.5 py-0.5 rounded text-[8px] font-black uppercase bg-emerald-500/20 text-emerald-500 dark:text-emerald-300 border border-emerald-500/30">
+                        Read
+                      </span>
+                    </div>
+                    <span className="text-[9.5px] text-slate-500 dark:text-slate-400 font-medium">
+                      Architecture &amp; technical deep dive
+                    </span>
+                  </div>
+                </div>
+                <div className="flex items-center gap-1 text-xs font-black text-emerald-600 dark:text-emerald-400 group-hover/cs:translate-x-1 transition-transform pr-1">
+                  <FiArrowUpRight size={15} />
+                </div>
+              </a>
+            </div>
+          )}
         </div>
       </div>
     </motion.div>

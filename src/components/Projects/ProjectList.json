@@ -24,6 +24,7 @@
     "badge": "Flagship Studio",
     "git": "https://github.com/sanketkedare/ReactForge",
     "live": "https://www.reactforge.sanketkedare.com/",
+    "caseStudy": "https://www.reactforge.sanketkedare.com/case-study",
     "skills": [
       "Next.js 16", "React 19", "TanStack Virtual", "Zustand", "WCAG 2.1 AA", "Vitest"
     ],
@@ -37,6 +38,7 @@
     "badge": "Institutional FinTech",
     "git": "https://github.com/sanketkedare/CryptoDash-Pro",
     "live": "https://www.cyptodashpro.sanketkedare.com/",
+    "caseStudy": "https://cyptodashpro.sanketkedare.com/casestudy",
     "skills": [
       "Next.js 16", "React 19", "Gemini AI", "WebSockets", "LTTB Algorithm", "Chart.js"
     ],

@@ -95,7 +95,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
       <body className={`${inter.variable} ${outfit.variable} bg-slate-50 dark:bg-[#050511] text-slate-800 dark:text-slate-300 antialiased min-h-screen flex flex-col selection:bg-cyan-500/30 selection:text-white transition-colors duration-500`} suppressHydrationWarning>
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} storageKey="sanket-portfolio-theme">
+        <ThemeProvider attribute="class" defaultTheme="dark" forcedTheme="dark" enableSystem={false}>
           <AntdRegistry>
             <Sidebar />
             <Navbar />
