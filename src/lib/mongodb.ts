@@ -70,29 +70,6 @@ const InquirySchema = new mongoose.Schema(
 );
 export const Inquiry = mongoose.models.Inquiry || mongoose.model('Inquiry', InquirySchema);
 
-/* ─── Admin Chat Session ─────────────────────────────────────────── */
-const ChatMessageSchema = new mongoose.Schema({
-  id:        { type: String, required: true },
-  role:      { type: String, enum: ['user', 'assistant'], required: true },
-  text:      { type: String, required: true },
-  timestamp: { type: String, required: true },
-  modelUsed: { type: String },
-  isLocal:   { type: Boolean, default: false },
-  createdAt: { type: Date,   default: Date.now },
-});
-
-const AdminChatSessionSchema = new mongoose.Schema(
-  {
-    title:     { type: String, default: 'New Conversation' },
-    createdAt: { type: Date,   default: Date.now },
-    updatedAt: { type: Date,   default: Date.now },
-    messages:  [ChatMessageSchema],
-  },
-  { collection: 'admin_chat_sessions' }
-);
-export const AdminChatSession =
-  mongoose.models.AdminChatSession ||
-  mongoose.model('AdminChatSession', AdminChatSessionSchema);
 
 /* ─── Resume ──────────────────────────────────────────────────────── */
 /**

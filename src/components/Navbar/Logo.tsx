@@ -1,11 +1,9 @@
 'use client';
 
 import { useState, useRef } from 'react';
-import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 
 export default function Logo() {
-  const router = useRouter();
   const [clickCount, setClickCount] = useState(0);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -20,15 +18,13 @@ export default function Logo() {
     const newCount = clickCount + 1;
     setClickCount(newCount);
 
-    // Completely silent 10-click Easter Egg trigger
+    // Completely silent 10-click Easter Egg trigger -> Opens Admin Portal in new tab
     if (newCount >= 10) {
       setClickCount(0);
-
+      const adminUrl = process.env.NEXT_PUBLIC_ADMIN_URL || 'https://admin.sanketkedare.com';
       if (typeof window !== 'undefined') {
-        sessionStorage.setItem('sk_admin_unlocked_by_easter_egg', 'true');
+        window.open(adminUrl, '_blank', 'noopener,noreferrer');
       }
-
-      router.push('/admin');
       return;
     }
 
