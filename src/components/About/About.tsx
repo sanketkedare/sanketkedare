@@ -8,7 +8,7 @@ import PersonalInfo from '@/lib/personal-info';
 
 const HERO_SRC = '/hero.jpg';
 
-const passage_1 = `I am a Senior Full Stack Developer focused on building clean, performant, and reliable web applications. At VisionTech Group, I lead development across core platforms including the VisionTech Academy web portal, Learning Management System (LMS), and employee management tools (EMS)—translating complex product requirements into scalable, maintainable architectures.`;
+const passage_1 = `I am a Full Stack Developer focused on building clean, performant, and reliable web applications. At VisionTech Group, I lead development across core platforms including the VisionTech Academy web portal, Learning Management System (LMS), and employee management tools (EMS)—translating complex product requirements into scalable, maintainable architectures.`;
 
 const passage_2 = `My engineering approach is rooted in practical problem-solving. From fine-tuning Next.js rendering cycles to provisioning resilient AWS infrastructure, I focus on delivering tangible improvements in performance, uptime, and developer experience. I enjoy breaking down intricate bottlenecks and ensuring systems remain robust as they scale.`;
 
@@ -66,7 +66,7 @@ export default function About() {
               <div className="absolute inset-x-0 bottom-0 p-4 md:p-6 bg-gradient-to-t from-black/90 to-transparent">
                 <div className="flex items-center gap-2 mb-1">
                   <span className="w-2 h-2 rounded-full bg-cyan-500 animate-pulse" />
-                  <span className="text-[8px] md:text-[10px] font-black uppercase tracking-[0.2em] text-cyan-400">Senior Full Stack Developer</span>
+                  <span className="text-[8px] md:text-[10px] font-black uppercase tracking-[0.2em] text-cyan-400">Full Stack Developer</span>
                 </div>
                 <h3 className="text-lg md:text-xl font-bold text-white leading-none">{PersonalInfo.name}</h3>
                 <p className="text-slate-400 text-[10px] md:text-xs mt-1">{PersonalInfo.role2}</p>

@@ -118,7 +118,7 @@ const FAQ_ENTRIES: PatternEntry[] = [
     ],
     response:
       "### ✉️ Get in Touch with Sanket\n\n" +
-      "Sanket is currently open to full-time senior engineering opportunities, architectural consulting, and high-impact contracts.\n\n" +
+      "Sanket is currently open to full-time engineering opportunities, architectural consulting, and high-impact contracts.\n\n" +
       "- **Email**: [sanketkedare200@gmail.com](mailto:sanketkedare200@gmail.com)\n" +
       "- **Phone / WhatsApp**: [+91 8624851910](tel:+918624851910)\n" +
       "- **LinkedIn**: [linkedin.com/in/sanket-kedare-dev](https://www.linkedin.com/in/sanket-kedare-dev/)\n" +

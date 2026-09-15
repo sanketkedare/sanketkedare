@@ -35,21 +35,22 @@ export const metadata: Metadata = {
     title: 'Sanket Kedare',
   },
   title: {
-    default: 'Sanket Kedare | Senior Full Stack Developer & Software Architect',
+    default: 'Sanket Kedare | Full Stack Developer | GenAI & System Design',
     template: '%s | Sanket Kedare'
   },
-  description: 'Portfolio of Sanket Kedare — Senior Full Stack Developer & Software Architect specializing in Next.js 16, React 19, TypeScript, Node.js, and GenAI systems. Explore production platforms, architecture case studies, and enterprise deliverables.',
+  description: 'Portfolio of Sanket Kedare — Full Stack Developer specializing in GenAI, System Design, Next.js 16, React 19, TypeScript, and Node.js. Explore production platforms, architecture case studies, and enterprise deliverables.',
   keywords: [
     'Sanket Kedare', 
-    'Senior Full Stack Developer', 
+    'Full Stack Developer', 
+    'GenAI Specialist',
+    'System Design Engineer',
     'Software Architect',
-    'Frontend Architect',
+    'Frontend Developer',
     'Full Stack Engineer', 
     'Next.js 16 Developer', 
     'React 19 Engineer', 
     'TypeScript Developer',
     'Node.js Architect',
-    'GenAI Engineer',
     'Generative AI LLM Systems',
     'ReactForge Case Study',
     'CryptoDash Pro Case Study',
@@ -68,7 +69,6 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       { url: '/image.png', type: 'image/png' },
-      { url: '/icons/icon.svg', type: 'image/svg+xml' },
     ],
     shortcut: '/image.png',
     apple: '/image.png',
@@ -80,8 +80,8 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: 'https://www.sanketkedare.com',
-    title: 'Sanket Kedare | Senior Full Stack Developer & Software Architect',
-    description: 'Portfolio of Sanket Kedare — Senior Full Stack Developer & Software Architect specializing in Next.js 16, React 19, TypeScript, Node.js, and GenAI systems.',
+    title: 'Sanket Kedare | Full Stack Developer | GenAI & System Design',
+    description: 'Portfolio of Sanket Kedare — Full Stack Developer specializing in GenAI, System Design, Next.js 16, React 19, TypeScript, and Node.js.',
     siteName: 'Sanket Kedare Portfolio',
     images: [
       {
@@ -89,7 +89,7 @@ export const metadata: Metadata = {
         secureUrl: 'https://www.sanketkedare.com/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Sanket Kedare — Senior Full Stack Developer & Software Architect',
+        alt: 'Sanket Kedare — Full Stack Developer | GenAI & System Design',
         type: 'image/png',
       },
       {
@@ -97,7 +97,7 @@ export const metadata: Metadata = {
         secureUrl: 'https://www.sanketkedare.com/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'Sanket Kedare — Senior Full Stack Developer & Software Architect',
+        alt: 'Sanket Kedare — Full Stack Developer | GenAI & System Design',
         type: 'image/jpeg',
       },
       {
@@ -112,8 +112,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Sanket Kedare | Senior Full Stack Developer & Software Architect',
-    description: 'Senior Full Stack Developer & Software Architect specializing in Next.js 16, React 19, TypeScript, Node.js, and GenAI systems.',
+    title: 'Sanket Kedare | Full Stack Developer | GenAI & System Design',
+    description: 'Full Stack Developer specializing in GenAI, System Design, Next.js 16, React 19, TypeScript, and Node.js.',
     images: ['https://www.sanketkedare.com/og-image.png'],
     creator: '@sanketkedare',
   },

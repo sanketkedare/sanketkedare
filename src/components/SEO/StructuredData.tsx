@@ -13,8 +13,8 @@ export default function StructuredData() {
         '@id': 'https://www.sanketkedare.com/#person',
         name: 'Sanket Kedare',
         alternateName: ['Sanket', 'Sanket Kedare Dev'],
-        jobTitle: 'Senior Full Stack Developer & Software Architect',
-        description: 'Senior Full Stack Developer and Software Architect specializing in Next.js 16, React 19, TypeScript, Node.js, and Generative AI orchestration. Experienced in distributed systems, high-concurrency architectures, and enterprise engineering.',
+        jobTitle: 'Full Stack Developer & Software Architect',
+        description: 'Full Stack Developer and Software Architect specializing in Next.js 16, React 19, TypeScript, Node.js, and Generative AI orchestration. Experienced in distributed systems, high-concurrency architectures, and enterprise engineering.',
         url: 'https://www.sanketkedare.com',
         image: 'https://www.sanketkedare.com/og-image.png',
         sameAs: [
@@ -27,6 +27,7 @@ export default function StructuredData() {
           'React 19',
           'TypeScript',
           'Node.js',
+          'System Design',
           'System Architecture',
           'Generative AI',
           'LLM Cascading & Agentic Workflows',
@@ -59,7 +60,7 @@ export default function StructuredData() {
         '@type': 'WebSite',
         '@id': 'https://www.sanketkedare.com/#website',
         url: 'https://www.sanketkedare.com',
-        name: 'Sanket Kedare | Senior Full Stack Developer & Software Architect',
+        name: 'Sanket Kedare | Full Stack Developer | GenAI & System Design',
         description: 'Official engineering portfolio of Sanket Kedare showcasing production Next.js 16 systems, architecture case studies, and enterprise deliverables.',
         publisher: { '@id': 'https://www.sanketkedare.com/#person' },
         inLanguage: 'en-US'
@@ -68,7 +69,7 @@ export default function StructuredData() {
         '@type': 'ProfilePage',
         '@id': 'https://www.sanketkedare.com/#webpage',
         url: 'https://www.sanketkedare.com',
-        name: 'Sanket Kedare — Senior Full Stack Developer & Architect Portfolio',
+        name: 'Sanket Kedare — Full Stack Developer & Architect Portfolio',
         isPartOf: { '@id': 'https://www.sanketkedare.com/#website' },
         about: { '@id': 'https://www.sanketkedare.com/#person' },
         mainEntity: { '@id': 'https://www.sanketkedare.com/#person' }
@@ -128,7 +129,7 @@ export default function StructuredData() {
             name: 'Who is Sanket Kedare?',
             acceptedAnswer: {
               '@type': 'Answer',
-              text: 'Sanket Kedare is a Senior Full Stack Developer and Software Architect based in Hyderabad, India. Engineering production web systems since January 2024 (~2.5+ years of active development), he specializes in building high-performance systems using Next.js 16, React 19, TypeScript, Node.js, and Generative AI.'
+              text: 'Sanket Kedare is a Full Stack Developer and Software Architect based in Hyderabad, India. Engineering production web systems since January 2024 (~2.5+ years of active development), he specializes in building high-performance systems using Next.js 16, React 19, TypeScript, Node.js, GenAI, and System Design.'
             }
           },
           {

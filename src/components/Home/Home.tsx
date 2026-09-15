@@ -18,7 +18,6 @@ import expressjsImg from '@/images/expressjs.png';
 import postmanImg from '@/images/postman.png';
 
 const roles = [
-  "Senior Full Stack Developer",
   "Full Stack Developer",
   "Frontend Developer",
   "Backend Developer",

@@ -345,7 +345,7 @@ export function sendGmailReply({
           const safeReply = escapeHtml(replyMessage).replace(/\n/g, '<br/>');
           const safeOriginal = originalMessage ? escapeHtml(originalMessage).replace(/\n/g, '<br/>') : '';
 
-          const plainTextBody = `Hi ${toName},\n\n${replyMessage}\n\n---\nBest regards,\nSanket Kedare\nSenior Full Stack Developer & Software Architect\nhttps://sanketkedare.com\n\n${originalMessage ? `Original Message:\n> ${originalMessage.replace(/\n/g, '\n> ')}` : ''}`;
+          const plainTextBody = `Hi ${toName},\n\n${replyMessage}\n\n---\nBest regards,\nSanket Kedare\nFull Stack Developer & Software Architect\nhttps://sanketkedare.com\n\n${originalMessage ? `Original Message:\n> ${originalMessage.replace(/\n/g, '\n> ')}` : ''}`;
 
           const htmlBody = `
 <!DOCTYPE html>
@@ -363,7 +363,7 @@ export function sendGmailReply({
           <tr>
             <td style="background: linear-gradient(135deg, #0891b2, #2563eb); padding: 24px 32px;">
               <h1 style="color: #ffffff; font-size: 20px; font-weight: 800; margin: 0; letter-spacing: -0.5px;">Sanket Kedare</h1>
-              <p style="color: rgba(255, 255, 255, 0.85); font-size: 12px; margin: 4px 0 0 0; font-family: monospace;">Senior Full Stack Developer &amp; Software Architect</p>
+              <p style="color: rgba(255, 255, 255, 0.85); font-size: 12px; margin: 4px 0 0 0; font-family: monospace;">Full Stack Developer &amp; Software Architect</p>
             </td>
           </tr>
           <!-- Body -->
