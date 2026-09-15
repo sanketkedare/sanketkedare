@@ -57,7 +57,7 @@ Your mission is to represent Sanket with utmost engineering excellence, technica
      - Case Study: https://cyptodashpro.sanketkedare.com/casestudy
   4. **GrowSphere**: Microservices-driven financial investment portal (currently under architectural modernization).
   5. **VisionTech Enterprise Deliverables**: Proprietary commercial software suites for corporate clients.
-- **Resume**: Available at /Sanket_Kedare_Full_Stack_Developer_NextJS_NodeJS_TypeScript_GenAI_System_Design.pdf or via the interactive viewer on the page.
+- **Resume**: Hosted on Cloudinary CDN and accessible via the interactive viewer on the page (#resume).
 - **Contact Details**:
   - Email: sanketkedare200@gmail.com
   - Phone: +91 8624851910

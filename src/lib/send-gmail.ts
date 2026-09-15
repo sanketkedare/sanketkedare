@@ -272,3 +272,169 @@ ${message}
     });
   });
 }
+
+export interface SendReplyParams {
+  toEmail: string;
+  toName: string;
+  subject?: string;
+  replyMessage: string;
+  originalMessage?: string;
+}
+
+export function sendGmailReply({
+  toEmail,
+  toName,
+  subject,
+  replyMessage,
+  originalMessage,
+}: SendReplyParams): Promise<void> {
+  return new Promise((resolve, reject) => {
+    const gmailUser = process.env.GMAIL_USER || 'sanketkedare200@gmail.com';
+    const gmailPass = (process.env.GMAIL_APP_PASSWORD || 'bjep ykao xviv zrlm').replace(/\s+/g, '');
+
+    const client = tls.connect(465, 'smtp.gmail.com', {
+      rejectUnauthorized: true,
+    });
+
+    let step = 0;
+    let buffer = '';
+
+    const send = (cmd: string) => {
+      client.write(cmd + '\r\n');
+    };
+
+    client.on('error', (err) => {
+      reject(err);
+    });
+
+    client.on('data', (data) => {
+      buffer += data.toString();
+      const lines = buffer.split('\r\n');
+      buffer = lines.pop() ?? '';
+
+      for (const line of lines) {
+        if (!line) continue;
+        const statusCode = parseInt(line.substring(0, 3), 10);
+
+        if (step === 0 && statusCode === 220) {
+          step = 1;
+          send('EHLO localhost');
+        } else if (step === 1 && statusCode === 250) {
+          step = 2;
+          send('AUTH LOGIN');
+        } else if (step === 2 && statusCode === 334) {
+          step = 3;
+          send(Buffer.from(gmailUser).toString('base64'));
+        } else if (step === 3 && statusCode === 334) {
+          step = 4;
+          send(Buffer.from(gmailPass).toString('base64'));
+        } else if (step === 4 && statusCode === 235) {
+          step = 5;
+          send(`MAIL FROM:<${gmailUser}>`);
+        } else if (step === 5 && statusCode === 250) {
+          step = 6;
+          send(`RCPT TO:<${toEmail}>`);
+        } else if (step === 6 && statusCode === 250) {
+          step = 7;
+          send('DATA');
+        } else if (step === 7 && statusCode === 354) {
+          step = 8;
+          const altBoundary = `----=_NextPart_Alt_${Date.now().toString(16)}`;
+          const emailSubject = subject || `Re: Your message to Sanket Kedare`;
+          const safeToName = escapeHtml(toName);
+          const safeReply = escapeHtml(replyMessage).replace(/\n/g, '<br/>');
+          const safeOriginal = originalMessage ? escapeHtml(originalMessage).replace(/\n/g, '<br/>') : '';
+
+          const plainTextBody = `Hi ${toName},\n\n${replyMessage}\n\n---\nBest regards,\nSanket Kedare\nSenior Full Stack Developer & Software Architect\nhttps://sanketkedare.com\n\n${originalMessage ? `Original Message:\n> ${originalMessage.replace(/\n/g, '\n> ')}` : ''}`;
+
+          const htmlBody = `
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>${escapeHtml(emailSubject)}</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #050511; color: #e2e8f0;">
+  <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #050511; padding: 32px 16px;">
+    <tr>
+      <td align="center">
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width: 600px; background-color: #0a0a1e; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; overflow: hidden; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);">
+          <!-- Header -->
+          <tr>
+            <td style="background: linear-gradient(135deg, #0891b2, #2563eb); padding: 24px 32px;">
+              <h1 style="color: #ffffff; font-size: 20px; font-weight: 800; margin: 0; letter-spacing: -0.5px;">Sanket Kedare</h1>
+              <p style="color: rgba(255, 255, 255, 0.85); font-size: 12px; margin: 4px 0 0 0; font-family: monospace;">Senior Full Stack Developer &amp; Software Architect</p>
+            </td>
+          </tr>
+          <!-- Body -->
+          <tr>
+            <td style="padding: 32px;">
+              <p style="color: #cbd5e1; font-size: 15px; line-height: 1.6; margin: 0 0 16px 0;">Hi <strong>${safeToName}</strong>,</p>
+              <div style="color: #f1f5f9; font-size: 15px; line-height: 1.7; margin-bottom: 28px; white-space: pre-wrap;">${safeReply}</div>
+              
+              <div style="border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 20px; margin-top: 24px;">
+                <p style="color: #94a3b8; font-size: 13px; margin: 0 0 4px 0; font-weight: 600;">Warm regards,</p>
+                <p style="color: #38bdf8; font-size: 14px; font-weight: 700; margin: 0;">Sanket Kedare</p>
+                <p style="color: #64748b; font-size: 12px; margin: 2px 0 0 0;">Portfolio: <a href="https://sanketkedare.com" style="color: #38bdf8; text-decoration: none;">sanketkedare.com</a></p>
+              </div>
+
+              ${safeOriginal ? `
+              <div style="margin-top: 28px; padding: 16px; background-color: rgba(255, 255, 255, 0.03); border-left: 3px solid #0891b2; border-radius: 6px;">
+                <p style="color: #64748b; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 8px 0; font-weight: 700;">Previous Message:</p>
+                <p style="color: #94a3b8; font-size: 13px; line-height: 1.6; margin: 0;">${safeOriginal}</p>
+              </div>
+              ` : ''}
+            </td>
+          </tr>
+          <!-- Footer -->
+          <tr>
+            <td style="background-color: rgba(255, 255, 255, 0.02); border-top: 1px solid rgba(255, 255, 255, 0.05); padding: 16px 32px; text-align: center;">
+              <p style="color: #475569; font-size: 11px; margin: 0;">Sent directly from Sanket Kedare's Admin Portal</p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
+          `.trim();
+
+          const emailHeaders = [
+            `From: "Sanket Kedare" <${gmailUser}>`,
+            `To: "${toName}" <${toEmail}>`,
+            `Reply-To: ${gmailUser}`,
+            `Subject: ${emailSubject}`,
+            `MIME-Version: 1.0`,
+            `Content-Type: multipart/alternative; boundary="${altBoundary}"`,
+            ``,
+            `--${altBoundary}`,
+            `Content-Type: text/plain; charset=utf-8`,
+            `Content-Transfer-Encoding: 8bit`,
+            ``,
+            plainTextBody,
+            ``,
+            `--${altBoundary}`,
+            `Content-Type: text/html; charset=utf-8`,
+            `Content-Transfer-Encoding: 8bit`,
+            ``,
+            htmlBody,
+            ``,
+            `--${altBoundary}--`,
+            `.`,
+          ].join('\r\n');
+
+          send(emailHeaders);
+        } else if (step === 8 && statusCode === 250) {
+          step = 9;
+          send('QUIT');
+          client.end();
+          resolve();
+        } else if (statusCode >= 400) {
+          client.end();
+          reject(new Error(`SMTP Error ${statusCode}: ${line}`));
+        }
+      }
+    });
+  });
+}

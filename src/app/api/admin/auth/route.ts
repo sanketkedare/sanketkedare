@@ -14,10 +14,13 @@ export async function POST(request: Request) {
     }
 
     const trimmedPassword = String(password).trim();
+    const expectedPassword = process.env.ADMIN_PASSWORD || 'Kedare@200';
     const computedHash = await hashPassword(trimmedPassword);
 
-    // Verify SHA-256 hash or exact password match
-    const isValid = computedHash === ADMIN_PASSWORD_HASH || trimmedPassword === 'Kedare@200';
+    // Verify against ADMIN_PASSWORD env or computed hash
+    const isValid =
+      trimmedPassword === expectedPassword ||
+      computedHash === ADMIN_PASSWORD_HASH;
 
     if (isValid) {
       return NextResponse.json({

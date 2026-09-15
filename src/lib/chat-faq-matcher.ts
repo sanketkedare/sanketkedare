@@ -102,9 +102,8 @@ const FAQ_ENTRIES: PatternEntry[] = [
     ],
     response:
       "### 📄 Sanket's Resume\n\n" +
-      "You can view and download Sanket's verified engineering resume directly:\n\n" +
-      "- **Download File**: [Download PDF Resume](/Sanket_Kedare_Full_Stack_Developer_NextJS_NodeJS_TypeScript_GenAI_System_Design.pdf)\n" +
-      "- **Interactive Viewer**: Navigate to the [#resume](#resume) section on this page to inspect the embedded viewer.\n\n" +
+      "You can view and download Sanket's verified engineering resume directly on this page:\n\n" +
+      "- **Interactive Viewer & Download**: Navigate to the [#resume](#resume) section to inspect or download the latest cloud-hosted PDF.\n\n" +
       "Would you like to schedule a conversation or send an inquiry?",
     suggestions: [
       "✉️ Contact Sanket",

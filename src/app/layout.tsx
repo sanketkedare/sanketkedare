@@ -11,6 +11,7 @@ import Footer from '@/components/Footer/Footer';
 import ServiceWorkerRegister from '@/components/Pwa/ServiceWorkerRegister';
 import StructuredData from '@/components/SEO/StructuredData';
 import ChatWidget from '@/components/Chat/ChatWidget';
+import Toaster from '@/components/Toaster/Toaster';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const outfit = Outfit({ subsets: ['latin'], variable: '--font-outfit' });
@@ -164,6 +165,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Footer />
             <ChatWidget />
             <ServiceWorkerRegister />
+            <Toaster />
             <Analytics />
           </AntdRegistry>
         </ThemeProvider>

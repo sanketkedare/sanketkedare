@@ -8,8 +8,7 @@ import {
   FiLoader, FiMaximize2, FiMinimize2 
 } from 'react-icons/fi';
 import PersonalInfo from '@/lib/personal-info';
-
-const RESUME_PDF = '/Sanket_Kedare_Full_Stack_Developer_NextJS_NodeJS_TypeScript_GenAI_System_Design.pdf';
+import { getResumeUrl, RESUME_FILENAME, fetchActiveResumeUrl } from '@/lib/resume-config';
 
 declare global {
   interface Window {
@@ -34,9 +33,18 @@ export default function ResumeViewer() {
   const fullscreenScrollWrapperRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      setResumeUrl(`${window.location.origin}${RESUME_PDF}`);
-    }
+    fetchActiveResumeUrl().then((url) => {
+      setResumeUrl(url);
+    });
+
+    const handleResumeUpdated = (e: any) => {
+      if (e.detail?.url) {
+        setResumeUrl(e.detail.url);
+      }
+    };
+
+    window.addEventListener('sk-resume-updated', handleResumeUpdated);
+    return () => window.removeEventListener('sk-resume-updated', handleResumeUpdated);
   }, []);
 
   const closeFullScreen = () => {
@@ -127,9 +135,17 @@ export default function ResumeViewer() {
     setIsLoadingPdf(true);
     setPdfError('');
 
+    const currentResumeUrl = getResumeUrl();
+    if (!currentResumeUrl) {
+      setPdfError('no_resume');
+      setIsLoadingPdf(false);
+      return;
+    }
+
     try {
       const pdfjs = await loadPdfJsScript();
-      const loadingTask = pdfjs.getDocument(RESUME_PDF);
+
+      const loadingTask = pdfjs.getDocument(currentResumeUrl);
       const pdf = await loadingTask.promise;
       
       setPdfPagesCount(pdf.numPages);
@@ -165,8 +181,31 @@ export default function ResumeViewer() {
         }
       }
     } catch (err: any) {
-      console.error('PDF Render error:', err);
-      setPdfError(err?.message || 'Unable to render PDF preview');
+      console.warn('PDF.js raw render note:', err?.message);
+      // Fallback: If raw PDF delivery is restricted by Cloudinary (401), render high-res image pages
+      if (currentResumeUrl.includes('cloudinary.com')) {
+        try {
+          activeContainer.innerHTML = '';
+          const imgUrl = currentResumeUrl.replace(/\.pdf$/i, '.jpg');
+
+          const pageWrapper = document.createElement('div');
+          pageWrapper.className = 'relative flex flex-col items-center mb-8 last:mb-0 shadow-2xl rounded-2xl overflow-hidden bg-white border border-slate-200 dark:border-white/10 w-full max-w-3xl';
+
+          const img = document.createElement('img');
+          img.src = imgUrl;
+          img.alt = 'Resume Preview';
+          img.className = 'w-full h-auto block object-contain';
+
+          pageWrapper.appendChild(img);
+          activeContainer.appendChild(pageWrapper);
+          setPdfPagesCount(1);
+          setPdfError('');
+          return;
+        } catch (fallbackErr) {
+          console.error('Image fallback failed:', fallbackErr);
+        }
+      }
+      setPdfError('no_resume');
     } finally {
       setIsLoadingPdf(false);
     }
@@ -187,9 +226,12 @@ export default function ResumeViewer() {
   }, [isViewerOpen, isFullScreen]);
 
   const handleDownload = () => {
+    const currentResumeUrl = getResumeUrl();
     const a = document.createElement('a');
-    a.href = RESUME_PDF;
-    a.setAttribute('download', 'Sanket_Kedare_Full_Stack_Developer_NextJS_NodeJS_TypeScript_GenAI_System_Design.pdf');
+    a.href = currentResumeUrl;
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+    a.setAttribute('download', RESUME_FILENAME);
     document.body.appendChild(a);
     a.click();
     a.remove();
@@ -204,9 +246,10 @@ export default function ResumeViewer() {
 
     try {
       // Fetch PDF file to share actual File object
-      const res = await fetch(RESUME_PDF);
+      const currentResumeUrl = getResumeUrl();
+      const res = await fetch(currentResumeUrl);
       const blob = await res.blob();
-      const pdfFile = new File([blob], 'Sanket_Kedare_Full_Stack_Developer_NextJS_NodeJS_TypeScript_GenAI_System_Design.pdf', { type: 'application/pdf' });
+      const pdfFile = new File([blob], RESUME_FILENAME, { type: 'application/pdf' });
 
       if (navigator.canShare && navigator.canShare({ files: [pdfFile] })) {
         await navigator.share({
@@ -247,15 +290,22 @@ export default function ResumeViewer() {
       {/* Closed State: Simple View Resume Button */}
       {!isViewerOpen && (
         <div className="flex items-center justify-center pt-2">
-          <motion.button
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.97 }}
-            onClick={() => setIsViewerOpen(true)}
-            className="group relative flex items-center gap-3 px-8 md:px-10 py-4 bg-cyan-600 hover:bg-cyan-500 text-white rounded-2xl font-black text-xs md:text-sm tracking-wider uppercase shadow-xl hover:shadow-cyan-500/30 transition-all duration-300 cursor-pointer"
-          >
-            <FiEye size={20} className="group-hover:scale-110 transition-transform" />
-            <span>View Resume (PDF)</span>
-          </motion.button>
+          {resumeUrl ? (
+            <motion.button
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+              onClick={() => setIsViewerOpen(true)}
+              className="group relative flex items-center gap-3 px-8 md:px-10 py-4 bg-cyan-600 hover:bg-cyan-500 text-white rounded-2xl font-black text-xs md:text-sm tracking-wider uppercase shadow-xl hover:shadow-cyan-500/30 transition-all duration-300 cursor-pointer"
+            >
+              <FiEye size={20} className="group-hover:scale-110 transition-transform" />
+              <span>View Resume (PDF)</span>
+            </motion.button>
+          ) : (
+            <div className="flex items-center gap-2.5 px-8 py-4 bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-400 dark:text-slate-600 rounded-2xl text-xs font-bold uppercase tracking-wider cursor-default select-none">
+              <FiFileText size={18} />
+              <span>Resume not available</span>
+            </div>
+          )}
         </div>
       )}
 
@@ -347,13 +397,14 @@ export default function ResumeViewer() {
                   <span>{copied ? 'Copied!' : 'Share'}</span>
                 </button>
 
-                {/* Close Button */}
+                {/* Collapse / Close Button */}
                 <button
                   onClick={() => setIsViewerOpen(false)}
-                  className="p-2 rounded-xl bg-slate-100 dark:bg-white/10 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-all ml-1 border border-slate-200 dark:border-white/10"
-                  title="Close Viewer"
+                  className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 text-slate-700 dark:text-slate-200 text-xs font-bold transition-all ml-1 border border-slate-200 dark:border-white/10 cursor-pointer"
+                  title="Collapse Resume Viewer"
                 >
-                  <FiX size={18} />
+                  <FiX size={16} />
+                  <span>Collapse</span>
                 </button>
 
               </div>
@@ -362,7 +413,7 @@ export default function ResumeViewer() {
             {/* Inline Scrollable Viewport */}
             <div 
               ref={inlineScrollWrapperRef}
-              className="w-full h-[650px] md:h-[750px] overflow-auto py-6 px-2 flex justify-center custom-scrollbar"
+              className="w-full h-[650px] md:h-[750px] overflow-auto py-6 px-2 flex flex-col items-center custom-scrollbar"
             >
               {isLoadingPdf && (
                 <div className="flex flex-col items-center justify-center py-24 text-cyan-500 gap-3">
@@ -372,15 +423,14 @@ export default function ResumeViewer() {
               )}
 
               {pdfError && (
-                <div className="text-center py-20 text-red-500">
-                  <p className="text-sm font-bold mb-2">Unable to render PDF preview</p>
-                  <p className="text-xs opacity-80 mb-4">{pdfError}</p>
-                  <button
-                    onClick={handleDownload}
-                    className="px-5 py-2.5 bg-cyan-600 text-white font-bold text-xs rounded-xl"
-                  >
-                    Download PDF Directly
-                  </button>
+                <div className="flex flex-col items-center justify-center py-20 text-center gap-4">
+                  <div className="w-14 h-14 rounded-2xl bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 flex items-center justify-center">
+                    <FiFileText size={24} className="text-slate-400 dark:text-slate-600" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-bold text-slate-700 dark:text-slate-400">Resume not available</p>
+                    <p className="text-xs text-slate-500 dark:text-slate-600 mt-1">The resume hasn&apos;t been configured yet.</p>
+                  </div>
                 </div>
               )}
 
@@ -394,6 +444,21 @@ export default function ResumeViewer() {
                 className="w-full max-w-3xl flex flex-col items-center"
               >
                 <div ref={inlineContainerRef} className="w-full flex flex-col items-center" />
+
+                {/* Bottom Collapse Button */}
+                {!isLoadingPdf && !pdfError && (
+                  <button
+                    onClick={() => {
+                      setIsViewerOpen(false);
+                      const resumeEl = document.getElementById('resume');
+                      if (resumeEl) resumeEl.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                    className="mt-8 mb-4 flex items-center gap-2 px-5 py-2.5 rounded-2xl bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 text-slate-700 dark:text-slate-200 text-xs font-bold transition-all border border-slate-200 dark:border-white/10 cursor-pointer shadow-sm"
+                  >
+                    <FiX size={15} />
+                    <span>Collapse Resume</span>
+                  </button>
+                )}
               </div>
             </div>
 
@@ -494,15 +559,14 @@ export default function ResumeViewer() {
               )}
 
               {pdfError && (
-                <div className="text-center py-20 text-red-400">
-                  <p className="text-sm font-bold mb-2">Unable to render PDF preview</p>
-                  <p className="text-xs opacity-80 mb-4">{pdfError}</p>
-                  <button
-                    onClick={handleDownload}
-                    className="px-5 py-2.5 bg-cyan-600 text-white font-bold text-xs rounded-xl"
-                  >
-                    Download PDF Directly
-                  </button>
+                <div className="flex flex-col items-center justify-center py-20 text-center gap-4">
+                  <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center">
+                    <FiFileText size={24} className="text-slate-600" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-bold text-slate-400">Resume not available</p>
+                    <p className="text-xs text-slate-600 mt-1">The resume hasn&apos;t been configured yet.</p>
+                  </div>
                 </div>
               )}
 

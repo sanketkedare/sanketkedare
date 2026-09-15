@@ -118,6 +118,7 @@ npm run type-check  # tsc --noEmit
 | `react-router-dom` `<Link>` | `next/link` `<Link>` |
 | `next/image` without `alt` | Always provide meaningful `alt` |
 | Unsolicited `npm run build`, `type-check`, or `git push` | **STRICT RULE**: Never build, check errors, or push code unless explicitly requested by the user |
+| Directly jumping into code without thinking | **STRICT RULE**: Understand the task properly, think deeply about architecture and data flow, and never code immediately without analysis |
 
 ---
 

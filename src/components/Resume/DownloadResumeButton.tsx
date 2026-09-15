@@ -2,14 +2,19 @@
 
 import { motion } from 'framer-motion';
 import { FiDownload } from 'react-icons/fi';
-
-const RESUME_PDF = '/Sanket_Kedare_Full_Stack_Developer_NextJS_NodeJS_TypeScript_GenAI_System_Design.pdf';
+import { fetchActiveResumeUrl, getResumeUrl, RESUME_FILENAME } from '@/lib/resume-config';
 
 export default function DownloadResumeButton() {
-  function downloadResume() {
+  async function downloadResume() {
+    const resumeUrl = await fetchActiveResumeUrl();
+    if (!resumeUrl) {
+      return;
+    }
     const a = document.createElement('a');
-    a.href = RESUME_PDF;
-    a.setAttribute('download', 'Sanket_Kedare_Full_Stack_Developer_NextJS_NodeJS_TypeScript_GenAI_System_Design.pdf');
+    a.href = resumeUrl;
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+    a.setAttribute('download', RESUME_FILENAME);
     document.body.appendChild(a);
     a.click();
     a.remove();

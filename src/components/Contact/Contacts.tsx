@@ -6,6 +6,7 @@ import PersonalInfo from '@/lib/personal-info';
 import type { IconType } from 'react-icons';
 import { FiMail, FiMapPin, FiSend, FiGithub, FiLinkedin, FiCopy, FiCheck } from 'react-icons/fi';
 import { FaWhatsapp } from 'react-icons/fa';
+import { toast } from '@/lib/toast';
 
 type AccentColor = 'cyan' | 'emerald' | 'blue' | 'purple' | 'slate';
 
@@ -54,14 +55,17 @@ export default function Contacts() {
 
       if (response.ok && data.success) {
         setStatus('success');
+        toast.success('Your message was received! Sanket will get back to you promptly.', 'Message Sent');
         formRef.current.reset();
       } else {
         console.error('Failed to send inquiry message:', data.error);
         setStatus('error');
+        toast.error(data.error || 'Failed to deliver message. Please try again.', 'Delivery Failed');
       }
     } catch (err) {
       console.error('Error sending inquiry message:', err);
       setStatus('error');
+      toast.error('Network error. Please try again.', 'Delivery Failed');
     }
   }
 
@@ -71,9 +75,11 @@ export default function Contacts() {
     try {
       await navigator.clipboard.writeText(textToCopy);
       setCopiedLabel(label);
+      toast.success(`${label} copied to clipboard!`, 'Copied');
       setTimeout(() => setCopiedLabel(null), 3000);
     } catch (err) {
       console.error('Failed to copy:', err);
+      toast.error('Failed to copy to clipboard.');
     }
   };
 

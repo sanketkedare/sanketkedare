@@ -59,13 +59,13 @@ export default function Navbar() {
 
   return (
     <>
-      <div className={`absolute top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-12 transition-all duration-500 pointer-events-none ${
-        isScrolled ? 'py-4 opacity-0' : 'py-8 opacity-100'
+      <div className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-12 transition-all duration-500 pointer-events-none ${
+        isScrolled ? 'py-3.5' : 'py-7'
       }`}>
         <div className="flex-1 flex justify-start pointer-events-auto">
-          <a href="#home" onClick={() => setActiveSegment('Home')} className="flex items-center gap-3">
+          <div className="flex items-center gap-3">
             <Logo />
-          </a>
+          </div>
         </div>
 
         <div className="hidden md:flex flex-1 justify-end items-center gap-6 pointer-events-auto">
