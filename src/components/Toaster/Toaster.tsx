@@ -150,12 +150,12 @@ function ToastCard({
       badge: 'text-amber-400 bg-amber-500/15',
     },
     confirmation: {
-      border: 'border-cyan-500/40 dark:border-cyan-500/50',
-      bgGlow: 'bg-cyan-500/10',
-      iconColor: 'text-cyan-400',
-      progressBar: 'bg-cyan-500',
-      icon: <FiHelpCircle size={20} className="shrink-0 text-cyan-400" />,
-      badge: 'text-cyan-400 bg-cyan-500/15',
+      border: 'border-indigo-500/40 dark:border-indigo-500/50',
+      bgGlow: 'bg-indigo-500/10',
+      iconColor: 'text-indigo-400',
+      progressBar: 'bg-indigo-500',
+      icon: <FiHelpCircle size={20} className="shrink-0 text-indigo-400" />,
+      badge: 'text-indigo-400 bg-indigo-500/15',
     },
   }[toast.type];
 
@@ -197,7 +197,7 @@ function ToastCard({
             <div className="flex items-center gap-2 mt-3.5 pt-2 border-t border-white/10">
               <button
                 onClick={handleConfirm}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white text-xs font-bold shadow-md hover:shadow-cyan-500/20 transition-all cursor-pointer"
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold shadow-md hover:shadow-indigo-500/20 transition-all cursor-pointer"
               >
                 <FiCheck size={13} />
                 <span>{toast.confirmText}</span>
