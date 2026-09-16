@@ -1,16 +1,17 @@
 'use client';
 
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import PersonalInfo from '@/lib/personal-info';
 import Logo from './Logo';
-import { FiGithub, FiLinkedin, FiMenu, FiX } from 'react-icons/fi';
+import { FiGithub, FiLinkedin } from 'react-icons/fi';
 
 const navLinks = [
   { name: 'Home', href: '#home' },
   { name: 'About', href: '#about' },
   { name: 'Experience', href: '#experience' },
   { name: 'Skills', href: '#skills' },
+  { name: 'Cognitive', href: '#cognitive' },
   { name: 'Projects', href: '#projects' },
   { name: 'Resume', href: '#resume' },
   { name: 'Contact', href: '#contact' },
@@ -18,15 +19,11 @@ const navLinks = [
 
 export default function Navbar() {
   const [activeSegment, setActiveSegment] = useState('Home');
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-      
-      const sections = navLinks.map(link => document.querySelector(link.href));
-      const scrollPosition = window.scrollY + (window.innerHeight / 3);
+      const sections = navLinks.map((link) => document.querySelector(link.href));
+      const scrollPosition = window.scrollY + window.innerHeight / 3;
 
       sections.forEach((section) => {
         if (!section) return;
@@ -34,119 +31,104 @@ export default function Navbar() {
         const height = (section as HTMLElement).offsetHeight;
 
         if (scrollPosition >= top && scrollPosition < top + height) {
-           const id = section.getAttribute('id');
-           if (id) {
-             const matchingLink = navLinks.find(link => link.href === `#${id}`);
-             if (matchingLink && activeSegment !== matchingLink.name) {
-                setActiveSegment(matchingLink.name);
-             }
-           }
+          const id = section.getAttribute('id');
+          if (id) {
+            const matchingLink = navLinks.find((link) => link.href === `#${id}`);
+            if (matchingLink && activeSegment !== matchingLink.name) {
+              setActiveSegment(matchingLink.name);
+            }
+          }
         }
       });
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, [activeSegment]);
 
-  useEffect(() => {
-    if (isMobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-  }, [isMobileMenuOpen]);
-
   return (
     <>
-      <div className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-12 transition-all duration-500 pointer-events-none ${
-        isScrolled ? 'py-3.5' : 'py-7'
-      }`}>
-        <div className="flex-1 flex justify-start pointer-events-auto">
-          <div className="flex items-center gap-3">
-            <Logo />
-          </div>
+      {/* ── 1. Static Top Header: Logo & Social Links (Scrolls away with hero, not fixed) ─ */}
+      <header className="absolute top-0 left-0 right-0 z-30 flex items-center justify-between px-6 md:px-12 py-6 pointer-events-auto">
+        <div className="flex items-center gap-3">
+          <Logo />
         </div>
 
-        <div className="hidden md:flex flex-1 justify-end items-center gap-6 pointer-events-auto">
-          <a href={PersonalInfo.github} target="_blank" rel="noreferrer" className="text-slate-500 dark:text-slate-400 hover:text-white transition-all"><FiGithub size={24} /></a>
-          <a href={PersonalInfo.linkedIn} target="_blank" rel="noreferrer" className="text-slate-500 dark:text-slate-400 hover:text-cyan-500 transition-all"><FiLinkedin size={24} /></a>
+        <div className="flex items-center gap-4 sm:gap-5">
+          <a
+            href={PersonalInfo.github}
+            target="_blank"
+            rel="noreferrer"
+            className="text-slate-500 dark:text-slate-400 hover:text-white transition-all"
+            title="GitHub Profile"
+          >
+            <FiGithub size={22} />
+          </a>
+          <a
+            href={PersonalInfo.linkedIn}
+            target="_blank"
+            rel="noreferrer"
+            className="text-slate-500 dark:text-slate-400 hover:text-cyan-500 transition-all"
+            title="LinkedIn Profile"
+          >
+            <FiLinkedin size={22} />
+          </a>
         </div>
-      </div>
+      </header>
 
-      <div className="fixed top-6 left-1/2 -translate-x-1/2 z-[60] hidden md:flex items-center justify-center">
-        <div className="flex items-center gap-1 p-1.5 rounded-full bg-white/70 dark:bg-[#0a0a1a]/60 backdrop-blur-xl border border-black/5 dark:border-white/10 shadow-2xl">
+      {/* ── 2. Desktop Floating Navlinks Pill (Always fixed at top-center) ────── */}
+      <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-[60] hidden md:flex items-center justify-center">
+        <div className="flex items-center gap-1 p-1.5 rounded-full bg-white/75 dark:bg-[#0a0a1a]/70 backdrop-blur-xl border border-black/5 dark:border-white/10 shadow-2xl">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
               onClick={() => setActiveSegment(link.name)}
-              className={`relative px-4 py-2 text-[13px] font-semibold tracking-wide transition-all duration-300 ${
-                activeSegment === link.name ? 'text-black dark:text-white' : 'text-slate-500 dark:text-slate-400 hover:text-black dark:hover:text-white'
+              className={`relative px-3.5 lg:px-4 py-2 text-[13px] font-semibold tracking-wide transition-all duration-300 ${
+                activeSegment === link.name
+                  ? 'text-black dark:text-white'
+                  : 'text-slate-500 dark:text-slate-400 hover:text-black dark:hover:text-white'
               }`}
             >
               {activeSegment === link.name && (
                 <motion.div
-                  layoutId="navPill"
+                  layoutId="navPillDesktop"
                   className="absolute inset-0 bg-white dark:bg-white/10 rounded-full shadow-lg -z-10"
-                  transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                  transition={{ type: 'spring', stiffness: 400, damping: 30 }}
                 />
               )}
               {link.name}
             </a>
           ))}
         </div>
-      </div>
+      </nav>
 
-      <div className="md:hidden">
-        <button 
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="fixed top-6 right-6 z-[110] w-12 h-12 rounded-full bg-white/10 dark:bg-white/5 backdrop-blur-xl border border-black/5 dark:border-white/10 flex items-center justify-center text-slate-800 dark:text-white shadow-xl"
-        >
-          {isMobileMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
-        </button>
-
-        <AnimatePresence>
-          {isMobileMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, x: '100%' }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: '100%' }}
-              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="fixed inset-0 z-[100] bg-white dark:bg-[#050511] flex flex-col items-center justify-center gap-8 py-20 px-6 overflow-hidden"
+      {/* ── 3. Small Screen / Mobile Floating Navlinks Bar (Always fixed at top) ─ */}
+      <nav className="fixed top-3.5 left-1/2 -translate-x-1/2 z-[60] flex md:hidden items-center justify-center max-w-[95vw]">
+        <div className="flex items-center gap-1 p-1 rounded-full bg-white/80 dark:bg-[#0a0a1a]/85 backdrop-blur-xl border border-black/5 dark:border-white/10 shadow-2xl overflow-x-auto no-scrollbar max-w-full">
+          {navLinks.map((link) => (
+            <a
+              key={link.name}
+              href={link.href}
+              onClick={() => setActiveSegment(link.name)}
+              className={`relative px-3 py-1.5 text-xs font-semibold whitespace-nowrap tracking-tight transition-all duration-300 rounded-full ${
+                activeSegment === link.name
+                  ? 'text-cyan-600 dark:text-cyan-300 font-bold'
+                  : 'text-slate-500 dark:text-slate-400 hover:text-black dark:hover:text-white'
+              }`}
             >
-              <div className="absolute top-1/4 -left-20 w-80 h-80 bg-cyan-500/10 rounded-full blur-[100px] pointer-events-none" />
-              <div className="absolute bottom-1/4 -right-20 w-80 h-80 bg-purple-500/10 rounded-full blur-[100px] pointer-events-none" />
-
-              <div className="flex flex-col items-center gap-6 w-full">
-                {navLinks.map((link, i) => (
-                  <motion.a
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: i * 0.1 }}
-                    key={link.name}
-                    href={link.href}
-                    onClick={() => {
-                      setActiveSegment(link.name);
-                      setIsMobileMenuOpen(false);
-                    }}
-                    className={`text-4xl font-black tracking-tighter ${
-                      activeSegment === link.name ? 'text-cyan-600 dark:text-cyan-400' : 'text-slate-400 dark:text-slate-700'
-                    }`}
-                  >
-                    {link.name}
-                  </motion.a>
-                ))}
-              </div>
-
-              <div className="mt-12 flex items-center gap-8">
-                <a href={PersonalInfo.github} target="_blank" rel="noreferrer" className="text-slate-400 hover:text-cyan-500 transition-colors"><FiGithub size={28} /></a>
-                <a href={PersonalInfo.linkedIn} target="_blank" rel="noreferrer" className="text-slate-400 hover:text-cyan-500 transition-colors"><FiLinkedin size={28} /></a>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
+              {activeSegment === link.name && (
+                <motion.div
+                  layoutId="navPillMobile"
+                  className="absolute inset-0 bg-cyan-500/15 dark:bg-white/10 rounded-full border border-cyan-500/30 dark:border-white/20 -z-10"
+                  transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                />
+              )}
+              {link.name}
+            </a>
+          ))}
+        </div>
+      </nav>
     </>
   );
 }

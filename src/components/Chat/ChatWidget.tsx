@@ -32,6 +32,7 @@ const INITIAL_MESSAGE: Message = {
   isPredefined: true,
   suggestions: [
     "🚀 Core Tech Stack",
+    "🧬 Cognitive Fingerprint",
     "📁 Architecture Case Studies",
     "💼 Work Experience",
     "📄 View Resume",
