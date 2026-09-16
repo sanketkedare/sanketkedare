@@ -186,7 +186,7 @@ export default function ResumeViewer() {
       if (currentResumeUrl.includes('cloudinary.com')) {
         try {
           activeContainer.innerHTML = '';
-          const imgUrl = currentResumeUrl.replace(/\.pdf$/i, '.jpg');
+          const imgUrl = currentResumeUrl.replace(/\/raw\/upload\//, '/image/upload/').replace(/\.pdf$/i, '.jpg');
 
           const pageWrapper = document.createElement('div');
           pageWrapper.className = 'relative flex flex-col items-center mb-8 last:mb-0 shadow-2xl rounded-2xl overflow-hidden bg-white border border-slate-200 dark:border-white/10 w-full max-w-3xl';
