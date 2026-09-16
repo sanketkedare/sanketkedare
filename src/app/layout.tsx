@@ -11,6 +11,7 @@ import Footer from '@/components/Footer/Footer';
 import ServiceWorkerRegister from '@/components/Pwa/ServiceWorkerRegister';
 import StructuredData from '@/components/SEO/StructuredData';
 import ChatWidget from '@/components/Chat/ChatWidget';
+import VisitTracker from '@/components/Analytics/VisitTracker';
 import Toaster from '@/components/Toaster/Toaster';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
@@ -29,6 +30,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.sanketkedare.com'),
   manifest: '/manifest.json',
+  applicationName: 'Sanket Kedare',
   appleWebApp: {
     capable: true,
     statusBarStyle: 'black-translucent',
@@ -82,7 +84,7 @@ export const metadata: Metadata = {
     url: 'https://www.sanketkedare.com',
     title: 'Sanket Kedare | Full Stack Developer | GenAI & System Design',
     description: 'Portfolio of Sanket Kedare — Full Stack Developer specializing in GenAI, System Design, Next.js 16, React 19, TypeScript, and Node.js.',
-    siteName: 'Sanket Kedare Portfolio',
+    siteName: 'Sanket Kedare',
     images: [
       {
         url: 'https://www.sanketkedare.com/og-image.png',
@@ -164,6 +166,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             {children}
             <Footer />
             <ChatWidget />
+            <VisitTracker />
             <ServiceWorkerRegister />
             <Toaster />
             <Analytics />

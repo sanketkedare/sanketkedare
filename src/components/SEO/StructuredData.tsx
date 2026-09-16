@@ -60,7 +60,8 @@ export default function StructuredData() {
         '@type': 'WebSite',
         '@id': 'https://www.sanketkedare.com/#website',
         url: 'https://www.sanketkedare.com',
-        name: 'Sanket Kedare | Full Stack Developer | GenAI & System Design',
+        name: 'Sanket Kedare',
+        alternateName: ['Sanket Kedare Portfolio', 'sanketkedare.com'],
         description: 'Official engineering portfolio of Sanket Kedare showcasing production Next.js 16 systems, architecture case studies, and enterprise deliverables.',
         publisher: { '@id': 'https://www.sanketkedare.com/#person' },
         inLanguage: 'en-US'

@@ -179,3 +179,26 @@ export async function setActiveResume(id: string): Promise<any> {
   await Resume.updateMany({}, { $set: { isActive: false } });
   return Resume.findByIdAndUpdate(id, { $set: { isActive: true } }, { new: true });
 }
+
+/* ─── Visit Analytics ────────────────────────────────────────────── */
+export type TrafficSource = 'linkedin' | 'google' | 'naukri' | 'resume' | 'direct' | 'other';
+
+const VisitSchema = new mongoose.Schema(
+  {
+    source:      { type: String, enum: ['linkedin', 'google', 'naukri', 'resume', 'direct', 'other'], default: 'direct', index: true },
+    rawReferrer: { type: String, default: '' },
+    utmSource:   { type: String, default: '' },
+    utmMedium:   { type: String, default: '' },
+    utmCampaign: { type: String, default: '' },
+    path:        { type: String, default: '/' },
+    device:      { type: String, default: 'desktop' },
+    browser:     { type: String, default: 'Other' },
+    os:          { type: String, default: 'Other' },
+    ipHash:      { type: String, default: '' },
+    createdAt:   { type: Date,   default: Date.now, index: true },
+  },
+  { collection: 'visits' }
+);
+
+export const Visit = mongoose.models.Visit || mongoose.model('Visit', VisitSchema);
+
