@@ -8,7 +8,7 @@ import {
   FiLoader, FiMaximize2, FiMinimize2 
 } from 'react-icons/fi';
 import PersonalInfo from '@/lib/personal-info';
-import { getResumeUrl, RESUME_FILENAME, fetchActiveResumeUrl } from '@/lib/resume-config';
+import { getResumeUrl, fetchActiveResumeUrl, triggerResumeDownload, getResumeFilename } from '@/lib/resume-config';
 
 declare global {
   interface Window {
@@ -226,15 +226,7 @@ export default function ResumeViewer() {
   }, [isViewerOpen, isFullScreen]);
 
   const handleDownload = () => {
-    const currentResumeUrl = getResumeUrl();
-    const a = document.createElement('a');
-    a.href = currentResumeUrl;
-    a.target = '_blank';
-    a.rel = 'noopener noreferrer';
-    a.setAttribute('download', RESUME_FILENAME);
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
+    triggerResumeDownload();
   };
 
   // Share actual PDF file object + Position, Contact Info & Portfolio URL
@@ -245,19 +237,30 @@ export default function ResumeViewer() {
     const shareText = `${PersonalInfo.name} | ${PersonalInfo.role}\n\nContact Details:\n• Email: ${PersonalInfo.email}\n• Phone: +91 ${PersonalInfo.mobile}\n• Location: ${PersonalInfo.location}\n\nPortfolio: ${websiteUrl}`;
 
     try {
-      // Fetch PDF file to share actual File object
-      const currentResumeUrl = getResumeUrl();
-      const res = await fetch(currentResumeUrl);
-      const blob = await res.blob();
-      const pdfFile = new File([blob], RESUME_FILENAME, { type: 'application/pdf' });
+      // Fetch PDF file from same-origin proxy to share actual File object
+      const res = await fetch('/api/resume/download');
+      if (res.ok) {
+        const fallbackFilename = getResumeFilename() || 'resume.pdf';
+        let shareFilename = fallbackFilename;
+        const disposition = res.headers.get('content-disposition');
+        if (disposition && disposition.includes('filename=')) {
+          const match = disposition.match(/filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/);
+          if (match && match[1]) {
+            shareFilename = decodeURIComponent(match[1].replace(/['"]/g, '').trim());
+          }
+        }
 
-      if (navigator.canShare && navigator.canShare({ files: [pdfFile] })) {
-        await navigator.share({
-          title: `${PersonalInfo.name} - Resume`,
-          text: shareText,
-          files: [pdfFile],
-        });
-        return;
+        const blob = await res.blob();
+        const pdfFile = new File([blob], shareFilename, { type: 'application/pdf' });
+
+        if (navigator.canShare && navigator.canShare({ files: [pdfFile] })) {
+          await navigator.share({
+            title: `${PersonalInfo.name} - Resume`,
+            text: shareText,
+            files: [pdfFile],
+          });
+          return;
+        }
       }
     } catch (e) {
       console.log('File share fallback:', e);

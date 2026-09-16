@@ -93,6 +93,12 @@ export const Resume = mongoose.models.Resume || mongoose.model('Resume', ResumeS
 
 /** Returns the URL of the currently active resume, or null. */
 export async function getActiveResumeFromDb(): Promise<string | null> {
+  const record = await getActiveResumeRecordFromDb();
+  return record?.url ?? null;
+}
+
+/** Returns the full document of the currently active resume, or null. */
+export async function getActiveResumeRecordFromDb(): Promise<{ url: string; filename: string; publicId?: string } | null> {
   try {
     await dbConnect();
     let doc = await Resume.findOne({ isActive: true }).lean() as any;
@@ -104,9 +110,14 @@ export async function getActiveResumeFromDb(): Promise<string | null> {
         doc = latest;
       }
     }
-    return doc?.url ?? null;
+    if (!doc || !doc.url) return null;
+    return {
+      url: doc.url,
+      filename: doc.filename || 'resume.pdf',
+      publicId: doc.publicId || '',
+    };
   } catch (err) {
-    console.error('[MongoDB] getActiveResumeFromDb error:', err);
+    console.error('[MongoDB] getActiveResumeRecordFromDb error:', err);
     return null;
   }
 }

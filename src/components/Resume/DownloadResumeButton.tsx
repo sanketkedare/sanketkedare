@@ -2,22 +2,11 @@
 
 import { motion } from 'framer-motion';
 import { FiDownload } from 'react-icons/fi';
-import { fetchActiveResumeUrl, getResumeUrl, RESUME_FILENAME } from '@/lib/resume-config';
+import { triggerResumeDownload } from '@/lib/resume-config';
 
 export default function DownloadResumeButton() {
   async function downloadResume() {
-    const resumeUrl = await fetchActiveResumeUrl();
-    if (!resumeUrl) {
-      return;
-    }
-    const a = document.createElement('a');
-    a.href = resumeUrl;
-    a.target = '_blank';
-    a.rel = 'noopener noreferrer';
-    a.setAttribute('download', RESUME_FILENAME);
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
+    await triggerResumeDownload();
   }
 
   return (
