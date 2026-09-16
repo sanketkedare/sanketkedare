@@ -34,9 +34,19 @@ export async function dbConnect() {
     return cached.conn;
   }
 
+  // Enforce Google DNS & Cloudflare DNS right before connecting to prevent ECONNREFUSED on querySrv
+  try {
+    dns.setServers(['8.8.8.8', '1.1.1.1', '8.8.4.4']);
+  } catch (e) {
+    // Ignore if not supported in edge environment
+  }
+
   if (!cached.promise) {
-    cached.promise = mongoose.connect(MONGODB_URI, { bufferCommands: false }).then((m) => {
-      console.log('MongoDB connected');
+    cached.promise = mongoose.connect(MONGODB_URI, {
+      bufferCommands: false,
+      serverSelectionTimeoutMS: 10000,
+    }).then((m) => {
+      console.log('[MongoDB] Connected successfully');
       return m;
     });
   }
@@ -79,11 +89,14 @@ export const Inquiry = mongoose.models.Inquiry || mongoose.model('Inquiry', Inqu
  */
 const ResumeSchema = new mongoose.Schema(
   {
-    url:        { type: String, required: true },
-    publicId:   { type: String, default: '' },        // Cloudinary public_id
-    filename:   { type: String, default: 'resume.pdf' },
-    isActive:   { type: Boolean, default: false },
-    uploadedAt: { type: Date, default: Date.now },
+    url:         { type: String, default: '' },        // Cloudinary preview image / fallback URL
+    pdfBase64:   { type: String, default: '' },        // Raw PDF binary stored directly in MongoDB
+    contentType: { type: String, default: 'application/pdf' },
+    sizeBytes:   { type: Number, default: 0 },
+    publicId:    { type: String, default: '' },        // Cloudinary public_id
+    filename:    { type: String, default: 'resume.pdf' },
+    isActive:    { type: Boolean, default: false },
+    uploadedAt:  { type: Date, default: Date.now },
   },
   { collection: 'resumes' }
 );
@@ -98,7 +111,13 @@ export async function getActiveResumeFromDb(): Promise<string | null> {
 }
 
 /** Returns the full document of the currently active resume, or null. */
-export async function getActiveResumeRecordFromDb(): Promise<{ url: string; filename: string; publicId?: string } | null> {
+export async function getActiveResumeRecordFromDb(): Promise<{
+  url: string;
+  filename: string;
+  publicId?: string;
+  pdfBase64?: string;
+  contentType?: string;
+} | null> {
   try {
     await dbConnect();
     let doc = await Resume.findOne({ isActive: true }).lean() as any;
@@ -110,11 +129,13 @@ export async function getActiveResumeRecordFromDb(): Promise<{ url: string; file
         doc = latest;
       }
     }
-    if (!doc || !doc.url) return null;
+    if (!doc) return null;
     return {
-      url: doc.url,
+      url: doc.url || '',
       filename: doc.filename || 'resume.pdf',
       publicId: doc.publicId || '',
+      pdfBase64: doc.pdfBase64 || '',
+      contentType: doc.contentType || 'application/pdf',
     };
   } catch (err) {
     console.error('[MongoDB] getActiveResumeRecordFromDb error:', err);
@@ -129,18 +150,23 @@ export async function getActiveResumeRecordFromDb(): Promise<{ url: string; file
 export async function addAndActivateResume(
   url: string,
   filename: string,
-  publicId?: string
+  publicId?: string,
+  pdfBase64?: string,
+  sizeBytes?: number
 ): Promise<any> {
   await dbConnect();
   // Deactivate all current resumes
   await Resume.updateMany({}, { $set: { isActive: false } });
   // Insert the new one as active
   const doc = await Resume.create({
-    url,
-    publicId:  publicId || '',
-    filename:  filename || 'resume.pdf',
-    isActive:  true,
-    uploadedAt: new Date(),
+    url:         url || '',
+    pdfBase64:   pdfBase64 || '',
+    contentType: 'application/pdf',
+    sizeBytes:   sizeBytes || 0,
+    publicId:    publicId || '',
+    filename:    filename || 'resume.pdf',
+    isActive:    true,
+    uploadedAt:  new Date(),
   });
   return doc;
 }

@@ -15,7 +15,7 @@ export async function GET() {
   try {
     const record = await getActiveResumeRecordFromDb();
 
-    if (!record || !record.url) {
+    if (!record || (!record.pdfBase64 && !record.url)) {
       return NextResponse.json(
         { success: false, error: 'No active resume found in database.' },
         { status: 404 }
@@ -24,19 +24,30 @@ export async function GET() {
 
     const filename = record.filename || 'resume.pdf';
     const cleanFilename = filename.toLowerCase().endsWith('.pdf') ? filename : `${filename}.pdf`;
-    const attachmentUrl = getDownloadableResumeUrl(record.url, cleanFilename);
 
-    // 1. Fetch PDF buffer from Cloudinary via attachment URL
+    // 1. Primary Source: Stream directly from MongoDB binary storage
+    if (record.pdfBase64) {
+      const pdfBuffer = Buffer.from(record.pdfBase64, 'base64');
+      return new NextResponse(pdfBuffer, {
+        status: 200,
+        headers: {
+          'Content-Type': 'application/pdf',
+          'Content-Disposition': `attachment; filename="${encodeURIComponent(cleanFilename)}"`,
+          'Content-Length': String(pdfBuffer.byteLength),
+          'Cache-Control': 'public, max-age=3600, s-maxage=3600, stale-while-revalidate=86400',
+        },
+      });
+    }
+
+    // 2. Legacy Fallback: If uploaded prior to MongoDB binary storage, fetch from CDN
+    const attachmentUrl = getDownloadableResumeUrl(record.url, cleanFilename);
     let cloudRes = await fetch(attachmentUrl);
 
-    // 2. If attachment URL fails, attempt raw URL
     if (!cloudRes.ok && attachmentUrl !== record.url) {
       cloudRes = await fetch(record.url);
     }
 
-    // 3. Fallback: if server fetch fails, redirect directly to Cloudinary attachment URL
     if (!cloudRes.ok) {
-      console.warn(`[Resume Download] Cloudinary fetch returned ${cloudRes.status}. Redirecting directly.`);
       return NextResponse.redirect(attachmentUrl, { status: 307 });
     }
 
