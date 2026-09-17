@@ -63,7 +63,7 @@ function ProjectCard({ project, isLarge = false }: { project: Project; isLarge?:
       <motion.div
         variants={cardVariants}
         whileHover={{ y: -6, transition: { duration: 0.3, ease: 'easeOut' } }}
-        className="group relative col-span-1 md:col-span-2 lg:col-span-2 rounded-2xl md:rounded-3xl bg-white/70 dark:bg-[#0c0d1e]/90 border border-slate-200/80 dark:border-white/10 backdrop-blur-2xl shadow-xl hover:shadow-2xl hover:shadow-cyan-500/10 hover:border-cyan-500/40 dark:hover:border-cyan-500/30 transition-all duration-500 overflow-hidden flex flex-col md:grid md:grid-cols-12"
+        className="group relative col-span-1 md:col-span-2 lg:col-span-2 rounded-2xl md:rounded-3xl bg-white/90 dark:bg-[#0c0d1e]/90 border border-slate-200/90 dark:border-white/10 backdrop-blur-2xl shadow-[0_12px_40px_-10px_rgba(0,0,0,0.06),_0_0_1px_1px_rgba(0,0,0,0.02)] hover:shadow-2xl hover:shadow-cyan-500/10 hover:border-cyan-500/40 dark:hover:border-cyan-500/30 transition-all duration-500 overflow-hidden flex flex-col md:grid md:grid-cols-12"
         style={{ transformStyle: 'preserve-3d' }}
       >
         {/* Left Side: 16:9 Image Display */}
@@ -217,7 +217,7 @@ function ProjectCard({ project, isLarge = false }: { project: Project; isLarge?:
     <motion.div
       variants={cardVariants}
       whileHover={{ y: -8, transition: { duration: 0.3, ease: 'easeOut' } }}
-      className={`group relative flex flex-col h-full rounded-2xl md:rounded-3xl bg-white/60 dark:bg-[#0c0d1e]/80 border border-slate-200/80 dark:border-white/10 backdrop-blur-xl shadow-lg hover:shadow-2xl hover:shadow-cyan-500/10 hover:border-cyan-500/40 dark:hover:border-cyan-500/30 transition-all duration-500 overflow-hidden col-span-1 ${
+      className={`group relative flex flex-col h-full rounded-2xl md:rounded-3xl bg-white/90 dark:bg-[#0c0d1e]/80 border border-slate-200/90 dark:border-white/10 backdrop-blur-2xl shadow-[0_10px_35px_-5px_rgba(0,0,0,0.05),_0_0_1px_1px_rgba(0,0,0,0.02)] hover:shadow-2xl hover:shadow-cyan-500/10 hover:border-cyan-500/40 dark:hover:border-cyan-500/30 transition-all duration-500 overflow-hidden col-span-1 ${
         isDevelopment ? 'opacity-85 hover:opacity-100' : ''
       }`}
       style={{ transformStyle: 'preserve-3d' }}
@@ -425,7 +425,7 @@ export default function ProjectsComponent() {
   );
 
   return (
-    <section id="projects" className="relative w-full lg:w-[80%] mx-auto px-6 lg:px-0 min-h-screen py-24 flex flex-col justify-center border-t border-slate-200 dark:border-white/5 bg-slate-50 dark:bg-[#050511] overflow-hidden">
+    <section id="projects" className="relative w-full lg:w-[80%] mx-auto px-6 lg:px-0 min-h-screen py-24 flex flex-col justify-center border-t border-slate-200/80 dark:border-white/5 bg-transparent dark:bg-[#050511] overflow-hidden">
       <div className="absolute top-1/4 right-0 w-80 h-80 bg-cyan-500/5 blur-[120px] rounded-full pointer-events-none" />
       <div className="absolute bottom-1/4 left-0 w-80 h-80 bg-purple-500/5 blur-[120px] rounded-full pointer-events-none" />
 

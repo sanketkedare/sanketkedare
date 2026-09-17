@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { IoMenu, IoClose } from 'react-icons/io5';
 import { FiGithub, FiLinkedin, FiMail } from 'react-icons/fi';
 import PersonalInfo from '@/lib/personal-info';
+import ThemeToggle from '@/components/ThemeToggle';
 
 const NAV_ITEMS = [
   { name: 'Home', href: '#home' },
@@ -49,7 +50,7 @@ export default function Sidebar() {
             animate={{ opacity: 1, backdropFilter: "blur(20px)" }}
             exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
             transition={{ duration: 0.4 }}
-            className="fixed inset-0 z-50 bg-white/80 dark:bg-[#050511]/80 flex flex-col items-center justify-center"
+            className="fixed inset-0 z-50 bg-white/90 dark:bg-[#050511]/90 flex flex-col items-center justify-center"
           >
             <button
               className="absolute top-5 right-6 w-12 h-12 rounded-full bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 flex items-center justify-center text-slate-800 dark:text-white active:scale-90 transition-transform"
@@ -59,7 +60,7 @@ export default function Sidebar() {
               <IoClose size={24} />
             </button>
 
-            <div className="flex flex-col items-center gap-6 mb-16">
+            <div className="flex flex-col items-center gap-6 mb-8">
               {NAV_ITEMS.map((item, i) => (
                 <motion.a
                   key={item.name}
@@ -69,12 +70,20 @@ export default function Sidebar() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ delay: i * 0.1, duration: 0.4, type: "spring", stiffness: 100 }}
-                  className="text-3xl font-bold text-slate-600 dark:text-slate-300 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors"
+                  className="text-2xl sm:text-3xl font-bold text-slate-700 dark:text-slate-300 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors"
                 >
                   {item.name}
                 </motion.a>
               ))}
             </div>
+
+            {/* Mobile Drawer Theme Toggle */}
+            {(process.env.NODE_ENV === 'development' || process.env.NEXT_PUBLIC_SHOW_THEME_TOGGLE === 'true') && (
+              <div className="flex items-center gap-3 mb-8 px-4 py-1.5 rounded-full bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 shadow-sm">
+                <span className="text-[11px] font-mono font-bold uppercase tracking-widest text-slate-600 dark:text-slate-400">Theme</span>
+                <ThemeToggle />
+              </div>
+            )}
 
             <motion.div 
               initial={{ opacity: 0, scale: 0.8 }}

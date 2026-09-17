@@ -4,11 +4,11 @@ const resumeInfo = `Results-driven Full Stack Developer with expertise in React,
 
 export default function Resume() {
   return (
-    <section id="resume" className="relative w-full lg:w-[80%] mx-auto px-6 lg:px-0 min-h-screen flex items-center justify-center overflow-hidden py-24 bg-slate-50 dark:bg-[#050511]">
+    <section id="resume" className="relative w-full lg:w-[80%] mx-auto px-6 lg:px-0 min-h-screen flex items-center justify-center overflow-hidden py-24 bg-transparent dark:bg-[#050511] border-t border-slate-200/80 dark:border-white/5">
       <div className="absolute top-1/2 left-0 -translate-y-1/2 w-64 h-64 bg-cyan-600/5 rounded-full blur-[100px] pointer-events-none -z-10" />
       <div className="absolute bottom-0 right-0 w-64 h-64 bg-amber-600/5 rounded-full blur-[100px] pointer-events-none -z-10" />
 
-      <div className="relative w-full mx-auto bg-white dark:bg-[#0a0a1a] border border-slate-200 dark:border-white/10 rounded-3xl p-6 md:p-8 shadow-lg dark:shadow-2xl flex flex-col items-center gap-6 text-center overflow-hidden">
+      <div className="relative w-full mx-auto bg-white/90 dark:bg-[#0a0a1a] backdrop-blur-2xl border border-slate-200/90 dark:border-white/10 rounded-3xl p-6 md:p-8 shadow-[0_15px_45px_-10px_rgba(0,0,0,0.06),_0_0_1px_1px_rgba(0,0,0,0.02)] dark:shadow-2xl flex flex-col items-center gap-6 text-center overflow-hidden">
         <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
 
         <div className="relative z-10">

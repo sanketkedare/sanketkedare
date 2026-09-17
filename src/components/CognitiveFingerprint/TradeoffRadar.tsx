@@ -85,7 +85,8 @@ export default function TradeoffRadar({
             key={lvl}
             points={diamond(lvl * R)}
             fill="none"
-            stroke={lvl === 1.0 ? 'rgba(6, 182, 212, 0.28)' : 'rgba(255, 255, 255, 0.08)'}
+            stroke={lvl === 1.0 ? 'rgba(6, 182, 212, 0.4)' : 'currentColor'}
+            className={lvl === 1.0 ? '' : 'text-slate-300 dark:text-white/10'}
             strokeWidth={lvl === 1.0 ? 1.2 : 0.6}
             strokeDasharray={lvl < 1.0 ? '2,2' : undefined}
           />
@@ -99,7 +100,8 @@ export default function TradeoffRadar({
             y1={0}
             x2={R * axis.dx}
             y2={R * axis.dy}
-            stroke="rgba(255, 255, 255, 0.14)"
+            stroke="currentColor"
+            className="text-slate-300 dark:text-white/15"
             strokeWidth={1}
           />
         ))}
@@ -140,8 +142,12 @@ export default function TradeoffRadar({
                 fontFamily="Cambria, Cochin, Georgia, Times, serif"
                 fontSize={isSelected ? 12.5 : 11}
                 fontWeight={isSelected ? 700 : 500}
-                fill={isSelected ? '#38bdf8' : '#94a3b8'}
-                className="transition-all duration-200"
+                fill="currentColor"
+                className={`transition-all duration-200 ${
+                  isSelected
+                    ? 'text-sky-600 dark:text-[#38bdf8] fill-current'
+                    : 'text-slate-700 dark:text-[#94a3b8] fill-current'
+                }`}
               >
                 {t.axis}
               </text>
@@ -151,8 +157,12 @@ export default function TradeoffRadar({
                 textAnchor="middle"
                 fontSize={10.5}
                 fontWeight={700}
-                fill={isSelected ? '#22d3ee' : '#64748b'}
-                className="transition-all duration-200"
+                fill="currentColor"
+                className={`transition-all duration-200 ${
+                  isSelected
+                    ? 'text-cyan-600 dark:text-[#22d3ee] fill-current'
+                    : 'text-slate-500 dark:text-[#64748b] fill-current'
+                }`}
               >
                 {t.score}%
               </text>
@@ -205,8 +215,12 @@ export default function TradeoffRadar({
                 fontFamily="Cambria, Cochin, Georgia, Times, serif"
                 fontSize={isSelected ? 12 : 11}
                 fontWeight={isSelected ? 700 : 500}
-                fill={isSelected ? '#38bdf8' : '#94a3b8'}
-                className="transition-all duration-200"
+                fill="currentColor"
+                className={`transition-all duration-200 ${
+                  isSelected
+                    ? 'text-sky-600 dark:text-[#38bdf8] fill-current'
+                    : 'text-slate-700 dark:text-[#94a3b8] fill-current'
+                }`}
               >
                 Data
               </text>
@@ -217,8 +231,12 @@ export default function TradeoffRadar({
                 fontFamily="Cambria, Cochin, Georgia, Times, serif"
                 fontSize={isSelected ? 12 : 11}
                 fontWeight={isSelected ? 700 : 500}
-                fill={isSelected ? '#38bdf8' : '#94a3b8'}
-                className="transition-all duration-200"
+                fill="currentColor"
+                className={`transition-all duration-200 ${
+                  isSelected
+                    ? 'text-sky-600 dark:text-[#38bdf8] fill-current'
+                    : 'text-slate-700 dark:text-[#94a3b8] fill-current'
+                }`}
               >
                 Contracts
               </text>
@@ -228,8 +246,12 @@ export default function TradeoffRadar({
                 textAnchor="start"
                 fontSize={10.5}
                 fontWeight={700}
-                fill={isSelected ? '#22d3ee' : '#64748b'}
-                className="transition-all duration-200"
+                fill="currentColor"
+                className={`transition-all duration-200 ${
+                  isSelected
+                    ? 'text-cyan-600 dark:text-[#22d3ee] fill-current'
+                    : 'text-slate-500 dark:text-[#64748b] fill-current'
+                }`}
               >
                 {t.score}%
               </text>
@@ -282,8 +304,12 @@ export default function TradeoffRadar({
                 fontFamily="Cambria, Cochin, Georgia, Times, serif"
                 fontSize={isSelected ? 12.5 : 11}
                 fontWeight={isSelected ? 700 : 500}
-                fill={isSelected ? '#38bdf8' : '#94a3b8'}
-                className="transition-all duration-200"
+                fill="currentColor"
+                className={`transition-all duration-200 ${
+                  isSelected
+                    ? 'text-sky-600 dark:text-[#38bdf8] fill-current'
+                    : 'text-slate-700 dark:text-[#94a3b8] fill-current'
+                }`}
               >
                 {t.axis}
               </text>
@@ -293,8 +319,12 @@ export default function TradeoffRadar({
                 textAnchor="middle"
                 fontSize={10.5}
                 fontWeight={700}
-                fill={isSelected ? '#22d3ee' : '#64748b'}
-                className="transition-all duration-200"
+                fill="currentColor"
+                className={`transition-all duration-200 ${
+                  isSelected
+                    ? 'text-cyan-600 dark:text-[#22d3ee] fill-current'
+                    : 'text-slate-500 dark:text-[#64748b] fill-current'
+                }`}
               >
                 {t.score}%
               </text>
@@ -347,8 +377,12 @@ export default function TradeoffRadar({
                 fontFamily="Cambria, Cochin, Georgia, Times, serif"
                 fontSize={isSelected ? 12 : 11}
                 fontWeight={isSelected ? 700 : 500}
-                fill={isSelected ? '#38bdf8' : '#94a3b8'}
-                className="transition-all duration-200"
+                fill="currentColor"
+                className={`transition-all duration-200 ${
+                  isSelected
+                    ? 'text-sky-600 dark:text-[#38bdf8] fill-current'
+                    : 'text-slate-700 dark:text-[#94a3b8] fill-current'
+                }`}
               >
                 Optimization
               </text>
@@ -359,8 +393,12 @@ export default function TradeoffRadar({
                 fontFamily="Cambria, Cochin, Georgia, Times, serif"
                 fontSize={isSelected ? 12 : 11}
                 fontWeight={isSelected ? 700 : 500}
-                fill={isSelected ? '#38bdf8' : '#94a3b8'}
-                className="transition-all duration-200"
+                fill="currentColor"
+                className={`transition-all duration-200 ${
+                  isSelected
+                    ? 'text-sky-600 dark:text-[#38bdf8] fill-current'
+                    : 'text-slate-700 dark:text-[#94a3b8] fill-current'
+                }`}
               >
                 Strategy
               </text>
@@ -370,8 +408,12 @@ export default function TradeoffRadar({
                 textAnchor="end"
                 fontSize={10.5}
                 fontWeight={700}
-                fill={isSelected ? '#22d3ee' : '#64748b'}
-                className="transition-all duration-200"
+                fill="currentColor"
+                className={`transition-all duration-200 ${
+                  isSelected
+                    ? 'text-cyan-600 dark:text-[#22d3ee] fill-current'
+                    : 'text-slate-500 dark:text-[#64748b] fill-current'
+                }`}
               >
                 {t.score}%
               </text>

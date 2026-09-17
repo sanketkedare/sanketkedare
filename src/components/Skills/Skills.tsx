@@ -2,19 +2,19 @@
 
 import Image, { StaticImageData } from 'next/image';
 import { IconType } from 'react-icons';
-import { 
-  SiTypescript, 
-  SiRedux, 
-  SiThreedotjs, 
-  SiFramer, 
-  SiGreensock, 
-  SiFirebase, 
-  SiDocker, 
-  SiVitest, 
-  SiChartdotjs, 
-  SiJsonwebtokens, 
-  SiSocketdotio, 
-  SiSpringsecurity 
+import {
+  SiTypescript,
+  SiRedux,
+  SiThreedotjs,
+  SiFramer,
+  SiGreensock,
+  SiFirebase,
+  SiDocker,
+  SiVitest,
+  SiChartdotjs,
+  SiJsonwebtokens,
+  SiSocketdotio,
+  SiSpringsecurity
 } from 'react-icons/si';
 import { FaAws } from 'react-icons/fa';
 import { SkillsMarquee, SkillItem } from './SkillsMarquee';
@@ -152,30 +152,38 @@ export default function Skills() {
   const backendAndDb = skills.filter((s) => s.type === 'Backend Architecture' || s.type === 'Databases');
 
   return (
-    <section id="skills" className="relative w-full lg:w-[80%] mx-auto px-6 lg:px-0 min-h-screen flex flex-col justify-center border-t border-slate-200 dark:border-white/5 overflow-hidden bg-slate-50 dark:bg-[#050511] py-24">
-      <div className="mx-auto w-full">
+    <section id="skills" className="relative w-full min-h-screen flex flex-col justify-center border-t border-slate-200/80 dark:border-white/5 overflow-hidden bg-transparent dark:bg-[#050511] py-24">
+      {/* Background Ambient Glows & Dot Grid - Seamless continuity from preceding sections */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
+        <div className="absolute -top-40 right-1/4 w-[500px] h-[500px] bg-cyan-500/[0.04] dark:bg-cyan-500/[0.08] rounded-full blur-[140px] animate-pulse" style={{ animationDuration: '10s' }} />
+        <div className="absolute top-1/3 -left-20 w-[450px] h-[450px] bg-purple-500/[0.04] dark:bg-purple-500/[0.08] rounded-full blur-[130px] animate-pulse" style={{ animationDuration: '12s' }} />
+        <div className="absolute -bottom-20 right-10 w-[450px] h-[450px] bg-indigo-500/[0.04] dark:bg-indigo-500/[0.08] rounded-full blur-[120px] animate-pulse" style={{ animationDuration: '14s' }} />
+        <div className="absolute inset-0 bg-[radial-gradient(#94a3b8_1px,transparent_1px)] dark:bg-[radial-gradient(#334155_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.25] dark:opacity-[0.2]" />
+      </div>
+
+      <div className="w-full lg:w-[80%] mx-auto px-6 lg:px-0 relative z-10">
         {/* Section Title */}
         <div className="mb-8 md:mb-12 text-center md:text-left">
-          <h2 className="text-[1.75rem] md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-600 to-slate-900 dark:from-cyan-400 dark:to-white tracking-tight md:tracking-normal">
+          <h2 className="text-[1.75rem] md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-600 via-slate-900 to-indigo-900 dark:from-cyan-400 dark:via-white dark:to-slate-300 tracking-tight md:tracking-normal">
             Tech Arsenal
           </h2>
-          <p className="text-xs md:text-sm text-slate-600 dark:text-slate-400 font-medium mt-2 max-w-2xl">
+          <p className="text-xs md:text-sm text-slate-700 dark:text-slate-400 font-semibold mt-2 max-w-2xl">
             Production-proven technologies, frameworks, cloud services, and architectural primitives engineered across commercial enterprise systems and high-throughput applications.
           </p>
-          <div className="w-16 h-1 bg-gradient-to-r from-cyan-500 to-purple-500 mt-4 mx-auto md:mx-0 rounded-full" />
+          <div className="w-16 h-1 bg-gradient-to-r from-cyan-500 to-purple-500 mt-4 mx-auto md:mx-0 rounded-full shadow-sm" />
         </div>
 
         {/* Bento Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
-          
-          {/* Card 1: Frontend Mastery & 3D WebGL (2 Cols) */}
-          <div className="col-span-1 md:col-span-2 lg:col-span-2 bg-white dark:bg-[#0a0a1a] border border-slate-200 dark:border-white/10 rounded-3xl p-6 md:p-8 shadow-sm dark:shadow-2xl hover:border-cyan-400 dark:hover:border-cyan-500/50 transition-all duration-500 group">
+
+          {/* Card 1: Frontend Mastery & 3D WebGL (2 Cols - Soft Sky Cyan Studio Tint) */}
+          <div className="col-span-1 md:col-span-2 lg:col-span-2 bg-cyan-50/70 dark:bg-[#0a0a1a] backdrop-blur-xl border border-cyan-200/90 dark:border-white/10 rounded-3xl p-6 md:p-8 shadow-[0_10px_35px_-5px_rgba(6,182,212,0.12)] dark:shadow-2xl hover:border-cyan-400 dark:hover:border-cyan-500/50 hover:shadow-[0_15px_45px_-5px_rgba(6,182,212,0.2)] transition-all duration-500 group">
             <div className="flex items-center justify-between gap-3 mb-6">
-              <h3 className="text-lg md:text-xl font-black text-slate-800 dark:text-white flex items-center gap-3">
-                <span className="w-7 h-7 rounded-xl border bg-cyan-100 dark:bg-cyan-500/20 flex items-center justify-center text-cyan-600 dark:text-cyan-400 text-xs shadow-sm">🎨</span>
+              <h3 className="text-lg md:text-xl font-black text-slate-900 dark:text-white flex items-center gap-3">
+                <span className="w-7 h-7 rounded-xl border border-cyan-300/80 bg-cyan-100 dark:bg-cyan-500/20 flex items-center justify-center text-cyan-700 dark:text-cyan-400 text-xs shadow-xs">🎨</span>
                 <span>Frontend Architecture &amp; 3D WebGL</span>
               </h3>
-              <span className="text-[10px] font-black uppercase tracking-widest text-cyan-600 dark:text-cyan-400 px-2.5 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20">
+              <span className="text-[10px] font-black uppercase tracking-widest text-cyan-800 dark:text-cyan-400 px-2.5 py-1 rounded-full bg-cyan-100 border border-cyan-300/80 shadow-xs">
                 {frontend.length} Technologies
               </span>
             </div>
@@ -183,14 +191,14 @@ export default function Skills() {
             <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-3 md:gap-4">
               {frontend.map((skill) => (
                 <div key={skill.skill} className="flex flex-col items-center gap-1.5 group/item">
-                  <div className="w-11 md:w-12 h-11 md:h-12 rounded-2xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 flex items-center justify-center p-2.5 group-hover/item:scale-110 group-hover/item:border-cyan-400 dark:group-hover/item:border-cyan-500/50 group-hover/item:shadow-[0_0_20px_rgba(6,182,212,0.15)] dark:group-hover/item:shadow-[0_0_20px_rgba(6,182,212,0.3)] transition-all duration-300">
+                  <div className="w-11 md:w-12 h-11 md:h-12 rounded-2xl bg-white dark:bg-white/5 border border-cyan-100 dark:border-white/10 ring-1 ring-cyan-900/[0.04] dark:ring-transparent shadow-[0_3px_12px_rgba(6,182,212,0.08)] dark:shadow-none flex items-center justify-center p-2.5 group-hover/item:scale-110 group-hover/item:border-cyan-400 dark:group-hover/item:border-cyan-500/50 group-hover/item:shadow-[0_0_20px_rgba(6,182,212,0.25)] dark:group-hover/item:shadow-[0_0_20px_rgba(6,182,212,0.3)] transition-all duration-300">
                     {skill.src ? (
-                      <Image src={skill.src} alt={skill.skill} loading="lazy" className="w-full h-full object-contain filter group-hover/item:brightness-125 transition-all" />
+                      <Image src={skill.src} alt={skill.skill} loading="lazy" className="w-full h-full object-contain filter group-hover/item:brightness-110 transition-all" />
                     ) : skill.icon ? (
                       <skill.icon size={26} style={{ color: skill.color }} className="group-hover/item:scale-110 transition-transform" />
                     ) : null}
                   </div>
-                  <span className="text-[8.5px] md:text-[9.5px] text-slate-600 dark:text-slate-400 font-black uppercase tracking-wider text-center group-hover/item:text-cyan-600 dark:group-hover/item:text-cyan-400 transition-colors">
+                  <span className="text-[8.5px] md:text-[9.5px] text-slate-800 dark:text-slate-400 font-black uppercase tracking-wider text-center group-hover/item:text-cyan-700 dark:group-hover/item:text-cyan-400 transition-colors">
                     {skill.skill}
                   </span>
                 </div>
@@ -198,14 +206,14 @@ export default function Skills() {
             </div>
           </div>
 
-          {/* Card 2: DSA, Core Engineering & Cloud (1 Col) */}
-          <div className="col-span-1 bg-gradient-to-br from-white to-purple-50/50 dark:from-[#0a0a1a] dark:to-[#120a22] border border-slate-200 dark:border-white/10 rounded-3xl p-6 md:p-8 shadow-sm dark:shadow-2xl hover:border-purple-400 dark:hover:border-purple-500/50 transition-all duration-500">
+          {/* Card 2: DSA, Core Engineering & Cloud (1 Col - Soft Lavender Purple Studio Tint) */}
+          <div className="col-span-1 bg-purple-50/70 dark:bg-gradient-to-br dark:from-[#0a0a1a] dark:via-[#0c081e] dark:to-[#120a22] backdrop-blur-xl border border-purple-200/90 dark:border-white/10 rounded-3xl p-6 md:p-8 shadow-[0_10px_35px_-5px_rgba(168,85,247,0.12)] dark:shadow-2xl hover:border-purple-400 dark:hover:border-purple-500/50 hover:shadow-[0_15px_45px_-5px_rgba(168,85,247,0.2)] transition-all duration-500">
             <div className="flex items-center justify-between gap-3 mb-6">
-              <h3 className="text-lg md:text-xl font-black text-slate-800 dark:text-white flex items-center gap-3">
-                <span className="w-7 h-7 rounded-xl flex items-center bg-purple-100 dark:bg-purple-500/20 justify-center text-purple-600 dark:text-purple-400 text-xs shadow-sm">⚡</span>
+              <h3 className="text-lg md:text-xl font-black text-slate-900 dark:text-white flex items-center gap-3">
+                <span className="w-7 h-7 rounded-xl border border-purple-300/80 flex items-center bg-purple-100 dark:bg-purple-500/20 justify-center text-purple-700 dark:text-purple-400 text-xs shadow-xs">⚡</span>
                 <span>DSA, Core &amp; Cloud</span>
               </h3>
-              <span className="text-[10px] font-black uppercase tracking-widest text-purple-600 dark:text-purple-400 px-2.5 py-1 rounded-full bg-purple-500/10 border border-purple-500/20">
+              <span className="text-[10px] font-black uppercase tracking-widest text-purple-800 dark:text-purple-400 px-2.5 py-1 rounded-full bg-purple-100 border border-purple-300/80 shadow-xs">
                 {cloudAndCore.length} Stacks
               </span>
             </div>
@@ -213,14 +221,14 @@ export default function Skills() {
             <div className="grid grid-cols-4 sm:grid-cols-4 md:grid-cols-4 gap-2.5 md:gap-3">
               {cloudAndCore.map((skill) => (
                 <div key={skill.skill} className="flex flex-col items-center gap-1.5 group/item">
-                  <div className="w-11 md:w-12 h-11 md:h-12 rounded-2xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 flex items-center justify-center p-2.5 group-hover/item:scale-110 group-hover/item:border-purple-400 dark:group-hover/item:border-purple-500/50 group-hover/item:shadow-[0_0_20px_rgba(168,85,247,0.15)] dark:group-hover/item:shadow-[0_0_20px_rgba(168,85,247,0.3)] transition-all duration-300">
+                  <div className="w-11 md:w-12 h-11 md:h-12 rounded-2xl bg-white dark:bg-white/5 border border-purple-100 dark:border-white/10 ring-1 ring-purple-900/[0.04] dark:ring-transparent shadow-[0_3px_12px_rgba(168,85,247,0.08)] dark:shadow-none flex items-center justify-center p-2.5 group-hover/item:scale-110 group-hover/item:border-purple-400 dark:group-hover/item:border-purple-500/50 group-hover/item:shadow-[0_0_20px_rgba(168,85,247,0.25)] dark:group-hover/item:shadow-[0_0_20px_rgba(168,85,247,0.3)] transition-all duration-300">
                     {skill.src ? (
                       <Image src={skill.src} alt={skill.skill} loading="lazy" className="w-full h-full object-contain" />
                     ) : skill.icon ? (
                       <skill.icon size={24} style={{ color: skill.color }} className="group-hover/item:scale-110 transition-transform" />
                     ) : null}
                   </div>
-                  <span className="text-[8.5px] md:text-[9.5px] text-slate-600 dark:text-slate-400 font-bold tracking-tight text-center group-hover/item:text-purple-600 dark:group-hover/item:text-purple-400 transition-colors">
+                  <span className="text-[8.5px] md:text-[9.5px] text-slate-800 dark:text-slate-400 font-bold tracking-tight text-center group-hover/item:text-purple-700 dark:group-hover/item:text-purple-400 transition-colors">
                     {skill.skill}
                   </span>
                 </div>
@@ -228,20 +236,20 @@ export default function Skills() {
             </div>
           </div>
 
-          {/* Card 3: Backend Architecture & Distributed Databases (3 Cols with Live Marquee) */}
-          <div className="col-span-1 md:col-span-2 lg:col-span-3 bg-white dark:bg-[#0a0a1a] border border-slate-200 dark:border-white/10 rounded-3xl p-6 md:p-8 shadow-sm dark:shadow-2xl hover:border-indigo-400 dark:hover:border-indigo-500/50 transition-all duration-500 overflow-hidden relative">
-            <div className="absolute top-0 right-0 w-80 h-80 bg-indigo-500/5 dark:bg-indigo-500/10 rounded-full blur-[120px] pointer-events-none" />
+          {/* Card 3: Backend Architecture & Distributed Databases (3 Cols - Soft Royal Indigo Studio Tint with Live Marquee) */}
+          <div className="col-span-1 md:col-span-2 lg:col-span-3 bg-indigo-50/70 dark:bg-[#0a0a1a] backdrop-blur-xl border border-indigo-200/90 dark:border-white/10 rounded-3xl p-6 md:p-8 shadow-[0_10px_35px_-5px_rgba(99,102,241,0.12)] dark:shadow-2xl hover:border-indigo-400 dark:hover:border-indigo-500/50 hover:shadow-[0_15px_45px_-5px_rgba(99,102,241,0.2)] transition-all duration-500 overflow-hidden relative">
+            <div className="absolute top-0 right-0 w-80 h-80 bg-indigo-500/10 dark:bg-indigo-500/10 rounded-full blur-[120px] pointer-events-none" />
 
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 relative z-10">
-              <h3 className="text-lg md:text-2xl font-black text-slate-800 dark:text-white flex items-center gap-3">
-                <span className="w-7 h-7 rounded-xl flex items-center bg-indigo-100 dark:bg-indigo-500/20 justify-center text-indigo-600 dark:text-indigo-400 text-xs shadow-sm">⚙️</span>
+              <h3 className="text-lg md:text-2xl font-black text-slate-900 dark:text-white flex items-center gap-3">
+                <span className="w-7 h-7 rounded-xl border border-indigo-300/80 flex items-center bg-indigo-100 dark:bg-indigo-500/20 justify-center text-indigo-700 dark:text-indigo-400 text-xs shadow-xs">⚙️</span>
                 <span>Backend Microservices, APIs &amp; Distributed Databases</span>
               </h3>
-              <span className="text-[10px] font-black uppercase tracking-widest text-indigo-600 dark:text-indigo-400 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 self-start sm:self-auto">
+              <span className="text-[10px] font-black uppercase tracking-widest text-indigo-800 dark:text-indigo-400 px-3 py-1 rounded-full bg-indigo-100 border border-indigo-300/80 shadow-xs self-start sm:self-auto">
                 Databases &amp; APIs
               </span>
             </div>
-            
+
             <div className="relative z-10 pt-2 pb-2">
               <SkillsMarquee backend={backendAndDb} />
             </div>
@@ -253,13 +261,13 @@ export default function Skills() {
         <div className="mt-10 pt-10 border-t border-slate-200/80 dark:border-white/10">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-6">
             <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[10px] md:text-xs font-black uppercase tracking-widest bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 border border-cyan-500/20 mb-2">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[10px] md:text-xs font-black uppercase tracking-widest bg-cyan-500/10 text-cyan-700 dark:text-cyan-400 border border-cyan-500/20 mb-2 shadow-2xs">
                 <span>⚡ Professional Paradigms &amp; Methodologies</span>
               </div>
-              <h3 className="text-xl md:text-3xl font-black text-slate-800 dark:text-white tracking-tight">
+              <h3 className="text-xl md:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
                 Software Engineering Disciplines
               </h3>
-              <p className="text-xs md:text-sm text-slate-600 dark:text-slate-400 font-medium mt-1 max-w-2xl">
+              <p className="text-xs md:text-sm text-slate-700 dark:text-slate-400 font-semibold mt-1 max-w-2xl">
                 Architectural patterns, engineering principles, and quality standards applied across production systems.
               </p>
             </div>
@@ -269,9 +277,9 @@ export default function Skills() {
             {engineeringPractices.map((practice) => (
               <div
                 key={practice.title}
-                className={`rounded-3xl bg-white dark:bg-[#0a0a1a] border border-slate-200 dark:border-white/10 p-6 shadow-sm dark:shadow-2xl transition-all duration-500 ${practice.borderColor}`}
+                className={`rounded-3xl bg-slate-100/60 dark:bg-[#0a0a1a] backdrop-blur-xl border border-slate-200/90 dark:border-white/10 p-6 shadow-[0_8px_25px_-5px_rgba(15,23,42,0.06)] dark:shadow-2xl transition-all duration-500 ${practice.borderColor}`}
               >
-                <div className="flex items-center justify-between gap-2 mb-4 pb-3 border-b border-slate-100 dark:border-white/5">
+                <div className="flex items-center justify-between gap-2 mb-4 pb-3 border-b border-slate-200/80 dark:border-white/5">
                   <div className="flex items-center gap-2">
                     <span className="text-base">{practice.iconText}</span>
                     <h4 className="text-sm md:text-base font-black text-slate-900 dark:text-white tracking-tight">
@@ -287,7 +295,7 @@ export default function Skills() {
                   {practice.terms.map((term) => (
                     <span
                       key={term}
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-200/80 dark:border-white/5 text-[11px] font-bold text-slate-700 dark:text-slate-300 hover:border-cyan-400 dark:hover:border-cyan-500/40 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-slate-200/90 dark:bg-white/[0.04] dark:border-white/5 text-[11px] font-bold text-slate-800 dark:text-slate-300 hover:border-cyan-500/40 dark:hover:border-cyan-500/40 hover:text-cyan-700 dark:hover:text-cyan-400 transition-all shadow-xs"
                     >
                       <span className={`w-1.5 h-1.5 rounded-full ${practice.dotColor} shrink-0 shadow-sm`} />
                       <span>{term}</span>

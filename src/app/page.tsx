@@ -9,7 +9,7 @@ import Contacts from '@/components/Contact/Contacts';
 
 export default function Page() {
   return (
-    <main className="w-full bg-[#050511]">
+    <main className="w-full bg-transparent dark:bg-[#050511] transition-colors duration-300">
       <Home />
       <About />
       <Experience />

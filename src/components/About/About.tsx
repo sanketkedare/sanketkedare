@@ -27,8 +27,39 @@ export default function About() {
   const textY = useTransform(scrollYProgress, [0, 1], ["5%", "-5%"]);
 
   return (
-    <section id="about" ref={containerRef} style={{ position: 'relative' }} className="relative w-full lg:w-[80%] mx-auto px-6 lg:px-0 min-h-screen py-24 flex items-center justify-center border-t border-slate-200 dark:border-white/5 bg-slate-50 dark:bg-[#050511]">
-      <div className="w-full">
+    <section id="about" ref={containerRef} style={{ position: 'relative' }} className="relative w-full min-h-screen py-24 flex items-center justify-center border-t border-slate-200/80 dark:border-white/5 bg-transparent dark:bg-[#050511] overflow-hidden">
+      {/* ── Background Kinetic Atmosphere & Floating Gradient Orbs (Continuous from Section 1) ── */}
+      <div 
+        className="absolute inset-0 pointer-events-none [mask-image:radial-gradient(ellipse_75%_65%_at_50%_50%,black_35%,transparent_85%)] opacity-[0.25] dark:opacity-[0.14] text-slate-400 dark:text-cyan-400"
+        style={{
+          backgroundImage: `radial-gradient(currentColor 1.2px, transparent 1.2px)`,
+          backgroundSize: '32px 32px'
+        }}
+      />
+
+      {/* Kinetic Atmospheric Light Drift 1 */}
+      <motion.div
+        animate={{
+          x: [0, 35, -25, 0],
+          y: [0, -30, 20, 0],
+          scale: [1, 1.12, 0.95, 1],
+        }}
+        transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }}
+        className="absolute top-1/4 -left-20 w-[420px] h-[420px] bg-gradient-to-tr from-cyan-400/20 via-sky-300/15 to-transparent dark:from-cyan-600/10 dark:to-transparent rounded-full blur-[120px] pointer-events-none -z-10"
+      />
+
+      {/* Kinetic Atmospheric Light Drift 2 */}
+      <motion.div
+        animate={{
+          x: [0, -30, 25, 0],
+          y: [0, 35, -20, 0],
+          scale: [1, 0.92, 1.15, 1],
+        }}
+        transition={{ duration: 24, repeat: Infinity, ease: 'easeInOut' }}
+        className="absolute bottom-1/4 -right-20 w-[420px] h-[420px] bg-gradient-to-bl from-purple-400/20 via-indigo-300/15 to-transparent dark:from-purple-600/10 dark:to-transparent rounded-full blur-[130px] pointer-events-none -z-10"
+      />
+
+      <div className="w-full lg:w-[80%] mx-auto px-6 lg:px-0 relative z-10">
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -87,10 +118,11 @@ export default function About() {
             }}
             className="lg:col-span-3 flex flex-col gap-4 md:gap-6 text-xs md:text-sm text-slate-700 dark:text-slate-300 leading-relaxed z-10"
           >
+            {/* ── Card 1: Core Experience ── */}
             <motion.div
               variants={textVariants}
               whileHover={{ y: -5, scale: 1.01 }}
-              className="group relative cursor-pointer overflow-hidden bg-white/40 dark:bg-white/10 border-2 border-slate-200 dark:border-white/10 p-5 md:p-6 pt-12 md:pt-6 rounded-[1.5rem] md:rounded-[1.5rem] backdrop-blur-2xl shadow-xl hover:shadow-cyan-500/10 hover:bg-slate-50 dark:hover:bg-white/15 transition-all duration-500"
+              className="group relative cursor-pointer overflow-hidden bg-slate-900/[0.03] hover:bg-slate-900/[0.05] dark:bg-white/10 dark:hover:bg-white/15 border border-slate-300/80 hover:border-cyan-500/50 dark:border-2 dark:border-white/10 p-5 md:p-6 pt-12 md:pt-6 rounded-[1.5rem] md:rounded-[1.5rem] backdrop-blur-xl shadow-[0_12px_32px_-6px_rgba(15,23,42,0.06),_0_0_0_1px_rgba(255,255,255,0.8)_inset] dark:shadow-xl hover:shadow-[0_20px_45px_-8px_rgba(6,182,212,0.18)] dark:hover:shadow-cyan-500/10 transition-all duration-500"
             >
               <div className="flex items-center gap-3 mb-4">
                 <span className="px-2.5 py-0.5 bg-cyan-500/10 dark:bg-cyan-500/20 text-cyan-600 dark:text-cyan-400 text-[9px] font-black uppercase tracking-[0.2em] rounded-full border border-cyan-500/20">
@@ -104,10 +136,11 @@ export default function About() {
             </motion.div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* ── Card 2: Problem Solving & Cloud ── */}
               <motion.div
                 variants={textVariants}
                 whileHover={{ y: -5, scale: 1.01 }}
-                className="group relative cursor-pointer overflow-hidden bg-white/40 dark:bg-white/10 border-2 border-slate-200 dark:border-white/10 p-6 rounded-[1.5rem] backdrop-blur-2xl shadow-lg hover:shadow-purple-500/10 hover:bg-slate-50 dark:hover:bg-white/15 transition-all duration-500"
+                className="group relative cursor-pointer overflow-hidden bg-slate-900/[0.03] hover:bg-slate-900/[0.05] dark:bg-white/10 dark:hover:bg-white/15 border border-slate-300/80 hover:border-purple-500/50 dark:border-2 dark:border-white/10 p-6 rounded-[1.5rem] backdrop-blur-xl shadow-[0_12px_32px_-6px_rgba(15,23,42,0.06),_0_0_0_1px_rgba(255,255,255,0.8)_inset] dark:shadow-lg hover:shadow-[0_20px_45px_-8px_rgba(168,85,247,0.18)] dark:hover:shadow-purple-500/10 transition-all duration-500"
               >
                 <div className="flex items-center gap-3 mb-4">
                   <span className="px-2.5 py-0.5 bg-purple-500/10 dark:bg-purple-500/20 text-purple-600 dark:text-purple-400 text-[9px] font-black uppercase tracking-[0.2em] rounded-full border border-purple-500/20">
@@ -115,23 +148,24 @@ export default function About() {
                   </span>
                   <div className="h-px flex-1 bg-gradient-to-r from-purple-500/30 to-transparent" />
                 </div>
-                <p className="text-slate-700 dark:text-slate-400 text-[13px] md:text-sm">
+                <p className="text-slate-700 dark:text-slate-400 text-[13px] md:text-sm leading-relaxed">
                   {passage_2}
                 </p>
               </motion.div>
 
+              {/* ── Card 3: Philosophy & Craft ── */}
               <motion.div
                 variants={textVariants}
                 whileHover={{ y: -5, scale: 1.01 }}
-                className="group relative cursor-pointer overflow-hidden bg-gradient-to-br from-cyan-500/5 to-purple-500/5 dark:from-cyan-500/10 dark:to-purple-500/10 border-2 border-cyan-500/30 dark:border-cyan-500/20 p-6 rounded-[1.5rem] backdrop-blur-2xl shadow-lg hover:shadow-cyan-500/20 hover:from-cyan-500/10 hover:to-purple-500/10 transition-all duration-500"
+                className="group relative cursor-pointer overflow-hidden bg-gradient-to-br from-cyan-500/[0.05] to-purple-500/[0.05] hover:from-cyan-500/[0.09] hover:to-purple-500/[0.09] dark:from-cyan-500/10 dark:to-purple-500/10 border border-cyan-500/30 hover:border-cyan-500/60 dark:border-2 dark:border-cyan-500/30 dark:dark:border-cyan-500/20 p-6 rounded-[1.5rem] backdrop-blur-xl shadow-[0_12px_32px_-6px_rgba(6,182,212,0.1),_0_0_0_1px_rgba(255,255,255,0.8)_inset] dark:shadow-lg hover:shadow-[0_20px_45px_-8px_rgba(99,102,241,0.2)] dark:hover:shadow-cyan-500/20 dark:hover:from-cyan-500/10 dark:hover:to-purple-500/10 transition-all duration-500"
               >
                 <div className="flex items-center gap-3 mb-4">
-                  <span className="px-2.5 py-0.5 bg-white dark:bg-white/20 text-slate-900 dark:text-white text-[9px] font-black uppercase tracking-[0.2em] rounded-full border border-white/40 shadow-sm">
+                  <span className="px-2.5 py-0.5 bg-cyan-500/10 dark:bg-white/20 text-cyan-800 dark:text-white text-[9px] font-black uppercase tracking-[0.2em] rounded-full border border-cyan-500/30 dark:border-white/40 shadow-sm">
                     03 // Philosophy & Craft
                   </span>
-                  <div className="h-px flex-1 bg-gradient-to-r from-white to-transparent opacity-20" />
+                  <div className="h-px flex-1 bg-gradient-to-r from-cyan-500/30 to-transparent dark:from-white dark:to-transparent opacity-20" />
                 </div>
-                <p className="text-slate-900 dark:text-white font-medium text-[13px] md:text-sm">
+                <p className="text-slate-800 dark:text-white font-medium text-[13px] md:text-sm leading-relaxed">
                   {passage_3}
                 </p>
               </motion.div>

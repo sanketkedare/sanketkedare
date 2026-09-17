@@ -151,7 +151,7 @@ export default function ChatWidget() {
               target={isInternalAnchor ? undefined : '_blank'}
               rel={isInternalAnchor ? undefined : 'noreferrer'}
               onClick={isInternalAnchor ? () => setIsOpen(false) : undefined}
-              className="inline-flex items-center gap-1 text-cyan-400 hover:text-cyan-300 font-bold underline underline-offset-2 decoration-cyan-500/50 hover:decoration-cyan-400 transition-colors"
+              className="inline-flex items-center gap-1 text-cyan-600 dark:text-cyan-400 hover:text-cyan-500 dark:hover:text-cyan-300 font-bold underline underline-offset-2 decoration-cyan-500/50 hover:decoration-cyan-400 transition-colors"
             >
               <span>{linkText}</span>
               {!isInternalAnchor && <FiExternalLink size={11} className="inline shrink-0" />}
@@ -163,7 +163,7 @@ export default function ChatWidget() {
         const boldMatch = part.match(/^\*\*(.*?)\*\*$/);
         if (boldMatch) {
           return (
-            <strong key={partIdx} className="font-black text-white">
+            <strong key={partIdx} className="font-black text-slate-900 dark:text-white">
               {boldMatch[1]}
             </strong>
           );
@@ -174,7 +174,7 @@ export default function ChatWidget() {
 
       if (isBullet) {
         return (
-          <li key={lineIdx} className="ml-4 list-disc text-slate-300 mb-1 leading-relaxed">
+          <li key={lineIdx} className="ml-4 list-disc text-slate-700 dark:text-slate-300 mb-1 leading-relaxed">
             {parsedContent}
           </li>
         );
@@ -182,7 +182,7 @@ export default function ChatWidget() {
 
       if (line.trim().startsWith('### ')) {
         return (
-          <h4 key={lineIdx} className="text-sm font-black text-cyan-300 uppercase tracking-wider mt-3 mb-1">
+          <h4 key={lineIdx} className="text-sm font-black text-cyan-600 dark:text-cyan-300 uppercase tracking-wider mt-3 mb-1">
             {line.replace(/^###\s+/, '')}
           </h4>
         );
@@ -228,21 +228,21 @@ export default function ChatWidget() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.94 }}
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-            className="fixed bottom-20 right-4 sm:bottom-22 sm:right-6 z-50 w-[calc(100vw-2rem)] sm:w-[420px] max-w-[430px] h-[560px] max-h-[82vh] rounded-3xl bg-[#090a18]/95 border border-white/15 backdrop-blur-2xl shadow-2xl shadow-black/80 flex flex-col overflow-hidden"
+            className="fixed bottom-20 right-4 sm:bottom-22 sm:right-6 z-50 w-[calc(100vw-2rem)] sm:w-[420px] max-w-[430px] h-[560px] max-h-[82vh] rounded-3xl bg-white/95 dark:bg-[#090a18]/95 border border-slate-200 dark:border-white/15 backdrop-blur-2xl shadow-2xl shadow-slate-900/15 dark:shadow-black/80 flex flex-col overflow-hidden"
           >
             {/* Window Header */}
-            <div className="p-4 border-b border-white/10 bg-slate-950/60 flex items-center justify-between shrink-0">
+            <div className="p-4 border-b border-slate-200 dark:border-white/10 bg-slate-100/90 dark:bg-slate-950/60 flex items-center justify-between shrink-0">
               <div className="flex items-center gap-3">
                 <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-cyan-500 to-purple-600 flex items-center justify-center text-white text-xs font-black shadow-md shadow-cyan-500/30">
                   <FiCpu size={15} />
                 </div>
                 <div>
-                  <h3 className="text-xs font-black text-white tracking-tight flex items-center gap-1.5">
+                  <h3 className="text-xs font-black text-slate-900 dark:text-white tracking-tight flex items-center gap-1.5">
                     <span>Sanket&apos;s AI Assistant</span>
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                   </h3>
 
-                  <p className="text-[10px] text-cyan-400/90 font-medium tracking-wide">
+                  <p className="text-[10px] text-cyan-600 dark:text-cyan-400/90 font-medium tracking-wide">
                     Online • Portfolio Architecture
                   </p>
                 </div>
@@ -254,7 +254,7 @@ export default function ChatWidget() {
                   type="button"
                   onClick={handleClearChat}
                   title="Clear conversation"
-                  className="w-7 h-7 rounded-lg flex items-center justify-center text-slate-400 hover:text-rose-400 hover:bg-rose-500/10 transition-colors"
+                  className="w-7 h-7 rounded-lg flex items-center justify-center text-slate-500 dark:text-slate-400 hover:text-rose-500 hover:bg-rose-500/10 transition-colors"
                 >
                   <FiTrash2 size={13} />
                 </button>
@@ -262,7 +262,7 @@ export default function ChatWidget() {
                   type="button"
                   onClick={() => setIsOpen(false)}
                   title="Close chat"
-                  className="w-7 h-7 rounded-lg flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/10 transition-colors"
+                  className="w-7 h-7 rounded-lg flex items-center justify-center text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/60 dark:hover:bg-white/10 transition-colors"
                 >
                   <FiX size={16} />
                 </button>
@@ -280,15 +280,15 @@ export default function ChatWidget() {
                     className={`max-w-[85%] rounded-2xl p-3.5 shadow-md ${
                       msg.role === 'user'
                         ? 'bg-gradient-to-r from-cyan-600 to-purple-600 text-white rounded-br-xs'
-                        : 'bg-white/5 border border-white/10 text-slate-200 rounded-bl-xs'
+                        : 'bg-slate-100 dark:bg-white/5 border border-slate-200/80 dark:border-white/10 text-slate-800 dark:text-slate-200 rounded-bl-xs'
                     }`}
                   >
                     {renderFormattedText(msg.text)}
 
                     {/* Meta info badge for AI */}
                     {msg.role === 'model' && (
-                      <div className="mt-2.5 pt-1.5 border-t border-white/5 flex items-center justify-between text-[9px] text-slate-400 font-mono">
-                        <span className="flex items-center gap-1 text-cyan-400/80">
+                      <div className="mt-2.5 pt-1.5 border-t border-slate-200 dark:border-white/5 flex items-center justify-between text-[9px] text-slate-500 dark:text-slate-400 font-mono">
+                        <span className="flex items-center gap-1 text-cyan-600 dark:text-cyan-400/80">
                           <BsStars size={10} />
                           <span>Portfolio Intelligence</span>
                         </span>
@@ -306,7 +306,7 @@ export default function ChatWidget() {
                           type="button"
                           onClick={() => handleSendMessage(suggestion)}
                           disabled={isLoading}
-                          className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold bg-cyan-500/10 hover:bg-cyan-500/25 border border-cyan-500/30 text-cyan-300 hover:text-white transition-all shadow-xs group"
+                          className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/30 text-cyan-700 dark:text-cyan-300 hover:text-cyan-900 dark:hover:text-white transition-all shadow-xs group"
                         >
                           <FiCornerDownRight size={9} className="opacity-70 group-hover:translate-x-0.5 transition-transform" />
                           <span>{suggestion}</span>
@@ -319,11 +319,11 @@ export default function ChatWidget() {
 
               {/* Typing / Processing Shimmer */}
               {isLoading && (
-                <div className="flex items-center gap-2 p-3 rounded-2xl bg-white/5 border border-white/10 w-fit text-slate-400 text-xs">
+                <div className="flex items-center gap-2 p-3 rounded-2xl bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 w-fit text-slate-600 dark:text-slate-400 text-xs">
                   <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-bounce" style={{ animationDelay: '0ms' }} />
                   <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-bounce" style={{ animationDelay: '150ms' }} />
                   <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-bounce" style={{ animationDelay: '300ms' }} />
-                  <span className="text-[10px] font-mono text-cyan-300 ml-1">Analyzing portfolio architecture...</span>
+                  <span className="text-[10px] font-mono text-cyan-600 dark:text-cyan-300 ml-1">Analyzing portfolio architecture...</span>
                 </div>
               )}
 
@@ -331,7 +331,7 @@ export default function ChatWidget() {
             </div>
 
             {/* Input & Footer Bar */}
-            <div className="p-3 border-t border-white/10 bg-slate-950/70 shrink-0">
+            <div className="p-3 border-t border-slate-200 dark:border-white/10 bg-slate-50/95 dark:bg-slate-950/70 shrink-0">
               <form
                 onSubmit={(e) => {
                   e.preventDefault();
@@ -347,7 +347,7 @@ export default function ChatWidget() {
                   placeholder="Ask about Sanket's stack, case studies..."
                   disabled={isLoading}
                   maxLength={1500}
-                  className="flex-1 px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder:text-slate-500 text-xs focus:outline-none focus:border-cyan-400 focus:bg-white/10 transition-colors disabled:opacity-50"
+                  className="flex-1 px-3.5 py-2.5 rounded-xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 text-xs focus:outline-none focus:border-cyan-500 focus:bg-white dark:focus:bg-white/10 transition-colors disabled:opacity-50"
                 />
                 <button
                   type="submit"
@@ -357,7 +357,7 @@ export default function ChatWidget() {
                   <FiSend size={14} />
                 </button>
               </form>
-              <div className="text-[8.5px] text-center text-slate-400 mt-2 font-medium">
+              <div className="text-[8.5px] text-center text-slate-500 dark:text-slate-400 mt-2 font-medium">
                 🔒 Protected by topic guardrails • Answers restricted to Sanket&apos;s portfolio.
               </div>
             </div>

@@ -148,17 +148,23 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{
             __html: `
               try {
-                document.documentElement.classList.add('dark');
-                document.documentElement.classList.remove('light');
-                document.documentElement.style.colorScheme = 'dark';
-                localStorage.setItem('theme', 'dark');
-                localStorage.setItem('sanket-portfolio-theme', 'dark');
+                var stored = localStorage.getItem('sanket-portfolio-theme') || localStorage.getItem('theme');
+                var isLight = stored === 'light';
+                if (isLight) {
+                  document.documentElement.classList.remove('dark');
+                  document.documentElement.classList.add('light');
+                  document.documentElement.style.colorScheme = 'light';
+                } else {
+                  document.documentElement.classList.add('dark');
+                  document.documentElement.classList.remove('light');
+                  document.documentElement.style.colorScheme = 'dark';
+                }
               } catch (_) {}
             `,
           }}
         />
       </head>
-      <body className={`${inter.variable} ${outfit.variable} bg-[#050511] text-slate-300 antialiased min-h-screen flex flex-col selection:bg-cyan-500/30 selection:text-white`} suppressHydrationWarning>
+      <body className={`${inter.variable} ${outfit.variable} bg-transparent text-slate-700 dark:text-slate-300 antialiased min-h-screen flex flex-col selection:bg-cyan-500/30 selection:text-white transition-colors duration-300`} suppressHydrationWarning>
         <ThemeProvider>
           <AntdRegistry>
             <Sidebar />

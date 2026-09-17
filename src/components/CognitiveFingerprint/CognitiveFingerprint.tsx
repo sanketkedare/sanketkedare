@@ -114,7 +114,7 @@ export default function CognitiveFingerprint() {
     <section
       id="cognitive"
       ref={sectionRef}
-      className="relative w-full lg:w-[80%] mx-auto px-4 sm:px-6 lg:px-0 min-h-screen py-16 md:py-24 flex flex-col justify-center border-t border-slate-200 dark:border-white/5 bg-slate-50 dark:bg-[#050511] overflow-hidden"
+      className="relative w-full lg:w-[80%] mx-auto px-4 sm:px-6 lg:px-0 min-h-screen py-16 md:py-24 flex flex-col justify-center border-t border-slate-200/80 dark:border-white/5 bg-transparent dark:bg-[#050511] overflow-hidden"
     >
       {/* Ambient background glows */}
       <div className="absolute top-1/4 -left-20 w-80 sm:w-96 h-80 sm:h-96 bg-purple-600/10 blur-[130px] rounded-full pointer-events-none" />
@@ -146,7 +146,7 @@ export default function CognitiveFingerprint() {
           initial={{ opacity: 0, y: 16 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="mb-6 sm:mb-8 p-4 sm:p-5 md:p-6 rounded-2xl md:rounded-3xl bg-white/70 dark:bg-[#0c0d1e]/80 border border-slate-200 dark:border-white/10 backdrop-blur-xl shadow-lg hover:border-cyan-500/30 transition-all duration-300"
+          className="mb-6 sm:mb-8 p-4 sm:p-5 md:p-6 rounded-2xl md:rounded-3xl bg-white/90 dark:bg-[#0c0d1e]/80 border border-slate-200/90 dark:border-white/10 backdrop-blur-2xl shadow-[0_10px_35px_-5px_rgba(0,0,0,0.05),_0_0_1px_1px_rgba(0,0,0,0.02)] hover:border-cyan-500/30 transition-all duration-300"
         >
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-3.5 sm:gap-4">
             <div className="flex items-center gap-3">
@@ -182,7 +182,7 @@ export default function CognitiveFingerprint() {
           initial={{ opacity: 0, y: 18 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="mb-6 sm:mb-8 rounded-2xl sm:rounded-3xl bg-white/60 dark:bg-[#0c0d1e]/80 border border-slate-200 dark:border-white/10 backdrop-blur-xl shadow-xl overflow-hidden"
+          className="mb-6 sm:mb-8 rounded-2xl sm:rounded-3xl bg-white/85 dark:bg-[#0c0d1e]/80 border border-slate-200/90 dark:border-white/10 backdrop-blur-2xl shadow-[0_15px_40px_-10px_rgba(0,0,0,0.06),_0_0_1px_1px_rgba(0,0,0,0.02)] overflow-hidden"
         >
           {/* Top Quick Selector Tabs — Effortless navigation on mobile and desktop */}
           <div className="p-2.5 sm:p-4 bg-slate-100/70 dark:bg-white/[0.02] border-b border-slate-200 dark:border-white/10">
@@ -233,7 +233,7 @@ export default function CognitiveFingerprint() {
           {/* Console Main Content Grid: Radar on Left, Decision Lab on Right */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 md:gap-8 p-4 sm:p-6 md:p-8 items-stretch">
             {/* Left Column: Visual Radar Chart & Anchor Spectrum (lg:col-span-5) */}
-            <div className="lg:col-span-5 flex flex-col items-center justify-between gap-4 sm:gap-5 p-3 sm:p-4 rounded-2xl bg-slate-50/80 dark:bg-[#070817]/90 border border-slate-200 dark:border-white/5">
+            <div className="lg:col-span-5 flex flex-col items-center justify-between gap-4 sm:gap-5 p-3 sm:p-4 rounded-2xl bg-white/90 dark:bg-[#070817]/90 border border-slate-200/80 dark:border-white/5 shadow-sm">
               <div className="w-full flex items-center justify-between">
                 <span className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-cyan-500 dark:text-cyan-400">
                   Tradeoff Vector Plane
@@ -254,7 +254,7 @@ export default function CognitiveFingerprint() {
               </div>
 
               {/* Tradeoff Spectrum Meter */}
-              <div className="w-full bg-white/50 dark:bg-white/[0.02] p-3 sm:p-3.5 rounded-xl border border-slate-200/80 dark:border-white/5">
+              <div className="w-full bg-slate-50/90 dark:bg-white/[0.02] p-3 sm:p-3.5 rounded-xl border border-slate-200/70 dark:border-white/5">
                 <div className="flex items-center justify-between text-[11px] sm:text-xs mb-1.5 gap-2">
                   <span className="font-bold text-cyan-500 dark:text-cyan-400 truncate">
                     {activeTradeoff.left_anchor}

@@ -131,3 +131,6 @@ When the assistant generates an answer, citations are formatted as interactive c
 - use mongo db for catching 
 - update mongo data of catching regulerly. 
 - store portfolio chat recods also 
+
+# next
+- use in portfolio https://reactbits.dev/

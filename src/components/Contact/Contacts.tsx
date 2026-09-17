@@ -128,7 +128,7 @@ export default function Contacts() {
   const currentTheme = accentMap[activeAccent];
 
   return (
-    <section id="contact" className="relative w-full py-24 md:py-32 bg-white dark:bg-[#050511] overflow-hidden transition-colors duration-1000">
+    <section id="contact" className="relative w-full py-24 md:py-32 bg-transparent dark:bg-[#050511] overflow-hidden transition-colors duration-1000 border-t border-slate-200/80 dark:border-white/5">
       <div className="absolute inset-0 pointer-events-none">
         <motion.div
           animate={{
@@ -211,22 +211,22 @@ export default function Contacts() {
             <form
               ref={formRef}
               onSubmit={sendEmail}
-              className="relative bg-white/40 dark:bg-white/5 backdrop-blur-3xl border border-slate-100 dark:border-white/10 p-6 md:p-10 rounded-3xl shadow-xl flex flex-col gap-5 md:gap-6"
+              className="relative bg-white/90 dark:bg-white/5 backdrop-blur-3xl border border-slate-200/90 dark:border-white/10 p-6 md:p-10 rounded-3xl shadow-[0_15px_45px_-10px_rgba(0,0,0,0.06),_0_0_1px_1px_rgba(0,0,0,0.02)] flex flex-col gap-5 md:gap-6"
             >
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
                 <div className="space-y-1.5">
-                  <span className="text-[8px] md:text-[9px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest ml-1">Full Name</span>
-                  <input type="text" name="name" required placeholder="Sanket Kedare" className="w-full bg-slate-50/50 dark:bg-white/5 border border-slate-100 dark:border-white/5 focus:border-cyan-500/30 rounded-xl px-4 md:px-5 py-3 md:py-3.5 text-xs md:text-sm transition-all focus:outline-none dark:text-white placeholder:text-slate-300 dark:placeholder:text-slate-700" />
+                  <span className="text-[8px] md:text-[9px] font-black text-slate-500 dark:text-slate-400 uppercase tracking-widest ml-1">Full Name</span>
+                  <input type="text" name="name" required placeholder="Sanket Kedare" className="w-full bg-slate-50 dark:bg-white/5 border border-slate-200/80 dark:border-white/5 focus:border-cyan-500 focus:bg-white dark:focus:bg-white/10 rounded-xl px-4 md:px-5 py-3 md:py-3.5 text-xs md:text-sm transition-all focus:outline-none text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-700 shadow-xs" />
                 </div>
                 <div className="space-y-1.5">
-                  <span className="text-[8px] md:text-[9px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest ml-1">Email Address</span>
-                  <input type="email" name="email" required placeholder="sanket@dev.com" className="w-full bg-slate-50/50 dark:bg-white/5 border border-slate-100 dark:border-white/5 focus:border-cyan-500/30 rounded-xl px-4 md:px-5 py-3 md:py-3.5 text-xs md:text-sm transition-all focus:outline-none dark:text-white placeholder:text-slate-300 dark:placeholder:text-slate-700" />
+                  <span className="text-[8px] md:text-[9px] font-black text-slate-500 dark:text-slate-400 uppercase tracking-widest ml-1">Email Address</span>
+                  <input type="email" name="email" required placeholder="sanket@dev.com" className="w-full bg-slate-50 dark:bg-white/5 border border-slate-200/80 dark:border-white/5 focus:border-cyan-500 focus:bg-white dark:focus:bg-white/10 rounded-xl px-4 md:px-5 py-3 md:py-3.5 text-xs md:text-sm transition-all focus:outline-none text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-700 shadow-xs" />
                 </div>
               </div>
 
               <div className="space-y-1.5">
-                <span className="text-[8px] md:text-[9px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest ml-1">Your Message</span>
-                <textarea name="message" required placeholder="Describe your inquiry or vision..." rows={4} className="w-full bg-slate-50/50 dark:bg-white/5 border border-slate-100 dark:border-white/5 focus:border-cyan-500/30 rounded-xl px-4 md:px-5 py-3 md:py-3.5 text-xs md:text-sm transition-all focus:outline-none dark:text-white resize-none placeholder:text-slate-300 dark:placeholder:text-slate-700" />
+                <span className="text-[8px] md:text-[9px] font-black text-slate-500 dark:text-slate-400 uppercase tracking-widest ml-1">Your Message</span>
+                <textarea name="message" required placeholder="Describe your inquiry or vision..." rows={4} className="w-full bg-slate-50 dark:bg-white/5 border border-slate-200/80 dark:border-white/5 focus:border-cyan-500 focus:bg-white dark:focus:bg-white/10 rounded-xl px-4 md:px-5 py-3 md:py-3.5 text-xs md:text-sm transition-all focus:outline-none text-slate-900 dark:text-white resize-none placeholder:text-slate-400 dark:placeholder:text-slate-700 shadow-xs" />
               </div>
 
               <button
