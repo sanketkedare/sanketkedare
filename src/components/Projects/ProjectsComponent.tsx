@@ -1,8 +1,8 @@
 'use client';
 
-import { useMemo } from 'react';
+import { useMemo, useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { FiGithub, FiArrowUpRight, FiLock, FiBookOpen } from 'react-icons/fi';
 import ProjectList from './ProjectList.json';
 import EnterpriseShowcase from './EnterpriseShowcase';
@@ -25,6 +25,49 @@ interface Project {
   status?:   string;
   features?: string[];
 }
+
+const COLOR_THEMES = [
+  {
+    bg: 'bg-cyan-50/70 dark:bg-[#0c0d1e]/90',
+    border: 'border-cyan-200/90 dark:border-white/10 hover:border-cyan-400 dark:hover:border-cyan-500/40',
+    shadow: 'shadow-[0_10px_35px_-5px_rgba(6,182,212,0.12)] hover:shadow-[0_15px_45px_-5px_rgba(6,182,212,0.2)]',
+    titleHover: 'group-hover:text-cyan-700 dark:group-hover:text-cyan-400',
+    accentText: 'text-cyan-800 dark:text-cyan-400',
+    chip: 'bg-cyan-100/80 dark:bg-white/5 border-cyan-200 dark:border-white/10 text-cyan-900 dark:text-slate-300',
+  },
+  {
+    bg: 'bg-purple-50/70 dark:bg-[#0c0d1e]/90',
+    border: 'border-purple-200/90 dark:border-white/10 hover:border-purple-400 dark:hover:border-purple-500/40',
+    shadow: 'shadow-[0_10px_35px_-5px_rgba(168,85,247,0.12)] hover:shadow-[0_15px_45px_-5px_rgba(168,85,247,0.2)]',
+    titleHover: 'group-hover:text-purple-700 dark:group-hover:text-purple-400',
+    accentText: 'text-purple-800 dark:text-purple-400',
+    chip: 'bg-purple-100/80 dark:bg-white/5 border-purple-200 dark:border-white/10 text-purple-900 dark:text-slate-300',
+  },
+  {
+    bg: 'bg-indigo-50/70 dark:bg-[#0c0d1e]/90',
+    border: 'border-indigo-200/90 dark:border-white/10 hover:border-indigo-400 dark:hover:border-indigo-500/40',
+    shadow: 'shadow-[0_10px_35px_-5px_rgba(99,102,241,0.12)] hover:shadow-[0_15px_45px_-5px_rgba(99,102,241,0.2)]',
+    titleHover: 'group-hover:text-indigo-700 dark:group-hover:text-indigo-400',
+    accentText: 'text-indigo-800 dark:text-indigo-400',
+    chip: 'bg-indigo-100/80 dark:bg-white/5 border-indigo-200 dark:border-white/10 text-indigo-900 dark:text-slate-300',
+  },
+  {
+    bg: 'bg-emerald-50/70 dark:bg-[#0c0d1e]/90',
+    border: 'border-emerald-200/90 dark:border-white/10 hover:border-emerald-400 dark:hover:border-emerald-500/40',
+    shadow: 'shadow-[0_10px_35px_-5px_rgba(16,185,129,0.12)] hover:shadow-[0_15px_45px_-5px_rgba(16,185,129,0.2)]',
+    titleHover: 'group-hover:text-emerald-700 dark:group-hover:text-emerald-400',
+    accentText: 'text-emerald-800 dark:text-emerald-400',
+    chip: 'bg-emerald-100/80 dark:bg-white/5 border-emerald-200 dark:border-white/10 text-emerald-900 dark:text-slate-300',
+  },
+  {
+    bg: 'bg-amber-50/70 dark:bg-[#0c0d1e]/90',
+    border: 'border-amber-200/90 dark:border-white/10 hover:border-amber-400 dark:hover:border-amber-500/40',
+    shadow: 'shadow-[0_10px_35px_-5px_rgba(245,158,11,0.12)] hover:shadow-[0_15px_45px_-5px_rgba(245,158,11,0.2)]',
+    titleHover: 'group-hover:text-amber-700 dark:group-hover:text-amber-400',
+    accentText: 'text-amber-800 dark:text-amber-400',
+    chip: 'bg-amber-100/80 dark:bg-white/5 border-amber-200 dark:border-white/10 text-amber-900 dark:text-slate-300',
+  },
+];
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -54,16 +97,66 @@ const cardVariants = {
   }
 };
 
-function ProjectCard({ project, isLarge = false }: { project: Project; isLarge?: boolean }) {
+export function DescriptionWithReadMore({ text, title, maxLen = 135 }: { text: string; title: string; maxLen?: number }) {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const isLong = text.length > maxLen;
+  const truncatedText = isLong ? `${text.slice(0, maxLen).trim()}...` : text;
+
+  // Auto-collapse when clicking anywhere outside
+  useEffect(() => {
+    if (!isExpanded) return;
+
+    const handleClickOutside = (e: MouseEvent) => {
+      if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
+        setIsExpanded(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isExpanded]);
+
+  return (
+    <div ref={containerRef} className="relative mb-4">
+      <motion.p
+        layout
+        transition={{ duration: 0.3, ease: 'easeOut' }}
+        className="text-xs md:text-sm text-slate-800 dark:text-slate-300 leading-relaxed font-semibold"
+      >
+        {isExpanded ? text : truncatedText}
+        {isLong && (
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsExpanded(!isExpanded);
+            }}
+            className="ml-1.5 text-cyan-800 dark:text-cyan-400 font-black hover:underline inline-flex items-center gap-0.5 cursor-pointer select-none"
+          >
+            {isExpanded ? ' Show Less' : ' Read More...'}
+          </button>
+        )}
+      </motion.p>
+    </div>
+  );
+}
+
+function ProjectCard({ project, isLarge = false, themeIndex = 0 }: { project: Project; isLarge?: boolean; themeIndex?: number }) {
   const isDevelopment = project.status === 'Active Development';
   const isEnterprise = project.category === 'enterprise';
+
+  const theme = COLOR_THEMES[themeIndex % COLOR_THEMES.length];
 
   if (isLarge) {
     return (
       <motion.div
         variants={cardVariants}
         whileHover={{ y: -6, transition: { duration: 0.3, ease: 'easeOut' } }}
-        className="group relative col-span-1 md:col-span-2 lg:col-span-2 rounded-2xl md:rounded-3xl bg-white/90 dark:bg-[#0c0d1e]/90 border border-slate-200/90 dark:border-white/10 backdrop-blur-2xl shadow-[0_12px_40px_-10px_rgba(0,0,0,0.06),_0_0_1px_1px_rgba(0,0,0,0.02)] hover:shadow-2xl hover:shadow-cyan-500/10 hover:border-cyan-500/40 dark:hover:border-cyan-500/30 transition-all duration-500 overflow-hidden flex flex-col md:grid md:grid-cols-12"
+        className={`group relative col-span-1 md:col-span-2 lg:col-span-2 rounded-2xl md:rounded-3xl ${theme.bg} ${theme.border} backdrop-blur-2xl ${theme.shadow} transition-all duration-500 overflow-hidden flex flex-col md:grid md:grid-cols-12`}
         style={{ transformStyle: 'preserve-3d' }}
       >
         {/* Left Side: 16:9 Image Display */}
@@ -103,7 +196,7 @@ function ProjectCard({ project, isLarge = false }: { project: Project; isLarge?:
         <div className="p-6 md:p-8 md:col-span-6 flex flex-col justify-between relative z-10">
           <div>
             <div className="flex items-center justify-between gap-3 mb-2">
-              <span className="text-[10px] font-black uppercase tracking-widest text-cyan-600 dark:text-cyan-400">
+              <span className={`text-[10px] font-black uppercase tracking-widest ${theme.accentText}`}>
                 Featured Production System • Architected by Sanket
               </span>
               <div className="flex items-center gap-2 shrink-0">
@@ -112,7 +205,7 @@ function ProjectCard({ project, isLarge = false }: { project: Project; isLarge?:
                     href={project.caseStudy}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 hover:bg-emerald-500 text-emerald-600 dark:text-emerald-400 hover:text-white dark:hover:text-black border border-emerald-500/30 hover:border-transparent text-[10px] font-black uppercase tracking-wider transition-all duration-300 shadow-sm"
+                    className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 hover:bg-emerald-500 text-emerald-800 dark:text-emerald-400 hover:text-white dark:hover:text-black border border-emerald-400/40 dark:border-emerald-500/30 hover:border-transparent text-[10px] font-black uppercase tracking-wider transition-all duration-300 shadow-2xs"
                     title="Read Architecture Case Study"
                   >
                     <FiBookOpen size={12} />
@@ -125,7 +218,7 @@ function ProjectCard({ project, isLarge = false }: { project: Project; isLarge?:
                     href={project.git}
                     target="_blank"
                     rel="noreferrer"
-                    className="w-8 h-8 rounded-full flex items-center justify-center bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-300 hover:bg-cyan-500 hover:text-black dark:hover:bg-cyan-400 dark:hover:text-black hover:border-transparent transition-all shadow-sm"
+                    className="w-8 h-8 rounded-full flex items-center justify-center bg-slate-200/80 dark:bg-white/5 border border-slate-300/80 dark:border-white/10 text-slate-800 dark:text-slate-300 hover:bg-cyan-500 hover:text-black dark:hover:bg-cyan-400 dark:hover:text-black hover:border-transparent transition-all shadow-2xs"
                     title="GitHub Repository"
                   >
                     <FiGithub size={15} />
@@ -136,7 +229,7 @@ function ProjectCard({ project, isLarge = false }: { project: Project; isLarge?:
                     href={project.live}
                     target="_blank"
                     rel="noreferrer"
-                    className="w-8 h-8 rounded-full flex items-center justify-center bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-300 hover:bg-cyan-500 hover:text-black dark:hover:bg-cyan-400 dark:hover:text-black hover:border-transparent transition-all shadow-sm"
+                    className="w-8 h-8 rounded-full flex items-center justify-center bg-slate-200/80 dark:bg-white/5 border border-slate-300/80 dark:border-white/10 text-slate-800 dark:text-slate-300 hover:bg-cyan-500 hover:text-black dark:hover:bg-cyan-400 dark:hover:text-black hover:border-transparent transition-all shadow-2xs"
                     title="Live Platform Demo"
                   >
                     <FiArrowUpRight size={17} />
@@ -145,20 +238,18 @@ function ProjectCard({ project, isLarge = false }: { project: Project; isLarge?:
               </div>
             </div>
 
-            <h3 className="text-lg md:text-2xl font-black text-slate-900 dark:text-white tracking-tight group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors leading-tight mb-2.5">
+            <h3 className={`text-lg md:text-2xl font-black text-slate-900 dark:text-white tracking-tight ${theme.titleHover} transition-colors leading-tight mb-2.5`}>
               {project.title}
             </h3>
 
-            <p className="text-xs md:text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-medium mb-4">
-              {project.des}
-            </p>
+            <DescriptionWithReadMore text={project.des} title={project.title} maxLen={135} />
 
             {/* Feature Highlights */}
             {project.features && project.features.length > 0 && (
               <div className="space-y-2 mb-5">
                 {project.features.map((feature, idx) => (
-                  <div key={idx} className="flex items-start gap-2.5 text-xs text-slate-700 dark:text-slate-300 font-medium">
-                    <span className="w-1.5 h-1.5 rounded-full bg-cyan-500 dark:bg-cyan-400 mt-1.5 shrink-0 shadow-[0_0_8px_rgba(6,182,212,0.8)]" />
+                  <div key={idx} className="flex items-start gap-2.5 text-xs text-slate-800 dark:text-slate-300 font-medium">
+                    <span className="w-1.5 h-1.5 rounded-full bg-cyan-600 dark:bg-cyan-400 mt-1.5 shrink-0 shadow-xs" />
                     <span className="leading-snug">{feature}</span>
                   </div>
                 ))}
@@ -168,11 +259,11 @@ function ProjectCard({ project, isLarge = false }: { project: Project; isLarge?:
 
           <div>
             {/* Tech Chips */}
-            <div className="pt-3 border-t border-slate-100 dark:border-white/10 flex flex-wrap items-center gap-1.5 mb-4">
+            <div className="pt-3 border-t border-slate-200/80 dark:border-white/10 flex flex-wrap items-center gap-1.5 mb-4">
               {project.skills.map((skill) => (
                 <span
                   key={skill}
-                  className="px-2.5 py-0.5 rounded-md bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-[9px] md:text-[10px] font-bold text-slate-700 dark:text-slate-300 tracking-wide"
+                  className={`px-2.5 py-0.5 rounded-md ${theme.chip} text-[9px] md:text-[10px] font-bold tracking-wide`}
                 >
                   {skill}
                 </span>
@@ -186,7 +277,7 @@ function ProjectCard({ project, isLarge = false }: { project: Project; isLarge?:
                   href={project.caseStudy}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center justify-center gap-2 flex-1 py-2.5 px-3 rounded-xl bg-cyan-500/10 hover:bg-cyan-500 text-cyan-600 dark:text-cyan-300 hover:text-black font-black text-xs uppercase tracking-wider border border-cyan-500/30 hover:border-transparent transition-all shadow-md"
+                  className="inline-flex items-center justify-center gap-2 flex-1 py-2.5 px-3 rounded-xl bg-cyan-500/10 hover:bg-cyan-500 text-cyan-900 dark:text-cyan-300 hover:text-black font-black text-xs uppercase tracking-wider border border-cyan-400/40 dark:border-cyan-500/30 hover:border-transparent transition-all shadow-md"
                 >
                   <FiBookOpen size={14} />
                   <span>Case Study</span>
@@ -198,7 +289,7 @@ function ProjectCard({ project, isLarge = false }: { project: Project; isLarge?:
                   href={project.live}
                   target="_blank"
                   rel="noreferrer"
-                  className={`inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-gradient-to-r from-cyan-500/20 to-purple-500/20 hover:from-cyan-500 hover:to-cyan-400 text-cyan-600 dark:text-cyan-300 hover:text-black font-black text-xs uppercase tracking-wider border border-cyan-500/30 hover:border-transparent transition-all shadow-md ${
+                  className={`inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-gradient-to-r from-cyan-500/20 to-purple-500/20 hover:from-cyan-500 hover:to-cyan-400 text-cyan-950 dark:text-cyan-300 hover:text-black font-black text-xs uppercase tracking-wider border border-cyan-400/40 dark:border-cyan-500/30 hover:border-transparent transition-all shadow-md ${
                     project.caseStudy ? 'flex-1' : 'w-full'
                   }`}
                 >
@@ -217,7 +308,7 @@ function ProjectCard({ project, isLarge = false }: { project: Project; isLarge?:
     <motion.div
       variants={cardVariants}
       whileHover={{ y: -8, transition: { duration: 0.3, ease: 'easeOut' } }}
-      className={`group relative flex flex-col h-full rounded-2xl md:rounded-3xl bg-white/90 dark:bg-[#0c0d1e]/80 border border-slate-200/90 dark:border-white/10 backdrop-blur-2xl shadow-[0_10px_35px_-5px_rgba(0,0,0,0.05),_0_0_1px_1px_rgba(0,0,0,0.02)] hover:shadow-2xl hover:shadow-cyan-500/10 hover:border-cyan-500/40 dark:hover:border-cyan-500/30 transition-all duration-500 overflow-hidden col-span-1 ${
+      className={`group relative flex flex-col h-full rounded-2xl md:rounded-3xl ${theme.bg} ${theme.border} backdrop-blur-2xl ${theme.shadow} transition-all duration-500 overflow-hidden col-span-1 ${
         isDevelopment ? 'opacity-85 hover:opacity-100' : ''
       }`}
       style={{ transformStyle: 'preserve-3d' }}
@@ -280,11 +371,11 @@ function ProjectCard({ project, isLarge = false }: { project: Project; isLarge?:
           {/* Client & Role Subtitle for Enterprise Deliverables */}
           {isEnterprise && project.client && project.role && (
             <div className="flex items-center gap-1.5 mb-1.5">
-              <span className="text-[9.5px] font-black uppercase tracking-wider text-purple-600 dark:text-purple-400">
+              <span className="text-[9.5px] font-black uppercase tracking-wider text-purple-700 dark:text-purple-400">
                 {project.role}
               </span>
               <span className="text-[9.5px] text-slate-400 dark:text-slate-600">•</span>
-              <span className="text-[9.5px] font-semibold text-slate-500 dark:text-slate-400">
+              <span className="text-[9.5px] font-semibold text-slate-600 dark:text-slate-400">
                 {project.client}
               </span>
             </div>
@@ -292,7 +383,7 @@ function ProjectCard({ project, isLarge = false }: { project: Project; isLarge?:
 
           {/* Header & External Links */}
           <div className="flex items-start justify-between gap-3 mb-2.5">
-            <h3 className="text-base md:text-xl font-black text-slate-900 dark:text-white tracking-tight group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors leading-snug">
+            <h3 className={`text-base md:text-xl font-black text-slate-900 dark:text-white tracking-tight ${theme.titleHover} transition-colors leading-snug`}>
               {project.title}
             </h3>
 
@@ -302,7 +393,7 @@ function ProjectCard({ project, isLarge = false }: { project: Project; isLarge?:
                   href={project.caseStudy}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 hover:bg-emerald-500 text-emerald-600 dark:text-emerald-400 hover:text-white dark:hover:text-black border border-emerald-500/30 hover:border-transparent text-[10px] font-black uppercase tracking-wider transition-all duration-300 shadow-sm"
+                  className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 hover:bg-emerald-500 text-emerald-800 dark:text-emerald-400 hover:text-white dark:hover:text-black border border-emerald-400/40 dark:border-emerald-500/30 hover:border-transparent text-[10px] font-black uppercase tracking-wider transition-all duration-300 shadow-2xs"
                   title="Architecture Case Study"
                 >
                   <FiBookOpen size={12} />
@@ -312,10 +403,10 @@ function ProjectCard({ project, isLarge = false }: { project: Project; isLarge?:
               )}
               {isEnterprise ? (
                 <span
-                  className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[9px] font-semibold text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 shadow-sm"
+                  className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[9px] font-semibold text-slate-700 dark:text-slate-400 bg-slate-200/80 dark:bg-white/5 border border-slate-300/80 dark:border-white/10 shadow-2xs"
                   title="Proprietary commercial codebase under NDA"
                 >
-                  <FiLock size={10} className="text-amber-500/90" />
+                  <FiLock size={10} className="text-amber-600 dark:text-amber-500/90" />
                   <span className="hidden sm:inline">Proprietary</span>
                 </span>
               ) : (
@@ -324,7 +415,7 @@ function ProjectCard({ project, isLarge = false }: { project: Project; isLarge?:
                     href={project.git}
                     target="_blank"
                     rel="noreferrer"
-                    className="w-8 h-8 rounded-full flex items-center justify-center bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-300 hover:bg-cyan-500 hover:text-black dark:hover:bg-cyan-400 dark:hover:text-black hover:border-transparent transition-all shadow-sm"
+                    className="w-8 h-8 rounded-full flex items-center justify-center bg-slate-200/80 dark:bg-white/5 border border-slate-300/80 dark:border-white/10 text-slate-800 dark:text-slate-300 hover:bg-cyan-500 hover:text-black dark:hover:bg-cyan-400 dark:hover:text-black hover:border-transparent transition-all shadow-2xs"
                     title="GitHub Repository"
                   >
                     <FiGithub size={15} />
@@ -336,7 +427,7 @@ function ProjectCard({ project, isLarge = false }: { project: Project; isLarge?:
                   href={project.live}
                   target="_blank"
                   rel="noreferrer"
-                  className="w-8 h-8 rounded-full flex items-center justify-center bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-300 hover:bg-cyan-500 hover:text-black dark:hover:bg-cyan-400 dark:hover:text-black hover:border-transparent transition-all shadow-sm"
+                  className="w-8 h-8 rounded-full flex items-center justify-center bg-slate-200/80 dark:bg-white/5 border border-slate-300/80 dark:border-white/10 text-slate-800 dark:text-slate-300 hover:bg-cyan-500 hover:text-black dark:hover:bg-cyan-400 dark:hover:text-black hover:border-transparent transition-all shadow-2xs"
                   title="Live Demo"
                 >
                   <FiArrowUpRight size={17} />
@@ -345,25 +436,22 @@ function ProjectCard({ project, isLarge = false }: { project: Project; isLarge?:
             </div>
           </div>
 
-          {/* Description */}
-          <p className="text-xs md:text-sm text-slate-600 dark:text-slate-400 line-clamp-3 leading-relaxed font-medium mb-5">
-            {project.des}
-          </p>
+          <DescriptionWithReadMore text={project.des} title={project.title} maxLen={115} />
         </div>
 
         <div>
           {/* Tech Stack Chips */}
-          <div className="pt-3 border-t border-slate-100 dark:border-white/5 flex flex-wrap items-center gap-1.5">
+          <div className="pt-3 border-t border-slate-200/80 dark:border-white/5 flex flex-wrap items-center gap-1.5">
             {project.skills.slice(0, 4).map((skill) => (
               <span
                 key={skill}
-                className="px-2.5 py-0.5 rounded-md bg-slate-100/80 dark:bg-white/5 border border-slate-200/60 dark:border-white/10 text-[9px] md:text-[10px] font-bold text-slate-700 dark:text-slate-300 tracking-wide"
+                className={`px-2.5 py-0.5 rounded-md ${theme.chip} text-[9px] md:text-[10px] font-bold tracking-wide`}
               >
                 {skill}
               </span>
             ))}
             {project.skills.length > 4 && (
-              <span className="text-[9px] md:text-[10px] font-bold text-cyan-600 dark:text-cyan-400 px-1">
+              <span className={`text-[9px] md:text-[10px] font-black ${theme.accentText} px-1`}>
                 +{project.skills.length - 4}
               </span>
             )}
@@ -371,32 +459,32 @@ function ProjectCard({ project, isLarge = false }: { project: Project; isLarge?:
 
           {/* Dedicated Case Study CTA Link with Label */}
           {project.caseStudy && (
-            <div className="mt-3.5 pt-3 border-t border-slate-100 dark:border-white/5">
+            <div className="mt-3.5 pt-3 border-t border-slate-200/80 dark:border-white/5">
               <a
                 href={project.caseStudy}
                 target="_blank"
                 rel="noreferrer"
-                className="group/cs flex items-center justify-between p-2.5 rounded-xl bg-gradient-to-r from-emerald-500/10 via-emerald-500/5 to-transparent border border-emerald-500/30 hover:border-emerald-400 hover:bg-emerald-500/20 transition-all duration-300 shadow-sm"
+                className="group/cs flex items-center justify-between p-2.5 rounded-xl bg-gradient-to-r from-emerald-500/15 via-emerald-500/5 to-transparent border border-emerald-400/40 dark:border-emerald-500/30 hover:border-emerald-500 hover:bg-emerald-500/20 transition-all duration-300 shadow-2xs"
               >
                 <div className="flex items-center gap-2.5">
-                  <div className="w-7 h-7 rounded-lg bg-emerald-500/20 flex items-center justify-center text-emerald-500 dark:text-emerald-400 border border-emerald-500/30 group-hover/cs:scale-110 transition-transform">
+                  <div className="w-7 h-7 rounded-lg bg-emerald-500/20 flex items-center justify-center text-emerald-700 dark:text-emerald-400 border border-emerald-400/40 dark:border-emerald-500/30 group-hover/cs:scale-110 transition-transform">
                     <FiBookOpen size={13} />
                   </div>
                   <div>
                     <div className="flex items-center gap-1.5">
-                      <span className="text-[10.5px] font-black uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
+                      <span className="text-[10.5px] font-black uppercase tracking-wider text-emerald-800 dark:text-emerald-400">
                         Case Study Available
                       </span>
-                      <span className="px-1.5 py-0.5 rounded text-[8px] font-black uppercase bg-emerald-500/20 text-emerald-500 dark:text-emerald-300 border border-emerald-500/30">
+                      <span className="px-1.5 py-0.5 rounded text-[8px] font-black uppercase bg-emerald-500/20 text-emerald-900 dark:text-emerald-300 border border-emerald-400/40 dark:border-emerald-500/30">
                         Read
                       </span>
                     </div>
-                    <span className="text-[9.5px] text-slate-500 dark:text-slate-400 font-medium">
+                    <span className="text-[9.5px] text-slate-700 dark:text-slate-400 font-semibold">
                       Architecture &amp; technical deep dive
                     </span>
                   </div>
                 </div>
-                <div className="flex items-center gap-1 text-xs font-black text-emerald-600 dark:text-emerald-400 group-hover/cs:translate-x-1 transition-transform pr-1">
+                <div className="flex items-center gap-1 text-xs font-black text-emerald-800 dark:text-emerald-400 group-hover/cs:translate-x-1 transition-transform pr-1">
                   <FiArrowUpRight size={15} />
                 </div>
               </a>
@@ -425,11 +513,23 @@ export default function ProjectsComponent() {
   );
 
   return (
-    <section id="projects" className="relative w-full lg:w-[80%] mx-auto px-6 lg:px-0 min-h-screen py-24 flex flex-col justify-center border-t border-slate-200/80 dark:border-white/5 bg-transparent dark:bg-[#050511] overflow-hidden">
-      <div className="absolute top-1/4 right-0 w-80 h-80 bg-cyan-500/5 blur-[120px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-1/4 left-0 w-80 h-80 bg-purple-500/5 blur-[120px] rounded-full pointer-events-none" />
+    <section id="projects" className="relative w-full min-h-screen py-24 flex flex-col justify-center border-none bg-transparent dark:bg-[#050511] overflow-hidden">
+      {/* Background Motion Kinetic Atmosphere & Dot Grid Overlay (Full Width Edge-to-Edge) */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden z-0 [mask-image:linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)]">
+        <motion.div 
+          animate={{ x: [0, 35, -25, 0], y: [0, -35, 25, 0] }}
+          transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }}
+          className="absolute top-1/4 -right-20 w-[550px] h-[550px] bg-cyan-400/20 dark:bg-cyan-500/[0.08] rounded-full blur-[140px]" 
+        />
+        <motion.div 
+          animate={{ x: [0, -30, 30, 0], y: [0, 40, -25, 0] }}
+          transition={{ duration: 24, repeat: Infinity, ease: 'easeInOut' }}
+          className="absolute bottom-1/4 -left-20 w-[550px] h-[550px] bg-purple-400/20 dark:bg-purple-500/[0.08] rounded-full blur-[130px]" 
+        />
+        <div className="absolute inset-0 bg-[radial-gradient(#94a3b8_1.2px,transparent_1.2px)] dark:bg-[radial-gradient(#334155_1.2px,transparent_1.2px)] [background-size:28px_28px] opacity-[0.35] dark:opacity-[0.2]" />
+      </div>
 
-      <div className="mx-auto w-full">
+      <div className="w-full lg:w-[80%] mx-auto px-6 lg:px-0 relative z-10">
         {/* Section Header */}
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
@@ -438,10 +538,10 @@ export default function ProjectsComponent() {
           transition={{ duration: 0.8 }}
           className="mb-8 md:mb-12 text-center md:text-left"
         >
-          <h2 className="text-[1.75rem] md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-600 to-slate-900 dark:from-cyan-400 dark:to-white tracking-tight md:tracking-normal">
+          <h2 className="text-[1.75rem] md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-slate-900 via-cyan-800 to-indigo-950 dark:from-cyan-400 dark:to-white tracking-tight md:tracking-normal">
             Projects
           </h2>
-          <div className="w-16 h-1 bg-gradient-to-r from-cyan-500 to-purple-500 mt-4 mx-auto md:mx-0 rounded-full" />
+          <div className="w-16 h-1 bg-gradient-to-r from-cyan-500 to-purple-500 mt-4 mx-auto md:mx-0 rounded-full shadow-sm" />
         </motion.div>
 
         {/* 1. Production / Flagship Projects Grid */}
@@ -454,20 +554,20 @@ export default function ProjectsComponent() {
           style={{ perspective: 1200 }}
         >
           {productionProjects.map((project, index) => (
-            <ProjectCard key={project.id} project={project} isLarge={index === 0} />
+            <ProjectCard key={project.id} project={project} isLarge={index === 0} themeIndex={index} />
           ))}
         </motion.div>
 
         {/* 2. Enterprise & Client Deliverables (VisionTech Group) */}
         {enterpriseProjects.length > 0 && (
-          <div className="mt-20 pt-12 border-t border-slate-200 dark:border-white/10">
+          <div className="mt-20 pt-12 border-t border-slate-200/80 dark:border-white/10">
             <EnterpriseShowcase projects={enterpriseProjects} />
           </div>
         )}
 
         {/* 3. Academic & Foundation Projects (Below with Label) */}
         {academicProjects.length > 0 && (
-          <div className="mt-20 pt-12 border-t border-slate-200 dark:border-white/10">
+          <div className="mt-20 pt-12 border-t border-slate-200/80 dark:border-white/10">
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -478,7 +578,7 @@ export default function ProjectsComponent() {
               <h3 className="text-xl md:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
                 Academic &amp; Foundation Projects
               </h3>
-              <div className="w-12 h-1 bg-cyan-500 mt-3 mx-auto md:mx-0 rounded-full" />
+              <div className="w-12 h-1 bg-cyan-500 mt-3 mx-auto md:mx-0 rounded-full shadow-sm" />
             </motion.div>
 
             <motion.div 
@@ -489,8 +589,8 @@ export default function ProjectsComponent() {
               className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6"
               style={{ perspective: 1200 }}
             >
-              {academicProjects.map((project) => (
-                <ProjectCard key={project.id} project={project} isLarge={false} />
+              {academicProjects.map((project, index) => (
+                <ProjectCard key={project.id} project={project} isLarge={false} themeIndex={index + 1} />
               ))}
             </motion.div>
           </div>

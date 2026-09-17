@@ -1,20 +1,21 @@
 'use client';
 
 import Image, { StaticImageData } from 'next/image';
+import { motion } from 'framer-motion';
 import { IconType } from 'react-icons';
-import {
-  SiTypescript,
-  SiRedux,
-  SiThreedotjs,
-  SiFramer,
-  SiGreensock,
-  SiFirebase,
-  SiDocker,
-  SiVitest,
-  SiChartdotjs,
-  SiJsonwebtokens,
-  SiSocketdotio,
-  SiSpringsecurity
+import { 
+  SiTypescript, 
+  SiRedux, 
+  SiThreedotjs, 
+  SiFramer, 
+  SiGreensock, 
+  SiFirebase, 
+  SiDocker, 
+  SiVitest, 
+  SiChartdotjs, 
+  SiJsonwebtokens, 
+  SiSocketdotio, 
+  SiSpringsecurity 
 } from 'react-icons/si';
 import { FaAws } from 'react-icons/fa';
 import { SkillsMarquee, SkillItem } from './SkillsMarquee';
@@ -85,7 +86,7 @@ interface EngineeringCategory {
   title: string;
   badge: string;
   iconText: string;
-  borderColor: string;
+  accentBorder: string;
   badgeColor: string;
   dotColor: string;
   terms: string[];
@@ -96,9 +97,9 @@ const engineeringPractices: EngineeringCategory[] = [
     title: 'Architecture & System Design',
     badge: 'Distributed Systems',
     iconText: '🏛️',
-    borderColor: 'hover:border-cyan-400 dark:hover:border-cyan-500/50',
-    badgeColor: 'bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 border-cyan-500/20',
-    dotColor: 'bg-cyan-400',
+    accentBorder: 'border-l-4 border-l-cyan-500',
+    badgeColor: 'bg-cyan-100/90 dark:bg-cyan-500/20 text-cyan-900 dark:text-cyan-400 border border-cyan-300/80 dark:border-cyan-500/30',
+    dotColor: 'bg-cyan-500',
     terms: [
       'Data Structures & Algorithms (DSA)',
       'Microservices Architecture',
@@ -114,9 +115,9 @@ const engineeringPractices: EngineeringCategory[] = [
     title: 'Design Principles & Code Craft',
     badge: 'Code Quality',
     iconText: '📐',
-    borderColor: 'hover:border-purple-400 dark:hover:border-purple-500/50',
-    badgeColor: 'bg-purple-500/10 text-purple-600 dark:text-purple-400 border-purple-500/20',
-    dotColor: 'bg-purple-400',
+    accentBorder: 'border-l-4 border-l-purple-500',
+    badgeColor: 'bg-purple-100/90 dark:bg-purple-500/20 text-purple-900 dark:text-purple-400 border border-purple-300/80 dark:border-purple-500/30',
+    dotColor: 'bg-purple-500',
     terms: [
       'SOLID Design Principles',
       'DRY & KISS Methodologies',
@@ -131,9 +132,9 @@ const engineeringPractices: EngineeringCategory[] = [
     title: 'Reliability, DevOps & Security',
     badge: 'Production Excellence',
     iconText: '🛡️',
-    borderColor: 'hover:border-indigo-400 dark:hover:border-indigo-500/50',
-    badgeColor: 'bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border-indigo-500/20',
-    dotColor: 'bg-indigo-400',
+    accentBorder: 'border-l-4 border-l-indigo-500',
+    badgeColor: 'bg-indigo-100/90 dark:bg-indigo-500/20 text-indigo-900 dark:text-indigo-400 border border-indigo-300/80 dark:border-indigo-500/30',
+    dotColor: 'bg-indigo-500',
     terms: [
       'CI/CD Automated Pipelines',
       'Core Web Vitals Optimization',
@@ -153,18 +154,30 @@ export default function Skills() {
 
   return (
     <section id="skills" className="relative w-full min-h-screen flex flex-col justify-center border-t border-slate-200/80 dark:border-white/5 overflow-hidden bg-transparent dark:bg-[#050511] py-24">
-      {/* Background Ambient Glows & Dot Grid - Seamless continuity from preceding sections */}
+      {/* Background Motion Kinetic Atmosphere & Dot Grid Overlay */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
-        <div className="absolute -top-40 right-1/4 w-[500px] h-[500px] bg-cyan-500/[0.04] dark:bg-cyan-500/[0.08] rounded-full blur-[140px] animate-pulse" style={{ animationDuration: '10s' }} />
-        <div className="absolute top-1/3 -left-20 w-[450px] h-[450px] bg-purple-500/[0.04] dark:bg-purple-500/[0.08] rounded-full blur-[130px] animate-pulse" style={{ animationDuration: '12s' }} />
-        <div className="absolute -bottom-20 right-10 w-[450px] h-[450px] bg-indigo-500/[0.04] dark:bg-indigo-500/[0.08] rounded-full blur-[120px] animate-pulse" style={{ animationDuration: '14s' }} />
-        <div className="absolute inset-0 bg-[radial-gradient(#94a3b8_1px,transparent_1px)] dark:bg-[radial-gradient(#334155_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.25] dark:opacity-[0.2]" />
+        <motion.div 
+          animate={{ x: [0, 35, -25, 0], y: [0, -35, 25, 0] }}
+          transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }}
+          className="absolute -top-32 right-1/4 w-[550px] h-[550px] bg-cyan-400/20 dark:bg-cyan-500/[0.08] rounded-full blur-[140px]" 
+        />
+        <motion.div 
+          animate={{ x: [0, -30, 30, 0], y: [0, 40, -25, 0] }}
+          transition={{ duration: 24, repeat: Infinity, ease: 'easeInOut' }}
+          className="absolute top-1/3 -left-20 w-[500px] h-[500px] bg-purple-400/20 dark:bg-purple-500/[0.08] rounded-full blur-[130px]" 
+        />
+        <motion.div 
+          animate={{ x: [0, 30, -35, 0], y: [0, -30, 35, 0] }}
+          transition={{ duration: 26, repeat: Infinity, ease: 'easeInOut' }}
+          className="absolute -bottom-20 right-10 w-[500px] h-[500px] bg-indigo-400/20 dark:bg-indigo-500/[0.08] rounded-full blur-[120px]" 
+        />
+        <div className="absolute inset-0 bg-[radial-gradient(#94a3b8_1.2px,transparent_1.2px)] dark:bg-[radial-gradient(#334155_1.2px,transparent_1.2px)] [background-size:28px_28px] opacity-[0.35] dark:opacity-[0.2]" />
       </div>
 
       <div className="w-full lg:w-[80%] mx-auto px-6 lg:px-0 relative z-10">
         {/* Section Title */}
         <div className="mb-8 md:mb-12 text-center md:text-left">
-          <h2 className="text-[1.75rem] md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-600 via-slate-900 to-indigo-900 dark:from-cyan-400 dark:via-white dark:to-slate-300 tracking-tight md:tracking-normal">
+          <h2 className="text-[1.75rem] md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-slate-900 via-cyan-800 to-indigo-950 dark:from-cyan-400 dark:via-white dark:to-slate-300 tracking-tight md:tracking-normal">
             Tech Arsenal
           </h2>
           <p className="text-xs md:text-sm text-slate-700 dark:text-slate-400 font-semibold mt-2 max-w-2xl">
@@ -180,10 +193,10 @@ export default function Skills() {
           <div className="col-span-1 md:col-span-2 lg:col-span-2 bg-cyan-50/70 dark:bg-[#0a0a1a] backdrop-blur-xl border border-cyan-200/90 dark:border-white/10 rounded-3xl p-6 md:p-8 shadow-[0_10px_35px_-5px_rgba(6,182,212,0.12)] dark:shadow-2xl hover:border-cyan-400 dark:hover:border-cyan-500/50 hover:shadow-[0_15px_45px_-5px_rgba(6,182,212,0.2)] transition-all duration-500 group">
             <div className="flex items-center justify-between gap-3 mb-6">
               <h3 className="text-lg md:text-xl font-black text-slate-900 dark:text-white flex items-center gap-3">
-                <span className="w-7 h-7 rounded-xl border border-cyan-300/80 bg-cyan-100 dark:bg-cyan-500/20 flex items-center justify-center text-cyan-700 dark:text-cyan-400 text-xs shadow-xs">🎨</span>
+                <span className="w-7 h-7 rounded-xl border border-cyan-300 dark:border-cyan-500/30 bg-cyan-100 dark:bg-cyan-500/20 flex items-center justify-center text-cyan-800 dark:text-cyan-400 text-xs shadow-xs">🎨</span>
                 <span>Frontend Architecture &amp; 3D WebGL</span>
               </h3>
-              <span className="text-[10px] font-black uppercase tracking-widest text-cyan-800 dark:text-cyan-400 px-2.5 py-1 rounded-full bg-cyan-100 border border-cyan-300/80 shadow-xs">
+              <span className="text-[10px] font-black uppercase tracking-widest text-cyan-900 dark:text-cyan-400 px-2.5 py-1 rounded-full bg-cyan-100/90 dark:bg-cyan-500/20 border border-cyan-300/80 dark:border-cyan-500/30 shadow-xs">
                 {frontend.length} Technologies
               </span>
             </div>
@@ -191,7 +204,7 @@ export default function Skills() {
             <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-3 md:gap-4">
               {frontend.map((skill) => (
                 <div key={skill.skill} className="flex flex-col items-center gap-1.5 group/item">
-                  <div className="w-11 md:w-12 h-11 md:h-12 rounded-2xl bg-white dark:bg-white/5 border border-cyan-100 dark:border-white/10 ring-1 ring-cyan-900/[0.04] dark:ring-transparent shadow-[0_3px_12px_rgba(6,182,212,0.08)] dark:shadow-none flex items-center justify-center p-2.5 group-hover/item:scale-110 group-hover/item:border-cyan-400 dark:group-hover/item:border-cyan-500/50 group-hover/item:shadow-[0_0_20px_rgba(6,182,212,0.25)] dark:group-hover/item:shadow-[0_0_20px_rgba(6,182,212,0.3)] transition-all duration-300">
+                  <div className="w-11 md:w-12 h-11 md:h-12 flex items-center justify-center p-1 bg-transparent group-hover/item:scale-115 transition-transform duration-300">
                     {skill.src ? (
                       <Image src={skill.src} alt={skill.skill} loading="lazy" className="w-full h-full object-contain filter group-hover/item:brightness-110 transition-all" />
                     ) : skill.icon ? (
@@ -210,10 +223,10 @@ export default function Skills() {
           <div className="col-span-1 bg-purple-50/70 dark:bg-gradient-to-br dark:from-[#0a0a1a] dark:via-[#0c081e] dark:to-[#120a22] backdrop-blur-xl border border-purple-200/90 dark:border-white/10 rounded-3xl p-6 md:p-8 shadow-[0_10px_35px_-5px_rgba(168,85,247,0.12)] dark:shadow-2xl hover:border-purple-400 dark:hover:border-purple-500/50 hover:shadow-[0_15px_45px_-5px_rgba(168,85,247,0.2)] transition-all duration-500">
             <div className="flex items-center justify-between gap-3 mb-6">
               <h3 className="text-lg md:text-xl font-black text-slate-900 dark:text-white flex items-center gap-3">
-                <span className="w-7 h-7 rounded-xl border border-purple-300/80 flex items-center bg-purple-100 dark:bg-purple-500/20 justify-center text-purple-700 dark:text-purple-400 text-xs shadow-xs">⚡</span>
+                <span className="w-7 h-7 rounded-xl border border-purple-300 dark:border-purple-500/30 flex items-center bg-purple-100 dark:bg-purple-500/20 justify-center text-purple-800 dark:text-purple-400 text-xs shadow-xs">⚡</span>
                 <span>DSA, Core &amp; Cloud</span>
               </h3>
-              <span className="text-[10px] font-black uppercase tracking-widest text-purple-800 dark:text-purple-400 px-2.5 py-1 rounded-full bg-purple-100 border border-purple-300/80 shadow-xs">
+              <span className="text-[10px] font-black uppercase tracking-widest text-purple-900 dark:text-purple-400 px-2.5 py-1 rounded-full bg-purple-100/90 dark:bg-purple-500/20 border border-purple-300/80 dark:border-purple-500/30 shadow-xs">
                 {cloudAndCore.length} Stacks
               </span>
             </div>
@@ -221,7 +234,7 @@ export default function Skills() {
             <div className="grid grid-cols-4 sm:grid-cols-4 md:grid-cols-4 gap-2.5 md:gap-3">
               {cloudAndCore.map((skill) => (
                 <div key={skill.skill} className="flex flex-col items-center gap-1.5 group/item">
-                  <div className="w-11 md:w-12 h-11 md:h-12 rounded-2xl bg-white dark:bg-white/5 border border-purple-100 dark:border-white/10 ring-1 ring-purple-900/[0.04] dark:ring-transparent shadow-[0_3px_12px_rgba(168,85,247,0.08)] dark:shadow-none flex items-center justify-center p-2.5 group-hover/item:scale-110 group-hover/item:border-purple-400 dark:group-hover/item:border-purple-500/50 group-hover/item:shadow-[0_0_20px_rgba(168,85,247,0.25)] dark:group-hover/item:shadow-[0_0_20px_rgba(168,85,247,0.3)] transition-all duration-300">
+                  <div className="w-11 md:w-12 h-11 md:h-12 flex items-center justify-center p-1 bg-transparent group-hover/item:scale-115 transition-transform duration-300">
                     {skill.src ? (
                       <Image src={skill.src} alt={skill.skill} loading="lazy" className="w-full h-full object-contain" />
                     ) : skill.icon ? (
@@ -242,10 +255,10 @@ export default function Skills() {
 
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 relative z-10">
               <h3 className="text-lg md:text-2xl font-black text-slate-900 dark:text-white flex items-center gap-3">
-                <span className="w-7 h-7 rounded-xl border border-indigo-300/80 flex items-center bg-indigo-100 dark:bg-indigo-500/20 justify-center text-indigo-700 dark:text-indigo-400 text-xs shadow-xs">⚙️</span>
+                <span className="w-7 h-7 rounded-xl border border-indigo-300 dark:border-indigo-500/30 flex items-center bg-indigo-100 dark:bg-indigo-500/20 justify-center text-indigo-800 dark:text-indigo-400 text-xs shadow-xs">⚙️</span>
                 <span>Backend Microservices, APIs &amp; Distributed Databases</span>
               </h3>
-              <span className="text-[10px] font-black uppercase tracking-widest text-indigo-800 dark:text-indigo-400 px-3 py-1 rounded-full bg-indigo-100 border border-indigo-300/80 shadow-xs self-start sm:self-auto">
+              <span className="text-[10px] font-black uppercase tracking-widest text-indigo-900 dark:text-indigo-400 px-3 py-1 rounded-full bg-indigo-100/90 dark:bg-indigo-500/20 border border-indigo-300/80 dark:border-indigo-500/30 shadow-xs self-start sm:self-auto">
                 Databases &amp; APIs
               </span>
             </div>
@@ -257,11 +270,11 @@ export default function Skills() {
 
         </div>
 
-        {/* Software Engineering Core Disciplines & Methodologies */}
-        <div className="mt-10 pt-10 border-t border-slate-200/80 dark:border-white/10">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-6">
+        {/* Software Engineering Core Disciplines & Methodologies (Open Architectural Layout) */}
+        <div className="mt-14 pt-10 border-t border-slate-200/80 dark:border-white/10">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-8">
             <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[10px] md:text-xs font-black uppercase tracking-widest bg-cyan-500/10 text-cyan-700 dark:text-cyan-400 border border-cyan-500/20 mb-2 shadow-2xs">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-[10px] md:text-xs font-black uppercase tracking-widest bg-cyan-100/90 dark:bg-cyan-500/20 text-cyan-900 dark:text-cyan-400 border border-cyan-300/80 dark:border-cyan-500/30 mb-2 shadow-2xs">
                 <span>⚡ Professional Paradigms &amp; Methodologies</span>
               </div>
               <h3 className="text-xl md:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
@@ -273,20 +286,20 @@ export default function Skills() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             {engineeringPractices.map((practice) => (
               <div
                 key={practice.title}
-                className={`rounded-3xl bg-slate-100/60 dark:bg-[#0a0a1a] backdrop-blur-xl border border-slate-200/90 dark:border-white/10 p-6 shadow-[0_8px_25px_-5px_rgba(15,23,42,0.06)] dark:shadow-2xl transition-all duration-500 ${practice.borderColor}`}
+                className={`pl-5 ${practice.accentBorder} py-2 transition-all duration-300`}
               >
-                <div className="flex items-center justify-between gap-2 mb-4 pb-3 border-b border-slate-200/80 dark:border-white/5">
+                <div className="flex items-center justify-between gap-2 mb-4 pb-2 border-b border-slate-200/80 dark:border-white/10">
                   <div className="flex items-center gap-2">
-                    <span className="text-base">{practice.iconText}</span>
+                    <span className="text-lg">{practice.iconText}</span>
                     <h4 className="text-sm md:text-base font-black text-slate-900 dark:text-white tracking-tight">
                       {practice.title}
                     </h4>
                   </div>
-                  <span className={`text-[8.5px] font-black uppercase tracking-widest px-2 py-0.5 rounded-md border ${practice.badgeColor}`}>
+                  <span className={`text-[8.5px] font-black uppercase tracking-widest px-2.5 py-0.5 rounded-full ${practice.badgeColor}`}>
                     {practice.badge}
                   </span>
                 </div>
@@ -295,7 +308,7 @@ export default function Skills() {
                   {practice.terms.map((term) => (
                     <span
                       key={term}
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-slate-200/90 dark:bg-white/[0.04] dark:border-white/5 text-[11px] font-bold text-slate-800 dark:text-slate-300 hover:border-cyan-500/40 dark:hover:border-cyan-500/40 hover:text-cyan-700 dark:hover:text-cyan-400 transition-all shadow-xs"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-200/50 dark:bg-white/[0.04] border border-slate-300/70 dark:border-white/10 text-[11px] font-bold text-slate-800 dark:text-slate-300 hover:bg-cyan-500/10 hover:border-cyan-400 hover:text-cyan-900 dark:hover:text-cyan-400 transition-all"
                     >
                       <span className={`w-1.5 h-1.5 rounded-full ${practice.dotColor} shrink-0 shadow-sm`} />
                       <span>{term}</span>

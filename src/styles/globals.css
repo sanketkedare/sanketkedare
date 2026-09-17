@@ -66,3 +66,11 @@ html.light *::-webkit-scrollbar-thumb {
     background: #cbd5e1;
     border-radius: 10px;
 }
+
+/* Hide all background floating navigation, headers, sidebars, and chat widgets when resume fullscreen viewer is open */
+body.resume-fullscreen-active header,
+body.resume-fullscreen-active nav,
+body.resume-fullscreen-active [data-chat-widget],
+body.resume-fullscreen-active .fixed:not([data-fullscreen-modal]) {
+    display: none !important;
+}

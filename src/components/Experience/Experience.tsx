@@ -250,10 +250,10 @@ export default function Experience() {
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-700 dark:text-cyan-400 text-[10px] font-black uppercase tracking-widest mb-3 backdrop-blur-sm shadow-sm">
             <FiGitBranch size={13} /> Interactive Career Flow Graph
           </div>
-          <h2 className="text-3xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-slate-900 via-cyan-600 to-purple-600 dark:from-white dark:via-cyan-400 dark:to-purple-400 tracking-tight">
+          <h2 className="text-3xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-slate-900 via-cyan-700 to-indigo-900 dark:from-white dark:via-cyan-400 dark:to-purple-400 tracking-tight">
             Evolution Flow Diagram
           </h2>
-          <p className="text-xs md:text-sm text-slate-600 dark:text-slate-400 mt-2 max-w-xl mx-auto font-medium">
+          <p className="text-xs md:text-sm text-slate-700 dark:text-slate-400 mt-2 max-w-xl mx-auto font-semibold">
             Visualizing parallel growth tracks: Started freelancing while learning at AlmaBetter, leading into senior engineering leadership. Click any node to auto-scroll to full details.
           </p>
         </motion.div>
@@ -277,8 +277,8 @@ export default function Experience() {
               onClick={() => handleSelectNode('visiontech')}
               className={`cursor-pointer w-full max-w-2xl p-5 md:p-6 rounded-3xl border-2 transition-all duration-500 flex flex-col md:flex-row items-start md:items-center justify-between gap-5 backdrop-blur-2xl ${
                 selectedId === 'visiontech'
-                  ? 'bg-cyan-50/90 dark:from-cyan-500/20 dark:via-purple-500/20 dark:to-cyan-500/20 border-cyan-500 dark:border-cyan-400 shadow-[0_20px_45px_-8px_rgba(6,182,212,0.22)] dark:shadow-cyan-500/30 scale-[1.02]'
-                  : 'bg-cyan-50/50 dark:bg-white/5 border-cyan-200/90 dark:border-white/10 ring-1 ring-cyan-900/[0.04] dark:ring-transparent shadow-[0_10px_30px_-5px_rgba(6,182,212,0.12)] dark:shadow-2xl hover:border-cyan-400'
+                  ? 'bg-cyan-50/90 dark:bg-[#0a0a1a] dark:bg-gradient-to-r dark:from-cyan-500/20 dark:via-purple-500/20 dark:to-cyan-500/20 border-cyan-500 dark:border-cyan-400 shadow-[0_20px_45px_-8px_rgba(6,182,212,0.22)] dark:shadow-cyan-500/30 scale-[1.02]'
+                  : 'bg-cyan-50/50 dark:bg-[#0a0a1a] border-cyan-200/90 dark:border-white/10 ring-1 ring-cyan-900/[0.04] dark:ring-transparent shadow-[0_10px_30px_-5px_rgba(6,182,212,0.12)] dark:shadow-2xl hover:border-cyan-400'
               }`}
             >
               <div className="flex items-center gap-4 md:gap-5 min-w-0 w-full md:w-auto">
@@ -327,8 +327,8 @@ export default function Experience() {
               onClick={() => handleSelectNode('viacerta')}
               className={`cursor-pointer w-full max-w-xl p-5 rounded-2xl border transition-all duration-300 flex items-center justify-between gap-4 backdrop-blur-xl ${
                 selectedId === 'viacerta'
-                  ? 'bg-sky-50/90 dark:bg-white/10 border-cyan-500 dark:border-cyan-400 shadow-[0_16px_36px_-6px_rgba(6,182,212,0.18)] dark:shadow-lg'
-                  : 'bg-sky-50/50 dark:bg-white/5 border-cyan-200/80 dark:border-white/10 shadow-[0_8px_20px_-5px_rgba(6,182,212,0.1)] hover:border-cyan-400'
+                  ? 'bg-sky-50/90 dark:bg-[#0a0a1a] border-cyan-500 dark:border-cyan-400 shadow-[0_16px_36px_-6px_rgba(6,182,212,0.18)] dark:shadow-cyan-500/20'
+                  : 'bg-sky-50/50 dark:bg-[#0a0a1a]/80 dark:border-white/10 shadow-[0_8px_20px_-5px_rgba(6,182,212,0.1)] hover:border-cyan-400'
               }`}
             >
               <div className="flex items-center gap-3.5">
@@ -374,8 +374,8 @@ export default function Experience() {
                 onClick={() => handleSelectNode('freelance')}
                 className={`cursor-pointer p-5 rounded-2xl border-2 transition-all duration-300 relative overflow-hidden flex flex-col justify-between gap-3 backdrop-blur-xl ${
                   selectedId === 'freelance'
-                    ? 'bg-purple-50/90 dark:from-purple-500/20 dark:via-purple-500/10 dark:to-transparent border-purple-500 dark:border-purple-400 shadow-[0_18px_40px_-8px_rgba(168,85,247,0.2)] dark:shadow-xl dark:shadow-purple-500/20 scale-105'
-                    : 'bg-purple-50/50 dark:bg-white/5 border-purple-200/90 dark:border-purple-500/30 hover:border-purple-400 shadow-[0_10px_25px_-5px_rgba(168,85,247,0.1)]'
+                    ? 'bg-purple-50/90 dark:bg-[#0a0a1a] dark:bg-gradient-to-br dark:from-purple-500/20 dark:via-purple-500/10 dark:to-transparent border-purple-500 dark:border-purple-400 shadow-[0_18px_40px_-8px_rgba(168,85,247,0.2)] dark:shadow-purple-500/20 scale-105'
+                    : 'bg-purple-50/50 dark:bg-[#0a0a1a] border-purple-200/90 dark:border-purple-500/30 hover:border-purple-400 shadow-[0_10px_25px_-5px_rgba(168,85,247,0.1)]'
                 }`}
               >
                 <div>
@@ -414,8 +414,8 @@ export default function Experience() {
                   onClick={() => handleSelectNode('unified')}
                   className={`cursor-pointer p-4 rounded-xl border transition-all duration-300 backdrop-blur-xl ${
                     selectedId === 'unified'
-                      ? 'bg-emerald-50/90 dark:bg-white/10 border-emerald-500 dark:border-emerald-400 shadow-md'
-                      : 'bg-emerald-50/50 dark:bg-white/5 border-emerald-200/80 dark:border-white/10 shadow-xs hover:border-emerald-400'
+                      ? 'bg-emerald-50/90 dark:bg-[#0a0a1a] border-emerald-500 dark:border-emerald-400 shadow-md'
+                      : 'bg-emerald-50/50 dark:bg-[#0a0a1a] border-emerald-200/80 dark:border-white/10 shadow-xs hover:border-emerald-400'
                   }`}
                 >
                   <div className="flex items-center justify-between gap-3">
@@ -439,8 +439,8 @@ export default function Experience() {
                   onClick={() => handleSelectNode('almabetter-ta')}
                   className={`cursor-pointer p-4 rounded-xl border transition-all duration-300 backdrop-blur-xl ${
                     selectedId === 'almabetter-ta'
-                      ? 'bg-emerald-50/90 dark:bg-white/10 border-emerald-500 dark:border-emerald-400 shadow-md'
-                      : 'bg-emerald-50/50 dark:bg-white/5 border-emerald-200/80 dark:border-white/10 shadow-xs hover:border-emerald-400'
+                      ? 'bg-emerald-50/90 dark:bg-[#0a0a1a] border-emerald-500 dark:border-emerald-400 shadow-md'
+                      : 'bg-emerald-50/50 dark:bg-[#0a0a1a] border-emerald-200/80 dark:border-white/10 shadow-xs hover:border-emerald-400'
                   }`}
                 >
                   <div className="flex items-center justify-between gap-3">
@@ -480,8 +480,8 @@ export default function Experience() {
               onClick={() => handleSelectNode('almabetter-trainee')}
               className={`cursor-pointer w-full max-w-2xl p-5 rounded-2xl border-2 transition-all duration-300 flex flex-col md:flex-row items-start md:items-center justify-between gap-5 backdrop-blur-xl ${
                 selectedId === 'almabetter-trainee'
-                  ? 'bg-amber-50/90 dark:bg-amber-500/10 border-amber-500 dark:border-amber-400 shadow-[0_16px_36px_-6px_rgba(245,158,11,0.2)] dark:shadow-xl scale-[1.02]'
-                  : 'bg-amber-50/50 dark:bg-white/5 border-amber-200/90 dark:border-amber-500/30 hover:border-amber-400 shadow-[0_10px_25px_-5px_rgba(245,158,11,0.1)]'
+                  ? 'bg-amber-50/90 dark:bg-[#0a0a1a] dark:bg-amber-500/10 border-amber-500 dark:border-amber-400 shadow-[0_16px_36px_-6px_rgba(245,158,11,0.2)] dark:shadow-xl scale-[1.02]'
+                  : 'bg-amber-50/50 dark:bg-[#0a0a1a] border-amber-200/90 dark:border-amber-500/30 hover:border-amber-400 shadow-[0_10px_25px_-5px_rgba(245,158,11,0.1)]'
               }`}
             >
               <div className="flex items-center gap-4">

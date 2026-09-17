@@ -438,3 +438,315 @@ export function sendGmailReply({
     });
   });
 }
+
+export interface SendRecruiterThanksParams {
+  recruiterEmail: string;
+  recruiterName?: string;
+  companyName: string;
+  companyLocation?: string;
+  jobTitle: string;
+  matchScore: number;
+  verdict: string;
+  fitSummary: string;
+  matchingSkills: string[];
+  missingSkills: string[];
+  tailoredPitch: string;
+  recommendedProjects?: string[];
+}
+
+export function sendRecruiterThanksEmail(params: SendRecruiterThanksParams): Promise<{ subject: string; html: string; text: string }> {
+  return new Promise((resolve, reject) => {
+    const gmailUser = process.env.GMAIL_USER || 'sanketkedare200@gmail.com';
+    const gmailPass = (process.env.GMAIL_APP_PASSWORD || 'bjep ykao xviv zrlm').replace(/\s+/g, '');
+
+    const {
+      recruiterEmail,
+      recruiterName = 'Recruiter',
+      companyName,
+      jobTitle,
+      matchScore,
+      verdict,
+    } = params;
+
+    const client = tls.connect(465, 'smtp.gmail.com', {
+      rejectUnauthorized: true,
+    });
+
+    let step = 0;
+    let buffer = '';
+
+    const send = (cmd: string) => {
+      client.write(cmd + '\r\n');
+    };
+
+    client.on('error', (err) => {
+      reject(err);
+    });
+
+    client.on('data', (data) => {
+      buffer += data.toString();
+      const lines = buffer.split('\r\n');
+      buffer = lines.pop() ?? '';
+
+      for (const line of lines) {
+        if (!line) continue;
+        const statusCode = parseInt(line.substring(0, 3), 10);
+
+        if (step === 0 && statusCode === 220) {
+          step = 1;
+          send('EHLO localhost');
+        } else if (step === 1 && statusCode === 250) {
+          step = 2;
+          send('AUTH LOGIN');
+        } else if (step === 2 && statusCode === 334) {
+          step = 3;
+          send(Buffer.from(gmailUser).toString('base64'));
+        } else if (step === 3 && statusCode === 334) {
+          step = 4;
+          send(Buffer.from(gmailPass).toString('base64'));
+        } else if (step === 4 && statusCode === 235) {
+          step = 5;
+          send(`MAIL FROM:<${gmailUser}>`);
+        } else if (step === 5 && statusCode === 250) {
+          step = 6;
+          send(`RCPT TO:<${recruiterEmail}>`);
+        } else if (step === 6 && statusCode === 250) {
+          step = 7;
+          send(`RCPT TO:<${gmailUser}>`);
+        } else if (step === 7 && statusCode === 250) {
+          step = 8;
+          send('DATA');
+        } else if (step === 8 && statusCode === 354) {
+          step = 9;
+          const relatedBoundary = `----=_NextPart_Related_${Date.now().toString(16)}`;
+          const altBoundary = `----=_NextPart_Alt_${Date.now().toString(16)}`;
+          const emailSubject = `Thank you for reviewing my portfolio, ${recruiterName}! | Sanket Kedare`;
+          const safeName = escapeHtml(recruiterName);
+          const safeCompany = escapeHtml(companyName || 'your organization');
+          const safeTitle = escapeHtml(jobTitle || 'Software Role');
+
+          // Prepare inline logo attachment from public/image.png
+          let logoImageHtml = '';
+          let logoMimeAttachment = '';
+          const logoPath = path.join(process.cwd(), 'public', 'image.png');
+
+          if (fs.existsSync(logoPath)) {
+            const logoBuffer = fs.readFileSync(logoPath);
+            const base64Logo = logoBuffer.toString('base64');
+            const formattedBase64 = base64Logo.match(/.{1,76}/g)?.join('\r\n') || base64Logo;
+            
+            logoImageHtml = `
+              <div style="margin-bottom: 16px;">
+                <img src="cid:portfolio_logo" alt="Sanket Kedare Logo" style="height: 48px; width: auto; max-width: 180px; display: block; border: 0;" />
+              </div>
+            `;
+
+            logoMimeAttachment = [
+              `--${relatedBoundary}`,
+              `Content-Type: image/png; name="image.png"`,
+              `Content-Transfer-Encoding: base64`,
+              `Content-ID: <portfolio_logo>`,
+              `Content-Disposition: inline; filename="image.png"`,
+              ``,
+              formattedBase64,
+            ].join('\r\n');
+          }
+
+          const isMatchingRole = matchScore >= 50 && !verdict.toLowerCase().includes('mismatch');
+
+          const plainTextBody = isMatchingRole ? `
+Dear ${recruiterName},
+
+Thank you for visiting my portfolio and evaluating candidate alignment for the ${jobTitle} position at ${companyName}.
+
+I am excited about how my background as a Full Stack Software Engineer & Architect aligns with this position. If you would like to discuss this role further, review additional live architecture projects, or schedule a conversation, please feel free to reach out to me directly:
+
+• Email: sanketkedare200@gmail.com
+• Mobile: +91 8624851910
+• Portfolio: https://www.sanketkedare.com
+
+Thank you once again, and I look forward to connecting with you!
+
+Warm regards,
+Sanket Kedare
+Full Stack Developer & Software Architect
+https://www.sanketkedare.com
+          `.trim() : `
+Dear ${recruiterName},
+
+Thank you for visiting my portfolio and evaluating candidate alignment for the ${jobTitle} position at ${companyName}.
+
+While this specific position does not directly align with my primary specialization as a Full Stack Software Engineer & Architect (React 19, Next.js 16, Node.js, Systems & GenAI), I sincerely appreciate your time and consideration.
+
+If your organization has upcoming software engineering, full-stack web development, or GenAI architecture roles in the future, I would be delighted to connect!
+
+Direct Contact Information:
+• Email: sanketkedare200@gmail.com
+• Mobile: +91 8624851910
+• Portfolio: https://www.sanketkedare.com
+
+Thank you once again, and I wish you all the best with your recruitment search!
+
+Warm regards,
+Sanket Kedare
+Full Stack Developer & Software Architect
+https://www.sanketkedare.com
+          `.trim();
+
+          const messageContentHtml = isMatchingRole ? `
+              <p style="color: #334155; font-size: 15px; line-height: 1.7; margin: 0 0 18px 0;">
+                Dear <strong>${safeName}</strong>,
+              </p>
+              <p style="color: #334155; font-size: 15px; line-height: 1.7; margin: 0 0 18px 0;">
+                Thank you for visiting my portfolio and evaluating candidate alignment for the <strong>${safeTitle}</strong> role at <strong>${safeCompany}</strong>.
+              </p>
+              <p style="color: #334155; font-size: 15px; line-height: 1.7; margin: 0 0 24px 0;">
+                I sincerely appreciate your time and consideration. I'm excited about how my experience in Full Stack Software Engineering &amp; Architecture aligns with this position. If you'd like to discuss this opportunity further, inspect my live software projects, or schedule a call, please feel free to reach out directly anytime.
+              </p>
+          ` : `
+              <p style="color: #334155; font-size: 15px; line-height: 1.7; margin: 0 0 18px 0;">
+                Dear <strong>${safeName}</strong>,
+              </p>
+              <p style="color: #334155; font-size: 15px; line-height: 1.7; margin: 0 0 18px 0;">
+                Thank you for visiting my portfolio and using the AI Matcher to evaluate candidate alignment for the <strong>${safeTitle}</strong> role at <strong>${safeCompany}</strong>.
+              </p>
+              <p style="color: #334155; font-size: 15px; line-height: 1.7; margin: 0 0 18px 0;">
+                While this specific role does not directly align with my core specialization as a <strong>Full Stack Software Engineer &amp; Architect (React 19, Next.js 16, Node.js, Systems &amp; GenAI)</strong>, I sincerely appreciate your time and consideration.
+              </p>
+              <p style="color: #334155; font-size: 15px; line-height: 1.7; margin: 0 0 24px 0;">
+                If your organization has upcoming software engineering, full-stack, or GenAI development opportunities in the future, I would be delighted to connect!
+              </p>
+          `;
+
+          const htmlBody = `
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Thank You for Reviewing My Portfolio</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f8fafc; color: #1e293b; -webkit-font-smoothing: antialiased;">
+  <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #f8fafc; padding: 40px 16px;">
+    <tr>
+      <td align="center">
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width: 600px; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);">
+          
+          <!-- Gradient Top Accent Bar -->
+          <tr>
+            <td style="height: 6px; background: linear-gradient(90deg, #0891b2 0%, #2563eb 50%, #9333ea 100%);"></td>
+          </tr>
+
+          <!-- Header Section with Official Logo -->
+          <tr>
+            <td style="padding: 32px 36px 24px 36px; border-bottom: 1px solid #f1f5f9;">
+              <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td>
+                    ${logoImageHtml}
+                    <span style="display: inline-block; background-color: #ecfeff; color: #0891b2; border: 1px solid #cff4fc; padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase;">
+                      Thank You Note
+                    </span>
+                    <h1 style="color: #0f172a; font-size: 22px; font-weight: 800; margin: 12px 0 0 0; letter-spacing: -0.5px;">
+                      Thank You, ${safeName}!
+                    </h1>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Message Body -->
+          <tr>
+            <td style="padding: 28px 36px;">
+              ${messageContentHtml}
+
+              <!-- Direct Contact Box -->
+              <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #f8fafc; border-radius: 14px; padding: 20px; border: 1px solid #e2e8f0; margin-bottom: 24px;">
+                <tr>
+                  <td>
+                    <div style="color: #0f172a; font-size: 14px; font-weight: 700; margin-bottom: 8px;">
+                      Direct Contact Information:
+                    </div>
+                    <div style="color: #475569; font-size: 13px; line-height: 1.8;">
+                      • <strong>Email:</strong> <a href="mailto:sanketkedare200@gmail.com" style="color: #0284c7; text-decoration: none; font-weight: 600;">sanketkedare200@gmail.com</a><br/>
+                      • <strong>Phone:</strong> +91 8624851910<br/>
+                      • <strong>Portfolio:</strong> <a href="https://www.sanketkedare.com" style="color: #0284c7; text-decoration: none; font-weight: 600;">www.sanketkedare.com</a>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Call to Action Button -->
+              <div style="text-align: center; margin-top: 24px;">
+                <a href="https://www.sanketkedare.com/#contact" style="display: inline-block; background: linear-gradient(135deg, #0891b2, #2563eb); color: #ffffff; font-size: 13px; font-weight: 800; padding: 14px 32px; border-radius: 12px; text-decoration: none; box-shadow: 0 4px 14px rgba(8, 145, 178, 0.25); text-transform: uppercase; letter-spacing: 1px;">
+                  Connect with Sanket &rarr;
+                </a>
+              </div>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="padding: 20px 36px; background-color: #f8fafc; border-top: 1px solid #f1f5f9; text-align: center;">
+              <p style="color: #64748b; font-size: 12px; margin: 0; line-height: 1.5; font-weight: 500;">
+                Sent automatically via <strong style="color: #0f172a;">Sanket Kedare Portfolio</strong>.<br/>
+                Sanket Kedare &bull; Full Stack Developer &amp; Software Architect
+              </p>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
+          `.trim();
+
+          const emailHeaders = [
+            `From: "Sanket Kedare (Portfolio AI)" <${gmailUser}>`,
+            `To: "${safeName}" <${recruiterEmail}>`,
+            `Cc: <${gmailUser}>`,
+            `Reply-To: ${gmailUser}`,
+            `Subject: ${emailSubject}`,
+            `MIME-Version: 1.0`,
+            `Content-Type: multipart/related; boundary="${relatedBoundary}"`,
+            ``,
+            `--${relatedBoundary}`,
+            `Content-Type: multipart/alternative; boundary="${altBoundary}"`,
+            ``,
+            `--${altBoundary}`,
+            `Content-Type: text/plain; charset=utf-8`,
+            `Content-Transfer-Encoding: 8bit`,
+            ``,
+            plainTextBody,
+            ``,
+            `--${altBoundary}`,
+            `Content-Type: text/html; charset=utf-8`,
+            `Content-Transfer-Encoding: 8bit`,
+            ``,
+            htmlBody,
+            ``,
+            `--${altBoundary}--`,
+            ``,
+            logoMimeAttachment,
+            ``,
+            `--${relatedBoundary}--`,
+            `.`,
+          ].join('\r\n');
+
+          (client as any)._sentInfo = { subject: emailSubject, html: htmlBody, text: plainTextBody };
+          send(emailHeaders);
+        } else if (step === 9 && statusCode === 250) {
+          step = 10;
+          send('QUIT');
+          client.end();
+          resolve((client as any)._sentInfo || { subject: '', html: '', text: '' });
+        } else if (statusCode >= 400) {
+          client.end();
+          reject(new Error(`SMTP Error ${statusCode}: ${line}`));
+        }
+      }
+    });
+  });
+}

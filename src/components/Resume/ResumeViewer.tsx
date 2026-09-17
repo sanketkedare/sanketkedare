@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   FiEye, FiDownload, FiShare2, FiX, 
@@ -25,6 +26,7 @@ export default function ResumeViewer() {
   const [pdfPagesCount, setPdfPagesCount] = useState(0);
   const [zoomLevel, setZoomLevel] = useState(1.0);
   const [pdfError, setPdfError] = useState('');
+  const [isMounted, setIsMounted] = useState(false);
 
   // Separate refs for inline and fullscreen containers to avoid duplicate ref binding
   const inlineContainerRef = useRef<HTMLDivElement>(null);
@@ -33,6 +35,7 @@ export default function ResumeViewer() {
   const fullscreenScrollWrapperRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    setIsMounted(true);
     fetchActiveResumeUrl().then((url) => {
       setResumeUrl(url);
     });
@@ -50,8 +53,11 @@ export default function ResumeViewer() {
   const closeFullScreen = () => {
     setIsFullScreen(false);
     document.body.style.overflow = '';
+    document.documentElement.style.overflow = '';
+    document.body.style.touchAction = '';
+    document.body.classList.remove('resume-fullscreen-active');
 
-    // Smoothly scroll window back to #resume section anchor
+    // Smoothly scroll window back to #resume section anchor original position
     setTimeout(() => {
       const resumeElement = document.getElementById('resume');
       if (resumeElement) {
@@ -62,16 +68,35 @@ export default function ResumeViewer() {
     }, 50);
   };
 
-  // Lock background body scroll when fullscreen modal is active
+  const collapseViewer = () => {
+    setIsViewerOpen(false);
+    setTimeout(() => {
+      const resumeElement = document.getElementById('resume');
+      if (resumeElement) {
+        resumeElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 50);
+  };
+
+  // Lock background body scroll completely and hide floating navbars when fullscreen modal is active
   useEffect(() => {
     if (isFullScreen) {
       document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+      document.body.style.touchAction = 'none';
+      document.body.classList.add('resume-fullscreen-active');
     } else {
       document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+      document.body.style.touchAction = '';
+      document.body.classList.remove('resume-fullscreen-active');
     }
 
     return () => {
       document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+      document.body.style.touchAction = '';
+      document.body.classList.remove('resume-fullscreen-active');
     };
   }, [isFullScreen]);
 
@@ -159,7 +184,9 @@ export default function ResumeViewer() {
         const viewport = page.getViewport({ scale: baseRenderScale });
 
         const pageWrapper = document.createElement('div');
-        pageWrapper.className = 'relative flex flex-col items-center mb-8 last:mb-0 shadow-2xl rounded-2xl overflow-hidden bg-white border border-slate-200 dark:border-white/10 w-full max-w-3xl';
+        pageWrapper.className = 'relative flex flex-col items-center mb-8 last:mb-0 shadow-2xl rounded-2xl overflow-hidden bg-white border border-slate-200 dark:border-white/10 w-full max-w-3xl cursor-pointer hover:border-cyan-500/50 transition-all';
+        pageWrapper.title = 'Double-click to open full screen preview';
+        pageWrapper.ondblclick = () => setIsFullScreen(true);
 
         const canvas = document.createElement('canvas');
         const context = canvas.getContext('2d');
@@ -189,7 +216,9 @@ export default function ResumeViewer() {
           const imgUrl = currentResumeUrl.replace(/\/raw\/upload\//, '/image/upload/').replace(/\.pdf$/i, '.jpg');
 
           const pageWrapper = document.createElement('div');
-          pageWrapper.className = 'relative flex flex-col items-center mb-8 last:mb-0 shadow-2xl rounded-2xl overflow-hidden bg-white border border-slate-200 dark:border-white/10 w-full max-w-3xl';
+          pageWrapper.className = 'relative flex flex-col items-center mb-8 last:mb-0 shadow-2xl rounded-2xl overflow-hidden bg-white border border-slate-200 dark:border-white/10 w-full max-w-3xl cursor-pointer hover:border-cyan-500/50 transition-all';
+          pageWrapper.title = 'Double-click to open full screen preview';
+          pageWrapper.ondblclick = () => setIsFullScreen(true);
 
           const img = document.createElement('img');
           img.src = imgUrl;
@@ -220,6 +249,14 @@ export default function ResumeViewer() {
     } else if (isViewerOpen) {
       const timer = setTimeout(() => {
         renderPdfPages();
+        // Smoothly scroll window slightly upward until resume is aligned neatly in viewport
+        const resumeElement = document.getElementById('resume');
+        if (resumeElement) {
+          const rect = resumeElement.getBoundingClientRect();
+          const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+          const targetY = Math.max(0, rect.top + scrollTop - 70);
+          window.scrollTo({ top: targetY, behavior: 'smooth' });
+        }
       }, 50);
       return () => clearTimeout(timer);
     }
@@ -288,23 +325,23 @@ export default function ResumeViewer() {
   };
 
   return (
-    <div className="w-full flex flex-col items-center">
+    <div className={isViewerOpen ? "w-full flex flex-col items-center" : "inline-flex items-center justify-center"}>
       
       {/* Closed State: Simple View Resume Button */}
       {!isViewerOpen && (
-        <div className="flex items-center justify-center pt-2">
+        <div className="flex items-center justify-center">
           {resumeUrl ? (
             <motion.button
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
               onClick={() => setIsViewerOpen(true)}
-              className="group relative flex items-center gap-3 px-8 md:px-10 py-4 bg-cyan-600 hover:bg-cyan-500 text-white rounded-2xl font-black text-xs md:text-sm tracking-wider uppercase shadow-xl hover:shadow-cyan-500/30 transition-all duration-300 cursor-pointer"
+              className="group relative flex items-center gap-3 px-8 md:px-10 py-4 bg-cyan-700 hover:bg-cyan-800 text-white rounded-2xl font-black text-xs md:text-sm tracking-wider uppercase shadow-xl hover:shadow-cyan-500/30 transition-all duration-300 cursor-pointer"
             >
               <FiEye size={20} className="group-hover:scale-110 transition-transform" />
               <span>View Resume (PDF)</span>
             </motion.button>
           ) : (
-            <div className="flex items-center gap-2.5 px-8 py-4 bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-400 dark:text-slate-600 rounded-2xl text-xs font-bold uppercase tracking-wider cursor-default select-none">
+            <div className="flex items-center gap-2.5 px-8 py-4 bg-slate-200/80 dark:bg-white/5 border border-slate-300/80 dark:border-white/10 text-slate-500 dark:text-slate-600 rounded-2xl text-xs font-bold uppercase tracking-wider cursor-default select-none">
               <FiFileText size={18} />
               <span>Resume not available</span>
             </div>
@@ -323,18 +360,18 @@ export default function ResumeViewer() {
             className="w-full flex flex-col gap-4 pt-4"
           >
             {/* Header Toolbar */}
-            <div className="w-full flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-slate-200 dark:border-white/10">
+            <div className="w-full flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-slate-200/80 dark:border-white/10">
               
               <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-xl bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 flex items-center justify-center font-bold">
+                <div className="w-9 h-9 rounded-xl bg-cyan-500/20 text-cyan-800 dark:text-cyan-400 flex items-center justify-center font-bold">
                   <FiFileText size={18} />
                 </div>
                 <div className="text-left">
-                  <p className="text-xs md:text-sm font-bold text-slate-900 dark:text-white tracking-wide">
+                  <p className="text-xs md:text-sm font-black text-slate-900 dark:text-white tracking-wide">
                     Sanket Kedare Resume
                   </p>
-                  <p className="text-[10px] text-slate-500 dark:text-slate-400 font-medium">
-                    {pdfPagesCount > 0 ? `${pdfPagesCount} Pages • High Resolution Document` : 'Loading PDF...'}
+                  <p className="text-[10px] text-slate-700 dark:text-slate-400 font-semibold">
+                    {pdfPagesCount > 0 ? `${pdfPagesCount} Pages • Double-click for Full Screen` : 'Loading PDF...'}
                   </p>
                 </div>
               </div>
@@ -343,27 +380,27 @@ export default function ResumeViewer() {
               <div className="flex flex-wrap items-center gap-2">
                 
                 {/* Zoom Controls */}
-                <div className="flex items-center gap-1 bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl p-1">
+                <div className="flex items-center gap-1 bg-slate-200/80 dark:bg-white/5 border border-slate-300/80 dark:border-white/10 rounded-xl p-1 shadow-2xs">
                   <button
                     onClick={() => setZoomLevel((z) => Math.max(0.7, z - 0.1))}
-                    className="p-1.5 rounded-lg text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-white/10 transition-all"
+                    className="p-1.5 rounded-lg text-slate-800 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-slate-300/80 dark:hover:bg-white/10 transition-all cursor-pointer"
                     title="Zoom Out"
                   >
                     <FiZoomOut size={15} />
                   </button>
-                  <span className="text-[11px] font-mono font-bold text-cyan-600 dark:text-cyan-400 px-2 min-w-[42px] text-center">
+                  <span className="text-[11px] font-mono font-black text-cyan-900 dark:text-cyan-400 px-2 min-w-[42px] text-center">
                     {Math.round(zoomLevel * 100)}%
                   </span>
                   <button
                     onClick={() => setZoomLevel((z) => Math.min(2.0, z + 0.1))}
-                    className="p-1.5 rounded-lg text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-white/10 transition-all"
+                    className="p-1.5 rounded-lg text-slate-800 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-slate-300/80 dark:hover:bg-white/10 transition-all cursor-pointer"
                     title="Zoom In"
                   >
                     <FiZoomIn size={15} />
                   </button>
                   <button
                     onClick={() => setZoomLevel(1.0)}
-                    className="p-1.5 rounded-lg text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-white/10 transition-all"
+                    className="p-1.5 rounded-lg text-slate-800 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-slate-300/80 dark:hover:bg-white/10 transition-all cursor-pointer"
                     title="Reset Zoom"
                   >
                     <FiRotateCcw size={13} />
@@ -373,7 +410,7 @@ export default function ResumeViewer() {
                 {/* Fullscreen Button */}
                 <button
                   onClick={() => setIsFullScreen(true)}
-                  className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 text-slate-800 dark:text-white text-xs font-bold transition-all border border-slate-200 dark:border-white/10"
+                  className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-200/80 dark:bg-white/10 hover:bg-slate-300 dark:hover:bg-white/20 text-slate-900 dark:text-white text-xs font-black transition-all border border-slate-300/80 dark:border-white/10 cursor-pointer shadow-2xs"
                   title="Fullscreen Mode"
                 >
                   <FiMaximize2 size={14} />
@@ -383,7 +420,7 @@ export default function ResumeViewer() {
                 {/* Download Button */}
                 <button
                   onClick={handleDownload}
-                  className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white text-xs font-bold transition-all shadow-md"
+                  className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-cyan-700 hover:bg-cyan-800 text-white text-xs font-black transition-all shadow-md cursor-pointer"
                   title="Download PDF"
                 >
                   <FiDownload size={14} />
@@ -393,17 +430,17 @@ export default function ResumeViewer() {
                 {/* Share Button */}
                 <button
                   onClick={handleShare}
-                  className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 text-slate-800 dark:text-white text-xs font-bold transition-all border border-slate-200 dark:border-white/10"
+                  className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-slate-200/80 dark:bg-white/10 hover:bg-slate-300 dark:hover:bg-white/20 text-slate-900 dark:text-white text-xs font-black transition-all border border-slate-300/80 dark:border-white/10 cursor-pointer shadow-2xs"
                   title="Share Resume PDF"
                 >
-                  {copied ? <FiCheck size={14} className="text-emerald-500" /> : <FiShare2 size={14} />}
+                  {copied ? <FiCheck size={14} className="text-emerald-600 dark:text-emerald-500" /> : <FiShare2 size={14} />}
                   <span>{copied ? 'Copied!' : 'Share'}</span>
                 </button>
 
                 {/* Collapse / Close Button */}
                 <button
-                  onClick={() => setIsViewerOpen(false)}
-                  className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 text-slate-700 dark:text-slate-200 text-xs font-bold transition-all ml-1 border border-slate-200 dark:border-white/10 cursor-pointer"
+                  onClick={collapseViewer}
+                  className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-200/80 dark:bg-white/10 hover:bg-rose-500 hover:text-white text-slate-800 dark:text-slate-200 text-xs font-black transition-all ml-1 border border-slate-300/80 dark:border-white/10 cursor-pointer shadow-2xs"
                   title="Collapse Resume Viewer"
                 >
                   <FiX size={16} />
@@ -413,10 +450,10 @@ export default function ResumeViewer() {
               </div>
             </div>
 
-            {/* Inline Scrollable Viewport */}
+            {/* Inline Full-Height Viewport (No Inner Scrollbar) */}
             <div 
               ref={inlineScrollWrapperRef}
-              className="w-full h-[650px] md:h-[750px] overflow-auto py-6 px-2 flex flex-col items-center custom-scrollbar"
+              className="w-full h-auto py-6 px-2 flex flex-col items-center"
             >
               {isLoadingPdf && (
                 <div className="flex flex-col items-center justify-center py-24 text-cyan-500 gap-3">
@@ -439,24 +476,22 @@ export default function ResumeViewer() {
 
               {/* Inline Canvas Container */}
               <div 
+                onDoubleClick={() => setIsFullScreen(true)}
+                title="Double-click to open full screen preview"
                 style={{ 
                   transform: `scale(${zoomLevel})`, 
                   transformOrigin: 'top center',
                   transition: 'transform 0.15s ease-out'
                 }}
-                className="w-full max-w-3xl flex flex-col items-center"
+                className="w-full max-w-3xl flex flex-col items-center cursor-pointer select-none"
               >
                 <div ref={inlineContainerRef} className="w-full flex flex-col items-center" />
 
                 {/* Bottom Collapse Button */}
                 {!isLoadingPdf && !pdfError && (
                   <button
-                    onClick={() => {
-                      setIsViewerOpen(false);
-                      const resumeEl = document.getElementById('resume');
-                      if (resumeEl) resumeEl.scrollIntoView({ behavior: 'smooth' });
-                    }}
-                    className="mt-8 mb-4 flex items-center gap-2 px-5 py-2.5 rounded-2xl bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 text-slate-700 dark:text-slate-200 text-xs font-bold transition-all border border-slate-200 dark:border-white/10 cursor-pointer shadow-sm"
+                    onClick={collapseViewer}
+                    className="mt-8 mb-4 flex items-center gap-2 px-5 py-2.5 rounded-2xl bg-slate-200/80 dark:bg-white/10 hover:bg-rose-500 hover:text-white text-slate-900 dark:text-slate-200 text-xs font-black transition-all border border-slate-300/80 dark:border-white/10 cursor-pointer shadow-2xs"
                   >
                     <FiX size={15} />
                     <span>Collapse Resume</span>
@@ -469,126 +504,130 @@ export default function ResumeViewer() {
         )}
       </AnimatePresence>
 
-      {/* Fullscreen Lightbox Modal */}
-      <AnimatePresence>
-        {isFullScreen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[200] bg-slate-950/95 backdrop-blur-2xl flex flex-col p-4 md:p-6 overflow-hidden"
-          >
-            {/* Fullscreen Toolbar */}
-            <div className="flex items-center justify-between gap-4 pb-4 border-b border-white/10 max-w-7xl mx-auto w-full">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center font-bold">
-                  <FiFileText size={20} />
-                </div>
-                <div className="text-left">
-                  <p className="text-sm md:text-base font-bold text-white tracking-wide">
-                    Sanket Kedare Resume
-                  </p>
-                  <p className="text-xs text-slate-400 font-medium">
-                    Fullscreen Preview Mode
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-3">
-                {/* Zoom Controls */}
-                <div className="flex items-center gap-1 bg-white/10 border border-white/15 rounded-xl p-1">
-                  <button
-                    onClick={() => setZoomLevel((z) => Math.max(0.7, z - 0.1))}
-                    className="p-2 rounded-lg text-slate-300 hover:text-white hover:bg-white/10 transition-all"
-                    title="Zoom Out"
-                  >
-                    <FiZoomOut size={18} />
-                  </button>
-                  <span className="text-xs font-mono font-bold text-cyan-400 px-2 min-w-[50px] text-center">
-                    {Math.round(zoomLevel * 100)}%
-                  </span>
-                  <button
-                    onClick={() => setZoomLevel((z) => Math.min(2.0, z + 0.1))}
-                    className="p-2 rounded-lg text-slate-300 hover:text-white hover:bg-white/10 transition-all"
-                    title="Zoom In"
-                  >
-                    <FiZoomIn size={18} />
-                  </button>
-                  <button
-                    onClick={() => setZoomLevel(1.0)}
-                    className="p-2 rounded-lg text-slate-300 hover:text-white hover:bg-white/10 transition-all"
-                    title="Reset Zoom"
-                  >
-                    <FiRotateCcw size={16} />
-                  </button>
-                </div>
-
-                <button
-                  onClick={handleDownload}
-                  className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs tracking-wider uppercase transition-all shadow-md"
-                >
-                  <FiDownload size={16} />
-                  <span className="hidden sm:inline">Download</span>
-                </button>
-
-                <button
-                  onClick={closeFullScreen}
-                  className="p-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white transition-all"
-                  title="Exit Fullscreen & Return to Resume"
-                >
-                  <FiMinimize2 size={20} />
-                </button>
-
-                <button
-                  onClick={closeFullScreen}
-                  className="p-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-all ml-1"
-                  title="Close Fullscreen"
-                >
-                  <FiX size={20} />
-                </button>
-              </div>
-            </div>
-
-            {/* Fullscreen Scrollable Viewport */}
-            <div 
-              ref={fullscreenScrollWrapperRef}
-              className="flex-1 w-full max-w-7xl mx-auto overflow-auto p-4 md:p-8 flex justify-center custom-scrollbar mt-4"
+      {/* Fullscreen Lightbox Modal via Portal directly to document.body */}
+      {isMounted && createPortal(
+        <AnimatePresence>
+          {isFullScreen && (
+            <motion.div
+              data-fullscreen-modal="true"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-[999999] bg-[#050511] backdrop-blur-2xl flex flex-col p-4 md:p-6 overflow-hidden w-screen h-screen"
             >
-              {isLoadingPdf && (
-                <div className="flex flex-col items-center justify-center py-24 text-cyan-400 gap-3">
-                  <FiLoader size={36} className="animate-spin" />
-                  <p className="text-xs font-bold tracking-widest uppercase">Rendering Document...</p>
-                </div>
-              )}
-
-              {pdfError && (
-                <div className="flex flex-col items-center justify-center py-20 text-center gap-4">
-                  <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center">
-                    <FiFileText size={24} className="text-slate-600" />
+              {/* Fullscreen Toolbar */}
+              <div className="flex items-center justify-between gap-4 pb-4 border-b border-white/10 max-w-7xl mx-auto w-full">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center font-bold">
+                    <FiFileText size={20} />
                   </div>
-                  <div>
-                    <p className="text-sm font-bold text-slate-400">Resume not available</p>
-                    <p className="text-xs text-slate-600 mt-1">The resume hasn&apos;t been configured yet.</p>
+                  <div className="text-left">
+                    <p className="text-sm md:text-base font-bold text-white tracking-wide">
+                      Sanket Kedare Resume
+                    </p>
+                    <p className="text-xs text-slate-400 font-medium">
+                      Fullscreen Preview Mode
+                    </p>
                   </div>
                 </div>
-              )}
 
-              {/* Fullscreen Canvas Container */}
-              <div 
-                style={{ 
-                  transform: `scale(${zoomLevel})`, 
-                  transformOrigin: 'top center',
-                  transition: 'transform 0.15s ease-out'
-                }}
-                className="w-full max-w-4xl flex flex-col items-center pt-2"
-              >
-                <div ref={fullscreenContainerRef} className="w-full flex flex-col items-center" />
+                <div className="flex items-center gap-3">
+                  {/* Zoom Controls */}
+                  <div className="flex items-center gap-1 bg-white/10 border border-white/15 rounded-xl p-1">
+                    <button
+                      onClick={() => setZoomLevel((z) => Math.max(0.7, z - 0.1))}
+                      className="p-2 rounded-lg text-slate-300 hover:text-white hover:bg-white/10 transition-all"
+                      title="Zoom Out"
+                    >
+                      <FiZoomOut size={18} />
+                    </button>
+                    <span className="text-xs font-mono font-bold text-cyan-400 px-2 min-w-[50px] text-center">
+                      {Math.round(zoomLevel * 100)}%
+                    </span>
+                    <button
+                      onClick={() => setZoomLevel((z) => Math.min(2.0, z + 0.1))}
+                      className="p-2 rounded-lg text-slate-300 hover:text-white hover:bg-white/10 transition-all"
+                      title="Zoom In"
+                    >
+                      <FiZoomIn size={18} />
+                    </button>
+                    <button
+                      onClick={() => setZoomLevel(1.0)}
+                      className="p-2 rounded-lg text-slate-300 hover:text-white hover:bg-white/10 transition-all"
+                      title="Reset Zoom"
+                    >
+                      <FiRotateCcw size={16} />
+                    </button>
+                  </div>
+
+                  <button
+                    onClick={handleDownload}
+                    className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs tracking-wider uppercase transition-all shadow-md"
+                  >
+                    <FiDownload size={16} />
+                    <span className="hidden sm:inline">Download</span>
+                  </button>
+
+                  <button
+                    onClick={closeFullScreen}
+                    className="p-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white transition-all"
+                    title="Exit Fullscreen & Return to Resume"
+                  >
+                    <FiMinimize2 size={20} />
+                  </button>
+
+                  <button
+                    onClick={closeFullScreen}
+                    className="p-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-all ml-1"
+                    title="Close Fullscreen"
+                  >
+                    <FiX size={20} />
+                  </button>
+                </div>
               </div>
-            </div>
 
-          </motion.div>
-        )}
-      </AnimatePresence>
+              {/* Fullscreen Scrollable Viewport */}
+              <div 
+                ref={fullscreenScrollWrapperRef}
+                className="flex-1 w-full max-w-7xl mx-auto overflow-auto p-4 md:p-8 flex justify-center custom-scrollbar mt-4"
+              >
+                {isLoadingPdf && (
+                  <div className="flex flex-col items-center justify-center py-24 text-cyan-400 gap-3">
+                    <FiLoader size={36} className="animate-spin" />
+                    <p className="text-xs font-bold tracking-widest uppercase">Rendering Document...</p>
+                  </div>
+                )}
+
+                {pdfError && (
+                  <div className="flex flex-col items-center justify-center py-20 text-center gap-4">
+                    <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center">
+                      <FiFileText size={24} className="text-slate-600" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-bold text-slate-400">Resume not available</p>
+                      <p className="text-xs text-slate-600 mt-1">The resume hasn&apos;t been configured yet.</p>
+                    </div>
+                  </div>
+                )}
+
+                {/* Fullscreen Canvas Container */}
+                <div 
+                  style={{ 
+                    transform: `scale(${zoomLevel})`, 
+                    transformOrigin: 'top center',
+                    transition: 'transform 0.15s ease-out'
+                  }}
+                  className="w-full max-w-4xl flex flex-col items-center pt-2"
+                >
+                  <div ref={fullscreenContainerRef} className="w-full flex flex-col items-center" />
+                </div>
+              </div>
+
+            </motion.div>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
 
     </div>
   );

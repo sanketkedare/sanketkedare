@@ -202,3 +202,40 @@ const VisitSchema = new mongoose.Schema(
 
 export const Visit = mongoose.models.Visit || mongoose.model('Visit', VisitSchema);
 
+/* ─── Recruiter JD Evaluation Telemetry ────────────────────────────────────────── */
+const JDEvaluationSchema = new mongoose.Schema(
+  {
+    recruiterLocation:   { type: String, default: 'Unknown Location', index: true },
+    companyLocation:     { type: String, default: 'Extracted from JD' },
+    companyName:         { type: String, default: 'Unspecified Company' },
+    recruiterEmail:      { type: String, default: '' },
+    recruiterName:       { type: String, default: '' },
+    emailVerified:       { type: Boolean, default: false },
+    emailVerifiedAt:     { type: Date },
+    emailSentStatus:     { type: String, enum: ['SENT', 'FAILED', 'NOT_VERIFIED'], default: 'NOT_VERIFIED', index: true },
+    emailSentAt:         { type: Date },
+    emailError:          { type: String, default: '' },
+    sentEmailSubject:    { type: String, default: '' },
+    sentEmailHtml:       { type: String, default: '' },
+    sentEmailText:       { type: String, default: '' },
+    jobTitle:            { type: String, default: 'Target Engineering Role' },
+    jdText:              { type: String, default: '' },
+    fileName:            { type: String, default: '' },
+    fileBase64:          { type: String, default: '' },
+    fileContentType:     { type: String, default: '' },
+    fileSizeBytes:       { type: Number, default: 0 },
+    matchScore:          { type: Number, required: true, min: 0, max: 100, index: true },
+    verdict:             { type: String, default: 'High Potential Match' },
+    fitSummary:          { type: String, default: '' },
+    matchingSkills:      [{ type: String }],
+    missingSkills:       [{ type: String }],
+    tailoredPitch:       { type: String, default: '' },
+    recommendedProjects: [{ type: String }],
+    ipAddress:           { type: String, default: '' },
+    createdAt:           { type: Date, default: Date.now, index: true },
+  },
+  { collection: 'jdevaluations' }
+);
+
+export const JDEvaluation = mongoose.models.JDEvaluation || mongoose.model('JDEvaluation', JDEvaluationSchema);
+
