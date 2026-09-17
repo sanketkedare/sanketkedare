@@ -54,7 +54,8 @@ export default function Navbar() {
           <Logo />
         </div>
 
-        <div className="flex items-center gap-4 sm:gap-5">
+        {/* Desktop Social Links (Hidden on small screens) */}
+        <div className="hidden md:flex items-center gap-4 sm:gap-5">
           <a
             href={PersonalInfo.github}
             target="_blank"
