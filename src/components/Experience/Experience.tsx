@@ -277,12 +277,12 @@ export default function Experience() {
               onClick={() => handleSelectNode('visiontech')}
               className={`cursor-pointer w-full max-w-2xl p-5 md:p-6 rounded-3xl border-2 transition-all duration-500 flex flex-col md:flex-row items-start md:items-center justify-between gap-5 backdrop-blur-2xl ${
                 selectedId === 'visiontech'
-                  ? 'bg-gradient-to-r from-white via-cyan-50/60 to-white dark:from-cyan-500/20 dark:via-purple-500/20 dark:to-cyan-500/20 border-cyan-500 dark:border-cyan-400 shadow-[0_20px_45px_-8px_rgba(6,182,212,0.22)] dark:shadow-cyan-500/30 scale-[1.02]'
-                  : 'bg-white/80 dark:bg-white/5 border-slate-200/90 dark:border-white/10 ring-1 ring-slate-900/[0.04] dark:ring-transparent shadow-[0_14px_35px_-8px_rgba(15,23,42,0.08),_0_0_0_1px_rgba(255,255,255,0.9)_inset] dark:shadow-2xl hover:border-cyan-500/50'
+                  ? 'bg-cyan-50/90 dark:from-cyan-500/20 dark:via-purple-500/20 dark:to-cyan-500/20 border-cyan-500 dark:border-cyan-400 shadow-[0_20px_45px_-8px_rgba(6,182,212,0.22)] dark:shadow-cyan-500/30 scale-[1.02]'
+                  : 'bg-cyan-50/50 dark:bg-white/5 border-cyan-200/90 dark:border-white/10 ring-1 ring-cyan-900/[0.04] dark:ring-transparent shadow-[0_10px_30px_-5px_rgba(6,182,212,0.12)] dark:shadow-2xl hover:border-cyan-400'
               }`}
             >
               <div className="flex items-center gap-4 md:gap-5 min-w-0 w-full md:w-auto">
-                <div className="w-36 md:w-40 h-10 md:h-12 bg-white p-1.5 rounded-xl flex items-center justify-center shrink-0 border border-slate-200 shadow-md">
+                <div className="w-36 md:w-40 h-10 md:h-12 bg-white p-1.5 rounded-xl flex items-center justify-center shrink-0 border border-cyan-200/80 shadow-md">
                   <Image 
                     src={visiontechLogo} 
                     alt="VisionTech Group" 
@@ -293,23 +293,23 @@ export default function Experience() {
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center gap-2 flex-wrap mb-1">
                     <span className="text-[11px] font-black text-slate-900 dark:text-white uppercase tracking-wider">VisionTech Group</span>
-                    <span className="text-[9px] font-black text-cyan-700 dark:text-cyan-400 bg-cyan-500/15 dark:bg-cyan-500/20 px-2 py-0.5 rounded-full border border-cyan-500/30">FULL TIME</span>
-                    <span className="text-[9px] font-black text-emerald-700 dark:text-emerald-400 bg-emerald-500/15 dark:bg-emerald-500/20 px-2 py-0.5 rounded-full border border-emerald-500/30">PROMOTED (JUL 2026)</span>
+                    <span className="text-[9px] font-black text-cyan-800 dark:text-cyan-400 bg-cyan-100 dark:bg-cyan-500/20 px-2 py-0.5 rounded-full border border-cyan-300">FULL TIME</span>
+                    <span className="text-[9px] font-black text-emerald-800 dark:text-emerald-400 bg-emerald-100 dark:bg-emerald-500/20 px-2 py-0.5 rounded-full border border-emerald-300">PROMOTED (JUL 2026)</span>
                   </div>
                   <h4 className="text-base md:text-lg font-black text-cyan-700 dark:text-cyan-400 leading-tight">Senior Full Stack Developer</h4>
-                  <p className="text-xs text-slate-600 dark:text-slate-300 font-medium mt-0.5 truncate">VisionTech Academy Flagship Platforms, LMS, & EMS</p>
+                  <p className="text-xs text-slate-700 dark:text-slate-300 font-semibold mt-0.5 truncate">VisionTech Academy Flagship Platforms, LMS, & EMS</p>
                   
                   <div className="flex items-center gap-1.5 flex-wrap mt-2">
-                    <span className="px-2 py-0.5 rounded-md bg-cyan-500/10 text-cyan-800 dark:text-cyan-400 border border-cyan-500/25 text-[9px] font-black uppercase">Next.js 16</span>
-                    <span className="px-2 py-0.5 rounded-md bg-cyan-500/10 text-cyan-800 dark:text-cyan-400 border border-cyan-500/25 text-[9px] font-black uppercase">MERN</span>
-                    <span className="px-2 py-0.5 rounded-md bg-cyan-500/10 text-cyan-800 dark:text-cyan-400 border border-cyan-500/25 text-[9px] font-black uppercase">AWS</span>
-                    <span className="px-2 py-0.5 rounded-md bg-cyan-500/10 text-cyan-800 dark:text-cyan-400 border border-cyan-500/25 text-[9px] font-black uppercase">System Architecture</span>
+                    <span className="px-2 py-0.5 rounded-md bg-white border border-cyan-200 text-cyan-800 dark:bg-cyan-500/10 dark:text-cyan-400 dark:border-cyan-500/25 text-[9px] font-black uppercase shadow-2xs">Next.js 16</span>
+                    <span className="px-2 py-0.5 rounded-md bg-white border border-cyan-200 text-cyan-800 dark:bg-cyan-500/10 dark:text-cyan-400 dark:border-cyan-500/25 text-[9px] font-black uppercase shadow-2xs">MERN</span>
+                    <span className="px-2 py-0.5 rounded-md bg-white border border-cyan-200 text-cyan-800 dark:bg-cyan-500/10 dark:text-cyan-400 dark:border-cyan-500/25 text-[9px] font-black uppercase shadow-2xs">AWS</span>
+                    <span className="px-2 py-0.5 rounded-md bg-white border border-cyan-200 text-cyan-800 dark:bg-cyan-500/10 dark:text-cyan-400 dark:border-cyan-500/25 text-[9px] font-black uppercase shadow-2xs">System Architecture</span>
                   </div>
                 </div>
               </div>
 
-              <div className="flex items-center gap-2 shrink-0 bg-cyan-500/15 dark:bg-cyan-500/10 px-3 py-1.5 rounded-xl border border-cyan-500/30 self-end md:self-center">
-                <span className="text-[10px] text-cyan-800 dark:text-cyan-400 font-black whitespace-nowrap">Jun 2025 - Present</span>
+              <div className="flex items-center gap-2 shrink-0 bg-cyan-100/80 dark:bg-cyan-500/10 px-3 py-1.5 rounded-xl border border-cyan-300 dark:border-cyan-500/30 self-end md:self-center">
+                <span className="text-[10px] text-cyan-900 dark:text-cyan-400 font-black whitespace-nowrap">Jun 2025 - Present</span>
                 <FiGitCommit size={16} className="text-cyan-600 dark:text-cyan-400 animate-pulse" />
               </div>
             </motion.div>
@@ -327,8 +327,8 @@ export default function Experience() {
               onClick={() => handleSelectNode('viacerta')}
               className={`cursor-pointer w-full max-w-xl p-5 rounded-2xl border transition-all duration-300 flex items-center justify-between gap-4 backdrop-blur-xl ${
                 selectedId === 'viacerta'
-                  ? 'bg-white dark:bg-white/10 border-cyan-500 dark:border-cyan-400 shadow-[0_16px_36px_-6px_rgba(6,182,212,0.18)] dark:shadow-lg'
-                  : 'bg-white/80 dark:bg-white/5 border-slate-200/90 dark:border-white/10 shadow-[0_10px_25px_-5px_rgba(15,23,42,0.06)] hover:border-cyan-500/40'
+                  ? 'bg-sky-50/90 dark:bg-white/10 border-cyan-500 dark:border-cyan-400 shadow-[0_16px_36px_-6px_rgba(6,182,212,0.18)] dark:shadow-lg'
+                  : 'bg-sky-50/50 dark:bg-white/5 border-cyan-200/80 dark:border-white/10 shadow-[0_8px_20px_-5px_rgba(6,182,212,0.1)] hover:border-cyan-400'
               }`}
             >
               <div className="flex items-center gap-3.5">
@@ -337,20 +337,20 @@ export default function Experience() {
                 </div>
                 <div>
                   <div className="flex items-center gap-2">
-                    <span className="text-[10px] font-black text-slate-700 dark:text-slate-400 uppercase tracking-widest">ViaCerta Abroad</span>
-                    <span className="text-[9px] font-black text-cyan-800 dark:text-cyan-400 bg-cyan-500/15 dark:bg-cyan-500/20 px-2 py-0.5 rounded border border-cyan-500/30">FULL TIME</span>
+                    <span className="text-[10px] font-black text-slate-800 dark:text-slate-400 uppercase tracking-widest">ViaCerta Abroad</span>
+                    <span className="text-[9px] font-black text-cyan-800 dark:text-cyan-400 bg-cyan-100 dark:bg-cyan-500/20 px-2 py-0.5 rounded border border-cyan-300">FULL TIME</span>
                   </div>
                   <h4 className="text-xs md:text-sm font-bold text-slate-900 dark:text-white">Frontend Developer</h4>
-                  <p className="text-[11px] text-slate-600 dark:text-slate-400 font-medium mt-0.5">Interactive Educational Consultancy Workflows & Design Systems</p>
+                  <p className="text-[11px] text-slate-700 dark:text-slate-400 font-medium mt-0.5">Interactive Educational Consultancy Workflows & Design Systems</p>
                 </div>
               </div>
-              <span className="text-[10px] text-slate-600 dark:text-slate-400 font-black shrink-0">Feb 2025 - Jun 2025</span>
+              <span className="text-[10px] text-slate-700 dark:text-slate-400 font-black shrink-0">Feb 2025 - Jun 2025</span>
             </motion.div>
 
             {/* STAGE LABEL 2 & 3: FREELANCING & INTERNSHIPS (PARALLEL FORK) */}
             <div className="w-full max-w-3xl flex flex-col items-center -my-6">
               <div className="w-full text-center mb-1">
-                <span className="px-4 py-1.5 rounded-full bg-purple-500/15 dark:bg-purple-500/20 border border-purple-500/30 dark:border-purple-500/40 text-purple-800 dark:text-purple-300 text-[10px] font-black uppercase tracking-widest shadow-[0_4px_16px_rgba(168,85,247,0.15)] dark:shadow-[0_0_20px_rgba(168,85,247,0.3)] inline-flex items-center gap-2 backdrop-blur-md">
+                <span className="px-4 py-1.5 rounded-full bg-purple-100 dark:bg-purple-500/20 border border-purple-300 dark:border-purple-500/40 text-purple-800 dark:text-purple-300 text-[10px] font-black uppercase tracking-widest shadow-[0_4px_16px_rgba(168,85,247,0.15)] dark:shadow-[0_0_20px_rgba(168,85,247,0.3)] inline-flex items-center gap-2 backdrop-blur-md">
                   <FiGlobe size={13} /> STAGE 2 & 3 • PARALLEL FREELANCING & INTERNSHIPS (JAN 2024 - FEB 2025)
                 </span>
               </div>
@@ -374,16 +374,16 @@ export default function Experience() {
                 onClick={() => handleSelectNode('freelance')}
                 className={`cursor-pointer p-5 rounded-2xl border-2 transition-all duration-300 relative overflow-hidden flex flex-col justify-between gap-3 backdrop-blur-xl ${
                   selectedId === 'freelance'
-                    ? 'bg-gradient-to-br from-white via-purple-50/50 to-white dark:from-purple-500/20 dark:via-purple-500/10 dark:to-transparent border-purple-500 dark:border-purple-400 shadow-[0_18px_40px_-8px_rgba(168,85,247,0.2)] dark:shadow-xl dark:shadow-purple-500/20 scale-105'
-                    : 'bg-white/80 dark:bg-white/5 border-purple-500/30 hover:border-purple-500/60 shadow-[0_10px_25px_-5px_rgba(15,23,42,0.06)]'
+                    ? 'bg-purple-50/90 dark:from-purple-500/20 dark:via-purple-500/10 dark:to-transparent border-purple-500 dark:border-purple-400 shadow-[0_18px_40px_-8px_rgba(168,85,247,0.2)] dark:shadow-xl dark:shadow-purple-500/20 scale-105'
+                    : 'bg-purple-50/50 dark:bg-white/5 border-purple-200/90 dark:border-purple-500/30 hover:border-purple-400 shadow-[0_10px_25px_-5px_rgba(168,85,247,0.1)]'
                 }`}
               >
                 <div>
                   <div className="flex items-center justify-between mb-3">
-                    <span className="text-[9px] font-black uppercase tracking-widest text-purple-800 dark:text-purple-300 bg-purple-500/20 px-2.5 py-0.5 rounded-full border border-purple-500/30">
+                    <span className="text-[9px] font-black uppercase tracking-widest text-purple-800 dark:text-purple-300 bg-purple-100 dark:bg-purple-500/20 px-2.5 py-0.5 rounded-full border border-purple-300">
                       FREELANCING
                     </span>
-                    <span className="text-[9px] font-bold text-slate-600 dark:text-slate-400">Jan 2024 - Feb 2025</span>
+                    <span className="text-[9px] font-bold text-slate-700 dark:text-slate-400">Jan 2024 - Feb 2025</span>
                   </div>
 
                   <div className="flex items-center gap-3.5">
@@ -392,14 +392,14 @@ export default function Experience() {
                     </div>
                     <div>
                       <h4 className="text-sm font-black text-slate-900 dark:text-white">JavaScript Developer Freelancer</h4>
-                      <p className="text-[10px] text-purple-700 dark:text-purple-300 font-bold mt-0.5">Started Freelancing while learning!</p>
+                      <p className="text-[10px] text-purple-800 dark:text-purple-300 font-bold mt-0.5">Started Freelancing while learning!</p>
                     </div>
                   </div>
                 </div>
 
                 <div className="flex flex-wrap gap-1 mt-2">
                   {['React', 'Node.js', 'Stripe API', 'Dashboards'].map(s => (
-                    <span key={s} className="px-2 py-0.5 rounded bg-purple-500/10 text-purple-800 dark:text-purple-300 border border-purple-500/25 text-[8px] font-black uppercase">{s}</span>
+                    <span key={s} className="px-2 py-0.5 rounded bg-white border border-purple-200 text-purple-800 dark:bg-purple-500/10 dark:text-purple-300 dark:border-purple-500/25 text-[8px] font-black uppercase shadow-2xs">{s}</span>
                   ))}
                 </div>
               </motion.div>
@@ -414,21 +414,21 @@ export default function Experience() {
                   onClick={() => handleSelectNode('unified')}
                   className={`cursor-pointer p-4 rounded-xl border transition-all duration-300 backdrop-blur-xl ${
                     selectedId === 'unified'
-                      ? 'bg-white dark:bg-white/10 border-emerald-500 dark:border-emerald-400 shadow-md'
-                      : 'bg-white/80 dark:bg-white/5 border-slate-200/90 dark:border-white/10 shadow-sm hover:border-emerald-500/40'
+                      ? 'bg-emerald-50/90 dark:bg-white/10 border-emerald-500 dark:border-emerald-400 shadow-md'
+                      : 'bg-emerald-50/50 dark:bg-white/5 border-emerald-200/80 dark:border-white/10 shadow-xs hover:border-emerald-400'
                   }`}
                 >
                   <div className="flex items-center justify-between gap-3">
                     <div className="flex items-center gap-3.5 min-w-0">
-                      <div className="w-28 md:w-32 h-8 md:h-9 bg-white p-0.5 rounded-lg flex items-center justify-center shrink-0 border border-slate-200 shadow-sm overflow-hidden">
+                      <div className="w-28 md:w-32 h-8 md:h-9 bg-white p-0.5 rounded-lg flex items-center justify-center shrink-0 border border-emerald-200 shadow-sm overflow-hidden">
                         <Image src={unifiedMentorLogo} alt="Unified Mentor" loading="lazy" className="w-full h-full object-contain scale-[1.45]" />
                       </div>
                       <div className="min-w-0">
-                        <span className="text-[9px] font-black text-emerald-700 dark:text-emerald-400 uppercase tracking-wider block">INTERNSHIP</span>
+                        <span className="text-[9px] font-black text-emerald-800 dark:text-emerald-400 uppercase tracking-wider block">INTERNSHIP</span>
                         <h4 className="text-xs font-bold text-slate-900 dark:text-white truncate">Unified Mentor • Full Stack Intern</h4>
                       </div>
                     </div>
-                    <span className="text-[9px] text-slate-600 dark:text-slate-400 font-bold shrink-0">Dec 2024 - Jan 2025</span>
+                    <span className="text-[9px] text-slate-700 dark:text-slate-400 font-bold shrink-0">Dec 2024 - Jan 2025</span>
                   </div>
                 </motion.div>
 
@@ -439,8 +439,8 @@ export default function Experience() {
                   onClick={() => handleSelectNode('almabetter-ta')}
                   className={`cursor-pointer p-4 rounded-xl border transition-all duration-300 backdrop-blur-xl ${
                     selectedId === 'almabetter-ta'
-                      ? 'bg-white dark:bg-white/10 border-emerald-500 dark:border-emerald-400 shadow-md'
-                      : 'bg-white/80 dark:bg-white/5 border-slate-200/90 dark:border-white/10 shadow-sm hover:border-emerald-500/40'
+                      ? 'bg-emerald-50/90 dark:bg-white/10 border-emerald-500 dark:border-emerald-400 shadow-md'
+                      : 'bg-emerald-50/50 dark:bg-white/5 border-emerald-200/80 dark:border-white/10 shadow-xs hover:border-emerald-400'
                   }`}
                 >
                   <div className="flex items-center justify-between gap-3">
@@ -449,11 +449,11 @@ export default function Experience() {
                         <Image src={almabetterLogo} alt="AlmaBetter" loading="lazy" className="w-full h-full object-contain filter drop-shadow" />
                       </div>
                       <div className="min-w-0">
-                        <span className="text-[9px] font-black text-emerald-700 dark:text-emerald-400 uppercase tracking-wider block">INTERNSHIP</span>
+                        <span className="text-[9px] font-black text-emerald-800 dark:text-emerald-400 uppercase tracking-wider block">INTERNSHIP</span>
                         <h4 className="text-xs font-bold text-slate-900 dark:text-white truncate">AlmaBetter • Teaching Assistant</h4>
                       </div>
                     </div>
-                    <span className="text-[9px] text-slate-600 dark:text-slate-400 font-bold shrink-0">Jun 2024 - Jul 2024</span>
+                    <span className="text-[9px] text-slate-700 dark:text-slate-400 font-bold shrink-0">Jun 2024 - Jul 2024</span>
                   </div>
                 </motion.div>
 
@@ -468,7 +468,7 @@ export default function Experience() {
                 <path d="M 480 0 C 480 30, 300 20, 300 50" stroke="#06b6d4" strokeWidth="2" strokeDasharray="4 4" />
               </svg>
               
-              <span className="px-4 py-1.5 rounded-full bg-amber-500/15 dark:bg-amber-500/20 border border-amber-500/30 dark:border-amber-500/40 text-amber-800 dark:text-amber-300 text-[10px] font-black uppercase tracking-widest z-10 shadow-md inline-flex items-center gap-2 backdrop-blur-md">
+              <span className="px-4 py-1.5 rounded-full bg-amber-100 dark:bg-amber-500/20 border border-amber-300 dark:border-amber-500/40 text-amber-800 dark:text-amber-300 text-[10px] font-black uppercase tracking-widest z-10 shadow-md inline-flex items-center gap-2 backdrop-blur-md">
                 <FiBookOpen size={13} /> STAGE 1 • LEARNING & FOUNDATION (APR 2023 - MAR 2024)
               </span>
             </div>
@@ -480,8 +480,8 @@ export default function Experience() {
               onClick={() => handleSelectNode('almabetter-trainee')}
               className={`cursor-pointer w-full max-w-2xl p-5 rounded-2xl border-2 transition-all duration-300 flex flex-col md:flex-row items-start md:items-center justify-between gap-5 backdrop-blur-xl ${
                 selectedId === 'almabetter-trainee'
-                  ? 'bg-gradient-to-r from-white via-amber-50/50 to-white dark:bg-amber-500/10 border-amber-500 dark:border-amber-400 shadow-[0_16px_36px_-6px_rgba(245,158,11,0.2)] dark:shadow-xl scale-[1.02]'
-                  : 'bg-white/80 dark:bg-white/5 border-amber-500/30 hover:border-amber-500/60 shadow-[0_10px_25px_-5px_rgba(15,23,42,0.06)]'
+                  ? 'bg-amber-50/90 dark:bg-amber-500/10 border-amber-500 dark:border-amber-400 shadow-[0_16px_36px_-6px_rgba(245,158,11,0.2)] dark:shadow-xl scale-[1.02]'
+                  : 'bg-amber-50/50 dark:bg-white/5 border-amber-200/90 dark:border-amber-500/30 hover:border-amber-400 shadow-[0_10px_25px_-5px_rgba(245,158,11,0.1)]'
               }`}
             >
               <div className="flex items-center gap-4">
@@ -490,14 +490,14 @@ export default function Experience() {
                 </div>
                 <div>
                   <div className="flex items-center gap-2">
-                    <span className="text-xs font-black text-amber-700 dark:text-amber-500 uppercase tracking-wider">AlmaBetter Fellowship</span>
-                    <span className="text-[9px] font-black text-amber-800 dark:text-amber-300 bg-amber-500/20 px-2 py-0.5 rounded-md border border-amber-500/30">LEARNING</span>
+                    <span className="text-xs font-black text-amber-800 dark:text-amber-500 uppercase tracking-wider">AlmaBetter Fellowship</span>
+                    <span className="text-[9px] font-black text-amber-900 dark:text-amber-300 bg-amber-100 dark:bg-amber-500/20 px-2 py-0.5 rounded-md border border-amber-300">LEARNING</span>
                   </div>
                   <h4 className="text-sm md:text-base font-black text-slate-900 dark:text-white">Full Stack Web Developer Trainee</h4>
-                  <p className="text-xs text-slate-600 dark:text-slate-400 font-medium mt-0.5">Capstone Systems: GrowSphere • Snapdeal Clone • ReactForge</p>
+                  <p className="text-xs text-slate-700 dark:text-slate-400 font-semibold mt-0.5">Capstone Systems: GrowSphere • Snapdeal Clone • ReactForge</p>
                 </div>
               </div>
-              <span className="text-[10px] text-slate-600 dark:text-slate-400 font-bold shrink-0">Apr 2023 - Mar 2024</span>
+              <span className="text-[10px] text-slate-700 dark:text-slate-400 font-bold shrink-0">Apr 2023 - Mar 2024</span>
             </motion.div>
 
           </div>
@@ -513,7 +513,7 @@ export default function Experience() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.3 }}
-              className="p-6 md:p-8 rounded-3xl bg-white/85 dark:bg-[#0a0a1a]/90 border border-slate-200/90 dark:border-white/10 ring-1 ring-slate-900/[0.04] dark:ring-transparent backdrop-blur-2xl shadow-[0_25px_55px_-12px_rgba(15,23,42,0.15),_0_0_0_1.5px_rgba(255,255,255,0.95)_inset] dark:shadow-2xl relative overflow-hidden"
+              className="p-6 md:p-8 rounded-3xl bg-slate-100/70 dark:bg-[#0a0a1a]/90 border border-slate-200/90 dark:border-white/10 ring-1 ring-slate-900/[0.04] dark:ring-transparent backdrop-blur-2xl shadow-[0_25px_55px_-12px_rgba(15,23,42,0.12)] dark:shadow-2xl relative overflow-hidden"
             >
               {/* Header Info Bar */}
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-200/80 dark:border-white/10 mb-6">
@@ -540,7 +540,7 @@ export default function Experience() {
                   </div>
                 </div>
 
-                <div className="text-xs font-bold text-slate-600 dark:text-slate-400">
+                <div className="text-xs font-bold text-slate-700 dark:text-slate-400">
                   <span>{activeNode.period} • {activeNode.location}</span>
                 </div>
               </div>
@@ -552,8 +552,8 @@ export default function Experience() {
                 <div className="lg:col-span-5 space-y-4">
                   
                   {/* Core Impact Overview */}
-                  <div className="p-4 rounded-2xl bg-white/90 dark:bg-white/5 border border-slate-200/90 dark:border-white/10 shadow-sm">
-                    <span className="text-[9px] font-black uppercase tracking-[0.2em] text-cyan-700 dark:text-cyan-400 flex items-center gap-1.5 mb-1">
+                  <div className="p-4 rounded-2xl bg-cyan-50/70 dark:bg-white/5 border border-cyan-200/90 dark:border-white/10 shadow-xs">
+                    <span className="text-[9px] font-black uppercase tracking-[0.2em] text-cyan-800 dark:text-cyan-400 flex items-center gap-1.5 mb-1">
                       <FiAward size={13} /> Core Impact Overview
                     </span>
                     <p className="text-xs md:text-sm font-bold text-slate-900 dark:text-white leading-relaxed">
@@ -563,17 +563,17 @@ export default function Experience() {
 
                   {/* Promotion Timeline */}
                   {activeNode.promotions && (
-                    <div className="p-4 bg-gradient-to-r from-cyan-500/10 to-purple-500/10 border border-cyan-500/30 rounded-2xl shadow-sm">
-                      <span className="text-[9px] font-black uppercase tracking-[0.2em] text-cyan-700 dark:text-cyan-400 flex items-center gap-1.5 mb-2">
+                    <div className="p-4 bg-gradient-to-r from-cyan-100/80 to-purple-100/80 dark:from-cyan-500/10 dark:to-purple-500/10 border border-cyan-300 dark:border-cyan-500/30 rounded-2xl shadow-xs">
+                      <span className="text-[9px] font-black uppercase tracking-[0.2em] text-cyan-800 dark:text-cyan-400 flex items-center gap-1.5 mb-2">
                         <FiTrendingUp size={14} /> Official Career Progression & Promotion
                       </span>
                       <div className="flex flex-col gap-2 pl-3 border-l-2 border-cyan-500/60">
                         {activeNode.promotions.map((promo, idx) => (
                           <div key={idx} className="flex flex-wrap items-center justify-between text-xs gap-1">
-                            <span className={`font-bold ${promo.isCurrent ? 'text-slate-900 dark:text-white' : 'text-slate-600 dark:text-slate-400'}`}>
-                              {promo.role} {promo.isCurrent && <span className="text-[9px] font-black text-cyan-700 dark:text-cyan-400 uppercase tracking-widest ml-1 bg-cyan-500/20 px-2 py-0.5 rounded-md border border-cyan-500/30">Promoted (Jul 2026)</span>}
+                            <span className={`font-bold ${promo.isCurrent ? 'text-slate-900 dark:text-white' : 'text-slate-700 dark:text-slate-400'}`}>
+                              {promo.role} {promo.isCurrent && <span className="text-[9px] font-black text-cyan-800 dark:text-cyan-400 uppercase tracking-widest ml-1 bg-cyan-100 dark:bg-cyan-500/20 px-2 py-0.5 rounded-md border border-cyan-300 dark:border-cyan-500/30">Promoted (Jul 2026)</span>}
                             </span>
-                            <span className="text-[10px] font-semibold text-slate-600 dark:text-slate-400">{promo.period}</span>
+                            <span className="text-[10px] font-bold text-slate-700 dark:text-slate-400">{promo.period}</span>
                           </div>
                         ))}
                       </div>
@@ -582,13 +582,13 @@ export default function Experience() {
 
                   {/* Featured Systems & Projects */}
                   {activeNode.keyProjects && (
-                    <div className="p-4 rounded-2xl bg-white/90 dark:bg-white/5 border border-slate-200/90 dark:border-white/10 shadow-sm">
-                      <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-600 dark:text-slate-400 mb-2 flex items-center gap-2">
-                        <FiCpu className="text-purple-600 dark:text-purple-400" /> Featured Systems & Projects
+                    <div className="p-4 rounded-2xl bg-purple-50/70 dark:bg-white/5 border border-purple-200/90 dark:border-white/10 shadow-xs">
+                      <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-purple-800 dark:text-slate-400 mb-2 flex items-center gap-2">
+                        <FiCpu className="text-purple-700 dark:text-purple-400" /> Featured Systems & Projects
                       </h4>
                       <div className="flex flex-wrap gap-2">
                         {activeNode.keyProjects.map(proj => (
-                          <span key={proj} className="px-3 py-1 rounded-xl bg-purple-500/10 text-purple-800 dark:text-purple-300 border border-purple-500/25 text-[10px] font-bold">
+                          <span key={proj} className="px-3 py-1 rounded-xl bg-white border border-purple-200 text-purple-900 dark:bg-purple-500/10 dark:text-purple-300 dark:border-purple-500/25 text-[10px] font-bold shadow-2xs">
                             {proj}
                           </span>
                         ))}
@@ -599,14 +599,14 @@ export default function Experience() {
                 </div>
 
                 {/* RIGHT COLUMN (7/12): Expanded Accomplishments */}
-                <div className="lg:col-span-7 p-5 rounded-2xl bg-white/90 dark:bg-white/5 border border-slate-200/90 dark:border-white/10 shadow-sm flex flex-col justify-between">
+                <div className="lg:col-span-7 p-5 rounded-2xl bg-slate-50/90 dark:bg-white/5 border border-slate-200/90 dark:border-white/10 shadow-xs flex flex-col justify-between">
                   <div>
-                    <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-600 dark:text-slate-400 flex items-center gap-2 mb-4">
+                    <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-700 dark:text-slate-400 flex items-center gap-2 mb-4">
                       <FiZap className="text-cyan-600 dark:text-cyan-400" /> Expanded Accomplishments & Technical Deliverables
                     </h4>
                     <ul className="space-y-3">
                       {activeNode.highlights.map((h, i) => (
-                        <li key={i} className="flex items-start gap-2.5 text-xs md:text-sm text-slate-800 dark:text-slate-300 font-medium">
+                        <li key={i} className="flex items-start gap-2.5 text-xs md:text-sm text-slate-900 dark:text-slate-300 font-medium">
                           <FiCheckCircle size={15} className="text-cyan-600 dark:text-cyan-400 shrink-0 mt-0.5" />
                           <span className="leading-relaxed">{h}</span>
                         </li>
@@ -620,7 +620,7 @@ export default function Experience() {
               {/* Skills Tags Bar */}
               <div className="flex flex-wrap gap-2 pt-4 border-t border-slate-200/80 dark:border-white/5">
                 {activeNode.skills.map(skill => (
-                  <span key={skill} className="px-3 py-1 rounded-xl bg-white/90 dark:bg-white/5 border border-slate-200/90 dark:border-white/10 text-[9px] font-black uppercase tracking-widest text-slate-800 dark:text-slate-300 shadow-sm">
+                  <span key={skill} className="px-3 py-1 rounded-xl bg-white border border-slate-200/90 text-[9px] font-black uppercase tracking-widest text-slate-800 dark:bg-white/5 dark:border-white/10 dark:text-slate-300 shadow-2xs">
                     {skill}
                   </span>
                 ))}
@@ -630,7 +630,7 @@ export default function Experience() {
               <div className="flex items-center justify-between pt-6 mt-6 border-t border-slate-200/80 dark:border-white/10 flex-wrap gap-4">
                 <button
                   onClick={() => handleSelectNode(prevNode.id, false)}
-                  className="inline-flex items-center gap-3 px-4 py-2.5 rounded-2xl bg-white/90 dark:bg-white/5 hover:bg-white dark:hover:bg-white/10 border border-slate-200/90 dark:border-white/10 text-slate-800 dark:text-slate-200 text-xs font-bold transition-all duration-200 active:scale-95 group shadow-sm"
+                  className="inline-flex items-center gap-3 px-4 py-2.5 rounded-2xl bg-white hover:bg-slate-50 border border-slate-200/90 dark:bg-white/5 dark:hover:bg-white/10 dark:border-white/10 text-slate-800 dark:text-slate-200 text-xs font-bold transition-all duration-200 active:scale-95 group shadow-xs"
                 >
                   <FiChevronLeft size={18} className="text-cyan-600 dark:text-cyan-400 group-hover:-translate-x-1 transition-transform" />
                   <div className="text-left">
@@ -639,13 +639,13 @@ export default function Experience() {
                   </div>
                 </button>
 
-                <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-700 dark:text-cyan-400 text-[10px] font-black uppercase tracking-widest shadow-sm">
+                <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-800 dark:text-cyan-400 text-[10px] font-black uppercase tracking-widest shadow-2xs">
                   <span>{currentIndex + 1} / {nodes.length}</span>
                 </div>
 
                 <button
                   onClick={() => handleSelectNode(nextNode.id, false)}
-                  className="inline-flex items-center gap-3 px-4 py-2.5 rounded-2xl bg-white/90 dark:bg-white/5 hover:bg-white dark:hover:bg-white/10 border border-slate-200/90 dark:border-white/10 text-slate-800 dark:text-slate-200 text-xs font-bold transition-all duration-200 active:scale-95 group shadow-sm"
+                  className="inline-flex items-center gap-3 px-4 py-2.5 rounded-2xl bg-white hover:bg-slate-50 border border-slate-200/90 dark:bg-white/5 dark:hover:bg-white/10 dark:border-white/10 text-slate-800 dark:text-slate-200 text-xs font-bold transition-all duration-200 active:scale-95 group shadow-xs"
                 >
                   <div className="text-right">
                     <span className="text-[9px] font-black uppercase text-cyan-700 dark:text-cyan-400 block tracking-widest">NEXT ROLE</span>
