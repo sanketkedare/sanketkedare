@@ -76,7 +76,7 @@ export default function Navbar() {
         </div>
       </header>
 
-      {/* ── 2. Desktop Floating Navlinks Pill (Always fixed at top-center) ────── */}
+      {/* ── 2. Desktop Floating Navlinks Pill (Always fixed at top-center, hidden on mobile) ────── */}
       <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-[60] hidden md:flex items-center justify-center">
         <div className="flex items-center gap-1 p-1.5 rounded-full bg-white/75 dark:bg-[#0a0a1a]/70 backdrop-blur-xl border border-black/5 dark:border-white/10 shadow-2xl">
           {navLinks.map((link) => (
@@ -94,33 +94,6 @@ export default function Navbar() {
                 <motion.div
                   layoutId="navPillDesktop"
                   className="absolute inset-0 bg-white dark:bg-white/10 rounded-full shadow-lg -z-10"
-                  transition={{ type: 'spring', stiffness: 400, damping: 30 }}
-                />
-              )}
-              {link.name}
-            </a>
-          ))}
-        </div>
-      </nav>
-
-      {/* ── 3. Small Screen / Mobile Floating Navlinks Bar (Always fixed at top) ─ */}
-      <nav className="fixed top-3.5 left-1/2 -translate-x-1/2 z-[60] flex md:hidden items-center justify-center max-w-[95vw]">
-        <div className="flex items-center gap-1 p-1 rounded-full bg-white/80 dark:bg-[#0a0a1a]/85 backdrop-blur-xl border border-black/5 dark:border-white/10 shadow-2xl overflow-x-auto no-scrollbar max-w-full">
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              onClick={() => setActiveSegment(link.name)}
-              className={`relative px-3 py-1.5 text-xs font-semibold whitespace-nowrap tracking-tight transition-all duration-300 rounded-full ${
-                activeSegment === link.name
-                  ? 'text-cyan-600 dark:text-cyan-300 font-bold'
-                  : 'text-slate-500 dark:text-slate-400 hover:text-black dark:hover:text-white'
-              }`}
-            >
-              {activeSegment === link.name && (
-                <motion.div
-                  layoutId="navPillMobile"
-                  className="absolute inset-0 bg-cyan-500/15 dark:bg-white/10 rounded-full border border-cyan-500/30 dark:border-white/20 -z-10"
                   transition={{ type: 'spring', stiffness: 400, damping: 30 }}
                 />
               )}
