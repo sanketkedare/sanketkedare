@@ -173,7 +173,7 @@ export default function JDMatcherModal() {
     }
 
     if (activeTab === 'paste' && !jdText.trim()) {
-      setErrorMsg('Please paste the Job Description text.');
+      setErrorMsg('Please paste the Job Description text or a Job Posting URL link.');
       return;
     }
 
@@ -388,7 +388,7 @@ export default function JDMatcherModal() {
                               : 'bg-slate-100/90 text-slate-600 hover:bg-slate-200/80 hover:text-slate-900 dark:bg-white/5 dark:text-slate-400 dark:hover:text-white'
                           }`}
                         >
-                          Paste JD Text
+                          Paste JD Text or Job Link
                         </button>
                         <button
                           type="button"
@@ -410,7 +410,7 @@ export default function JDMatcherModal() {
                             rows={7}
                             value={jdText}
                             onChange={(e) => setJdText(e.target.value)}
-                            placeholder="Paste Job Description text here... (Gemini AI will automatically extract Company Name, Office Location, and evaluate candidate match)"
+                            placeholder="Paste Job Description text or Job Link URL here (e.g. https://linkedin.com/jobs/... or https://company.com/careers)... Gemini AI will automatically fetch web content, extract Company Name & Location, and evaluate candidate match."
                             className="w-full bg-slate-50 border border-slate-300/90 dark:bg-white/5 dark:border-white/10 rounded-2xl p-4 text-xs md:text-sm text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-slate-500 focus:outline-none focus:border-cyan-600 focus:bg-white dark:focus:border-cyan-400 resize-none font-mono transition-colors"
                           />
                         ) : (

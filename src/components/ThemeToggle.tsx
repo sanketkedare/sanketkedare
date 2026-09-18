@@ -9,15 +9,9 @@ export default function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
-  const isDev = process.env.NODE_ENV === 'development' || process.env.NEXT_PUBLIC_SHOW_THEME_TOGGLE === 'true';
-
   useEffect(() => {
     setMounted(true);
   }, []);
-
-  if (!isDev) {
-    return null;
-  }
 
   if (!mounted) {
     return (

@@ -78,12 +78,10 @@ export default function Sidebar() {
             </div>
 
             {/* Mobile Drawer Theme Toggle */}
-            {(process.env.NODE_ENV === 'development' || process.env.NEXT_PUBLIC_SHOW_THEME_TOGGLE === 'true') && (
-              <div className="flex items-center gap-3 mb-8 px-4 py-1.5 rounded-full bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 shadow-sm">
-                <span className="text-[11px] font-mono font-bold uppercase tracking-widest text-slate-600 dark:text-slate-400">Theme</span>
-                <ThemeToggle />
-              </div>
-            )}
+            <div className="flex items-center gap-3 mb-8 px-4 py-1.5 rounded-full bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 shadow-sm">
+              <span className="text-[11px] font-mono font-bold uppercase tracking-widest text-slate-600 dark:text-slate-400">Theme</span>
+              <ThemeToggle />
+            </div>
 
             <motion.div 
               initial={{ opacity: 0, scale: 0.8 }}

@@ -88,12 +88,12 @@ export default function FooterShareSection() {
   };
 
   return (
-    <div className="w-full my-12 pt-10 border-t border-slate-100 dark:border-white/5 grid grid-cols-1 md:grid-cols-12 gap-6">
+    <div className="w-full my-12 pt-6 grid grid-cols-1 md:grid-cols-12 gap-6">
       
       {/* ============================================================== */}
       {/* Profile & Contact Card                                         */}
       {/* ============================================================== */}
-      <div className="md:col-span-7 p-6 md:p-8 rounded-3xl bg-slate-50/80 dark:bg-white/[0.03] border border-slate-200/80 dark:border-white/10 backdrop-blur-xl shadow-lg flex flex-col justify-between">
+      <div className="md:col-span-7 p-4 md:p-6 rounded-3xl bg-transparent flex flex-col justify-between">
         <div>
           <div className="flex items-center gap-2 mb-3">
             <span className="w-2 h-2 rounded-full bg-cyan-500" />
@@ -175,7 +175,7 @@ export default function FooterShareSection() {
       {/* ============================================================== */}
       {/* Portfolio URL Card                                             */}
       {/* ============================================================== */}
-      <div className="md:col-span-5 p-6 md:p-8 rounded-3xl bg-slate-50/80 dark:bg-white/[0.03] border border-slate-200/80 dark:border-white/10 backdrop-blur-xl shadow-lg flex flex-col justify-between">
+      <div className="md:col-span-5 p-4 md:p-6 rounded-3xl bg-transparent flex flex-col justify-between">
         <div>
           <div className="flex items-center gap-2 mb-3">
             <span className="w-2 h-2 rounded-full bg-purple-500" />

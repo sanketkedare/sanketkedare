@@ -10,7 +10,7 @@ export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
       attribute="class"
       defaultTheme="dark"
       storageKey="sanket-portfolio-theme"
-      enableSystem={true}
+      enableSystem={false}
       disableTransitionOnChange={false}
       {...props}
     >

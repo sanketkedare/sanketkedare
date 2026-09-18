@@ -107,12 +107,8 @@ export default function Navbar() {
               {link.name}
             </a>
           ))}
-          {(process.env.NODE_ENV === 'development' || process.env.NEXT_PUBLIC_SHOW_THEME_TOGGLE === 'true') && (
-            <>
-              <div className="h-4 w-px bg-gradient-to-b from-transparent via-slate-300 dark:via-white/20 to-transparent mx-1.5" />
-              <ThemeToggle />
-            </>
-          )}
+          <div className="h-4 w-px bg-gradient-to-b from-transparent via-slate-300 dark:via-white/20 to-transparent mx-1.5" />
+          <ThemeToggle />
         </div>
       </nav>
     </>
