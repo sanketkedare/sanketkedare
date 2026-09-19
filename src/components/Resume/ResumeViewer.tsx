@@ -17,7 +17,11 @@ declare global {
   }
 }
 
-export default function ResumeViewer() {
+interface ResumeViewerProps {
+  onToggle?: (isOpen: boolean) => void;
+}
+
+export default function ResumeViewer({ onToggle }: ResumeViewerProps = {}) {
   const [isViewerOpen, setIsViewerOpen] = useState(false);
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [copied, setCopied] = useState(false);
@@ -27,6 +31,13 @@ export default function ResumeViewer() {
   const [zoomLevel, setZoomLevel] = useState(1.0);
   const [pdfError, setPdfError] = useState('');
   const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    onToggle?.(isViewerOpen);
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new CustomEvent('sk-resume-view-state', { detail: { isOpen: isViewerOpen } }));
+    }
+  }, [isViewerOpen, onToggle]);
 
   // Separate refs for inline and fullscreen containers to avoid duplicate ref binding
   const inlineContainerRef = useRef<HTMLDivElement>(null);
@@ -46,9 +57,39 @@ export default function ResumeViewer() {
       }
     };
 
+    const handleOpenResume = () => {
+      setIsViewerOpen(true);
+      onToggle?.(true);
+    };
+
+    if (typeof window !== 'undefined') {
+      (window as any).__SK_OPEN_RESUME__ = handleOpenResume;
+    }
+
+    const handleHashChange = () => {
+      if (typeof window !== 'undefined' && window.location.hash === '#resume') {
+        setIsViewerOpen(true);
+        onToggle?.(true);
+      }
+    };
+
+    if (typeof window !== 'undefined' && window.location.hash === '#resume') {
+      setIsViewerOpen(true);
+      onToggle?.(true);
+    }
+
     window.addEventListener('sk-resume-updated', handleResumeUpdated);
-    return () => window.removeEventListener('sk-resume-updated', handleResumeUpdated);
-  }, []);
+    window.addEventListener('sk-open-resume', handleOpenResume);
+    window.addEventListener('hashchange', handleHashChange);
+    return () => {
+      if (typeof window !== 'undefined') {
+        delete (window as any).__SK_OPEN_RESUME__;
+      }
+      window.removeEventListener('sk-resume-updated', handleResumeUpdated);
+      window.removeEventListener('sk-open-resume', handleOpenResume);
+      window.removeEventListener('hashchange', handleHashChange);
+    };
+  }, [onToggle]);
 
   const closeFullScreen = () => {
     setIsFullScreen(false);
@@ -153,14 +194,19 @@ export default function ResumeViewer() {
   };
 
   // Render high-res PDF pages into active target container
-  const renderPdfPages = async () => {
+  const renderPdfPages = async (retryCount = 0) => {
     const activeContainer = isFullScreen ? fullscreenContainerRef.current : inlineContainerRef.current;
-    if (!activeContainer) return;
+    if (!activeContainer) {
+      if (retryCount < 15) {
+        setTimeout(() => renderPdfPages(retryCount + 1), 80);
+      }
+      return;
+    }
 
     setIsLoadingPdf(true);
     setPdfError('');
 
-    const currentResumeUrl = getResumeUrl();
+    const currentResumeUrl = resumeUrl || getResumeUrl();
     if (!currentResumeUrl) {
       setPdfError('no_resume');
       setIsLoadingPdf(false);
@@ -327,54 +373,24 @@ export default function ResumeViewer() {
   return (
     <div className={isViewerOpen ? "w-full flex flex-col items-center" : "inline-flex items-center justify-center"}>
       
-      {/* Closed State: Simple View Resume Button */}
+      {/* Closed State: View Resume Button (Always shown, clicks to open) */}
       {!isViewerOpen && (
         <div className="flex items-center justify-center">
-          {resumeUrl ? (
-            <motion.button
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
-              onClick={() => setIsViewerOpen(true)}
-              className="group relative flex items-center gap-3 px-8 md:px-10 py-4 bg-cyan-700 hover:bg-cyan-800 text-white rounded-2xl font-black text-xs md:text-sm tracking-wider uppercase shadow-xl hover:shadow-cyan-500/30 transition-all duration-300 cursor-pointer"
-            >
-              <FiEye size={20} className="group-hover:scale-110 transition-transform" />
-              <span>View Resume (PDF)</span>
-            </motion.button>
-          ) : (
-            // Empty-state: no active resume in DB — show actionable CTA instead of dead end
-            <motion.div
-              initial={{ opacity: 0, y: 6 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4 }}
-              className="flex flex-col items-center gap-4 px-8 py-6 bg-slate-100/80 dark:bg-white/[0.03] border border-slate-300/80 dark:border-white/10 rounded-2xl max-w-sm text-center"
-            >
-              <div className="w-10 h-10 rounded-xl bg-cyan-500/15 border border-cyan-400/30 flex items-center justify-center text-cyan-700 dark:text-cyan-400">
-                <FiFileText size={20} />
-              </div>
-              <div>
-                <p className="text-sm font-black text-slate-900 dark:text-white mb-1">Resume available on request</p>
-                <p className="text-[11px] text-slate-600 dark:text-slate-400 font-medium leading-relaxed">
-                  Drop a message and I&apos;ll send it across within the hour.
-                </p>
-              </div>
-              <div className="flex flex-col sm:flex-row gap-2 w-full">
-                <a
-                  href={`mailto:${PersonalInfo.email}?subject=Resume%20Request%20%E2%80%94%20${encodeURIComponent(PersonalInfo.name)}`}
-                  className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-cyan-600 hover:bg-cyan-700 text-white text-[11px] font-black uppercase tracking-wider transition-all shadow-md hover:shadow-cyan-500/30"
-                >
-                  Request via Email →
-                </a>
-                <a
-                  href={`https://wa.me/91${PersonalInfo.mobile}?text=${encodeURIComponent('Hi Sanket, could you share your resume?')}`}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-[11px] font-black uppercase tracking-wider transition-all shadow-md hover:shadow-emerald-500/30"
-                >
-                  Request via WhatsApp →
-                </a>
-              </div>
-            </motion.div>
-          )}
+          <motion.button
+            id="sk-view-resume-trigger"
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+            onClick={() => {
+              setIsViewerOpen(true);
+              onToggle?.(true);
+            }}
+            title="Resume will open on click"
+            aria-label="View and uncollapse resume document"
+            className="group relative flex items-center gap-3 px-8 md:px-10 py-4 bg-cyan-700 hover:bg-cyan-800 text-white rounded-2xl font-black text-xs md:text-sm tracking-wider uppercase shadow-xl hover:shadow-cyan-500/30 transition-all duration-300 cursor-pointer"
+          >
+            <FiEye size={20} className="group-hover:scale-110 transition-transform" />
+            <span>View Resume (PDF)</span>
+          </motion.button>
         </div>
       )}
 
@@ -492,14 +508,21 @@ export default function ResumeViewer() {
               )}
 
               {pdfError && (
-                <div className="flex flex-col items-center justify-center py-20 text-center gap-4">
-                  <div className="w-14 h-14 rounded-2xl bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 flex items-center justify-center">
-                    <FiFileText size={24} className="text-slate-400 dark:text-slate-600" />
+                <div className="flex flex-col items-center justify-center py-16 text-center gap-4">
+                  <div className="w-14 h-14 rounded-2xl bg-cyan-500/10 dark:bg-cyan-500/20 border border-cyan-400/30 flex items-center justify-center text-cyan-700 dark:text-cyan-400">
+                    <FiFileText size={24} />
                   </div>
                   <div>
-                    <p className="text-sm font-bold text-slate-700 dark:text-slate-400">Resume not available</p>
-                    <p className="text-xs text-slate-500 dark:text-slate-600 mt-1">The resume hasn&apos;t been configured yet.</p>
+                    <p className="text-sm font-black text-slate-900 dark:text-white">Resume Document Ready</p>
+                    <p className="text-xs text-slate-600 dark:text-slate-400 mt-1">Resume will open on click or download directly.</p>
                   </div>
+                  <button
+                    type="button"
+                    onClick={() => triggerResumeDownload()}
+                    className="px-5 py-2.5 rounded-xl bg-cyan-600 hover:bg-cyan-700 text-white text-xs font-black uppercase tracking-wider transition-all shadow-md cursor-pointer"
+                  >
+                    Download Resume PDF
+                  </button>
                 </div>
               )}
 
@@ -629,13 +652,20 @@ export default function ResumeViewer() {
 
                 {pdfError && (
                   <div className="flex flex-col items-center justify-center py-20 text-center gap-4">
-                    <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center">
-                      <FiFileText size={24} className="text-slate-600" />
+                    <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-cyan-400">
+                      <FiFileText size={24} />
                     </div>
                     <div>
-                      <p className="text-sm font-bold text-slate-400">Resume not available</p>
-                      <p className="text-xs text-slate-600 mt-1">The resume hasn&apos;t been configured yet.</p>
+                      <p className="text-sm font-black text-white">Resume Document Ready</p>
+                      <p className="text-xs text-slate-400 mt-1">Resume will open on click or download directly.</p>
                     </div>
+                    <button
+                      type="button"
+                      onClick={() => triggerResumeDownload()}
+                      className="px-5 py-2.5 rounded-xl bg-cyan-600 hover:bg-cyan-700 text-white text-xs font-black uppercase tracking-wider transition-all shadow-md cursor-pointer"
+                    >
+                      Download Resume PDF
+                    </button>
                   </div>
                 )}
 

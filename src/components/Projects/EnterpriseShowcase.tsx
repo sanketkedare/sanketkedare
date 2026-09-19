@@ -330,7 +330,7 @@ export default function EnterpriseShowcase({ projects }: EnterpriseShowcaseProps
                 <div className="flex items-center gap-3 p-3.5 rounded-2xl bg-purple-100/90 dark:bg-purple-950/20 border border-purple-300/80 dark:border-purple-500/20 text-slate-800 dark:text-slate-400 text-xs">
                   <FiShield size={18} className="text-purple-700 dark:text-purple-400 shrink-0" />
                   <p className="text-[11px] leading-relaxed font-semibold">
-                    <strong className="text-slate-950 dark:text-slate-200">Corporate Deliverable:</strong> Source codebase and internal infrastructure are protected under enterprise client NDA. Developed for live commercial operations.
+                    <strong className="text-slate-950 dark:text-slate-200">Commercial Client Deliverable:</strong> Codebase and internal infrastructure protected under mutual NDA. Architecture diagrams and code walkthroughs available in technical interview sessions upon request.
                   </p>
                 </div>
               </motion.div>
@@ -429,7 +429,7 @@ export default function EnterpriseShowcase({ projects }: EnterpriseShowcaseProps
                     {/* Governance Notice */}
                     <div className="flex items-center gap-2 p-2.5 rounded-xl bg-purple-100/90 dark:bg-purple-950/20 border border-purple-300/80 dark:border-purple-500/20 text-slate-800 dark:text-slate-400 text-[10px] font-semibold">
                       <FiShield size={13} className="text-purple-700 dark:text-purple-400 shrink-0" />
-                      <span>Proprietary IP • Live Commercial Deployment</span>
+                      <span>Proprietary IP • Code walkthroughs available in interview sessions</span>
                     </div>
                   </div>
                 </div>

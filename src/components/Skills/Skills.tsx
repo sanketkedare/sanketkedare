@@ -403,44 +403,44 @@ export default function Skills() {
         </div>
 
         {/* Software Engineering Core Disciplines & Methodologies (Open Architectural Layout) */}
-        <div className="mt-14 pt-10 border-t border-slate-200/80 dark:border-white/10">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-8">
+        <div className="mt-8 sm:mt-14 pt-6 sm:pt-10 border-t border-slate-200/80 dark:border-white/10">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-5 sm:mb-8">
             <div>
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-[10px] md:text-xs font-black uppercase tracking-widest bg-cyan-100/90 dark:bg-cyan-500/20 text-cyan-900 dark:text-cyan-400 border border-cyan-300/80 dark:border-cyan-500/30 mb-2 shadow-2xs">
+              <div className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3.5 py-0.5 sm:py-1 rounded-full text-[9px] sm:text-[10px] md:text-xs font-black uppercase tracking-wider sm:tracking-widest bg-cyan-100/90 dark:bg-cyan-500/20 text-cyan-900 dark:text-cyan-400 border border-cyan-300/80 dark:border-cyan-500/30 mb-2 shadow-2xs">
                 <span>⚡ Professional Paradigms &amp; Methodologies</span>
               </div>
-              <h3 className="text-xl md:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
+              <h3 className="text-lg sm:text-xl md:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
                 Software Engineering Disciplines
               </h3>
-              <p className="text-xs md:text-sm text-slate-700 dark:text-slate-400 font-semibold mt-1 max-w-2xl">
+              <p className="text-xs md:text-sm text-slate-700 dark:text-slate-400 font-semibold mt-1 max-w-2xl leading-relaxed">
                 Architectural patterns, engineering principles, and quality standards applied across production systems.
               </p>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 md:gap-8">
             {engineeringPractices.map((practice) => (
               <div
                 key={practice.title}
-                className={`pl-5 ${practice.accentBorder} py-2 transition-all duration-300`}
+                className={`pl-3.5 sm:pl-5 ${practice.accentBorder} py-1 sm:py-2 transition-all duration-300`}
               >
-                <div className="flex items-center justify-between gap-2 mb-4 pb-2 border-b border-slate-200/80 dark:border-white/10">
-                  <div className="flex items-center gap-2">
-                    <span className="text-lg">{practice.iconText}</span>
-                    <h4 className="text-sm md:text-base font-black text-slate-900 dark:text-white tracking-tight">
+                <div className="flex items-center justify-between gap-2 mb-3 sm:mb-4 pb-2 border-b border-slate-200/80 dark:border-white/10">
+                  <div className="flex items-center gap-1.5 sm:gap-2 min-w-0">
+                    <span className="text-base sm:text-lg shrink-0">{practice.iconText}</span>
+                    <h4 className="text-xs sm:text-sm md:text-base font-black text-slate-900 dark:text-white tracking-tight truncate sm:whitespace-normal">
                       {practice.title}
                     </h4>
                   </div>
-                  <span className={`text-[8.5px] font-black uppercase tracking-widest px-2.5 py-0.5 rounded-full ${practice.badgeColor}`}>
+                  <span className={`text-[7.5px] sm:text-[8.5px] font-black uppercase tracking-wider sm:tracking-widest px-2 sm:px-2.5 py-0.5 rounded-full shrink-0 ${practice.badgeColor}`}>
                     {practice.badge}
                   </span>
                 </div>
 
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-1.5 sm:gap-2">
                   {practice.terms.map((term) => (
                     <span
                       key={term}
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-200/50 dark:bg-white/[0.04] border border-slate-300/70 dark:border-white/10 text-[11px] font-bold text-slate-800 dark:text-slate-300 hover:bg-cyan-500/10 hover:border-cyan-400 hover:text-cyan-900 dark:hover:text-cyan-400 transition-all"
+                      className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg sm:rounded-xl bg-slate-200/50 dark:bg-white/[0.04] border border-slate-300/70 dark:border-white/10 text-[10px] sm:text-[11px] font-bold text-slate-800 dark:text-slate-300 hover:bg-cyan-500/10 hover:border-cyan-400 hover:text-cyan-900 dark:hover:text-cyan-400 transition-all"
                     >
                       <span className={`w-1.5 h-1.5 rounded-full ${practice.dotColor} shrink-0 shadow-sm`} />
                       <span>{term}</span>

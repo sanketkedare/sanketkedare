@@ -6,6 +6,7 @@ import PersonalInfo from '@/lib/personal-info';
 import type { IconType } from 'react-icons';
 import { FiMail, FiMapPin, FiSend, FiGithub, FiLinkedin, FiCopy, FiCheck, FiUser, FiMessageSquare, FiZap } from 'react-icons/fi';
 import { FaWhatsapp } from 'react-icons/fa';
+import { FaXTwitter } from 'react-icons/fa6';
 import { toast } from '@/lib/toast';
 
 type AccentColor = 'cyan' | 'emerald' | 'blue' | 'purple' | 'slate';
@@ -115,6 +116,14 @@ export default function Contacts() {
         copyValue: PersonalInfo.github,
       },
       {
+        label: 'X (Twitter)',
+        icon: FaXTwitter,
+        href: PersonalInfo.twitter,
+        accent: 'slate',
+        value: '@sanketkedare',
+        copyValue: PersonalInfo.twitter,
+      },
+      {
         label: 'WhatsApp',
         icon: FaWhatsapp,
         href: `https://wa.me/91${PersonalInfo.mobile}`,
@@ -172,7 +181,7 @@ export default function Contacts() {
 
             {/* Left Subtitle */}
             <p className="text-xs md:text-sm text-slate-600 dark:text-slate-400 font-medium max-w-sm mb-8 leading-relaxed opacity-90">
-              Have a dedicated project or a simple question? I&apos;m here to help you turn your next vision into reality.
+              Have a project in mind, an engineering opening, or an architectural challenge? Let&apos;s talk technical scope and execution.
             </p>
 
             <div className="space-y-5">

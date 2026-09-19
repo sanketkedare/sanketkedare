@@ -7,14 +7,14 @@
     "git": "https://github.com/sanketkedare/volcanic",
     "live": "https://www.volcanic.world/",
     "skills": [
-      "Next.js 15", "React 19", "Three.js", "React Three Fiber", "GSAP", "Enterprise AI", "Cloud Infrastructure"
+      "Next.js 16", "React 19", "Three.js", "React Three Fiber", "GSAP", "Enterprise AI", "Cloud Infrastructure"
     ],
     "img": "/projects/volcanic.jpg",
-    "des": "Architected and engineered Volcanic — a high-performance web platform powering enterprise AI systems and intelligent digital software infrastructure. Built from the ground up using Next.js 15, interactive Three.js 3D environments, GSAP physics, and scalable cloud microservices.",
+    "des": "Architected and engineered Volcanic — a high-performance web platform powering enterprise AI systems and intelligent digital software infrastructure. Built from the ground up using Next.js 16, interactive Three.js 3D environments, GSAP physics, and scalable cloud microservices.",
     "features": [
       "Engineered immersive 3D scene canvas using Three.js, React Three Fiber & Drei with adaptive mobile scaling",
       "Implemented custom enterprise LLM orchestration pipelines, automated workflows & secure endpoints",
-      "Architected with Next.js 15 App Router, React 19, Redux Toolkit, TanStack Query & MongoDB"
+      "Architected with Next.js 16 App Router, React 19, Redux Toolkit, TanStack Query & MongoDB"
     ]
   },
   {
@@ -77,7 +77,7 @@
     "des": "Engineered the flagship global corporate digital presence for VisionTech Group, unifying multinational corporate service verticals, enterprise portfolios, and high-performance lead conversion funnels.",
     "features": [
       "Architected unified multi-entity corporate portal using Next.js App Router and TypeScript",
-      "Integrated international SEO architecture achieving 95+ Core Web Vitals and rapid FCP",
+      "Integrated international SEO architecture with edge caching and optimized Core Web Vitals delivery",
       "Engineered high-converting corporate lead funnels with multi-region service routing"
     ]
   },

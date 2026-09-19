@@ -3,6 +3,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import Image, { StaticImageData } from 'next/image';
+import { FiFileText } from 'react-icons/fi';
 
 // Import actual skill icons
 import reactImg from '@/images/reactjs.png';
@@ -19,13 +20,10 @@ import postmanImg from '@/images/postman.png';
 
 const roles = [
   "Full Stack Developer",
-  "Frontend Developer",
-  "Backend Developer",
-  "Database Engineer",
-  "Cloud Engineer",
-  "AI Engineer",
-  "Software Architect",
-  "System Designer"
+  "MERN Stack Developer",
+  "Backend & Database Engineer",
+  "Software Developer",
+  "Next.js & React Specialist"
 ];
 
 interface OrbitItemDef {
@@ -106,6 +104,27 @@ export default function Home() {
     }, 3000);
     return () => clearInterval(interval);
   }, []);
+
+  const handleOpenResume = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (typeof window !== 'undefined') {
+      if (typeof (window as any).__SK_OPEN_RESUME__ === 'function') {
+        (window as any).__SK_OPEN_RESUME__();
+      }
+      const triggerBtn = document.getElementById('sk-view-resume-trigger');
+      if (triggerBtn) {
+        triggerBtn.click();
+      }
+      window.dispatchEvent(new CustomEvent('sk-open-resume'));
+      try {
+        window.history.replaceState(null, '', '#resume');
+      } catch (_) {}
+      const resumeEl = document.getElementById('resume');
+      if (resumeEl) {
+        resumeEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  };
 
   return (
     <section id="home" className="relative min-h-[100dvh] w-full flex items-center justify-center overflow-hidden bg-transparent">
@@ -235,28 +254,49 @@ export default function Home() {
               transition={{ duration: 1, delay: 0.6 }}
               className="text-slate-600 dark:text-slate-400 text-xs md:text-base leading-relaxed font-medium mt-4 md:mt-3 mb-6 max-w-md lg:max-w-none opacity-85"
             >
-              I build modern, high-performance web applications with Next.js, React, and Node.js. Passionate about clean architecture, scalable cloud systems, and creating intuitive user experiences that solve real-world problems.
+              Architecting mission-critical web platforms and scalable distributed systems with an emphasis on performance, data integrity, and deterministic execution. Technical lead driving backend services, database architectures (PostgreSQL, MongoDB), and high-throughput Next.js/React platforms across VisionTech Group&apos;s enterprise suites.
             </motion.p>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.8 }}
-              className="flex flex-col sm:flex-row items-center gap-3 md:gap-4 mt-8 md:mt-2 w-full sm:w-auto"
+              className="flex flex-col sm:flex-row items-center gap-2 sm:gap-3 md:gap-4 mt-3.5 sm:mt-8 md:mt-2 w-full sm:w-auto max-w-xs sm:max-w-none"
             >
               <a
                 href="#projects"
-                className="group w-full sm:w-auto px-8 md:px-6 py-3.5 md:py-3 rounded-full bg-slate-900 text-white dark:bg-white dark:text-black font-black uppercase tracking-widest hover:bg-cyan-600 dark:hover:bg-cyan-400 focus:ring-4 focus:ring-cyan-500/50 transition-all duration-300 hover:scale-105 active:scale-95 shadow-[0_10px_25px_-5px_rgba(15,23,42,0.3)] flex items-center justify-center gap-2 text-[10px] md:text-sm"
+                className="group w-full sm:w-auto px-4 sm:px-7 md:px-5 py-2.5 sm:py-3.5 md:py-3 rounded-full bg-slate-900 text-white dark:bg-white dark:text-black font-black uppercase tracking-wider sm:tracking-widest hover:bg-cyan-600 dark:hover:bg-cyan-400 focus:ring-4 focus:ring-cyan-500/50 transition-all duration-300 hover:scale-105 active:scale-95 shadow-[0_10px_25px_-5px_rgba(15,23,42,0.3)] flex items-center justify-center gap-2 text-xs sm:text-[10px] md:text-sm"
               >
                 <span>Explore Works</span>
                 <span className="group-hover:translate-x-1 transition-transform">→</span>
               </a>
               <a
+                href="#resume"
+                onClick={handleOpenResume}
+                title="Navigate to Resume and open document directly"
+                className="group w-full sm:w-auto px-4 sm:px-7 md:px-5 py-2.5 sm:py-3.5 md:py-3 rounded-full bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-700 hover:from-indigo-500 hover:via-purple-500 hover:to-indigo-600 text-white font-black uppercase tracking-wider sm:tracking-widest focus:ring-4 focus:ring-purple-500/40 transition-all duration-300 hover:scale-105 active:scale-95 shadow-[0_10px_25px_-5px_rgba(99,102,241,0.4)] flex items-center justify-center gap-2 text-xs sm:text-[10px] md:text-sm cursor-pointer"
+              >
+                <FiFileText className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:scale-110 transition-transform" />
+                <span>Resume</span>
+              </a>
+              <a
                 href="#contact"
-                className="w-full sm:w-auto px-8 md:px-6 py-3.5 md:py-3 rounded-full border-2 border-slate-300 dark:border-white/20 bg-white/60 dark:bg-transparent text-slate-800 dark:text-white font-black uppercase tracking-widest hover:bg-white dark:hover:bg-white/10 transition-all duration-300 backdrop-blur-md shadow-sm text-[10px] md:text-sm text-center"
+                className="w-full sm:w-auto px-4 sm:px-7 md:px-5 py-2.5 sm:py-3.5 md:py-3 rounded-full border-2 border-slate-300 dark:border-white/20 bg-white/60 dark:bg-transparent text-slate-800 dark:text-white font-black uppercase tracking-wider sm:tracking-widest hover:bg-white dark:hover:bg-white/10 transition-all duration-300 backdrop-blur-md shadow-sm text-xs sm:text-[10px] md:text-sm text-center"
               >
                 Contact Me
               </a>
+            </motion.div>
+
+            {/* Active Quarter Engineering Proof Point */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 1 }}
+              className="mt-3 sm:mt-6 inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full bg-slate-900/[0.04] dark:bg-white/[0.04] border border-slate-200/90 dark:border-white/10 text-[9.5px] sm:text-[10px] md:text-xs font-semibold text-slate-700 dark:text-slate-300 backdrop-blur-sm max-w-[95%] sm:max-w-none text-center"
+            >
+              <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-emerald-500 animate-pulse shrink-0" />
+              <span className="sm:hidden whitespace-nowrap"><strong className="text-slate-900 dark:text-white">Active:</strong> Backends, DBs &amp; GenAI • 2026</span>
+              <span className="hidden sm:inline"><strong className="text-slate-900 dark:text-white">Active Telemetry:</strong> Scalable Backends, Distributed DBs &amp; GenAI • Q3/Q4 2026</span>
             </motion.div>
 
           </div>

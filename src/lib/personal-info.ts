@@ -7,6 +7,7 @@ const PersonalInfo = {
   website: 'https://www.sanketkedare.com',
   linkedIn: 'https://www.linkedin.com/in/sanket-kedare-dev/',
   github: 'https://github.com/sanketkedare',
+  twitter: 'https://x.com/sanketkedare',
   location: 'Hyderabad, India',
 } as const;
 

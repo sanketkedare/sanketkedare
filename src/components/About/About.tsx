@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import Image from 'next/image';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { FiGithub, FiLinkedin } from 'react-icons/fi';
@@ -8,11 +8,11 @@ import PersonalInfo from '@/lib/personal-info';
 
 const HERO_SRC = '/hero.jpg';
 
-const passage_1 = `I am a Full Stack Developer focused on building clean, performant, and reliable web applications. At VisionTech Group, I lead development across core platforms including the VisionTech Academy web portal, Learning Management System (LMS), and employee management tools (EMS)—translating complex product requirements into scalable, maintainable architectures.`;
+const passage_1 = `I am a Senior Full Stack Developer leading web architecture and platform development at VisionTech Group. My primary focus centers on shipping mission-critical systems—including the VisionTech Academy portal, an enterprise Learning Management System (LMS) with real-time telemetry, and scalable employee management platforms (EMS).`;
 
-const passage_2 = `My engineering approach is rooted in practical problem-solving. From fine-tuning Next.js rendering cycles to provisioning resilient AWS infrastructure, I focus on delivering tangible improvements in performance, uptime, and developer experience. I enjoy breaking down intricate bottlenecks and ensuring systems remain robust as they scale.`;
+const passage_2 = `My engineering practice emphasizes determinism and profile-driven optimization. Whether orchestrating server-side streaming in Next.js 16 App Router, reducing client bundle weight with virtualized lists, or provisioning containerized AWS cloud infrastructure, I build resilient systems designed to run predictably under heavy traffic.`;
 
-const passage_3 = `I bridge thoughtful user experience with rigorous engineering standards. Working deeply across the modern TypeScript, React, and Node.js ecosystems, I take pride in writing readable, maintainable code and collaborating with cross-functional teams to build digital products that users appreciate and businesses trust.`;
+const passage_3 = `I balance product intuition with deep technical discipline. Working across TypeScript, React 19, and Node.js microservices, I prioritize clean architectural boundaries, automated CI/CD pipelines, and rigorous type safety to ship software that engineering teams can maintain and businesses can rely on.`;
 
 const textVariants = {
   hidden: { opacity: 0, y: 30 },
@@ -21,13 +21,22 @@ const textVariants = {
 
 export default function About() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    const checkDesktop = () => setIsDesktop(window.innerWidth >= 1024);
+    checkDesktop();
+    window.addEventListener('resize', checkDesktop);
+    return () => window.removeEventListener('resize', checkDesktop);
+  }, []);
+
   const { scrollYProgress } = useScroll({ target: containerRef, offset: ["start end", "end start"] });
 
   const imgY = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
   const textY = useTransform(scrollYProgress, [0, 1], ["5%", "-5%"]);
 
   return (
-    <section id="about" ref={containerRef} style={{ position: 'relative' }} className="relative w-full min-h-screen py-24 flex items-center justify-center border-t border-slate-200/80 dark:border-white/5 bg-transparent dark:bg-[#050511] overflow-hidden">
+    <section id="about" ref={containerRef} style={{ position: 'relative' }} className="relative w-full min-h-screen py-14 sm:py-20 md:py-24 flex items-center justify-center border-t border-slate-200/80 dark:border-white/5 bg-transparent dark:bg-[#050511] overflow-hidden">
       {/* ── Background Kinetic Atmosphere & Floating Gradient Orbs (Continuous from Section 1) ── */}
       <div 
         className="absolute inset-0 pointer-events-none [mask-image:radial-gradient(ellipse_75%_65%_at_50%_50%,black_35%,transparent_85%)] opacity-[0.25] dark:opacity-[0.14] text-slate-400 dark:text-cyan-400"
@@ -59,29 +68,29 @@ export default function About() {
         className="absolute bottom-1/4 -right-20 w-[420px] h-[420px] bg-gradient-to-bl from-purple-400/20 via-indigo-300/15 to-transparent dark:from-purple-600/10 dark:to-transparent rounded-full blur-[130px] pointer-events-none -z-10"
       />
 
-      <div className="w-full lg:w-[80%] mx-auto px-6 lg:px-0 relative z-10">
+      <div className="w-full lg:w-[80%] mx-auto px-4 sm:px-6 lg:px-0 relative z-10">
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={textVariants}
-          className="mb-8 md:mb-12 text-center md:text-left"
+          className="mb-6 sm:mb-8 md:mb-12 text-center md:text-left"
         >
-          <h2 className="text-[1.75rem] md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-slate-900 to-slate-500 dark:from-white dark:to-slate-500 tracking-tight md:tracking-normal">
+          <h2 className="text-2xl sm:text-[1.75rem] md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-slate-900 to-slate-500 dark:from-white dark:to-slate-500 tracking-tight md:tracking-normal">
             About Me
           </h2>
-          <div className="w-16 h-1 bg-gradient-to-r from-cyan-500 to-purple-500 mt-4 mx-auto md:mx-0 rounded-full" />
+          <div className="w-16 h-1 bg-gradient-to-r from-cyan-500 to-purple-500 mt-3 sm:mt-4 mx-auto md:mx-0 rounded-full" />
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 md:gap-12">
 
           <motion.div
-            style={{ y: imgY }}
+            style={isDesktop ? { y: imgY } : undefined}
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 1, ease: "easeOut" }}
-            className="relative lg:col-span-1 w-full max-w-sm flex-shrink-0 mx-auto lg:mx-0 h-[350px] md:h-[450px] lg:h-full min-h-[300px] z-20 -mb-8 lg:mb-0"
+            className="relative lg:col-span-1 w-full max-w-xs sm:max-w-sm flex-shrink-0 mx-auto lg:mx-0 h-[280px] xs:h-[320px] sm:h-[380px] md:h-[450px] lg:h-full min-h-[260px] sm:min-h-[300px] z-20 mb-4 sm:mb-6 lg:mb-0"
           >
             <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500 to-purple-500 rounded-3xl blur-2xl opacity-40 animate-pulse" />
 
@@ -94,12 +103,12 @@ export default function About() {
                 loading="lazy"
                 className="object-cover object-center saturate-100 hover:saturate-110 transition-all duration-700"
               />
-              <div className="absolute inset-x-0 bottom-0 p-4 md:p-6 bg-gradient-to-t from-black/90 to-transparent">
+              <div className="absolute inset-x-0 bottom-0 p-3.5 sm:p-4 md:p-6 bg-gradient-to-t from-black/90 to-transparent">
                 <div className="flex items-center gap-2 mb-1">
                   <span className="w-2 h-2 rounded-full bg-cyan-500 animate-pulse" />
                   <span className="text-[8px] md:text-[10px] font-black uppercase tracking-[0.2em] text-cyan-400">Full Stack Developer</span>
                 </div>
-                <h3 className="text-lg md:text-xl font-bold text-white leading-none">{PersonalInfo.name}</h3>
+                <h3 className="text-base sm:text-lg md:text-xl font-bold text-white leading-none">{PersonalInfo.name}</h3>
                 <p className="text-slate-400 text-[10px] md:text-xs mt-1">{PersonalInfo.role2}</p>
               </div>
             </div>
@@ -108,7 +117,7 @@ export default function About() {
           </motion.div>
 
           <motion.div
-            style={{ y: textY }}
+            style={isDesktop ? { y: textY } : undefined}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-50px" }}
@@ -116,39 +125,39 @@ export default function About() {
               visible: { transition: { staggerChildren: 0.2 } },
               hidden: {}
             }}
-            className="lg:col-span-3 flex flex-col gap-4 md:gap-6 text-xs md:text-sm text-slate-700 dark:text-slate-300 leading-relaxed z-10"
+            className="lg:col-span-3 flex flex-col gap-3.5 sm:gap-4 md:gap-6 text-xs md:text-sm text-slate-700 dark:text-slate-300 leading-relaxed z-10"
           >
             {/* ── Card 1: Core Experience ── */}
             <motion.div
               variants={textVariants}
               whileHover={{ y: -5, scale: 1.01 }}
-              className="group relative cursor-pointer overflow-hidden bg-slate-900/[0.03] hover:bg-slate-900/[0.05] dark:bg-white/10 dark:hover:bg-white/15 border border-slate-300/80 hover:border-cyan-500/50 dark:border-2 dark:border-white/10 p-5 md:p-6 pt-12 md:pt-6 rounded-[1.5rem] md:rounded-[1.5rem] backdrop-blur-xl shadow-[0_12px_32px_-6px_rgba(15,23,42,0.06),_0_0_0_1px_rgba(255,255,255,0.8)_inset] dark:shadow-xl hover:shadow-[0_20px_45px_-8px_rgba(6,182,212,0.18)] dark:hover:shadow-cyan-500/10 transition-all duration-500"
+              className="group relative cursor-pointer overflow-hidden bg-slate-900/[0.03] hover:bg-slate-900/[0.05] dark:bg-white/10 dark:hover:bg-white/15 border border-slate-300/80 hover:border-cyan-500/50 dark:border-2 dark:border-white/10 p-4 sm:p-5 md:p-6 rounded-2xl sm:rounded-[1.5rem] backdrop-blur-xl shadow-[0_12px_32px_-6px_rgba(15,23,42,0.06),_0_0_0_1px_rgba(255,255,255,0.8)_inset] dark:shadow-xl hover:shadow-[0_20px_45px_-8px_rgba(6,182,212,0.18)] dark:hover:shadow-cyan-500/10 transition-all duration-500"
             >
-              <div className="flex items-center gap-3 mb-4">
+              <div className="flex items-center gap-3 mb-3 sm:mb-4">
                 <span className="px-2.5 py-0.5 bg-cyan-500/10 dark:bg-cyan-500/20 text-cyan-600 dark:text-cyan-400 text-[9px] font-black uppercase tracking-[0.2em] rounded-full border border-cyan-500/20">
                   01 // Core Experience
                 </span>
                 <div className="h-px flex-1 bg-gradient-to-r from-cyan-500/30 to-transparent" />
               </div>
-              <p className="text-slate-800 dark:text-slate-200 text-sm md:text-base font-medium leading-relaxed">
+              <p className="text-slate-800 dark:text-slate-200 text-xs sm:text-sm md:text-base font-medium leading-relaxed">
                 {passage_1}
               </p>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 sm:gap-4 md:gap-6">
               {/* ── Card 2: Problem Solving & Cloud ── */}
               <motion.div
                 variants={textVariants}
                 whileHover={{ y: -5, scale: 1.01 }}
-                className="group relative cursor-pointer overflow-hidden bg-slate-900/[0.03] hover:bg-slate-900/[0.05] dark:bg-white/10 dark:hover:bg-white/15 border border-slate-300/80 hover:border-purple-500/50 dark:border-2 dark:border-white/10 p-6 rounded-[1.5rem] backdrop-blur-xl shadow-[0_12px_32px_-6px_rgba(15,23,42,0.06),_0_0_0_1px_rgba(255,255,255,0.8)_inset] dark:shadow-lg hover:shadow-[0_20px_45px_-8px_rgba(168,85,247,0.18)] dark:hover:shadow-purple-500/10 transition-all duration-500"
+                className="group relative cursor-pointer overflow-hidden bg-slate-900/[0.03] hover:bg-slate-900/[0.05] dark:bg-white/10 dark:hover:bg-white/15 border border-slate-300/80 hover:border-purple-500/50 dark:border-2 dark:border-white/10 p-4 sm:p-5 md:p-6 rounded-2xl sm:rounded-[1.5rem] backdrop-blur-xl shadow-[0_12px_32px_-6px_rgba(15,23,42,0.06),_0_0_0_1px_rgba(255,255,255,0.8)_inset] dark:shadow-lg hover:shadow-[0_20px_45px_-8px_rgba(168,85,247,0.18)] dark:hover:shadow-purple-500/10 transition-all duration-500"
               >
-                <div className="flex items-center gap-3 mb-4">
+                <div className="flex items-center gap-3 mb-3 sm:mb-4">
                   <span className="px-2.5 py-0.5 bg-purple-500/10 dark:bg-purple-500/20 text-purple-600 dark:text-purple-400 text-[9px] font-black uppercase tracking-[0.2em] rounded-full border border-purple-500/20">
                     02 // Problem Solving & Cloud
                   </span>
                   <div className="h-px flex-1 bg-gradient-to-r from-purple-500/30 to-transparent" />
                 </div>
-                <p className="text-slate-700 dark:text-slate-400 text-[13px] md:text-sm leading-relaxed">
+                <p className="text-slate-700 dark:text-slate-400 text-xs sm:text-[13px] md:text-sm leading-relaxed">
                   {passage_2}
                 </p>
               </motion.div>
@@ -157,15 +166,15 @@ export default function About() {
               <motion.div
                 variants={textVariants}
                 whileHover={{ y: -5, scale: 1.01 }}
-                className="group relative cursor-pointer overflow-hidden bg-gradient-to-br from-cyan-500/[0.05] to-purple-500/[0.05] hover:from-cyan-500/[0.09] hover:to-purple-500/[0.09] dark:from-cyan-500/10 dark:to-purple-500/10 border border-cyan-500/30 hover:border-cyan-500/60 dark:border-2 dark:border-cyan-500/30 dark:dark:border-cyan-500/20 p-6 rounded-[1.5rem] backdrop-blur-xl shadow-[0_12px_32px_-6px_rgba(6,182,212,0.1),_0_0_0_1px_rgba(255,255,255,0.8)_inset] dark:shadow-lg hover:shadow-[0_20px_45px_-8px_rgba(99,102,241,0.2)] dark:hover:shadow-cyan-500/20 dark:hover:from-cyan-500/10 dark:hover:to-purple-500/10 transition-all duration-500"
+                className="group relative cursor-pointer overflow-hidden bg-gradient-to-br from-cyan-500/[0.05] to-purple-500/[0.05] hover:from-cyan-500/[0.09] hover:to-purple-500/[0.09] dark:from-cyan-500/10 dark:to-purple-500/10 border border-cyan-500/30 hover:border-cyan-500/60 dark:border-2 dark:border-cyan-500/30 dark:dark:border-cyan-500/20 p-4 sm:p-5 md:p-6 rounded-2xl sm:rounded-[1.5rem] backdrop-blur-xl shadow-[0_12px_32px_-6px_rgba(6,182,212,0.1),_0_0_0_1px_rgba(255,255,255,0.8)_inset] dark:shadow-lg hover:shadow-[0_20px_45px_-8px_rgba(99,102,241,0.2)] dark:hover:shadow-cyan-500/20 dark:hover:from-cyan-500/10 dark:hover:to-purple-500/10 transition-all duration-500"
               >
-                <div className="flex items-center gap-3 mb-4">
+                <div className="flex items-center gap-3 mb-3 sm:mb-4">
                   <span className="px-2.5 py-0.5 bg-cyan-500/10 dark:bg-white/20 text-cyan-800 dark:text-white text-[9px] font-black uppercase tracking-[0.2em] rounded-full border border-cyan-500/30 dark:border-white/40 shadow-sm">
                     03 // Philosophy & Craft
                   </span>
                   <div className="h-px flex-1 bg-gradient-to-r from-cyan-500/30 to-transparent dark:from-white dark:to-transparent opacity-20" />
                 </div>
-                <p className="text-slate-800 dark:text-white font-medium text-[13px] md:text-sm leading-relaxed">
+                <p className="text-slate-800 dark:text-white font-medium text-xs sm:text-[13px] md:text-sm leading-relaxed">
                   {passage_3}
                 </p>
               </motion.div>
@@ -188,16 +197,16 @@ export default function About() {
             <div className="h-px flex-1 bg-gradient-to-r from-transparent via-slate-300 dark:via-white/10 to-transparent" />
           </div>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-8 md:gap-16">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-5 sm:gap-8 md:gap-16">
             <a
               href={PersonalInfo.github}
               target="_blank"
               rel="noreferrer"
-              className="flex items-center gap-4 group transition-all"
+              className="flex items-center gap-3 sm:gap-4 group transition-all"
               aria-label="GitHub Profile"
             >
-              <div className="w-14 h-14 rounded-full bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 flex items-center justify-center text-slate-800 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-400 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(6,182,212,0.3)] transition-all duration-500">
-                <FiGithub size={28} className="group-hover:rotate-12 transition-transform" />
+              <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-full bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 flex items-center justify-center text-slate-800 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-400 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(6,182,212,0.3)] transition-all duration-500 shrink-0">
+                <FiGithub className="w-5 h-5 sm:w-7 sm:h-7 group-hover:rotate-12 transition-transform" />
               </div>
               <div className="flex flex-col">
                 <span className="text-[10px] font-black uppercase tracking-widest text-slate-400 group-hover:text-cyan-500 transition-colors">GitHub</span>
@@ -211,11 +220,11 @@ export default function About() {
               href={PersonalInfo.linkedIn}
               target="_blank"
               rel="noreferrer"
-              className="flex items-center gap-4 group transition-all"
+              className="flex items-center gap-3 sm:gap-4 group transition-all"
               aria-label="LinkedIn Profile"
             >
-              <div className="w-14 h-14 rounded-full bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 flex items-center justify-center text-slate-800 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-400 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(6,182,212,0.3)] transition-all duration-500">
-                <FiLinkedin size={28} className="group-hover:scale-110 transition-transform" />
+              <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-full bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 flex items-center justify-center text-slate-800 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-400 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(6,182,212,0.3)] transition-all duration-500 shrink-0">
+                <FiLinkedin className="w-5 h-5 sm:w-7 sm:h-7 group-hover:scale-110 transition-transform" />
               </div>
               <div className="flex flex-col">
                 <span className="text-[10px] font-black uppercase tracking-widest text-slate-400 group-hover:text-cyan-500 transition-colors">LinkedIn</span>

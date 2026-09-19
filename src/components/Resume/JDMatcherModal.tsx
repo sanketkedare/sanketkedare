@@ -24,7 +24,11 @@ interface JDAnalysisResult {
   recommendedProjects: string[];
 }
 
-export default function JDMatcherModal() {
+interface JDMatcherModalProps {
+  customTrigger?: (openModal: () => void) => React.ReactNode;
+}
+
+export default function JDMatcherModal({ customTrigger }: JDMatcherModalProps = {}) {
   const [isOpen, setIsOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const [activeTab, setActiveTab] = useState<'paste' | 'file'>('paste');
@@ -229,19 +233,23 @@ export default function JDMatcherModal() {
 
   return (
     <>
-      {/* Trigger Button - Simple, clear, easy to understand text */}
-      <motion.button
-        whileHover={{ scale: 1.03 }}
-        whileTap={{ scale: 0.97 }}
-        onClick={() => setIsOpen(true)}
-        className="group relative inline-flex items-center gap-2.5 px-7 md:px-9 py-4 bg-gradient-to-r from-purple-600 via-indigo-600 to-cyan-600 hover:from-purple-700 hover:to-cyan-700 text-white rounded-2xl font-black text-xs md:text-sm tracking-wider uppercase shadow-xl hover:shadow-cyan-500/30 transition-all duration-300 cursor-pointer"
-      >
-        <FaWandMagicSparkles size={18} className="group-hover:rotate-12 transition-transform text-amber-300" />
-        <span>Match Job Description</span>
-        <span className="bg-amber-400 text-slate-950 text-[9px] font-black px-2 py-0.5 rounded-full uppercase tracking-widest shadow-xs ml-0.5">
-          AI
-        </span>
-      </motion.button>
+      {/* Trigger Button */}
+      {customTrigger ? (
+        customTrigger(() => setIsOpen(true))
+      ) : (
+        <motion.button
+          whileHover={{ scale: 1.03 }}
+          whileTap={{ scale: 0.97 }}
+          onClick={() => setIsOpen(true)}
+          className="group relative inline-flex items-center gap-2.5 px-7 md:px-9 py-4 bg-gradient-to-r from-purple-600 via-indigo-600 to-cyan-600 hover:from-purple-700 hover:to-cyan-700 text-white rounded-2xl font-black text-xs md:text-sm tracking-wider uppercase shadow-xl hover:shadow-cyan-500/30 transition-all duration-300 cursor-pointer"
+        >
+          <FaWandMagicSparkles size={18} className="group-hover:rotate-12 transition-transform text-amber-300" />
+          <span>Match Job Description</span>
+          <span className="bg-amber-400 text-slate-950 text-[9px] font-black px-2 py-0.5 rounded-full uppercase tracking-widest shadow-xs ml-0.5">
+            AI
+          </span>
+        </motion.button>
+      )}
 
       {/* Portal Lightbox Modal directly on document.body */}
       {isMounted && createPortal(

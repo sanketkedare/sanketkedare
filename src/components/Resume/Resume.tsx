@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import ResumeViewer from './ResumeViewer';
 import JDMatcherModal from './JDMatcherModal';
@@ -7,6 +8,7 @@ import JDMatcherModal from './JDMatcherModal';
 const resumeInfo = `Full Stack Developer with production experience in React, Next.js, and Node.js. I write clean, typed, well-tested code and ship systems that stay up.`;
 
 export default function Resume() {
+  const [isResumeUncollapsed, setIsResumeUncollapsed] = useState(false);
   return (
     <section id="resume" className="relative w-full min-h-screen flex items-center justify-center overflow-hidden py-24 bg-transparent dark:bg-[#050511] border-none">
       {/* Rich Centered Soft Atmosphere (Expanded Size, Low Intensity, Seamless Fade Mask) */}
@@ -51,8 +53,8 @@ export default function Resume() {
 
           {/* Action Buttons Row */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 w-full pt-2">
-            <ResumeViewer />
-            <JDMatcherModal />
+            <ResumeViewer onToggle={setIsResumeUncollapsed} />
+            {!isResumeUncollapsed && <JDMatcherModal />}
           </div>
         </div>
       </div>

@@ -11,7 +11,9 @@ import {
   FiExternalLink,
   FiCornerDownRight
 } from 'react-icons/fi';
-import { BsStars } from 'react-icons/bs';
+import { BsStars, BsFileEarmarkPdfFill } from 'react-icons/bs';
+import { FaWandMagicSparkles } from 'react-icons/fa6';
+import JDMatcherModal from '@/components/Resume/JDMatcherModal';
 
 interface Message {
   id: string;
@@ -32,9 +34,10 @@ const INITIAL_MESSAGE: Message = {
   isPredefined: true,
   suggestions: [
     "🚀 Core Tech Stack",
-    "🧬 Cognitive Fingerprint",
+    "🛠️ Engineering Judgment",
     "📁 Architecture Case Studies",
     "💼 Work Experience",
+    "⚡ Match Job Description (JD)",
     "📄 View Resume",
     "✉️ Contact Sanket"
   ],
@@ -43,12 +46,68 @@ const INITIAL_MESSAGE: Message = {
 
 export default function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isInResumeSection, setIsInResumeSection] = useState(false);
   const [messages, setMessages] = useState<Message[]>([INITIAL_MESSAGE]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  // Detect when user is viewing the #resume section area
+  useEffect(() => {
+    let observer: IntersectionObserver | null = null;
+
+    const setupObserver = () => {
+      const resumeEl = document.getElementById('resume');
+      if (!resumeEl) return false;
+
+      observer = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            setIsInResumeSection(entry.isIntersecting);
+          }
+        },
+        {
+          threshold: 0.08,
+          rootMargin: '0px',
+        }
+      );
+
+      observer.observe(resumeEl);
+      return true;
+    };
+
+    if (!setupObserver()) {
+      const retryTimer = setTimeout(setupObserver, 250);
+      return () => {
+        clearTimeout(retryTimer);
+        observer?.disconnect();
+      };
+    }
+
+    return () => observer?.disconnect();
+  }, []);
+
+  const handleOpenResumeFromFloating = () => {
+    if (typeof window !== 'undefined') {
+      if (typeof (window as any).__SK_OPEN_RESUME__ === 'function') {
+        (window as any).__SK_OPEN_RESUME__();
+      }
+      const triggerBtn = document.getElementById('sk-view-resume-trigger');
+      if (triggerBtn) {
+        triggerBtn.click();
+      }
+      window.dispatchEvent(new CustomEvent('sk-open-resume'));
+      try {
+        window.history.replaceState(null, '', '#resume');
+      } catch (_) {}
+      const resumeEl = document.getElementById('resume');
+      if (resumeEl) {
+        resumeEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  };
 
   const scrollToBottom = useCallback(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -202,6 +261,81 @@ export default function ChatWidget() {
 
   return (
     <>
+      {/* Floating PDF Quick Access Button (Placed directly above 'Match JD' button) */}
+      <motion.button
+        type="button"
+        onClick={handleOpenResumeFromFloating}
+        disabled={isOpen || isInResumeSection}
+        title="View and Open Sanket's Resume (PDF)"
+        aria-label="Open Resume Document"
+        animate={
+          isOpen || isInResumeSection
+            ? { opacity: 0, y: 16, scale: 0.88, pointerEvents: 'none' }
+            : { opacity: 1, scale: 1, y: 0 }
+        }
+        whileHover={isOpen || isInResumeSection ? {} : { scale: 1.08 }}
+        whileTap={isOpen || isInResumeSection ? {} : { scale: 0.94 }}
+        className="fixed bottom-[6.25rem] right-3.5 sm:bottom-[8.5rem] sm:right-6 z-40 flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-4 py-1.5 sm:py-2.5 rounded-full bg-white/95 dark:bg-[#0c0d24]/95 text-slate-900 dark:text-white border-2 border-rose-500/50 dark:border-rose-400/60 hover:border-rose-600 dark:hover:border-rose-400 shadow-[0_8px_20px_-4px_rgba(244,63,94,0.3)] sm:shadow-[0_10px_28px_-5px_rgba(244,63,94,0.35)] backdrop-blur-xl group transition-all duration-300 select-none cursor-pointer"
+      >
+        <BsFileEarmarkPdfFill className="text-rose-600 dark:text-rose-400 text-xs sm:text-[15px] group-hover:scale-110 transition-transform shrink-0" />
+        <span className="text-[10px] sm:text-xs font-black uppercase tracking-wider text-slate-900 dark:text-white">
+          <span className="sm:hidden">PDF</span>
+          <span className="hidden sm:inline">Resume</span>
+        </span>
+      </motion.button>
+
+      {/* Floating JD Review Button (Placed directly above 'Ask Sanket\'s AI' launcher with attention-grabbing bounce) */}
+      <JDMatcherModal
+        customTrigger={(openModal) => (
+          <motion.button
+            type="button"
+            onClick={openModal}
+            disabled={isOpen}
+            title="Match your Job Description with AI against Sanket's profile"
+            aria-label="Match Job Description with AI"
+            animate={
+              isOpen
+                ? { opacity: 0, y: 16, scale: 0.88, pointerEvents: 'none' }
+                : {
+                    opacity: 1,
+                    scale: 1,
+                    y: [0, -9, 0, -4, 0],
+                    transition: {
+                      y: {
+                        repeat: Infinity,
+                        repeatDelay: 2.2,
+                        duration: 1.1,
+                        ease: [0.22, 1, 0.36, 1],
+                      },
+                      opacity: { duration: 0.25 },
+                      scale: { duration: 0.25 },
+                    },
+                  }
+            }
+            whileHover={isOpen ? {} : { scale: 1.08 }}
+            whileTap={isOpen ? {} : { scale: 0.94 }}
+            className={`fixed bottom-[3.75rem] right-3.5 sm:bottom-[5.25rem] sm:right-6 z-40 flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-4 py-1.5 sm:py-2.5 rounded-full bg-white/95 dark:bg-[#0c0d24]/95 text-slate-900 dark:text-white border-2 border-purple-500/50 dark:border-purple-400/60 hover:border-purple-600 dark:hover:border-cyan-400 shadow-[0_8px_22px_-4px_rgba(147,51,234,0.25)] sm:shadow-[0_12px_32px_-5px_rgba(147,51,234,0.3)] dark:shadow-[0_12px_35px_-5px_rgba(168,85,247,0.5)] backdrop-blur-xl group transition-colors duration-300 select-none cursor-pointer`}
+          >
+            {/* Pulsing attention gold radar dot */}
+            <span className="relative flex h-1.5 w-1.5 sm:h-2 sm:w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-80" />
+              <span className="relative inline-flex rounded-full h-1.5 w-1.5 sm:h-2 sm:w-2 bg-amber-500" />
+            </span>
+
+            <FaWandMagicSparkles className="text-amber-500 dark:text-amber-300 text-xs sm:text-[14px] group-hover:rotate-12 transition-transform shrink-0" />
+            
+            <span className="text-[10px] sm:text-xs font-black uppercase tracking-wider text-slate-900 dark:text-white">
+              <span className="sm:hidden">JD Match</span>
+              <span className="hidden sm:inline">JD Review</span>
+            </span>
+
+            <span className="bg-gradient-to-r from-purple-600 via-indigo-600 to-cyan-500 text-white text-[8px] sm:text-[9px] font-black px-1 sm:px-1.5 py-0.2 sm:py-0.5 rounded-full uppercase tracking-widest shadow-xs">
+              AI
+            </span>
+          </motion.button>
+        )}
+      />
+
       {/* Floating Trigger Launcher Button */}
       <motion.button
         type="button"
@@ -209,14 +343,14 @@ export default function ChatWidget() {
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         aria-label="Open AI Portfolio Chat"
-        className="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-50 flex items-center gap-2.5 px-4 py-3 rounded-full bg-gradient-to-r from-cyan-500 via-indigo-600 to-purple-600 text-white font-black text-xs uppercase tracking-widest shadow-2xl shadow-cyan-500/30 border border-cyan-400/40 backdrop-blur-xl group transition-all duration-300 hover:shadow-cyan-500/50"
+        className="fixed bottom-3.5 right-3.5 sm:bottom-6 sm:right-6 z-50 flex items-center gap-1.5 sm:gap-2.5 px-3 py-2 sm:px-4 sm:py-3 rounded-full bg-gradient-to-r from-cyan-500 via-indigo-600 to-purple-600 text-white font-black text-[11px] sm:text-xs uppercase tracking-wider sm:tracking-widest shadow-xl sm:shadow-2xl shadow-cyan-500/30 border border-cyan-400/40 backdrop-blur-xl group transition-all duration-300 hover:shadow-cyan-500/50"
       >
-        <span className="relative flex h-2.5 w-2.5">
+        <span className="relative flex h-2 w-2 sm:h-2.5 sm:w-2.5">
           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-          <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400" />
+          <span className="relative inline-flex rounded-full h-2 w-2 sm:h-2.5 sm:w-2.5 bg-emerald-400" />
         </span>
-        <BsStars size={16} className="text-cyan-200 group-hover:rotate-12 transition-transform" />
-        <span className="hidden sm:inline">Ask Sanket&apos;s AI</span>
+        <BsStars className="text-cyan-200 text-xs sm:text-[16px] group-hover:rotate-12 transition-transform" />
+        <span className="hidden sm:inline">AI Assistant</span>
         <span className="sm:hidden">AI Chat</span>
       </motion.button>
 
@@ -248,8 +382,21 @@ export default function ChatWidget() {
                 </div>
               </div>
 
-              {/* Action Buttons: Clear & Close */}
+              {/* Action Buttons: Match JD, Clear & Close */}
               <div className="flex items-center gap-1.5">
+                <JDMatcherModal
+                  customTrigger={(openModal) => (
+                    <button
+                      type="button"
+                      onClick={openModal}
+                      title="Match your Job Description with AI against Sanket's profile"
+                      className="flex items-center gap-1 px-2.5 py-1 rounded-xl bg-gradient-to-r from-purple-500/15 to-indigo-500/15 hover:from-purple-500/25 hover:to-indigo-500/25 text-purple-700 dark:text-purple-300 border border-purple-500/30 text-[10px] font-black transition-all shadow-xs cursor-pointer"
+                    >
+                      <FaWandMagicSparkles size={11} className="text-amber-500 shrink-0" />
+                      <span>Match JD</span>
+                    </button>
+                  )}
+                />
                 <button
                   type="button"
                   onClick={handleClearChat}

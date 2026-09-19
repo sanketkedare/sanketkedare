@@ -1,112 +1,84 @@
 {
-    "profile_metadata": {
-      "target_platform": "sanketkedare.com",
-      "schema_version": "2.0.0",
-      "generation_date": "2026-09-15",
-      "domain_focus": "Full-Stack Web, Mobile, and Distributed Infrastructure"
+  "profile_metadata": {
+    "target_platform": "sanketkedare.com",
+    "schema_version": "2.1.0",
+    "generation_date": "2026-09-19",
+    "domain_focus": "Full-Stack Web, Cloud Infrastructure, and Real-Time Systems"
+  },
+  "cognitive_identity": {
+    "primary_archetype": "Full-Stack Systems & Product Engineer",
+    "core_thesis": "Treat software as a deterministic continuum—from cloud infrastructure and data schemas to client rendering lifecycles. Prioritize upstream structural correctness over downstream band-aids."
+  },
+  "mental_models": [
+    {
+      "name": "End-to-End Traceability",
+      "concept": "Never treat an error as an isolated surface symptom. Trace data lineage, environment state, and serialization from persistence through networking to rendering before touching code."
     },
-    "cognitive_identity": {
-      "primary_archetype": "First-Principles Systems Architect & Root-Cause Optimizer",
-      "core_thesis": "Treat software as a single deterministic continuum—from infrastructure configuration and database schemas to client state lifecycle. Reject symptomatic band-aids in favor of upstream structural correctness."
+    {
+      "name": "Deterministic Contract Boundaries",
+      "concept": "Enforce explicit typing and schema validation at all system boundaries. Zero tolerance for runtime magic, implicit coercion, or untyped payload assumptions."
     },
-    "mental_models": [
-      {
-        "name": "End-to-End Traceability",
-        "concept": "Never treat an error as an isolated surface symptom. Trace data lineage, environment state, and serialization from persistence through networking to rendering before touching code."
-      },
-      {
-        "name": "Deterministic Contract Boundaries",
-        "concept": "Enforce explicit typing and schema validation at all system boundaries. Zero tolerance for runtime magic, implicit coercion, or untyped payload assumptions."
-      },
-      {
-        "name": "Context & Token Conservation",
-        "concept": "Favor consolidated, high-density modular domain structures over fragmented file or prompt sprawl, minimizing cognitive and computational overhead."
-      },
-      {
-        "name": "Upstream Defect Remediation",
-        "concept": "A bug fixed downstream with defensive wrappers is a technical debt multiplier; correct defects at the authoritative source."
-      }
-    ],
-    "engineering_rules": [
-      {
-        "id": "RULE_01",
-        "name": "Zero Symptom Suppression",
-        "statement": "Refuse cosmetic patches, fallback hacks, or UI error-hiding when the root cause is a database inconsistency, lifecycle bug, or configuration flaw."
-      },
-      {
-        "id": "RULE_02",
-        "name": "Strict Boundary Contracts",
-        "statement": "Enforce end-to-end type safety, schema guarantees, and validated inputs between services, APIs, and client runtimes without relying on implicit defaults."
-      },
-      {
-        "id": "RULE_03",
-        "name": "High Context Density",
-        "statement": "Consolidate configurations, documentation, and logic into cohesive, single-responsibility modules to eliminate architectural clutter."
-      },
-      {
-        "id": "RULE_04",
-        "name": "Lifecycle-Aware State Management",
-        "statement": "Reason about component, network, and container lifecycles holistically to prevent race conditions, memory leaks, and redundant execution."
-      }
-    ],
-    "quantified_tradeoffs": [
-      {
-        "axis": "Resolution Depth",
-        "left_anchor": "Root-Cause Elimination",
-        "right_anchor": "Quick Symptomatic Patch",
-        "score": 95,
-        "rationale": "Prioritizes long-term systemic stability over rapid, temporary fixes that mask architectural flaws.",
-        "methodology_note": "Self-assessed across 12 production incidents resolved 2024–2026; score reflects frequency of upstream fixes vs. defensive patches applied."
-      },
-      {
-        "axis": "Data Contracts",
-        "left_anchor": "Strict Typing & Schemas",
-        "right_anchor": "Implicit / Runtime Fallbacks",
-        "score": 92,
-        "rationale": "Requires deterministic data shapes across boundaries rather than defensive runtime guessing.",
-        "methodology_note": "Based on TypeScript coverage, Zod/schema validation adoption, and zero-implicit-any policy enforced across all production projects."
-      },
-      {
-        "axis": "Modularity",
-        "left_anchor": "Consolidated Domain Modules",
-        "right_anchor": "Scattered File & Context Sprawl",
-        "score": 92,
-        "rationale": "Prefers tightly scoped, high-signal units over sprawling configurations and fragmented files.",
-        "methodology_note": "Measured by average module responsibility count and cross-cutting import depth across 3 production codebases."
-      },
-      {
-        "axis": "Optimization Strategy",
-        "left_anchor": "Profile-Driven System Flow",
-        "right_anchor": "Premature Micro-Tuning",
-        "score": 87,
-        "rationale": "Focuses on lifecycle and network bottlenecks instead of speculative local optimizations.",
-        "methodology_note": "Reflects proportion of performance work driven by Lighthouse/profiler data vs. intuition-based micro-optimizations."
-      }
-    ],
-    "decision_logs": [
-      {
-        "id": "DEC_INFRA_01",
-        "domain": "Infrastructure & Deployment",
-        "problem": "Docker container build failures intermittently blocked production deployments during pipeline execution.",
-        "rejected_alternative": "Deploying temporary environment-specific bypasses or treating failures as transient application glitches.",
-        "chosen_solution": "Traced and corrected the configuration discrepancy directly at the Docker and infrastructure boundary to ensure reproducible builds.",
-        "tradeoff_justification": "Required initial investigation overhead but eliminated deployment fragility and preserved environment parity across environments."
-      },
-      {
-        "id": "DEC_AGENT_02",
-        "domain": "Tooling & Context Engineering",
-        "problem": "Dispersed rules, instructions, and skill definitions increased token bloat and degraded agent execution precision.",
-        "rejected_alternative": "Retaining sprawling multi-file setups and relying on high-context model window brute-forcing.",
-        "chosen_solution": "Consolidated frontend and backend instruction sets into dense, functional domain skills with minimal token overhead.",
-        "tradeoff_justification": "Sacrificed micro-granularity for lower latency, reduced token waste, and predictable agent fidelity."
-      },
-      {
-        "id": "DEC_CONTRACT_03",
-        "domain": "State & API Integration",
-        "problem": "Mismatched data assumptions between backend payloads and client consumption causing subtle runtime errors.",
-        "rejected_alternative": "Adding client-side defensive checks, optional chains, and fallback defaults to mask missing properties.",
-        "chosen_solution": "Enforced strict end-to-end schema contracts from API handlers down to client components, invalidating malformed payloads at the boundary.",
-        "tradeoff_justification": "Exposes integration failures immediately at compile/build time rather than allowing silent data degradation in production."
-      }
-    ]
-  }
+    {
+      "name": "Upstream Defect Remediation",
+      "concept": "A bug fixed downstream with defensive wrappers is a technical debt multiplier; correct defects at the authoritative source."
+    },
+    {
+      "name": "Lifecycle-Aware State Management",
+      "concept": "Reason about component, network, and container lifecycles holistically to prevent race conditions, memory leaks, and redundant execution."
+    }
+  ],
+  "engineering_rules": [
+    {
+      "id": "RULE_01",
+      "name": "Zero Symptom Suppression",
+      "statement": "Refuse cosmetic patches, fallback hacks, or UI error-hiding when the root cause is a database inconsistency, lifecycle bug, or configuration flaw."
+    },
+    {
+      "id": "RULE_02",
+      "name": "Strict Boundary Contracts",
+      "statement": "Enforce end-to-end type safety, schema guarantees, and validated inputs between services, APIs, and client runtimes without relying on implicit defaults."
+    },
+    {
+      "id": "RULE_03",
+      "name": "High Context Density",
+      "statement": "Consolidate configurations, documentation, and logic into cohesive, single-responsibility modules to eliminate architectural clutter."
+    },
+    {
+      "id": "RULE_04",
+      "name": "Lifecycle-Aware Execution",
+      "statement": "Design state machines and data subscriptions around strict mount, unmount, and streaming boundaries to guarantee deterministic execution."
+    }
+  ],
+  "incident_postmortems": [
+    {
+      "id": "INCIDENT_01",
+      "title": "CI/CD Docker Multi-Stage Build Inconsistency",
+      "domain": "Infrastructure & Deployments",
+      "badge": "DevOps & Cloud",
+      "symptom": "Intermittent build pipeline failures and cached dependency mismatches during automated CI/CD production releases.",
+      "root_cause": "Unpinned floating base images and non-deterministic layer caching caused divergence between local development and remote build runners.",
+      "fix": "Pinned base image SHA digests in multi-stage Dockerfiles, introduced BuildKit cache mounts, and enforced lockfile integrity validation.",
+      "outcome": "100% reproducible container builds across all environments, with a 45% reduction in CI pipeline duration and zero deployment flakiness."
+    },
+    {
+      "id": "INCIDENT_02",
+      "title": "Next.js 16 SSR Streaming & Hydration Stalls in LMS",
+      "domain": "Web Performance & App Router",
+      "badge": "Frontend Architecture",
+      "symptom": "Client-side hydration delays and layout shifts when loading rich curriculum pages with embedded video players and student telemetry.",
+      "root_cause": "Monolithic client components fetched video manifests and student progress synchronously inside client hooks, blocking main-thread rendering.",
+      "fix": "Decomposed page into Server Components streaming the initial shell via React Suspense, offloading telemetry syncing to deferred client hooks.",
+      "outcome": "Instant initial page paint, sub-50ms interaction response, zero layout shift (CLS), and seamless video player initialization."
+    },
+    {
+      "id": "INCIDENT_03",
+      "title": "High-Frequency WebSocket Orderbook Feed Throttling",
+      "domain": "Real-Time Systems & Canvas",
+      "badge": "Performance Tuning",
+      "symptom": "Browser tab frame rate drops below 20 FPS and high client CPU usage during volatile crypto market events with 100+ updates per second.",
+      "root_cause": "Every incoming WebSocket packet triggered an immediate React state update and complete recalculation of 50,000+ chart data points.",
+      "fix": "Implemented an in-memory queue that batches incoming ticks at 1.5s intervals, combined with Largest Triangle Three Buckets (LTTB) downsampling on chart renders.",
+      "outcome": "Smooth 60 FPS rendering under extreme market volatility, 70% reduction in client CPU utilization, and eliminated memory leak risks."
+    }
+  ]
+}
