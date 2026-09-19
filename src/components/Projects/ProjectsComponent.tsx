@@ -160,7 +160,7 @@ function ProjectCard({ project, isLarge = false, themeIndex = 0 }: { project: Pr
         style={{ transformStyle: 'preserve-3d' }}
       >
         {/* Left Side: 16:9 Image Display */}
-        <div className="relative w-full aspect-video md:aspect-auto md:col-span-6 md:h-full min-h-[240px] md:min-h-[360px] overflow-hidden bg-slate-950">
+        <div className="relative w-full aspect-video md:aspect-auto md:col-span-6 md:h-full min-h-[200px] sm:min-h-[240px] md:min-h-[360px] overflow-hidden bg-slate-950">
           <Image
             src={project.img}
             alt={project.title}
@@ -171,8 +171,8 @@ function ProjectCard({ project, isLarge = false, themeIndex = 0 }: { project: Pr
           />
 
           {/* Floating Top Badge */}
-          <div className="absolute top-3.5 left-3.5 z-20">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[9px] md:text-[10px] font-black uppercase tracking-widest bg-slate-950/85 text-cyan-400 border border-cyan-500/40 backdrop-blur-md shadow-lg">
+          <div className="absolute top-2.5 left-2.5 sm:top-3.5 sm:left-3.5 z-20">
+            <span className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full text-[8.5px] sm:text-[9px] md:text-[10px] font-black uppercase tracking-wider sm:tracking-widest bg-slate-950/85 text-cyan-400 border border-cyan-500/40 backdrop-blur-md shadow-lg">
               <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping" />
               {project.badge || 'Featured Project'}
             </span>
@@ -180,8 +180,8 @@ function ProjectCard({ project, isLarge = false, themeIndex = 0 }: { project: Pr
 
           {/* Floating Case Study Available Label */}
           {project.caseStudy && (
-            <div className="absolute top-3.5 right-3.5 z-20">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[9px] md:text-[10px] font-black uppercase tracking-wider bg-emerald-950/90 text-emerald-300 border border-emerald-500/50 backdrop-blur-md shadow-lg shadow-emerald-950/50">
+            <div className="absolute top-2.5 right-2.5 sm:top-3.5 sm:right-3.5 z-20">
+              <span className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full text-[8.5px] sm:text-[9px] md:text-[10px] font-black uppercase tracking-wider bg-emerald-950/90 text-emerald-300 border border-emerald-500/50 backdrop-blur-md shadow-lg shadow-emerald-950/50">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                 <FiBookOpen size={11} className="text-emerald-400" />
                 <span>Case Study</span>
@@ -193,24 +193,24 @@ function ProjectCard({ project, isLarge = false, themeIndex = 0 }: { project: Pr
         </div>
 
         {/* Right Side: Rich Enterprise Content */}
-        <div className="p-6 md:p-8 md:col-span-6 flex flex-col justify-between relative z-10">
+        <div className="p-4 sm:p-6 md:p-8 md:col-span-6 flex flex-col justify-between relative z-10">
           <div>
-            <div className="flex items-center justify-between gap-3 mb-2">
-              <span className={`text-[10px] font-black uppercase tracking-widest ${theme.accentText}`}>
+            <div className="flex items-center justify-between gap-2 sm:gap-3 mb-2">
+              <span className={`text-[9px] sm:text-[10px] font-black uppercase tracking-wider sm:tracking-widest ${theme.accentText}`}>
                 Featured Production System • Architected by Sanket
               </span>
-              <div className="flex items-center gap-2 shrink-0">
+              <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
                 {project.caseStudy && (
                   <a
                     href={project.caseStudy}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 hover:bg-emerald-500 text-emerald-800 dark:text-emerald-400 hover:text-white dark:hover:text-black border border-emerald-400/40 dark:border-emerald-500/30 hover:border-transparent text-[10px] font-black uppercase tracking-wider transition-all duration-300 shadow-2xs"
+                    className="inline-flex items-center gap-1.5 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full bg-emerald-500/10 hover:bg-emerald-500 text-emerald-800 dark:text-emerald-400 hover:text-white dark:hover:text-black border border-emerald-400/40 dark:border-emerald-500/30 hover:border-transparent text-[9px] sm:text-[10px] font-black uppercase tracking-wider transition-all duration-300 shadow-2xs"
                     title="Read Architecture Case Study"
                   >
-                    <FiBookOpen size={12} />
+                    <FiBookOpen size={11} />
                     <span>Case Study</span>
-                    <FiArrowUpRight size={11} />
+                    <FiArrowUpRight size={10} />
                   </a>
                 )}
                 {project.git && (
@@ -218,10 +218,10 @@ function ProjectCard({ project, isLarge = false, themeIndex = 0 }: { project: Pr
                     href={project.git}
                     target="_blank"
                     rel="noreferrer"
-                    className="w-8 h-8 rounded-full flex items-center justify-center bg-slate-200/80 dark:bg-white/5 border border-slate-300/80 dark:border-white/10 text-slate-800 dark:text-slate-300 hover:bg-cyan-500 hover:text-black dark:hover:bg-cyan-400 dark:hover:text-black hover:border-transparent transition-all shadow-2xs"
+                    className="w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center bg-slate-200/80 dark:bg-white/5 border border-slate-300/80 dark:border-white/10 text-slate-800 dark:text-slate-300 hover:bg-cyan-500 hover:text-black dark:hover:bg-cyan-400 dark:hover:text-black hover:border-transparent transition-all shadow-2xs"
                     title="GitHub Repository"
                   >
-                    <FiGithub size={15} />
+                    <FiGithub size={14} />
                   </a>
                 )}
                 {project.live && (
@@ -229,16 +229,16 @@ function ProjectCard({ project, isLarge = false, themeIndex = 0 }: { project: Pr
                     href={project.live}
                     target="_blank"
                     rel="noreferrer"
-                    className="w-8 h-8 rounded-full flex items-center justify-center bg-slate-200/80 dark:bg-white/5 border border-slate-300/80 dark:border-white/10 text-slate-800 dark:text-slate-300 hover:bg-cyan-500 hover:text-black dark:hover:bg-cyan-400 dark:hover:text-black hover:border-transparent transition-all shadow-2xs"
+                    className="w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center bg-slate-200/80 dark:bg-white/5 border border-slate-300/80 dark:border-white/10 text-slate-800 dark:text-slate-300 hover:bg-cyan-500 hover:text-black dark:hover:bg-cyan-400 dark:hover:text-black hover:border-transparent transition-all shadow-2xs"
                     title="Live Platform Demo"
                   >
-                    <FiArrowUpRight size={17} />
+                    <FiArrowUpRight size={15} />
                   </a>
                 )}
               </div>
             </div>
 
-            <h3 className={`text-lg md:text-2xl font-black text-slate-900 dark:text-white tracking-tight ${theme.titleHover} transition-colors leading-tight mb-2.5`}>
+            <h3 className={`text-base sm:text-lg md:text-2xl font-black text-slate-900 dark:text-white tracking-tight ${theme.titleHover} transition-colors leading-tight mb-2 sm:mb-2.5`}>
               {project.title}
             </h3>
 
@@ -246,9 +246,9 @@ function ProjectCard({ project, isLarge = false, themeIndex = 0 }: { project: Pr
 
             {/* Feature Highlights */}
             {project.features && project.features.length > 0 && (
-              <div className="space-y-2 mb-5">
+              <div className="space-y-1.5 sm:space-y-2 mb-4 sm:mb-5">
                 {project.features.map((feature, idx) => (
-                  <div key={idx} className="flex items-start gap-2.5 text-xs text-slate-800 dark:text-slate-300 font-medium">
+                  <div key={idx} className="flex items-start gap-2 sm:gap-2.5 text-xs text-slate-800 dark:text-slate-300 font-medium">
                     <span className="w-1.5 h-1.5 rounded-full bg-cyan-600 dark:bg-cyan-400 mt-1.5 shrink-0 shadow-xs" />
                     <span className="leading-snug">{feature}</span>
                   </div>
@@ -259,11 +259,11 @@ function ProjectCard({ project, isLarge = false, themeIndex = 0 }: { project: Pr
 
           <div>
             {/* Tech Chips */}
-            <div className="pt-3 border-t border-slate-200/80 dark:border-white/10 flex flex-wrap items-center gap-1.5 mb-4">
+            <div className="pt-2.5 sm:pt-3 border-t border-slate-200/80 dark:border-white/10 flex flex-wrap items-center gap-1 sm:gap-1.5 mb-3.5 sm:mb-4">
               {project.skills.map((skill) => (
                 <span
                   key={skill}
-                  className={`px-2.5 py-0.5 rounded-md ${theme.chip} text-[9px] md:text-[10px] font-bold tracking-wide`}
+                  className={`px-2 sm:px-2.5 py-0.5 rounded-md ${theme.chip} text-[8.5px] sm:text-[9px] md:text-[10px] font-bold tracking-wide`}
                 >
                   {skill}
                 </span>
@@ -271,17 +271,17 @@ function ProjectCard({ project, isLarge = false, themeIndex = 0 }: { project: Pr
             </div>
 
             {/* Direct CTA Action */}
-            <div className="flex items-center gap-2.5">
+            <div className="flex items-center gap-2 sm:gap-2.5">
               {project.caseStudy && (
                 <a
                   href={project.caseStudy}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center justify-center gap-2 flex-1 py-2.5 px-3 rounded-xl bg-cyan-500/10 hover:bg-cyan-500 text-cyan-900 dark:text-cyan-300 hover:text-black font-black text-xs uppercase tracking-wider border border-cyan-400/40 dark:border-cyan-500/30 hover:border-transparent transition-all shadow-md"
+                  className="inline-flex items-center justify-center gap-1.5 sm:gap-2 flex-1 py-2 sm:py-2.5 px-2.5 sm:px-3 rounded-xl bg-cyan-500/10 hover:bg-cyan-500 text-cyan-900 dark:text-cyan-300 hover:text-black font-black text-[11px] sm:text-xs uppercase tracking-wider border border-cyan-400/40 dark:border-cyan-500/30 hover:border-transparent transition-all shadow-md"
                 >
-                  <FiBookOpen size={14} />
+                  <FiBookOpen size={13} />
                   <span>Case Study</span>
-                  <FiArrowUpRight size={14} />
+                  <FiArrowUpRight size={13} />
                 </a>
               )}
               {project.live && (
@@ -289,12 +289,12 @@ function ProjectCard({ project, isLarge = false, themeIndex = 0 }: { project: Pr
                   href={project.live}
                   target="_blank"
                   rel="noreferrer"
-                  className={`inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-gradient-to-r from-cyan-500/20 to-purple-500/20 hover:from-cyan-500 hover:to-cyan-400 text-cyan-950 dark:text-cyan-300 hover:text-black font-black text-xs uppercase tracking-wider border border-cyan-400/40 dark:border-cyan-500/30 hover:border-transparent transition-all shadow-md ${
+                  className={`inline-flex items-center justify-center gap-1.5 sm:gap-2 py-2 sm:py-2.5 px-3 sm:px-4 rounded-xl bg-gradient-to-r from-cyan-500/20 to-purple-500/20 hover:from-cyan-500 hover:to-cyan-400 text-cyan-950 dark:text-cyan-300 hover:text-black font-black text-[11px] sm:text-xs uppercase tracking-wider border border-cyan-400/40 dark:border-cyan-500/30 hover:border-transparent transition-all shadow-md ${
                     project.caseStudy ? 'flex-1' : 'w-full'
                   }`}
                 >
                   <span>Live Platform Demo</span>
-                  <FiArrowUpRight size={16} />
+                  <FiArrowUpRight size={15} />
                 </a>
               )}
             </div>
@@ -330,8 +330,8 @@ function ProjectCard({ project, isLarge = false, themeIndex = 0 }: { project: Pr
 
         {/* Floating Top Badge */}
         {project.badge && (
-          <div className="absolute top-3 left-3 z-20">
-            <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-[9px] md:text-[10px] font-black uppercase tracking-widest backdrop-blur-md shadow-md ${
+          <div className="absolute top-2.5 left-2.5 sm:top-3 sm:left-3 z-20">
+            <span className={`inline-flex items-center px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full text-[8.5px] sm:text-[9px] md:text-[10px] font-black uppercase tracking-wider sm:tracking-widest backdrop-blur-md shadow-md ${
               isEnterprise 
                 ? 'bg-slate-950/85 text-purple-300 border border-purple-500/35' 
                 : 'bg-slate-950/80 text-cyan-400 border border-cyan-500/30'
@@ -343,8 +343,8 @@ function ProjectCard({ project, isLarge = false, themeIndex = 0 }: { project: Pr
 
         {/* Active Development Indicator */}
         {isDevelopment && (
-          <div className="absolute top-3 right-3 z-20">
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[9px] md:text-[10px] font-black uppercase tracking-wider bg-slate-950/85 text-amber-400 border border-amber-500/40 backdrop-blur-md shadow-md">
+          <div className="absolute top-2.5 right-2.5 sm:top-3 sm:right-3 z-20">
+            <span className="inline-flex items-center gap-1 sm:gap-1.5 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full text-[8.5px] sm:text-[9px] md:text-[10px] font-black uppercase tracking-wider bg-slate-950/85 text-amber-400 border border-amber-500/40 backdrop-blur-md shadow-md">
               <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
               Active Dev
             </span>
@@ -353,10 +353,10 @@ function ProjectCard({ project, isLarge = false, themeIndex = 0 }: { project: Pr
 
         {/* Floating Case Study Available Label */}
         {project.caseStudy && !isDevelopment && (
-          <div className="absolute top-3 right-3 z-20">
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[9px] md:text-[10px] font-black uppercase tracking-wider bg-emerald-950/90 text-emerald-300 border border-emerald-500/50 backdrop-blur-md shadow-lg shadow-emerald-950/50">
+          <div className="absolute top-2.5 right-2.5 sm:top-3 sm:right-3 z-20">
+            <span className="inline-flex items-center gap-1 sm:gap-1.5 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full text-[8.5px] sm:text-[9px] md:text-[10px] font-black uppercase tracking-wider bg-emerald-950/90 text-emerald-300 border border-emerald-500/50 backdrop-blur-md shadow-lg shadow-emerald-950/50">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              <FiBookOpen size={11} className="text-emerald-400" />
+              <FiBookOpen size={10} className="text-emerald-400 sm:w-[11px] sm:h-[11px]" />
               <span>Case Study</span>
             </span>
           </div>
@@ -366,47 +366,47 @@ function ProjectCard({ project, isLarge = false, themeIndex = 0 }: { project: Pr
       </div>
 
       {/* Card Content Body */}
-      <div className="p-5 md:p-6 flex flex-col flex-1 justify-between relative z-10">
+      <div className="p-3.5 sm:p-5 md:p-6 flex flex-col flex-1 justify-between relative z-10">
         <div>
           {/* Client & Role Subtitle for Enterprise Deliverables */}
           {isEnterprise && project.client && project.role && (
             <div className="flex items-center gap-1.5 mb-1.5">
-              <span className="text-[9.5px] font-black uppercase tracking-wider text-purple-700 dark:text-purple-400">
+              <span className="text-[8.5px] sm:text-[9.5px] font-black uppercase tracking-wider text-purple-700 dark:text-purple-400">
                 {project.role}
               </span>
-              <span className="text-[9.5px] text-slate-400 dark:text-slate-600">•</span>
-              <span className="text-[9.5px] font-semibold text-slate-600 dark:text-slate-400">
+              <span className="text-[8.5px] sm:text-[9.5px] text-slate-400 dark:text-slate-600">•</span>
+              <span className="text-[8.5px] sm:text-[9.5px] font-semibold text-slate-600 dark:text-slate-400">
                 {project.client}
               </span>
             </div>
           )}
 
           {/* Header & External Links */}
-          <div className="flex items-start justify-between gap-3 mb-2.5">
-            <h3 className={`text-base md:text-xl font-black text-slate-900 dark:text-white tracking-tight ${theme.titleHover} transition-colors leading-snug`}>
+          <div className="flex items-start justify-between gap-2.5 sm:gap-3 mb-2 sm:mb-2.5">
+            <h3 className={`text-sm sm:text-base md:text-xl font-black text-slate-900 dark:text-white tracking-tight ${theme.titleHover} transition-colors leading-snug`}>
               {project.title}
             </h3>
 
-            <div className="flex items-center gap-2 shrink-0 pt-0.5">
+            <div className="flex items-center gap-1.5 sm:gap-2 shrink-0 pt-0.5">
               {project.caseStudy && (
                 <a
                   href={project.caseStudy}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 hover:bg-emerald-500 text-emerald-800 dark:text-emerald-400 hover:text-white dark:hover:text-black border border-emerald-400/40 dark:border-emerald-500/30 hover:border-transparent text-[10px] font-black uppercase tracking-wider transition-all duration-300 shadow-2xs"
+                  className="inline-flex items-center gap-1 sm:gap-1.5 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full bg-emerald-500/10 hover:bg-emerald-500 text-emerald-800 dark:text-emerald-400 hover:text-white dark:hover:text-black border border-emerald-400/40 dark:border-emerald-500/30 hover:border-transparent text-[9px] sm:text-[10px] font-black uppercase tracking-wider transition-all duration-300 shadow-2xs"
                   title="Architecture Case Study"
                 >
-                  <FiBookOpen size={12} />
+                  <FiBookOpen size={11} className="sm:w-3 sm:h-3" />
                   <span>Case Study</span>
-                  <FiArrowUpRight size={11} />
+                  <FiArrowUpRight size={10} className="sm:w-[11px] sm:h-[11px]" />
                 </a>
               )}
               {isEnterprise ? (
                 <span
-                  className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[9px] font-semibold text-slate-700 dark:text-slate-400 bg-slate-200/80 dark:bg-white/5 border border-slate-300/80 dark:border-white/10 shadow-2xs"
+                  className="inline-flex items-center gap-1 px-1.5 sm:px-2 py-0.5 rounded-full text-[8.5px] sm:text-[9px] font-semibold text-slate-700 dark:text-slate-400 bg-slate-200/80 dark:bg-white/5 border border-slate-300/80 dark:border-white/10 shadow-2xs"
                   title="Proprietary commercial codebase under NDA"
                 >
-                  <FiLock size={10} className="text-amber-600 dark:text-amber-500/90" />
+                  <FiLock size={9} className="text-amber-600 dark:text-amber-500/90 sm:w-2.5 sm:h-2.5" />
                   <span className="hidden sm:inline">Proprietary</span>
                 </span>
               ) : (
@@ -415,10 +415,10 @@ function ProjectCard({ project, isLarge = false, themeIndex = 0 }: { project: Pr
                     href={project.git}
                     target="_blank"
                     rel="noreferrer"
-                    className="w-8 h-8 rounded-full flex items-center justify-center bg-slate-200/80 dark:bg-white/5 border border-slate-300/80 dark:border-white/10 text-slate-800 dark:text-slate-300 hover:bg-cyan-500 hover:text-black dark:hover:bg-cyan-400 dark:hover:text-black hover:border-transparent transition-all shadow-2xs"
+                    className="w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center bg-slate-200/80 dark:bg-white/5 border border-slate-300/80 dark:border-white/10 text-slate-800 dark:text-slate-300 hover:bg-cyan-500 hover:text-black dark:hover:bg-cyan-400 dark:hover:text-black hover:border-transparent transition-all shadow-2xs"
                     title="GitHub Repository"
                   >
-                    <FiGithub size={15} />
+                    <FiGithub size={13} className="sm:w-[15px] sm:h-[15px]" />
                   </a>
                 )
               )}
@@ -427,10 +427,10 @@ function ProjectCard({ project, isLarge = false, themeIndex = 0 }: { project: Pr
                   href={project.live}
                   target="_blank"
                   rel="noreferrer"
-                  className="w-8 h-8 rounded-full flex items-center justify-center bg-slate-200/80 dark:bg-white/5 border border-slate-300/80 dark:border-white/10 text-slate-800 dark:text-slate-300 hover:bg-cyan-500 hover:text-black dark:hover:bg-cyan-400 dark:hover:text-black hover:border-transparent transition-all shadow-2xs"
+                  className="w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center bg-slate-200/80 dark:bg-white/5 border border-slate-300/80 dark:border-white/10 text-slate-800 dark:text-slate-300 hover:bg-cyan-500 hover:text-black dark:hover:bg-cyan-400 dark:hover:text-black hover:border-transparent transition-all shadow-2xs"
                   title="Live Demo"
                 >
-                  <FiArrowUpRight size={17} />
+                  <FiArrowUpRight size={15} className="sm:w-[17px] sm:h-[17px]" />
                 </a>
               )}
             </div>
@@ -441,17 +441,17 @@ function ProjectCard({ project, isLarge = false, themeIndex = 0 }: { project: Pr
 
         <div>
           {/* Tech Stack Chips */}
-          <div className="pt-3 border-t border-slate-200/80 dark:border-white/5 flex flex-wrap items-center gap-1.5">
+          <div className="pt-2.5 sm:pt-3 border-t border-slate-200/80 dark:border-white/5 flex flex-wrap items-center gap-1 sm:gap-1.5">
             {project.skills.slice(0, 4).map((skill) => (
               <span
                 key={skill}
-                className={`px-2.5 py-0.5 rounded-md ${theme.chip} text-[9px] md:text-[10px] font-bold tracking-wide`}
+                className={`px-2 sm:px-2.5 py-0.5 rounded-md ${theme.chip} text-[8.5px] sm:text-[9px] md:text-[10px] font-bold tracking-wide`}
               >
                 {skill}
               </span>
             ))}
             {project.skills.length > 4 && (
-              <span className={`text-[9px] md:text-[10px] font-black ${theme.accentText} px-1`}>
+              <span className={`text-[8.5px] sm:text-[9px] md:text-[10px] font-black ${theme.accentText} px-1`}>
                 +{project.skills.length - 4}
               </span>
             )}
@@ -459,33 +459,33 @@ function ProjectCard({ project, isLarge = false, themeIndex = 0 }: { project: Pr
 
           {/* Dedicated Case Study CTA Link with Label */}
           {project.caseStudy && (
-            <div className="mt-3.5 pt-3 border-t border-slate-200/80 dark:border-white/5">
+            <div className="mt-3 sm:mt-3.5 pt-2.5 sm:pt-3 border-t border-slate-200/80 dark:border-white/5">
               <a
                 href={project.caseStudy}
                 target="_blank"
                 rel="noreferrer"
-                className="group/cs flex items-center justify-between p-2.5 rounded-xl bg-gradient-to-r from-emerald-500/15 via-emerald-500/5 to-transparent border border-emerald-400/40 dark:border-emerald-500/30 hover:border-emerald-500 hover:bg-emerald-500/20 transition-all duration-300 shadow-2xs"
+                className="group/cs flex items-center justify-between p-2 sm:p-2.5 rounded-xl bg-gradient-to-r from-emerald-500/15 via-emerald-500/5 to-transparent border border-emerald-400/40 dark:border-emerald-500/30 hover:border-emerald-500 hover:bg-emerald-500/20 transition-all duration-300 shadow-2xs"
               >
-                <div className="flex items-center gap-2.5">
-                  <div className="w-7 h-7 rounded-lg bg-emerald-500/20 flex items-center justify-center text-emerald-700 dark:text-emerald-400 border border-emerald-400/40 dark:border-emerald-500/30 group-hover/cs:scale-110 transition-transform">
-                    <FiBookOpen size={13} />
+                <div className="flex items-center gap-2 sm:gap-2.5">
+                  <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-emerald-500/20 flex items-center justify-center text-emerald-700 dark:text-emerald-400 border border-emerald-400/40 dark:border-emerald-500/30 group-hover/cs:scale-110 transition-transform">
+                    <FiBookOpen size={11} className="sm:w-[13px] sm:h-[13px]" />
                   </div>
                   <div>
-                    <div className="flex items-center gap-1.5">
-                      <span className="text-[10.5px] font-black uppercase tracking-wider text-emerald-800 dark:text-emerald-400">
+                    <div className="flex items-center gap-1 sm:gap-1.5">
+                      <span className="text-[9.5px] sm:text-[10.5px] font-black uppercase tracking-wider text-emerald-800 dark:text-emerald-400">
                         Case Study Available
                       </span>
-                      <span className="px-1.5 py-0.5 rounded text-[8px] font-black uppercase bg-emerald-500/20 text-emerald-900 dark:text-emerald-300 border border-emerald-400/40 dark:border-emerald-500/30">
+                      <span className="px-1 sm:px-1.5 py-0.5 rounded text-[7.5px] sm:text-[8px] font-black uppercase bg-emerald-500/20 text-emerald-900 dark:text-emerald-300 border border-emerald-400/40 dark:border-emerald-500/30">
                         Read
                       </span>
                     </div>
-                    <span className="text-[9.5px] text-slate-700 dark:text-slate-400 font-semibold">
+                    <span className="text-[8.5px] sm:text-[9.5px] text-slate-700 dark:text-slate-400 font-semibold">
                       Architecture &amp; technical deep dive
                     </span>
                   </div>
                 </div>
                 <div className="flex items-center gap-1 text-xs font-black text-emerald-800 dark:text-emerald-400 group-hover/cs:translate-x-1 transition-transform pr-1">
-                  <FiArrowUpRight size={15} />
+                  <FiArrowUpRight size={13} className="sm:w-[15px] sm:h-[15px]" />
                 </div>
               </a>
             </div>
@@ -513,7 +513,7 @@ export default function ProjectsComponent() {
   );
 
   return (
-    <section id="projects" className="relative w-full min-h-screen py-24 flex flex-col justify-center border-none bg-transparent dark:bg-[#050511] overflow-hidden">
+    <section id="projects" className="relative w-full min-h-screen py-14 sm:py-20 md:py-24 flex flex-col justify-center border-none bg-transparent dark:bg-[#050511] overflow-hidden">
       {/* Background Motion Kinetic Atmosphere & Dot Grid Overlay (Full Width Edge-to-Edge) */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden z-0 [mask-image:linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)]">
         <motion.div 
@@ -529,7 +529,7 @@ export default function ProjectsComponent() {
         <div className="absolute inset-0 bg-[radial-gradient(#94a3b8_1.2px,transparent_1.2px)] dark:bg-[radial-gradient(#334155_1.2px,transparent_1.2px)] [background-size:28px_28px] opacity-[0.35] dark:opacity-[0.2]" />
       </div>
 
-      <div className="w-full lg:w-[80%] mx-auto px-6 lg:px-0 relative z-10">
+      <div className="w-full lg:w-[80%] mx-auto px-3.5 sm:px-6 lg:px-0 relative z-10">
         {/* Section Header */}
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
@@ -538,10 +538,10 @@ export default function ProjectsComponent() {
           transition={{ duration: 0.8 }}
           className="mb-8 md:mb-12 text-center md:text-left"
         >
-          <h2 className="text-[1.75rem] md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-slate-900 via-cyan-800 to-indigo-950 dark:from-cyan-400 dark:to-white tracking-tight md:tracking-normal">
+          <h2 className="text-2xl sm:text-3xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-slate-900 via-cyan-800 to-indigo-950 dark:from-cyan-400 dark:to-white tracking-tight md:tracking-normal">
             Projects
           </h2>
-          <div className="w-16 h-1 bg-gradient-to-r from-cyan-500 to-purple-500 mt-4 mx-auto md:mx-0 rounded-full shadow-sm" />
+          <div className="w-16 h-1 bg-gradient-to-r from-cyan-500 to-purple-500 mt-3 sm:mt-4 mx-auto md:mx-0 rounded-full shadow-sm" />
         </motion.div>
 
         {/* 1. Production / Flagship Projects Grid */}
@@ -560,25 +560,25 @@ export default function ProjectsComponent() {
 
         {/* 2. Enterprise & Client Deliverables (VisionTech Group) */}
         {enterpriseProjects.length > 0 && (
-          <div className="mt-20 pt-12 border-t border-slate-200/80 dark:border-white/10">
+          <div className="mt-12 sm:mt-20 pt-8 sm:pt-12 border-t border-slate-200/80 dark:border-white/10">
             <EnterpriseShowcase projects={enterpriseProjects} />
           </div>
         )}
 
         {/* 3. Academic & Foundation Projects (Below with Label) */}
         {academicProjects.length > 0 && (
-          <div className="mt-20 pt-12 border-t border-slate-200/80 dark:border-white/10">
+          <div className="mt-12 sm:mt-20 pt-8 sm:pt-12 border-t border-slate-200/80 dark:border-white/10">
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="mb-8 text-center md:text-left"
+              className="mb-6 sm:mb-8 text-center md:text-left"
             >
-              <h3 className="text-xl md:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
+              <h3 className="text-lg sm:text-xl md:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
                 Academic &amp; Foundation Projects
               </h3>
-              <div className="w-12 h-1 bg-cyan-500 mt-3 mx-auto md:mx-0 rounded-full shadow-sm" />
+              <div className="w-12 h-1 bg-cyan-500 mt-2.5 sm:mt-3 mx-auto md:mx-0 rounded-full shadow-sm" />
             </motion.div>
 
             <motion.div 

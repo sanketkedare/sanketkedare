@@ -236,7 +236,7 @@ export default function Skills() {
   const backendAndDb = skills.filter((s) => s.type === 'Backend Architecture' || s.type === 'Databases');
 
   return (
-    <section id="skills" className="relative w-full min-h-screen flex flex-col justify-center border-t border-slate-200/80 dark:border-white/5 overflow-hidden bg-transparent dark:bg-[#050511] py-24">
+    <section id="skills" className="relative w-full min-h-screen flex flex-col justify-center border-t border-slate-200/80 dark:border-white/5 overflow-hidden bg-transparent dark:bg-[#050511] py-14 sm:py-20 md:py-24">
       {/* Background Motion Kinetic Atmosphere & Dot Grid Overlay */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
         <motion.div 
@@ -257,44 +257,44 @@ export default function Skills() {
         <div className="absolute inset-0 bg-[radial-gradient(#94a3b8_1.2px,transparent_1.2px)] dark:bg-[radial-gradient(#334155_1.2px,transparent_1.2px)] [background-size:28px_28px] opacity-[0.35] dark:opacity-[0.2]" />
       </div>
 
-      <div className="w-full lg:w-[80%] mx-auto px-6 lg:px-0 relative z-10">
+      <div className="w-full lg:w-[80%] mx-auto px-3.5 sm:px-6 lg:px-0 relative z-10">
         {/* Section Title */}
-        <div className="mb-8 md:mb-12 text-center md:text-left">
-          <h2 className="text-[1.75rem] md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-slate-900 via-cyan-800 to-indigo-950 dark:from-cyan-400 dark:via-white dark:to-slate-300 tracking-tight md:tracking-normal">
+        <div className="mb-6 sm:mb-8 md:mb-12 text-center md:text-left">
+          <h2 className="text-2xl sm:text-3xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-slate-900 via-cyan-800 to-indigo-950 dark:from-cyan-400 dark:via-white dark:to-slate-300 tracking-tight md:tracking-normal">
             Tech Arsenal
           </h2>
-          <p className="text-xs md:text-sm text-slate-700 dark:text-slate-400 font-semibold mt-2 max-w-2xl">
+          <p className="text-xs md:text-sm text-slate-700 dark:text-slate-400 font-semibold mt-1.5 sm:mt-2 max-w-2xl">
             Technologies I&apos;ve shipped with in production — from client UIs to cloud infrastructure.
           </p>
-          <div className="w-16 h-1 bg-gradient-to-r from-cyan-500 to-purple-500 mt-4 mx-auto md:mx-0 rounded-full shadow-sm" />
+          <div className="w-16 h-1 bg-gradient-to-r from-cyan-500 to-purple-500 mt-3 sm:mt-4 mx-auto md:mx-0 rounded-full shadow-sm" />
         </div>
 
         {/* Bento Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6">
 
           {/* Card 1: Frontend Mastery & 3D WebGL (2 Cols - Soft Sky Cyan Studio Tint) */}
-          <div className="col-span-1 md:col-span-2 lg:col-span-2 bg-cyan-50/70 dark:bg-[#0a0a1a] backdrop-blur-xl border border-cyan-200/90 dark:border-white/10 rounded-3xl p-6 md:p-8 shadow-[0_10px_35px_-5px_rgba(6,182,212,0.12)] dark:shadow-2xl hover:border-cyan-400 dark:hover:border-cyan-500/50 hover:shadow-[0_15px_45px_-5px_rgba(6,182,212,0.2)] transition-all duration-500 group">
-            <div className="flex items-center justify-between gap-3 mb-6">
-              <h3 className="text-lg md:text-xl font-black text-slate-900 dark:text-white flex items-center gap-3">
-                <span className="w-7 h-7 rounded-xl border border-cyan-300 dark:border-cyan-500/30 bg-cyan-100 dark:bg-cyan-500/20 flex items-center justify-center text-cyan-800 dark:text-cyan-400 text-xs shadow-xs">🎨</span>
-                <span>Frontend Architecture &amp; 3D WebGL</span>
+          <div className="col-span-1 md:col-span-2 lg:col-span-2 bg-cyan-50/70 dark:bg-[#0a0a1a] backdrop-blur-xl border border-cyan-200/90 dark:border-white/10 rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 shadow-[0_10px_35px_-5px_rgba(6,182,212,0.12)] dark:shadow-2xl hover:border-cyan-400 dark:hover:border-cyan-500/50 hover:shadow-[0_15px_45px_-5px_rgba(6,182,212,0.2)] transition-all duration-500 group">
+            <div className="flex items-center justify-between gap-2 sm:gap-3 mb-4 sm:mb-6">
+              <h3 className="text-sm sm:text-lg md:text-xl font-black text-slate-900 dark:text-white flex items-center gap-2 sm:gap-3 min-w-0">
+                <span className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg sm:rounded-xl border border-cyan-300 dark:border-cyan-500/30 bg-cyan-100 dark:bg-cyan-500/20 flex items-center justify-center text-cyan-800 dark:text-cyan-400 text-xs shadow-xs shrink-0">🎨</span>
+                <span className="truncate sm:whitespace-normal">Frontend Architecture &amp; 3D WebGL</span>
               </h3>
-              <span className="text-[10px] font-black uppercase tracking-widest text-cyan-900 dark:text-cyan-400 px-2.5 py-1 rounded-full bg-cyan-100/90 dark:bg-cyan-500/20 border border-cyan-300/80 dark:border-cyan-500/30 shadow-xs">
+              <span className="text-[8px] sm:text-[10px] font-black uppercase tracking-wider sm:tracking-widest text-cyan-900 dark:text-cyan-400 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full bg-cyan-100/90 dark:bg-cyan-500/20 border border-cyan-300/80 dark:border-cyan-500/30 shadow-xs shrink-0 whitespace-nowrap">
                 Production Ready
               </span>
             </div>
 
-            <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-3 md:gap-4">
+            <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-2.5 sm:gap-3 md:gap-4">
               {frontend.map((skill) => (
-                <div key={skill.skill} className="flex flex-col items-center gap-1.5 group/item">
-                  <div className="w-11 md:w-12 h-11 md:h-12 flex items-center justify-center p-1 bg-transparent group-hover/item:scale-115 transition-transform duration-300">
+                <div key={skill.skill} className="flex flex-col items-center gap-1 sm:gap-1.5 group/item">
+                  <div className="w-9 sm:w-11 md:w-12 h-9 sm:h-11 md:h-12 flex items-center justify-center p-1 bg-transparent group-hover/item:scale-115 transition-transform duration-300">
                     {skill.src ? (
                       <Image src={skill.src} alt={skill.skill} loading="lazy" className="w-full h-full object-contain filter group-hover/item:brightness-110 transition-all" />
                     ) : skill.icon ? (
-                      <skill.icon size={26} style={{ color: skill.color }} className="group-hover/item:scale-110 transition-transform" />
+                      <skill.icon size={24} style={{ color: skill.color }} className="group-hover/item:scale-110 transition-transform" />
                     ) : null}
                   </div>
-                  <span className="text-[8.5px] md:text-[9.5px] text-slate-800 dark:text-slate-400 font-black uppercase tracking-wider text-center group-hover/item:text-cyan-700 dark:group-hover/item:text-cyan-400 transition-colors">
+                  <span className="text-[8px] sm:text-[8.5px] md:text-[9.5px] text-slate-800 dark:text-slate-400 font-black uppercase tracking-wider text-center group-hover/item:text-cyan-700 dark:group-hover/item:text-cyan-400 transition-colors leading-tight">
                     {skill.skill}
                   </span>
                 </div>
@@ -303,28 +303,28 @@ export default function Skills() {
           </div>
 
           {/* Card 2: DSA, Core Engineering & Cloud (1 Col - Soft Lavender Purple Studio Tint) */}
-          <div className="col-span-1 bg-purple-50/70 dark:bg-gradient-to-br dark:from-[#0a0a1a] dark:via-[#0c081e] dark:to-[#120a22] backdrop-blur-xl border border-purple-200/90 dark:border-white/10 rounded-3xl p-6 md:p-8 shadow-[0_10px_35px_-5px_rgba(168,85,247,0.12)] dark:shadow-2xl hover:border-purple-400 dark:hover:border-purple-500/50 hover:shadow-[0_15px_45px_-5px_rgba(168,85,247,0.2)] transition-all duration-500">
-            <div className="flex items-center justify-between gap-3 mb-6">
-              <h3 className="text-lg md:text-xl font-black text-slate-900 dark:text-white flex items-center gap-3">
-                <span className="w-7 h-7 rounded-xl border border-purple-300 dark:border-purple-500/30 flex items-center bg-purple-100 dark:bg-purple-500/20 justify-center text-purple-800 dark:text-purple-400 text-xs shadow-xs">⚡</span>
-                <span>DSA, Core &amp; Cloud</span>
+          <div className="col-span-1 bg-purple-50/70 dark:bg-gradient-to-br dark:from-[#0a0a1a] dark:via-[#0c081e] dark:to-[#120a22] backdrop-blur-xl border border-purple-200/90 dark:border-white/10 rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 shadow-[0_10px_35px_-5px_rgba(168,85,247,0.12)] dark:shadow-2xl hover:border-purple-400 dark:hover:border-purple-500/50 hover:shadow-[0_15px_45px_-5px_rgba(168,85,247,0.2)] transition-all duration-500">
+            <div className="flex items-center justify-between gap-2 sm:gap-3 mb-4 sm:mb-6">
+              <h3 className="text-sm sm:text-lg md:text-xl font-black text-slate-900 dark:text-white flex items-center gap-2 sm:gap-3 min-w-0">
+                <span className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg sm:rounded-xl border border-purple-300 dark:border-purple-500/30 flex items-center bg-purple-100 dark:bg-purple-500/20 justify-center text-purple-800 dark:text-purple-400 text-xs shadow-xs shrink-0">⚡</span>
+                <span className="truncate sm:whitespace-normal">DSA, Core &amp; Cloud</span>
               </h3>
-              <span className="text-[10px] font-black uppercase tracking-widest text-purple-900 dark:text-purple-400 px-2.5 py-1 rounded-full bg-purple-100/90 dark:bg-purple-500/20 border border-purple-300/80 dark:border-purple-500/30 shadow-xs">
+              <span className="text-[8px] sm:text-[10px] font-black uppercase tracking-wider sm:tracking-widest text-purple-900 dark:text-purple-400 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full bg-purple-100/90 dark:bg-purple-500/20 border border-purple-300/80 dark:border-purple-500/30 shadow-xs shrink-0 whitespace-nowrap">
                 Battle Tested
               </span>
             </div>
 
-            <div className="grid grid-cols-4 sm:grid-cols-4 md:grid-cols-4 gap-2.5 md:gap-3">
+            <div className="grid grid-cols-4 sm:grid-cols-4 md:grid-cols-4 gap-2 sm:gap-2.5 md:gap-3">
               {cloudAndCore.map((skill) => (
-                <div key={skill.skill} className="flex flex-col items-center gap-1.5 group/item">
-                  <div className="w-11 md:w-12 h-11 md:h-12 flex items-center justify-center p-1 bg-transparent group-hover/item:scale-115 transition-transform duration-300">
+                <div key={skill.skill} className="flex flex-col items-center gap-1 sm:gap-1.5 group/item">
+                  <div className="w-9 sm:w-11 md:w-12 h-9 sm:h-11 md:h-12 flex items-center justify-center p-1 bg-transparent group-hover/item:scale-115 transition-transform duration-300">
                     {skill.src ? (
                       <Image src={skill.src} alt={skill.skill} loading="lazy" className="w-full h-full object-contain" />
                     ) : skill.icon ? (
-                      <skill.icon size={24} style={{ color: skill.color }} className="group-hover/item:scale-110 transition-transform" />
+                      <skill.icon size={22} style={{ color: skill.color }} className="group-hover/item:scale-110 transition-transform" />
                     ) : null}
                   </div>
-                  <span className="text-[8.5px] md:text-[9.5px] text-slate-800 dark:text-slate-400 font-bold tracking-tight text-center group-hover/item:text-purple-700 dark:group-hover/item:text-purple-400 transition-colors">
+                  <span className="text-[8px] sm:text-[8.5px] md:text-[9.5px] text-slate-800 dark:text-slate-400 font-bold tracking-tight text-center group-hover/item:text-purple-700 dark:group-hover/item:text-purple-400 transition-colors leading-tight">
                     {skill.skill}
                   </span>
                 </div>
@@ -333,24 +333,24 @@ export default function Skills() {
           </div>
 
           {/* Card 3: Backend Architecture & Distributed Databases (3 Cols - Soft Royal Indigo Studio Tint with Live Marquee) */}
-          <div className="col-span-1 md:col-span-2 lg:col-span-3 bg-indigo-50/70 dark:bg-[#0a0a1a] backdrop-blur-xl border border-indigo-200/90 dark:border-white/10 rounded-3xl p-6 md:p-8 shadow-[0_10px_35px_-5px_rgba(99,102,241,0.12)] dark:shadow-2xl hover:border-indigo-400 dark:hover:border-indigo-500/50 hover:shadow-[0_15px_45px_-5px_rgba(99,102,241,0.2)] transition-all duration-500 overflow-hidden relative">
+          <div className="col-span-1 md:col-span-2 lg:col-span-3 bg-indigo-50/70 dark:bg-[#0a0a1a] backdrop-blur-xl border border-indigo-200/90 dark:border-white/10 rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 shadow-[0_10px_35px_-5px_rgba(99,102,241,0.12)] dark:shadow-2xl hover:border-indigo-400 dark:hover:border-indigo-500/50 hover:shadow-[0_15px_45px_-5px_rgba(99,102,241,0.2)] transition-all duration-500 overflow-hidden relative">
             <div className="absolute top-0 right-0 w-80 h-80 bg-indigo-500/10 dark:bg-indigo-500/10 rounded-full blur-[120px] pointer-events-none" />
 
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 relative z-10">
-              <h3 className="text-lg md:text-2xl font-black text-slate-900 dark:text-white flex items-center gap-3">
-                <span className="w-7 h-7 rounded-xl border border-indigo-300 dark:border-indigo-500/30 flex items-center bg-indigo-100 dark:bg-indigo-500/20 justify-center text-indigo-800 dark:text-indigo-400 text-xs shadow-xs">⚙️</span>
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-3 mb-4 sm:mb-6 relative z-10">
+              <h3 className="text-sm sm:text-lg md:text-2xl font-black text-slate-900 dark:text-white flex items-center gap-2 sm:gap-3">
+                <span className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg sm:rounded-xl border border-indigo-300 dark:border-indigo-500/30 flex items-center bg-indigo-100 dark:bg-indigo-500/20 justify-center text-indigo-800 dark:text-indigo-400 text-xs shadow-xs shrink-0">⚙️</span>
                 <span>Backend Microservices, APIs &amp; Distributed Databases</span>
               </h3>
-              <span className="text-[10px] font-black uppercase tracking-widest text-indigo-900 dark:text-indigo-400 px-3 py-1 rounded-full bg-indigo-100/90 dark:bg-indigo-500/20 border border-indigo-300/80 dark:border-indigo-500/30 shadow-xs self-start sm:self-auto">
+              <span className="text-[8px] sm:text-[10px] font-black uppercase tracking-wider sm:tracking-widest text-indigo-900 dark:text-indigo-400 px-2 sm:px-3 py-0.5 sm:py-1 rounded-full bg-indigo-100/90 dark:bg-indigo-500/20 border border-indigo-300/80 dark:border-indigo-500/30 shadow-xs self-start sm:self-auto shrink-0 whitespace-nowrap">
                 Databases &amp; APIs
               </span>
             </div>
 
             {/* Static grid — no carousel, no repeated badges */}
-            <div className="relative z-10 grid grid-cols-4 sm:grid-cols-6 lg:grid-cols-11 gap-3 md:gap-4 pt-2">
+            <div className="relative z-10 grid grid-cols-4 sm:grid-cols-6 lg:grid-cols-11 gap-2.5 sm:gap-3 md:gap-4 pt-1 sm:pt-2">
               {backendAndDb.map((skill) => (
-                <div key={skill.skill} className="flex flex-col items-center gap-1.5 group/item">
-                  <div className="w-11 md:w-12 h-11 md:h-12 flex items-center justify-center p-1 bg-transparent group-hover/item:scale-110 transition-transform duration-300">
+                <div key={skill.skill} className="flex flex-col items-center gap-1 sm:gap-1.5 group/item">
+                  <div className="w-9 sm:w-11 md:w-12 h-9 sm:h-11 md:h-12 flex items-center justify-center p-1 bg-transparent group-hover/item:scale-110 transition-transform duration-300">
                     {skill.src ? (
                       <Image
                         src={skill.src}
@@ -361,10 +361,10 @@ export default function Skills() {
                         }`}
                       />
                     ) : skill.icon ? (
-                      <skill.icon size={26} style={{ color: skill.color }} className="group-hover/item:scale-110 transition-transform" />
+                      <skill.icon size={24} style={{ color: skill.color }} className="group-hover/item:scale-110 transition-transform" />
                     ) : null}
                   </div>
-                  <span className="text-[8.5px] md:text-[9.5px] text-slate-800 dark:text-slate-400 font-black uppercase tracking-wider text-center group-hover/item:text-indigo-700 dark:group-hover/item:text-cyan-400 transition-colors">
+                  <span className="text-[8px] sm:text-[8.5px] md:text-[9.5px] text-slate-800 dark:text-slate-400 font-black uppercase tracking-wider text-center group-hover/item:text-indigo-700 dark:group-hover/item:text-cyan-400 transition-colors leading-tight">
                     {skill.skill}
                   </span>
                 </div>
@@ -373,26 +373,26 @@ export default function Skills() {
           </div>
 
           {/* Card 4: AI Tools & Ecosystem (3 Cols - Soft Violet Studio Tint) */}
-          <div className="col-span-1 md:col-span-2 lg:col-span-3 bg-violet-50/70 dark:bg-[#0a0a1a] backdrop-blur-xl border border-violet-200/90 dark:border-white/10 rounded-3xl p-6 md:p-8 shadow-[0_10px_35px_-5px_rgba(139,92,246,0.12)] dark:shadow-2xl hover:border-violet-400 dark:hover:border-violet-500/50 hover:shadow-[0_15px_45px_-5px_rgba(139,92,246,0.2)] transition-all duration-500 overflow-hidden relative">
+          <div className="col-span-1 md:col-span-2 lg:col-span-3 bg-violet-50/70 dark:bg-[#0a0a1a] backdrop-blur-xl border border-violet-200/90 dark:border-white/10 rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 shadow-[0_10px_35px_-5px_rgba(139,92,246,0.12)] dark:shadow-2xl hover:border-violet-400 dark:hover:border-violet-500/50 hover:shadow-[0_15px_45px_-5px_rgba(139,92,246,0.2)] transition-all duration-500 overflow-hidden relative">
             <div className="absolute top-0 right-0 w-80 h-80 bg-violet-500/10 dark:bg-violet-500/10 rounded-full blur-[120px] pointer-events-none" />
 
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 relative z-10">
-              <h3 className="text-lg md:text-2xl font-black text-slate-900 dark:text-white flex items-center gap-3">
-                <span className="w-7 h-7 rounded-xl border border-violet-300 dark:border-violet-500/30 flex items-center bg-violet-100 dark:bg-violet-500/20 justify-center text-violet-800 dark:text-violet-400 text-xs shadow-xs">🤖</span>
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-3 mb-4 sm:mb-6 relative z-10">
+              <h3 className="text-sm sm:text-lg md:text-2xl font-black text-slate-900 dark:text-white flex items-center gap-2 sm:gap-3">
+                <span className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg sm:rounded-xl border border-violet-300 dark:border-violet-500/30 flex items-center bg-violet-100 dark:bg-violet-500/20 justify-center text-violet-800 dark:text-violet-400 text-xs shadow-xs shrink-0">🤖</span>
                 <span>AI Tools &amp; Ecosystem</span>
               </h3>
-              <span className="text-[10px] font-black uppercase tracking-widest text-violet-900 dark:text-violet-400 px-3 py-1 rounded-full bg-violet-100/90 dark:bg-violet-500/20 border border-violet-300/80 dark:border-violet-500/30 shadow-xs self-start sm:self-auto">
+              <span className="text-[8px] sm:text-[10px] font-black uppercase tracking-wider sm:tracking-widest text-violet-900 dark:text-violet-400 px-2 sm:px-3 py-0.5 sm:py-1 rounded-full bg-violet-100/90 dark:bg-violet-500/20 border border-violet-300/80 dark:border-violet-500/30 shadow-xs self-start sm:self-auto shrink-0 whitespace-nowrap">
                 Actively Using
               </span>
             </div>
 
-            <div className="relative z-10 grid grid-cols-4 sm:grid-cols-6 lg:grid-cols-6 gap-3 md:gap-4 pt-2">
+            <div className="relative z-10 grid grid-cols-4 sm:grid-cols-6 lg:grid-cols-6 gap-2.5 sm:gap-3 md:gap-4 pt-1 sm:pt-2">
               {aiTools.map((tool) => (
-                <div key={tool.skill} className="flex flex-col items-center gap-1.5 group/item">
-                  <div className="w-11 md:w-12 h-11 md:h-12 flex items-center justify-center p-1 bg-transparent group-hover/item:scale-110 transition-transform duration-300">
-                    <tool.icon size={26} style={tool.color ? { color: tool.color } : undefined} className={`group-hover/item:scale-110 transition-transform ${tool.className || ''}`} />
+                <div key={tool.skill} className="flex flex-col items-center gap-1 sm:gap-1.5 group/item">
+                  <div className="w-9 sm:w-11 md:w-12 h-9 sm:h-11 md:h-12 flex items-center justify-center p-1 bg-transparent group-hover/item:scale-110 transition-transform duration-300">
+                    <tool.icon size={24} style={tool.color ? { color: tool.color } : undefined} className={`group-hover/item:scale-110 transition-transform ${tool.className || ''}`} />
                   </div>
-                  <span className="text-[8.5px] md:text-[9.5px] text-slate-800 dark:text-slate-400 font-black uppercase tracking-wider text-center group-hover/item:text-violet-700 dark:group-hover/item:text-violet-400 transition-colors">
+                  <span className="text-[8px] sm:text-[8.5px] md:text-[9.5px] text-slate-800 dark:text-slate-400 font-black uppercase tracking-wider text-center group-hover/item:text-violet-700 dark:group-hover/item:text-violet-400 transition-colors leading-tight">
                     {tool.skill}
                   </span>
                 </div>

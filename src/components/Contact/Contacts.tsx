@@ -6,7 +6,6 @@ import PersonalInfo from '@/lib/personal-info';
 import type { IconType } from 'react-icons';
 import { FiMail, FiMapPin, FiSend, FiGithub, FiLinkedin, FiCopy, FiCheck, FiUser, FiMessageSquare, FiZap } from 'react-icons/fi';
 import { FaWhatsapp } from 'react-icons/fa';
-import { FaXTwitter } from 'react-icons/fa6';
 import { toast } from '@/lib/toast';
 
 type AccentColor = 'cyan' | 'emerald' | 'blue' | 'purple' | 'slate';
@@ -38,12 +37,11 @@ export default function Contacts() {
 
   async function sendEmail(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (!formRef.current) return;
-
-    const formData = new FormData(formRef.current);
-    const name = formData.get('name') as string;
-    const email = formData.get('email') as string;
-    const message = formData.get('message') as string;
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    const name = (formData.get('name') as string) || nameVal;
+    const email = (formData.get('email') as string) || emailVal;
+    const message = (formData.get('message') as string) || msgVal;
 
     setStatus('loading');
 
@@ -61,7 +59,7 @@ export default function Contacts() {
       if (response.ok && data.success) {
         setStatus('success');
         toast.success('Your message was received! Sanket will get back to you promptly.', 'Message Sent');
-        formRef.current.reset();
+        form.reset();
         setNameVal('');
         setEmailVal('');
         setMsgVal('');
@@ -99,52 +97,44 @@ export default function Contacts() {
     value: string;
     copyValue: string;
   }[] = [
-      {
-        label: 'LinkedIn',
-        icon: FiLinkedin,
-        href: PersonalInfo.linkedIn,
-        accent: 'blue',
-        value: 'sanket-kedare-dev',
-        copyValue: PersonalInfo.linkedIn,
-      },
-      {
-        label: 'GitHub',
-        icon: FiGithub,
-        href: PersonalInfo.github,
-        accent: 'slate',
-        value: 'sanketkedare',
-        copyValue: PersonalInfo.github,
-      },
-      {
-        label: 'X (Twitter)',
-        icon: FaXTwitter,
-        href: PersonalInfo.twitter,
-        accent: 'slate',
-        value: '@sanketkedare',
-        copyValue: PersonalInfo.twitter,
-      },
-      {
-        label: 'WhatsApp',
-        icon: FaWhatsapp,
-        href: `https://wa.me/91${PersonalInfo.mobile}`,
-        accent: 'emerald',
-        value: 'Quick Chat',
-        copyValue: `+91${PersonalInfo.mobile}`,
-      },
-      {
-        label: 'Email',
-        icon: FiMail,
-        href: `mailto:${PersonalInfo.email}`,
-        accent: 'cyan',
-        value: PersonalInfo.email,
-        copyValue: PersonalInfo.email,
-      },
-    ];
+    {
+      label: 'LinkedIn',
+      icon: FiLinkedin,
+      href: PersonalInfo.linkedIn,
+      accent: 'blue',
+      value: 'sanket-kedare-dev',
+      copyValue: PersonalInfo.linkedIn,
+    },
+    {
+      label: 'GitHub',
+      icon: FiGithub,
+      href: PersonalInfo.github,
+      accent: 'slate',
+      value: 'sanketkedare',
+      copyValue: PersonalInfo.github,
+    },
+    {
+      label: 'WhatsApp',
+      icon: FaWhatsapp,
+      href: `https://wa.me/91${PersonalInfo.mobile}`,
+      accent: 'emerald',
+      value: 'Quick Chat',
+      copyValue: `+91${PersonalInfo.mobile}`,
+    },
+    {
+      label: 'Email',
+      icon: FiMail,
+      href: `mailto:${PersonalInfo.email}`,
+      accent: 'cyan',
+      value: PersonalInfo.email,
+      copyValue: PersonalInfo.email,
+    },
+  ];
 
   const currentTheme = accentMap[activeAccent];
 
   return (
-    <section id="contact" className="relative w-full min-h-screen py-20 md:py-32 bg-transparent dark:bg-[#050511] overflow-hidden transition-colors duration-1000 flex items-center">
+    <section id="contact" className="relative w-full min-h-screen py-16 sm:py-20 md:py-32 bg-transparent dark:bg-[#050511] overflow-hidden transition-colors duration-1000 flex items-center">
       {/* Dynamic Ambient Glow Mesh - Seamless Flow into Footer */}
       <div className="absolute inset-0 pointer-events-none z-0">
         <motion.div
@@ -158,8 +148,8 @@ export default function Contacts() {
         <div className="absolute -bottom-36 -right-32 w-[36rem] h-[36rem] bg-indigo-500/15 rounded-full blur-[140px] pointer-events-none" />
       </div>
 
-      <div className="w-full lg:w-[82%] px-6 lg:px-0 mx-auto relative z-10">
-        <div className="flex flex-col lg:flex-row items-start gap-12 lg:gap-20">
+      <div className="w-full lg:w-[82%] px-3.5 sm:px-6 lg:px-0 mx-auto relative z-10">
+        <div className="flex flex-col lg:flex-row items-start gap-8 sm:gap-12 lg:gap-20">
 
           {/* Left Column: Contact Bio & Social Links */}
           <motion.div
@@ -169,22 +159,22 @@ export default function Contacts() {
             className="flex-1 w-full"
           >
             {/* Left Badge */}
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-600 dark:text-cyan-400 font-extrabold tracking-[0.25em] uppercase text-[9px] mb-4 shadow-sm">
+            <div className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-600 dark:text-cyan-400 font-extrabold tracking-[0.2em] sm:tracking-[0.25em] uppercase text-[8.5px] sm:text-[9px] mb-2.5 sm:mb-4 shadow-sm">
               <FiZap size={11} className="text-cyan-500 animate-pulse" />
               <span>Direct Inquiry</span>
             </div>
 
             {/* Left Heading */}
-            <h2 className="text-3xl md:text-4xl font-black text-slate-900 dark:text-white mb-3 tracking-tight leading-none">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 dark:text-white mb-2 sm:mb-3 tracking-tight leading-none">
               Let&apos;s Connect.
             </h2>
 
             {/* Left Subtitle */}
-            <p className="text-xs md:text-sm text-slate-600 dark:text-slate-400 font-medium max-w-sm mb-8 leading-relaxed opacity-90">
+            <p className="text-xs md:text-sm text-slate-600 dark:text-slate-400 font-medium max-w-sm mb-5 sm:mb-8 leading-relaxed opacity-90">
               Have a project in mind, an engineering opening, or an architectural challenge? Let&apos;s talk technical scope and execution.
             </p>
 
-            <div className="space-y-5">
+            <div className="space-y-3.5 sm:space-y-5">
               {socialLinks.map((link) => (
                 <div key={link.label} className="flex items-center gap-3">
                   <motion.a
@@ -200,7 +190,7 @@ export default function Contacts() {
                     </p>
                     <div className="flex items-center gap-2">
                       <link.icon size={14} className={`transition-colors duration-300 ${activeAccent === link.accent ? currentTheme.text : 'text-slate-700 dark:text-slate-300'}`} />
-                      <span className="text-xs font-bold text-slate-900 dark:text-white border-b border-transparent group-hover:border-cyan-500 transition-all">
+                      <span className="text-[11.5px] sm:text-xs font-bold text-slate-900 dark:text-white border-b border-transparent group-hover:border-cyan-500 transition-all">
                         {link.value}
                       </span>
                     </div>
@@ -221,11 +211,11 @@ export default function Contacts() {
                 </div>
               ))}
 
-              <div className="pt-6 flex items-center gap-2 text-slate-500 dark:text-slate-400">
-                <FiMapPin size={13} className="text-cyan-500" />
-                <span className="text-[9px] font-extrabold uppercase tracking-widest">{PersonalInfo.location}</span>
+              <div className="pt-4 sm:pt-6 flex items-center gap-2 text-slate-500 dark:text-slate-400">
+                <FiMapPin size={13} className="text-cyan-500 shrink-0" />
+                <span className="text-[8.5px] sm:text-[9px] font-extrabold uppercase tracking-widest">{PersonalInfo.location}</span>
                 <span className="mx-1 opacity-25">|</span>
-                <span className="text-[9px] font-extrabold uppercase tracking-widest text-cyan-600 dark:text-cyan-400">Available Remotely</span>
+                <span className="text-[8.5px] sm:text-[9px] font-extrabold uppercase tracking-widest text-cyan-600 dark:text-cyan-400">Available Remotely</span>
               </div>
             </div>
           </motion.div>
@@ -238,32 +228,32 @@ export default function Contacts() {
             className="flex-1 w-full"
           >
             {/* Right Badge - Symmetric with Left Badge */}
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 font-extrabold tracking-[0.25em] uppercase text-[9px] mb-4 shadow-sm">
+            <div className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 font-extrabold tracking-[0.2em] sm:tracking-[0.25em] uppercase text-[8.5px] sm:text-[9px] mb-2.5 sm:mb-4 shadow-sm">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping" />
               <span>Fast Response</span>
             </div>
 
             {/* Right Heading - Symmetric with Left Heading */}
-            <h2 className="text-3xl md:text-4xl font-black text-slate-900 dark:text-white mb-3 tracking-tight leading-none">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 dark:text-white mb-2 sm:mb-3 tracking-tight leading-none">
               Send Message.
             </h2>
 
             {/* Right Subtitle - Symmetric with Left Subtitle */}
-            <p className="text-xs md:text-sm text-slate-600 dark:text-slate-400 font-medium max-w-sm mb-8 leading-relaxed opacity-90">
+            <p className="text-xs md:text-sm text-slate-600 dark:text-slate-400 font-medium max-w-sm mb-5 sm:mb-8 leading-relaxed opacity-90">
               Fill out the details below and I&apos;ll get back to you promptly.
             </p>
 
             <form
               ref={formRef}
               onSubmit={sendEmail}
-              className="relative w-full flex flex-col gap-6"
+              className="relative w-full flex flex-col gap-4 sm:gap-6"
             >
               {/* Grid: Full Name & Email Address */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
                 {/* 01. Full Name */}
-                <div className="relative group space-y-1.5">
+                <div className="relative group space-y-1 sm:space-y-1.5">
                   <div className="flex items-center justify-between text-slate-500 dark:text-slate-400 group-focus-within:text-cyan-500 transition-colors duration-300">
-                    <label htmlFor="contact-name" className="text-[9px] font-black uppercase tracking-[0.25em] flex items-center gap-1.5 cursor-pointer">
+                    <label htmlFor="contact-name" className="text-[8.5px] sm:text-[9px] font-black uppercase tracking-[0.2em] sm:tracking-[0.25em] flex items-center gap-1.5 cursor-pointer">
                       <FiUser size={12} className={focusedField === 'name' ? 'text-cyan-500' : 'text-slate-500 dark:text-slate-400'} />
                       01. Full Name
                     </label>
@@ -284,7 +274,7 @@ export default function Contacts() {
                       onFocus={() => setFocusedField('name')}
                       onBlur={() => setFocusedField(null)}
                       placeholder="e.g. Alex Morgan"
-                      className="w-full bg-transparent border-b border-slate-300 dark:border-white/15 focus:border-cyan-500 py-2.5 text-sm md:text-base font-semibold text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all duration-300"
+                      className="w-full bg-transparent border-b border-slate-300 dark:border-white/15 focus:border-cyan-500 py-2 sm:py-2.5 text-xs sm:text-sm md:text-base font-semibold text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all duration-300"
                     />
                     <motion.div
                       className="absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-cyan-500 via-indigo-500 to-cyan-500 shadow-[0_2px_8px_rgba(6,182,212,0.5)]"
@@ -296,9 +286,9 @@ export default function Contacts() {
                 </div>
 
                 {/* 02. Email Address */}
-                <div className="relative group space-y-1.5">
+                <div className="relative group space-y-1 sm:space-y-1.5">
                   <div className="flex items-center justify-between text-slate-500 dark:text-slate-400 group-focus-within:text-cyan-500 transition-colors duration-300">
-                    <label htmlFor="contact-email" className="text-[9px] font-black uppercase tracking-[0.25em] flex items-center gap-1.5 cursor-pointer">
+                    <label htmlFor="contact-email" className="text-[8.5px] sm:text-[9px] font-black uppercase tracking-[0.2em] sm:tracking-[0.25em] flex items-center gap-1.5 cursor-pointer">
                       <FiMail size={12} className={focusedField === 'email' ? 'text-cyan-500' : 'text-slate-500 dark:text-slate-400'} />
                       02. Email Address
                     </label>
@@ -319,7 +309,7 @@ export default function Contacts() {
                       onFocus={() => setFocusedField('email')}
                       onBlur={() => setFocusedField(null)}
                       placeholder="alex@company.com"
-                      className="w-full bg-transparent border-b border-slate-300 dark:border-white/15 focus:border-cyan-500 py-2.5 text-sm md:text-base font-semibold text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all duration-300"
+                      className="w-full bg-transparent border-b border-slate-300 dark:border-white/15 focus:border-cyan-500 py-2 sm:py-2.5 text-xs sm:text-sm md:text-base font-semibold text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all duration-300"
                     />
                     <motion.div
                       className="absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-cyan-500 via-indigo-500 to-cyan-500 shadow-[0_2px_8px_rgba(6,182,212,0.5)]"
@@ -332,13 +322,13 @@ export default function Contacts() {
               </div>
 
               {/* 03. Message Field */}
-              <div className="relative group space-y-1.5">
+              <div className="relative group space-y-1 sm:space-y-1.5">
                 <div className="flex items-center justify-between text-slate-500 dark:text-slate-400 group-focus-within:text-cyan-500 transition-colors duration-300">
-                  <label htmlFor="contact-message" className="text-[9px] font-black uppercase tracking-[0.25em] flex items-center gap-1.5 cursor-pointer">
+                  <label htmlFor="contact-message" className="text-[8.5px] sm:text-[9px] font-black uppercase tracking-[0.2em] sm:tracking-[0.25em] flex items-center gap-1.5 cursor-pointer">
                     <FiMessageSquare size={12} className={focusedField === 'message' ? 'text-cyan-500' : 'text-slate-500 dark:text-slate-400'} />
                     03. Your Message
                   </label>
-                  <span className="text-[9px] font-bold text-slate-400 dark:text-slate-500">{msgVal.length} chars</span>
+                  <span className="text-[8.5px] sm:text-[9px] font-bold text-slate-400 dark:text-slate-500">{msgVal.length} chars</span>
                 </div>
                 <div className="relative">
                   <textarea
@@ -351,7 +341,7 @@ export default function Contacts() {
                     onFocus={() => setFocusedField('message')}
                     onBlur={() => setFocusedField(null)}
                     placeholder="Describe your inquiry, project vision, or question..."
-                    className="w-full bg-transparent border-b border-slate-300 dark:border-white/15 focus:border-cyan-500 py-2.5 text-sm md:text-base font-semibold text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all duration-300 resize-none"
+                    className="w-full bg-transparent border-b border-slate-300 dark:border-white/15 focus:border-cyan-500 py-2 sm:py-2.5 text-xs sm:text-sm md:text-base font-semibold text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all duration-300 resize-none"
                   />
                   <motion.div
                     className="absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-cyan-500 via-indigo-500 to-cyan-500 shadow-[0_2px_8px_rgba(6,182,212,0.5)]"
@@ -368,7 +358,7 @@ export default function Contacts() {
                 disabled={status === 'loading'}
                 whileHover={{ scale: 1.015 }}
                 whileTap={{ scale: 0.985 }}
-                className={`relative overflow-hidden group py-3 px-8 rounded-xl font-black text-xs tracking-[0.2em] uppercase transition-all duration-300 flex items-center justify-center gap-2.5 cursor-pointer shadow-lg w-full md:w-auto md:self-start mt-1 ${status === 'loading'
+                className={`relative overflow-hidden group py-2.5 sm:py-3 px-6 sm:px-8 rounded-xl font-black text-[11px] sm:text-xs tracking-[0.15em] sm:tracking-[0.2em] uppercase transition-all duration-300 flex items-center justify-center gap-2.5 cursor-pointer shadow-lg w-full md:w-auto md:self-start mt-1 ${status === 'loading'
                     ? 'bg-slate-200 dark:bg-white/10 text-slate-400'
                     : 'bg-slate-900 hover:bg-cyan-600 dark:bg-gradient-to-r dark:from-cyan-500 dark:via-blue-600 dark:to-cyan-500 text-white shadow-cyan-500/20 hover:shadow-cyan-500/40'
                   }`}
