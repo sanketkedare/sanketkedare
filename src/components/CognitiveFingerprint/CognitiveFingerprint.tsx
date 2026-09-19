@@ -30,6 +30,7 @@ interface QuantifiedTradeoff extends Tradeoff {
   right_anchor: string;
   score: number;
   rationale: string;
+  methodology_note?: string;
 }
 
 interface DecisionLog {
@@ -285,6 +286,11 @@ export default function CognitiveFingerprint() {
                 <p className="text-[10px] sm:text-[11px] text-slate-700 dark:text-slate-400 text-center mt-2 font-semibold">
                   Priority Calibrated at <strong className="text-cyan-800 dark:text-cyan-400 font-black">{activeTradeoff.score}%</strong> for upstream resilience
                 </p>
+                {activeTradeoff.methodology_note && (
+                  <p className="text-[9px] sm:text-[10px] text-slate-500 dark:text-slate-500 text-center mt-1 italic leading-relaxed px-1">
+                    {activeTradeoff.methodology_note}
+                  </p>
+                )}
               </div>
             </div>
 

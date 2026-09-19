@@ -341,10 +341,39 @@ export default function ResumeViewer() {
               <span>View Resume (PDF)</span>
             </motion.button>
           ) : (
-            <div className="flex items-center gap-2.5 px-8 py-4 bg-slate-200/80 dark:bg-white/5 border border-slate-300/80 dark:border-white/10 text-slate-500 dark:text-slate-600 rounded-2xl text-xs font-bold uppercase tracking-wider cursor-default select-none">
-              <FiFileText size={18} />
-              <span>Resume not available</span>
-            </div>
+            // Empty-state: no active resume in DB — show actionable CTA instead of dead end
+            <motion.div
+              initial={{ opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+              className="flex flex-col items-center gap-4 px-8 py-6 bg-slate-100/80 dark:bg-white/[0.03] border border-slate-300/80 dark:border-white/10 rounded-2xl max-w-sm text-center"
+            >
+              <div className="w-10 h-10 rounded-xl bg-cyan-500/15 border border-cyan-400/30 flex items-center justify-center text-cyan-700 dark:text-cyan-400">
+                <FiFileText size={20} />
+              </div>
+              <div>
+                <p className="text-sm font-black text-slate-900 dark:text-white mb-1">Resume available on request</p>
+                <p className="text-[11px] text-slate-600 dark:text-slate-400 font-medium leading-relaxed">
+                  Drop a message and I&apos;ll send it across within the hour.
+                </p>
+              </div>
+              <div className="flex flex-col sm:flex-row gap-2 w-full">
+                <a
+                  href={`mailto:${PersonalInfo.email}?subject=Resume%20Request%20%E2%80%94%20${encodeURIComponent(PersonalInfo.name)}`}
+                  className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-cyan-600 hover:bg-cyan-700 text-white text-[11px] font-black uppercase tracking-wider transition-all shadow-md hover:shadow-cyan-500/30"
+                >
+                  Request via Email →
+                </a>
+                <a
+                  href={`https://wa.me/91${PersonalInfo.mobile}?text=${encodeURIComponent('Hi Sanket, could you share your resume?')}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-[11px] font-black uppercase tracking-wider transition-all shadow-md hover:shadow-emerald-500/30"
+                >
+                  Request via WhatsApp →
+                </a>
+              </div>
+            </motion.div>
           )}
         </div>
       )}

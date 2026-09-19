@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import ResumeViewer from './ResumeViewer';
 import JDMatcherModal from './JDMatcherModal';
 
-const resumeInfo = `Results-driven Full Stack Developer with expertise in React, Next.js, TypeScript, and modern web application architecture. Dedicated to crafting clean code, high-performance interfaces, and scalable backend solutions.`;
+const resumeInfo = `Full Stack Developer with production experience in React, Next.js, and Node.js. I write clean, typed, well-tested code and ship systems that stay up.`;
 
 export default function Resume() {
   return (

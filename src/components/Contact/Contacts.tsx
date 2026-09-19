@@ -253,9 +253,9 @@ export default function Contacts() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
                 {/* 01. Full Name */}
                 <div className="relative group space-y-1.5">
-                  <div className="flex items-center justify-between text-slate-400 dark:text-slate-500 group-focus-within:text-cyan-500 transition-colors duration-300">
+                  <div className="flex items-center justify-between text-slate-500 dark:text-slate-400 group-focus-within:text-cyan-500 transition-colors duration-300">
                     <label htmlFor="contact-name" className="text-[9px] font-black uppercase tracking-[0.25em] flex items-center gap-1.5 cursor-pointer">
-                      <FiUser size={12} className={focusedField === 'name' ? 'text-cyan-500' : 'text-slate-400'} />
+                      <FiUser size={12} className={focusedField === 'name' ? 'text-cyan-500' : 'text-slate-500 dark:text-slate-400'} />
                       01. Full Name
                     </label>
                     {nameVal && (
@@ -275,7 +275,7 @@ export default function Contacts() {
                       onFocus={() => setFocusedField('name')}
                       onBlur={() => setFocusedField(null)}
                       placeholder="e.g. Alex Morgan"
-                      className="w-full bg-transparent border-b border-slate-300/80 dark:border-white/15 focus:border-cyan-500 py-2.5 text-sm md:text-base font-semibold text-slate-900 dark:text-white placeholder:text-slate-400/50 dark:placeholder:text-slate-600 outline-none transition-all duration-300"
+                      className="w-full bg-transparent border-b border-slate-300 dark:border-white/15 focus:border-cyan-500 py-2.5 text-sm md:text-base font-semibold text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all duration-300"
                     />
                     <motion.div
                       className="absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-cyan-500 via-indigo-500 to-cyan-500 shadow-[0_2px_8px_rgba(6,182,212,0.5)]"
@@ -288,9 +288,9 @@ export default function Contacts() {
 
                 {/* 02. Email Address */}
                 <div className="relative group space-y-1.5">
-                  <div className="flex items-center justify-between text-slate-400 dark:text-slate-500 group-focus-within:text-cyan-500 transition-colors duration-300">
+                  <div className="flex items-center justify-between text-slate-500 dark:text-slate-400 group-focus-within:text-cyan-500 transition-colors duration-300">
                     <label htmlFor="contact-email" className="text-[9px] font-black uppercase tracking-[0.25em] flex items-center gap-1.5 cursor-pointer">
-                      <FiMail size={12} className={focusedField === 'email' ? 'text-cyan-500' : 'text-slate-400'} />
+                      <FiMail size={12} className={focusedField === 'email' ? 'text-cyan-500' : 'text-slate-500 dark:text-slate-400'} />
                       02. Email Address
                     </label>
                     {emailVal && (
@@ -310,7 +310,7 @@ export default function Contacts() {
                       onFocus={() => setFocusedField('email')}
                       onBlur={() => setFocusedField(null)}
                       placeholder="alex@company.com"
-                      className="w-full bg-transparent border-b border-slate-300/80 dark:border-white/15 focus:border-cyan-500 py-2.5 text-sm md:text-base font-semibold text-slate-900 dark:text-white placeholder:text-slate-400/50 dark:placeholder:text-slate-600 outline-none transition-all duration-300"
+                      className="w-full bg-transparent border-b border-slate-300 dark:border-white/15 focus:border-cyan-500 py-2.5 text-sm md:text-base font-semibold text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all duration-300"
                     />
                     <motion.div
                       className="absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-cyan-500 via-indigo-500 to-cyan-500 shadow-[0_2px_8px_rgba(6,182,212,0.5)]"
@@ -324,9 +324,9 @@ export default function Contacts() {
 
               {/* 03. Message Field */}
               <div className="relative group space-y-1.5">
-                <div className="flex items-center justify-between text-slate-400 dark:text-slate-500 group-focus-within:text-cyan-500 transition-colors duration-300">
+                <div className="flex items-center justify-between text-slate-500 dark:text-slate-400 group-focus-within:text-cyan-500 transition-colors duration-300">
                   <label htmlFor="contact-message" className="text-[9px] font-black uppercase tracking-[0.25em] flex items-center gap-1.5 cursor-pointer">
-                    <FiMessageSquare size={12} className={focusedField === 'message' ? 'text-cyan-500' : 'text-slate-400'} />
+                    <FiMessageSquare size={12} className={focusedField === 'message' ? 'text-cyan-500' : 'text-slate-500 dark:text-slate-400'} />
                     03. Your Message
                   </label>
                   <span className="text-[9px] font-bold text-slate-400 dark:text-slate-500">{msgVal.length} chars</span>
@@ -342,7 +342,7 @@ export default function Contacts() {
                     onFocus={() => setFocusedField('message')}
                     onBlur={() => setFocusedField(null)}
                     placeholder="Describe your inquiry, project vision, or question..."
-                    className="w-full bg-transparent border-b border-slate-300/80 dark:border-white/15 focus:border-cyan-500 py-2.5 text-sm md:text-base font-semibold text-slate-900 dark:text-white placeholder:text-slate-400/50 dark:placeholder:text-slate-600 outline-none transition-all duration-300 resize-none"
+                    className="w-full bg-transparent border-b border-slate-300 dark:border-white/15 focus:border-cyan-500 py-2.5 text-sm md:text-base font-semibold text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all duration-300 resize-none"
                   />
                   <motion.div
                     className="absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-cyan-500 via-indigo-500 to-cyan-500 shadow-[0_2px_8px_rgba(6,182,212,0.5)]"

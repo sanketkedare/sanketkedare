@@ -13,6 +13,7 @@ import StructuredData from '@/components/SEO/StructuredData';
 import ChatWidget from '@/components/Chat/ChatWidget';
 import VisitTracker from '@/components/Analytics/VisitTracker';
 import Toaster from '@/components/Toaster/Toaster';
+import ScrollProgressBar from '@/components/providers/ScrollProgressBar';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const outfit = Outfit({ subsets: ['latin'], variable: '--font-outfit' });
@@ -167,6 +168,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={`${inter.variable} ${outfit.variable} bg-transparent text-slate-700 dark:text-slate-300 antialiased min-h-screen flex flex-col selection:bg-cyan-500/30 selection:text-white transition-colors duration-300`} suppressHydrationWarning>
         <ThemeProvider>
           <AntdRegistry>
+            <ScrollProgressBar />
             <Sidebar />
             <Navbar />
             {children}

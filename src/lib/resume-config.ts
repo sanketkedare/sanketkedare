@@ -9,6 +9,13 @@ let cachedResumeUrl: string | null = null;
 let cachedResumeFilename: string | null = null;
 
 /**
+ * Static fallback resume served from /public when no active resume is in MongoDB.
+ * Place a PDF at public/resume-fallback.pdf to activate this fallback.
+ * Set to '' to disable the fallback and show the "available on request" CTA instead.
+ */
+export const STATIC_RESUME_FALLBACK = '/resume-fallback.pdf';
+
+/**
  * Fetches the active resume URL from MongoDB via /api/resume.
  * Caches in localStorage for subsequent synchronous reads.
  * Returns empty string if nothing is configured.
@@ -42,13 +49,14 @@ export async function fetchActiveResumeUrl(): Promise<string> {
 
 /**
  * Synchronous read of the cached/stored resume URL.
+ * Falls back to STATIC_RESUME_FALLBACK if no DB URL is available.
  */
 export function getResumeUrl(): string {
   if (typeof window !== 'undefined') {
     const stored = localStorage.getItem('sk_active_resume_url');
     if (stored && stored.startsWith('http')) return stored;
   }
-  return cachedResumeUrl || '';
+  return cachedResumeUrl || STATIC_RESUME_FALLBACK;
 }
 
 /**

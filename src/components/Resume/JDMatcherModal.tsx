@@ -252,18 +252,22 @@ export default function JDMatcherModal() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-[999999] bg-slate-900/60 dark:bg-slate-950/85 backdrop-blur-xl flex items-center justify-center p-4 md:p-6 overflow-y-auto w-screen h-screen"
+              className="fixed inset-0 z-[999999] bg-slate-950/40 dark:bg-black/80 backdrop-blur-md flex items-center justify-center p-4 md:p-6 overflow-y-auto w-screen h-screen"
             >
               <motion.div
                 initial={{ scale: 0.95, opacity: 0, y: 20 }}
                 animate={{ scale: 1, opacity: 1, y: 0 }}
                 exit={{ scale: 0.95, opacity: 0, y: 20 }}
-                className="relative w-full max-w-3xl bg-white dark:bg-[#0c1021] border border-slate-200/90 dark:border-white/10 rounded-3xl shadow-[0_25px_60px_-15px_rgba(0,0,0,0.18)] dark:shadow-cyan-500/5 p-6 md:p-8 my-auto max-h-[92vh] overflow-y-auto text-left custom-scrollbar"
+                className="relative w-full max-w-3xl bg-white/95 dark:bg-[#090d16]/95 backdrop-blur-2xl border border-slate-200/80 dark:border-white/10 rounded-3xl shadow-[0_20px_60px_-15px_rgba(15,23,42,0.12)] dark:shadow-[0_25px_70px_-15px_rgba(0,0,0,0.85)] p-6 md:p-8 my-auto max-h-[92vh] overflow-y-auto text-left custom-scrollbar overflow-hidden"
               >
+                {/* Ambient Atmospheric Accents */}
+                <div className="absolute top-0 right-0 w-80 h-80 bg-cyan-500/10 dark:bg-cyan-500/15 rounded-full blur-[100px] pointer-events-none" />
+                <div className="absolute bottom-0 left-0 w-80 h-80 bg-purple-500/10 dark:bg-indigo-500/15 rounded-full blur-[100px] pointer-events-none" />
+
                 {/* Header */}
-                <div className="flex items-center justify-between pb-6 border-b border-slate-200/90 dark:border-white/10">
+                <div className="flex items-center justify-between pb-6 border-b border-slate-200/80 dark:border-white/10 relative z-10">
                   <div className="flex items-center gap-3">
-                    <div className="w-11 h-11 rounded-2xl bg-cyan-500/10 dark:bg-cyan-500/20 text-cyan-600 dark:text-cyan-400 flex items-center justify-center font-bold shadow-xs">
+                    <div className="w-11 h-11 rounded-2xl bg-cyan-500/10 dark:bg-cyan-500/20 text-cyan-600 dark:text-cyan-400 border border-cyan-300/40 dark:border-cyan-500/30 flex items-center justify-center font-bold shadow-xs">
                       <FiCpu size={24} />
                     </div>
                     <div>
@@ -279,7 +283,7 @@ export default function JDMatcherModal() {
 
                   <button
                     onClick={handleClose}
-                    className="p-2.5 rounded-xl text-slate-500 hover:text-slate-900 bg-slate-100 hover:bg-slate-200 dark:text-slate-400 dark:hover:text-white dark:bg-white/5 dark:hover:bg-white/15 transition-all cursor-pointer"
+                    className="p-2.5 rounded-xl text-slate-500 hover:text-slate-900 bg-slate-100/80 hover:bg-slate-200/80 dark:text-slate-400 dark:hover:text-white dark:bg-white/5 dark:hover:bg-white/15 border border-slate-200/60 dark:border-white/10 transition-all cursor-pointer"
                   >
                     <FiX size={20} />
                   </button>
@@ -287,9 +291,9 @@ export default function JDMatcherModal() {
 
                 {!analysisResult ? (
                   /* Form Input Section */
-                  <form onSubmit={handleSubmit} className="mt-6 space-y-6">
+                  <form onSubmit={handleSubmit} className="mt-6 space-y-6 relative z-10">
                     {/* 1-Click Minimal Firebase Verification Badge */}
-                    <div className="p-4 rounded-2xl bg-slate-50/90 dark:bg-white/[0.03] border border-slate-200/90 dark:border-white/10 flex flex-col gap-3">
+                    <div className="p-4 rounded-2xl bg-slate-50/80 dark:bg-white/[0.03] border border-slate-200/80 dark:border-white/10 flex flex-col gap-3">
                       {user ? (
                         <div className="w-full space-y-3">
                           <div className="flex items-center justify-between">
@@ -320,7 +324,7 @@ export default function JDMatcherModal() {
                                 value={recruiterNameInput}
                                 onChange={(e) => setRecruiterNameInput(e.target.value)}
                                 placeholder="Enter your full name..."
-                                className="w-full bg-white dark:bg-white/10 border border-slate-300/90 dark:border-white/15 rounded-xl px-3 py-2 text-xs font-bold text-slate-900 dark:text-white focus:outline-none focus:border-cyan-600 focus:ring-1 focus:ring-cyan-600"
+                                className="w-full bg-white dark:bg-white/5 border border-slate-300/80 dark:border-white/15 rounded-xl px-3.5 py-2.5 text-xs font-bold text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none focus:border-cyan-600 dark:focus:border-cyan-400 focus:bg-white dark:focus:bg-white/10 focus:ring-2 focus:ring-cyan-500/20 transition-all"
                               />
                             </div>
                             <div>
@@ -331,7 +335,7 @@ export default function JDMatcherModal() {
                                 type="text"
                                 disabled
                                 value={user.email || ''}
-                                className="w-full bg-slate-100/90 dark:bg-white/5 border border-slate-200/90 dark:border-white/10 rounded-xl px-3 py-2 text-xs font-bold text-slate-700 dark:text-slate-300 cursor-not-allowed"
+                                className="w-full bg-slate-100/90 dark:bg-white/[0.02] border border-slate-200/80 dark:border-white/10 rounded-xl px-3.5 py-2.5 text-xs font-bold text-slate-600 dark:text-slate-400 cursor-not-allowed"
                               />
                             </div>
                           </div>
@@ -378,14 +382,14 @@ export default function JDMatcherModal() {
 
                     {/* Input Choice Tabs: Paste Text vs Attach Document */}
                     <div>
-                      <div className="flex items-center gap-2 pb-3 border-b border-slate-200/90 dark:border-white/10">
+                      <div className="flex items-center gap-2 pb-3 border-b border-slate-200/80 dark:border-white/10">
                         <button
                           type="button"
                           onClick={() => setActiveTab('paste')}
                           className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
                             activeTab === 'paste'
-                              ? 'bg-cyan-600 text-white shadow-sm dark:bg-cyan-500/20 dark:text-cyan-400 dark:border dark:border-cyan-500/30'
-                              : 'bg-slate-100/90 text-slate-600 hover:bg-slate-200/80 hover:text-slate-900 dark:bg-white/5 dark:text-slate-400 dark:hover:text-white'
+                              ? 'bg-cyan-600 text-white shadow-md shadow-cyan-600/20 dark:bg-cyan-500/20 dark:text-cyan-300 dark:border dark:border-cyan-500/40'
+                              : 'bg-slate-100/90 hover:bg-slate-200/80 text-slate-700 dark:bg-white/5 dark:hover:bg-white/10 dark:text-slate-400 dark:hover:text-white border border-transparent'
                           }`}
                         >
                           Paste JD Text or Job Link
@@ -395,8 +399,8 @@ export default function JDMatcherModal() {
                           onClick={() => setActiveTab('file')}
                           className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
                             activeTab === 'file'
-                              ? 'bg-purple-600 text-white shadow-sm dark:bg-purple-500/20 dark:text-purple-400 dark:border dark:border-purple-500/30'
-                              : 'bg-slate-100/90 text-slate-600 hover:bg-slate-200/80 hover:text-slate-900 dark:bg-white/5 dark:text-slate-400 dark:hover:text-white'
+                              ? 'bg-purple-600 text-white shadow-md shadow-purple-600/20 dark:bg-purple-500/20 dark:text-purple-300 dark:border dark:border-purple-500/40'
+                              : 'bg-slate-100/90 hover:bg-slate-200/80 text-slate-700 dark:bg-white/5 dark:hover:bg-white/10 dark:text-slate-400 dark:hover:text-white border border-transparent'
                           }`}
                         >
                           <FiPaperclip size={14} />
@@ -411,10 +415,10 @@ export default function JDMatcherModal() {
                             value={jdText}
                             onChange={(e) => setJdText(e.target.value)}
                             placeholder="Paste Job Description text or Job Link URL here (e.g. https://linkedin.com/jobs/... or https://company.com/careers)... Gemini AI will automatically fetch web content, extract Company Name & Location, and evaluate candidate match."
-                            className="w-full bg-slate-50 border border-slate-300/90 dark:bg-white/5 dark:border-white/10 rounded-2xl p-4 text-xs md:text-sm text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-slate-500 focus:outline-none focus:border-cyan-600 focus:bg-white dark:focus:border-cyan-400 resize-none font-mono transition-colors"
+                            className="w-full bg-slate-50/90 hover:bg-slate-50 focus:bg-white dark:bg-white/[0.03] dark:hover:bg-white/[0.05] dark:focus:bg-white/[0.08] border border-slate-300/80 dark:border-white/15 rounded-2xl p-4 text-xs md:text-sm text-slate-900 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:border-cyan-600 dark:focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/20 resize-none transition-all"
                           />
                         ) : (
-                          <div className="border-2 border-dashed border-slate-300/90 dark:border-white/15 rounded-2xl p-8 text-center bg-slate-50/90 hover:bg-slate-100/90 dark:bg-white/[0.02] dark:hover:bg-white/[0.05] transition-colors">
+                          <div className="border-2 border-dashed border-slate-300 dark:border-white/15 rounded-2xl p-8 text-center bg-slate-50/80 hover:bg-slate-100/80 dark:bg-white/[0.02] dark:hover:bg-white/[0.05] transition-all">
                             <input
                               type="file"
                               accept=".pdf,.docx,.doc,.txt"
@@ -448,7 +452,7 @@ export default function JDMatcherModal() {
                     )}
 
                     {/* Submit Action */}
-                    <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-200/90 dark:border-white/10">
+                    <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-200/80 dark:border-white/10">
                       <button
                         type="button"
                         onClick={handleClose}
@@ -459,7 +463,7 @@ export default function JDMatcherModal() {
                       <button
                         type="submit"
                         disabled={isAnalyzing || !user}
-                        className="flex items-center gap-2 px-8 py-3.5 bg-gradient-to-r from-cyan-600 via-indigo-600 to-purple-600 hover:from-cyan-700 hover:to-purple-700 text-white rounded-xl text-xs font-black uppercase tracking-wider shadow-lg disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
+                        className="flex items-center gap-2 px-8 py-3.5 bg-gradient-to-r from-cyan-600 via-indigo-600 to-purple-600 hover:from-cyan-500 hover:to-purple-500 text-white rounded-xl text-xs font-black uppercase tracking-wider shadow-lg shadow-cyan-600/20 dark:shadow-cyan-500/20 disabled:opacity-40 disabled:cursor-not-allowed transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
                       >
                         {isAnalyzing ? (
                           <>
@@ -477,9 +481,9 @@ export default function JDMatcherModal() {
                   </form>
                 ) : (
                   /* Results Display Section */
-                  <div className="mt-6 space-y-6">
+                  <div className="mt-6 space-y-6 relative z-10">
                     {/* Score & AI Extraction Banner */}
-                    <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-6 bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 text-white rounded-2xl shadow-xl border border-indigo-500/30">
+                    <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-6 bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 dark:from-slate-950 dark:via-[#090d1f] dark:to-slate-950 text-white rounded-2xl shadow-xl border border-indigo-500/30">
                       <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
                         {(() => {
                           const score = analysisResult.matchScore;
@@ -535,7 +539,7 @@ export default function JDMatcherModal() {
 
                     {/* Verification Email Confirmation Banner */}
                     {user?.email && (
-                      <div className="p-4 rounded-2xl bg-emerald-50 border border-emerald-200/90 dark:bg-emerald-500/10 dark:border-emerald-500/20 flex items-center gap-3">
+                      <div className="p-4 rounded-2xl bg-emerald-50/90 border border-emerald-200/90 dark:bg-emerald-500/10 dark:border-emerald-500/20 flex items-center gap-3">
                         <FiSend className="text-emerald-600 dark:text-emerald-400 shrink-0" size={18} />
                         <div className="text-xs text-emerald-900 dark:text-emerald-300 font-medium">
                           <strong className="font-extrabold text-emerald-950 dark:text-emerald-200">Automated Thanks &amp; Report Email Dispatched!</strong> A copy of this candidate evaluation report has been sent to <strong>{user.email}</strong>.
@@ -544,7 +548,7 @@ export default function JDMatcherModal() {
                     )}
 
                     {/* Executive Fit Summary */}
-                    <div className="p-5 bg-slate-100/80 dark:bg-white/5 border border-slate-200/90 dark:border-white/10 rounded-2xl">
+                    <div className="p-5 bg-slate-50/80 dark:bg-white/5 border border-slate-200/80 dark:border-white/10 rounded-2xl">
                       <h5 className="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-400 mb-2 flex items-center gap-2">
                         <FiCheckCircle className="text-emerald-600 dark:text-emerald-400" />
                         <span>Executive Candidate Fit Summary</span>
@@ -556,7 +560,7 @@ export default function JDMatcherModal() {
 
                     {/* Matching & Missing Skills */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div className="p-4 bg-emerald-50/90 border border-emerald-200/90 dark:bg-emerald-500/10 dark:border-emerald-500/20 rounded-2xl">
+                      <div className="p-4 bg-emerald-50/80 border border-emerald-200/80 dark:bg-emerald-500/10 dark:border-emerald-500/20 rounded-2xl">
                         <h6 className="text-xs font-extrabold text-emerald-900 dark:text-emerald-400 mb-2">
                           Key Matched Stack &amp; Capabilities
                         </h6>
@@ -572,7 +576,7 @@ export default function JDMatcherModal() {
                         </div>
                       </div>
 
-                      <div className="p-4 bg-amber-50/90 border border-amber-200/90 dark:bg-amber-500/10 dark:border-amber-500/20 rounded-2xl">
+                      <div className="p-4 bg-amber-50/80 border border-amber-200/80 dark:bg-amber-500/10 dark:border-amber-500/20 rounded-2xl">
                         <h6 className="text-xs font-extrabold text-amber-900 dark:text-amber-400 mb-2">
                           Skill Growth / Ramp-Up Areas
                         </h6>
@@ -590,7 +594,7 @@ export default function JDMatcherModal() {
                     </div>
 
                     {/* Tailored Value Pitch */}
-                    <div className="p-5 bg-purple-50/90 border border-purple-200/90 dark:bg-purple-500/10 dark:border-purple-500/20 rounded-2xl">
+                    <div className="p-5 bg-purple-50/80 border border-purple-200/80 dark:bg-purple-500/10 dark:border-purple-500/20 rounded-2xl">
                       <h5 className="text-xs font-extrabold uppercase tracking-wider text-purple-950 dark:text-purple-400 mb-2">
                         Why Hire Sanket for This Role?
                       </h5>
@@ -611,7 +615,7 @@ export default function JDMatcherModal() {
                               key={idx}
                               href="#projects"
                               onClick={handleClose}
-                              className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-cyan-600 hover:text-white dark:bg-white/10 text-slate-900 dark:text-white text-xs font-bold transition-all shadow-xs"
+                              className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-cyan-600 hover:text-white dark:bg-white/10 dark:hover:bg-cyan-500/30 text-slate-900 dark:text-white text-xs font-bold transition-all shadow-xs border border-slate-200/80 dark:border-white/10"
                             >
                               <span>{project}</span>
                               <FiArrowRight size={12} />
@@ -621,10 +625,10 @@ export default function JDMatcherModal() {
                       </div>
                     )}
 
-                    <div className="pt-4 border-t border-slate-200/90 dark:border-white/10 text-center">
+                    <div className="pt-4 border-t border-slate-200/80 dark:border-white/10 text-center">
                       <button
                         onClick={handleClose}
-                        className="px-6 py-2.5 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-xs font-bold transition-all cursor-pointer"
+                        className="px-6 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 dark:bg-white dark:hover:bg-slate-100 text-white dark:text-slate-900 text-xs font-bold transition-all cursor-pointer shadow-md"
                       >
                         Done Reviewing
                       </button>
